@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="105" total="112" passed="7">
+  <reporter-output>
+  </reporter-output>
+  <suite name="NavatarSuite" duration-ms="1713506" started-at="2020-03-19T22:19:16 IST" finished-at="2020-03-19T22:47:49 IST">
+    <groups>
+    </groups>
+    <test name="Test" duration-ms="1713506" started-at="2020-03-19T22:19:16 IST" finished-at="2020-03-19T22:47:49 IST">
+      <class name="com.navatar.scripts.SmokeTestCases">
+        <test-method status="PASS" signature="reportConfig()[pri:0, instance:[unknown locator]]" name="reportConfig" is-config="true" duration-ms="170" started-at="2020-03-19T22:19:16 IST" finished-at="2020-03-19T22:19:16 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- reportConfig -->
+        <test-method status="PASS" signature="config(java.lang.String)[pri:0, instance:[unknown locator]]" name="config" is-config="true" duration-ms="7245" started-at="2020-03-19T22:19:16 IST" finished-at="2020-03-19T22:19:23 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[chrome]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- config -->
+        <test-method status="PASS" signature="settingsBeforeTests()[pri:0, instance:[unknown locator]]" name="settingsBeforeTests" is-config="true" duration-ms="59148" started-at="2020-03-19T22:19:23 IST" finished-at="2020-03-19T22:20:22 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- settingsBeforeTests -->
+        <test-method status="PASS" signature="PESmokeTc086_VerifyActivitiesAtOldInstitutionContactTransferAcc4(java.lang.String, java.lang.String)[pri:0, instance:[unknown locator]]" name="PESmokeTc086_VerifyActivitiesAtOldInstitutionContactTransferAcc4" duration-ms="137039" started-at="2020-03-19T22:20:22 IST" finished-at="2020-03-19T22:22:39 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Testing]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[Lightning]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- PESmokeTc086_VerifyActivitiesAtOldInstitutionContactTransferAcc4 -->
+        <test-method status="PASS" signature="settingsAfterTests(org.testng.ITestResult)[pri:0, instance:[unknown locator]]" name="settingsAfterTests" is-config="true" duration-ms="2" started-at="2020-03-19T22:22:40 IST" finished-at="2020-03-19T22:22:40 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=PESmokeTc086_VerifyActivitiesAtOldInstitutionContactTransferAcc4 on [unknown locator] status=SUCCESS method=SmokeTestCases.PESmokeTc086_VerifyActivitiesAtOldInstitutionContactTransferAcc4(java.lang.String, java.lang.String)[pri:0, instance:[unknown locator]] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- settingsAfterTests -->
+        <test-method status="PASS" signature="settingsBeforeTests()[pri:0, instance:[unknown locator]]" name="settingsBeforeTests" is-config="true" duration-ms="59555" started-at="2020-03-19T22:22:40 IST" finished-at="2020-03-19T22:23:39 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- settingsBeforeTests -->
+        <test-method status="PASS" signature="PESmokeTc087_VerifyActivitiesAtOldInstitutionContactTransferAcc5(java.lang.String, java.lang.String)[pri:0, instance:[unknown locator]]" name="PESmokeTc087_VerifyActivitiesAtOldInstitutionContactTransferAcc5" duration-ms="114940" started-at="2020-03-19T22:23:39 IST" finished-at="2020-03-19T22:25:34 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Testing]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[Lightning]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- PESmokeTc087_VerifyActivitiesAtOldInstitutionContactTransferAcc5 -->
+        <test-method status="PASS" signature="settingsAfterTests(org.testng.ITestResult)[pri:0, instance:[unknown locator]]" name="settingsAfterTests" is-config="true" duration-ms="0" started-at="2020-03-19T22:25:35 IST" finished-at="2020-03-19T22:25:35 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=PESmokeTc087_VerifyActivitiesAtOldInstitutionContactTransferAcc5 on [unknown locator] status=SUCCESS method=SmokeTestCases.PESmokeTc087_VerifyActivitiesAtOldInstitutionContactTransferAcc5(java.lang.String, java.lang.String)[pri:0, instance:[unknown locator]] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- settingsAfterTests -->
+        <test-method status="PASS" signature="settingsBeforeTests()[pri:0, instance:[unknown locator]]" name="settingsBeforeTests" is-config="true" duration-ms="59726" started-at="2020-03-19T22:25:35 IST" finished-at="2020-03-19T22:26:35 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- settingsBeforeTests -->
+        <test-method status="PASS" signature="PESmokeTc088_VerifyActivitiesAtNewInstitutionContactTransferAcc6(java.lang.String, java.lang.String)[pri:0, instance:[unknown locator]]" name="PESmokeTc088_VerifyActivitiesAtNewInstitutionContactTransferAcc6" duration-ms="112452" started-at="2020-03-19T22:26:35 IST" finished-at="2020-03-19T22:28:27 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Testing]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[Lightning]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- PESmokeTc088_VerifyActivitiesAtNewInstitutionContactTransferAcc6 -->
+        <test-method status="PASS" signature="settingsAfterTests(org.testng.ITestResult)[pri:0, instance:[unknown locator]]" name="settingsAfterTests" is-config="true" duration-ms="0" started-at="2020-03-19T22:28:28 IST" finished-at="2020-03-19T22:28:28 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=PESmokeTc088_VerifyActivitiesAtNewInstitutionContactTransferAcc6 on [unknown locator] status=SUCCESS method=SmokeTestCases.PESmokeTc088_VerifyActivitiesAtNewInstitutionContactTransferAcc6(java.lang.String, java.lang.String)[pri:0, instance:[unknown locator]] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- settingsAfterTests -->
+        <test-method status="PASS" signature="settingsBeforeTests()[pri:0, instance:[unknown locator]]" name="settingsBeforeTests" is-config="true" duration-ms="59097" started-at="2020-03-19T22:28:28 IST" finished-at="2020-03-19T22:29:27 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- settingsBeforeTests -->
+        <test-method status="PASS" signature="PESmokeTc089_1_VerifyBulkEmailfunctionality(java.lang.String, java.lang.String)[pri:0, instance:[unknown locator]]" name="PESmokeTc089_1_VerifyBulkEmailfunctionality" duration-ms="96635" started-at="2020-03-19T22:29:27 IST" finished-at="2020-03-19T22:31:03 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Testing]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[Lightning]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- PESmokeTc089_1_VerifyBulkEmailfunctionality -->
+        <test-method status="PASS" signature="settingsAfterTests(org.testng.ITestResult)[pri:0, instance:[unknown locator]]" name="settingsAfterTests" is-config="true" duration-ms="1" started-at="2020-03-19T22:31:04 IST" finished-at="2020-03-19T22:31:04 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=PESmokeTc089_1_VerifyBulkEmailfunctionality on [unknown locator] status=SUCCESS method=SmokeTestCases.PESmokeTc089_1_VerifyBulkEmailfunctionality(java.lang.String, java.lang.String)[pri:0, instance:[unknown locator]] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- settingsAfterTests -->
+        <test-method status="PASS" signature="settingsBeforeTests()[pri:0, instance:[unknown locator]]" name="settingsBeforeTests" is-config="true" duration-ms="59682" started-at="2020-03-19T22:31:04 IST" finished-at="2020-03-19T22:32:03 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- settingsBeforeTests -->
+        <test-method status="PASS" signature="PESmokeTc089_2_verifyCancelNextPreviousOnBulkEmail(java.lang.String, java.lang.String)[pri:0, instance:[unknown locator]]" name="PESmokeTc089_2_verifyCancelNextPreviousOnBulkEmail" duration-ms="293514" started-at="2020-03-19T22:32:03 IST" finished-at="2020-03-19T22:36:57 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Testing]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[Lightning]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- PESmokeTc089_2_verifyCancelNextPreviousOnBulkEmail -->
+        <test-method status="PASS" signature="settingsAfterTests(org.testng.ITestResult)[pri:0, instance:[unknown locator]]" name="settingsAfterTests" is-config="true" duration-ms="3" started-at="2020-03-19T22:36:57 IST" finished-at="2020-03-19T22:36:57 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=PESmokeTc089_2_verifyCancelNextPreviousOnBulkEmail on [unknown locator] status=SUCCESS method=SmokeTestCases.PESmokeTc089_2_verifyCancelNextPreviousOnBulkEmail(java.lang.String, java.lang.String)[pri:0, instance:[unknown locator]] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- settingsAfterTests -->
+        <test-method status="PASS" signature="settingsBeforeTests()[pri:0, instance:[unknown locator]]" name="settingsBeforeTests" is-config="true" duration-ms="58493" started-at="2020-03-19T22:36:57 IST" finished-at="2020-03-19T22:37:56 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- settingsBeforeTests -->
+        <test-method status="PASS" signature="PESmokeTc090_VerifySearchingOfContactAndSendingEmailByBulkEmail(java.lang.String, java.lang.String)[pri:0, instance:[unknown locator]]" name="PESmokeTc090_VerifySearchingOfContactAndSendingEmailByBulkEmail" duration-ms="128439" started-at="2020-03-19T22:37:56 IST" finished-at="2020-03-19T22:40:04 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Testing]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[Lightning]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- PESmokeTc090_VerifySearchingOfContactAndSendingEmailByBulkEmail -->
+        <test-method status="PASS" signature="settingsBeforeTests()[pri:0, instance:[unknown locator]]" name="settingsBeforeTests" is-config="true" duration-ms="59375" started-at="2020-03-19T22:40:05 IST" finished-at="2020-03-19T22:41:04 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- settingsBeforeTests -->
+        <test-method status="PASS" signature="settingsAfterTests(org.testng.ITestResult)[pri:0, instance:[unknown locator]]" name="settingsAfterTests" is-config="true" duration-ms="0" started-at="2020-03-19T22:40:05 IST" finished-at="2020-03-19T22:40:05 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=PESmokeTc090_VerifySearchingOfContactAndSendingEmailByBulkEmail on [unknown locator] status=SUCCESS method=SmokeTestCases.PESmokeTc090_VerifySearchingOfContactAndSendingEmailByBulkEmail(java.lang.String, java.lang.String)[pri:0, instance:[unknown locator]] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- settingsAfterTests -->
+        <test-method status="PASS" signature="PESmokeTc091_verifyReceivedEmailAndCreatedActivity(java.lang.String, java.lang.String)[pri:0, instance:[unknown locator]]" name="PESmokeTc091_verifyReceivedEmailAndCreatedActivity" duration-ms="402100" started-at="2020-03-19T22:41:04 IST" finished-at="2020-03-19T22:47:46 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Testing]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[Lightning]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- PESmokeTc091_verifyReceivedEmailAndCreatedActivity -->
+        <test-method status="PASS" signature="settingsAfterTests(org.testng.ITestResult)[pri:0, instance:[unknown locator]]" name="settingsAfterTests" is-config="true" duration-ms="1" started-at="2020-03-19T22:47:47 IST" finished-at="2020-03-19T22:47:47 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=PESmokeTc091_verifyReceivedEmailAndCreatedActivity on [unknown locator] status=SUCCESS method=SmokeTestCases.PESmokeTc091_verifyReceivedEmailAndCreatedActivity(java.lang.String, java.lang.String)[pri:0, instance:[unknown locator]] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- settingsAfterTests -->
+        <test-method status="PASS" signature="closeBrowser()[pri:0, instance:[unknown locator]]" name="closeBrowser" is-config="true" duration-ms="1932" started-at="2020-03-19T22:47:47 IST" finished-at="2020-03-19T22:47:49 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closeBrowser -->
+        <test-method status="PASS" signature="reportConfigEnd()[pri:0, instance:[unknown locator]]" name="reportConfigEnd" is-config="true" duration-ms="511" started-at="2020-03-19T22:47:50 IST" finished-at="2020-03-19T22:47:50 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- reportConfigEnd -->
+      </class> <!-- com.navatar.scripts.SmokeTestCases -->
+    </test> <!-- Test -->
+  </suite> <!-- NavatarSuite -->
+</testng-results>

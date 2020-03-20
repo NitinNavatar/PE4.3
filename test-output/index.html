@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+  <meta charset='utf-8'>
+  <title>TestNG reports</title>
+
+    <link type="text/css" href="testng-reports.css" rel="stylesheet" />
+    <script type="text/javascript" src="jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="testng-reports.js"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type='text/javascript'>
+      google.load('visualization', '1', {packages:['table']});
+      google.setOnLoadCallback(drawTable);
+      var suiteTableInitFunctions = new Array();
+      var suiteTableData = new Array();
+    </script>
+    <!--
+      <script type="text/javascript" src="jquery-ui/js/jquery-ui-1.8.16.custom.min.js"></script>
+     -->
+  </head>
+
+  <body>
+    <div class="top-banner-root">
+      <span class="top-banner-title-font">Test results</span>
+      <br/>
+      <span class="top-banner-font-1">1 suite</span>
+    </div> <!-- top-banner-root -->
+    <div class="navigator-root">
+      <div class="navigator-suite-header">
+        <span>All suites</span>
+        <a href="#" class="collapse-all-link" title="Collapse/expand all the suites">
+          <img class="collapse-all-icon" src="collapseall.gif">
+          </img> <!-- collapse-all-icon -->
+        </a> <!-- collapse-all-link -->
+      </div> <!-- navigator-suite-header -->
+      <div class="suite">
+        <div class="rounded-window">
+          <div class="suite-header light-rounded-window-top">
+            <a href="#" class="navigator-link" panel-name="suite-NavatarSuite">
+              <span class="suite-name border-passed">NavatarSuite</span>
+            </a> <!-- navigator-link -->
+          </div> <!-- suite-header light-rounded-window-top -->
+          <div class="navigator-suite-content">
+            <div class="suite-section-title">
+              <span>Info</span>
+            </div> <!-- suite-section-title -->
+            <div class="suite-section-content">
+              <ul>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="test-xml-NavatarSuite">
+                    <span>[unset file name]</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="testlist-NavatarSuite">
+                    <span class="test-stats">1 test</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="group-NavatarSuite">
+                    <span>0 groups</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="times-NavatarSuite">
+                    <span>Times</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="reporter-NavatarSuite">
+                    <span>Reporter output</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="ignored-methods-NavatarSuite">
+                    <span>Ignored methods</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="chronological-NavatarSuite">
+                    <span>Chronological view</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+              </ul>
+            </div> <!-- suite-section-content -->
+            <div class="result-section">
+              <div class="suite-section-title">
+                <span>Results</span>
+              </div> <!-- suite-section-title -->
+              <div class="suite-section-content">
+                <ul>
+                  <li>
+                    <span class="method-stats">7 methods,   7 passed</span>
+                  </li>
+                  <li>
+                    <span class="method-list-title passed">Passed methods</span>
+                    <span class="show-or-hide-methods passed">
+                      <a href="#" panel-name="suite-NavatarSuite" class="hide-methods passed suite-NavatarSuite"> (hide)</a> <!-- hide-methods passed suite-NavatarSuite -->
+                      <a href="#" panel-name="suite-NavatarSuite" class="show-methods passed suite-NavatarSuite"> (show)</a> <!-- show-methods passed suite-NavatarSuite -->
+                    </span>
+                    <div class="method-list-content passed suite-NavatarSuite">
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-NavatarSuite" title="com.navatar.scripts.SmokeTestCases" hash-for-method="PESmokeTc086_VerifyActivitiesAtOldInstitutionContactTransferAcc4(Testing, Lightning)">PESmokeTc086_VerifyActivitiesAtOldInstitutionContactTransferAcc4(Testing, Lightning)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-NavatarSuite" title="com.navatar.scripts.SmokeTestCases" hash-for-method="PESmokeTc087_VerifyActivitiesAtOldInstitutionContactTransferAcc5(Testing, Lightning)">PESmokeTc087_VerifyActivitiesAtOldInstitutionContactTransferAcc5(Testing, Lightning)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-NavatarSuite" title="com.navatar.scripts.SmokeTestCases" hash-for-method="PESmokeTc088_VerifyActivitiesAtNewInstitutionContactTransferAcc6(Testing, Lightning)">PESmokeTc088_VerifyActivitiesAtNewInstitutionContactTransferAcc6(Testing, Lightning)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-NavatarSuite" title="com.navatar.scripts.SmokeTestCases" hash-for-method="PESmokeTc089_1_VerifyBulkEmailfunctionality(Testing, Lightning)">PESmokeTc089_1_VerifyBulkEmailfunctionality(Testing, Lightning)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-NavatarSuite" title="com.navatar.scripts.SmokeTestCases" hash-for-method="PESmokeTc089_2_verifyCancelNextPreviousOnBulkEmail(Testing, Lightning)">PESmokeTc089_2_verifyCancelNextPreviousOnBulkEmail(Testing, Lightning)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-NavatarSuite" title="com.navatar.scripts.SmokeTestCases" hash-for-method="PESmokeTc090_VerifySearchingOfContactAndSendingEmailByBulkEmail(Testing, Lightning)">PESmokeTc090_VerifySearchingOfContactAndSendingEmailByBulkEmail(Testing, Lightning)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-NavatarSuite" title="com.navatar.scripts.SmokeTestCases" hash-for-method="PESmokeTc091_verifyReceivedEmailAndCreatedActivity(Testing, Lightning)">PESmokeTc091_verifyReceivedEmailAndCreatedActivity(Testing, Lightning)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                    </div> <!-- method-list-content passed suite-NavatarSuite -->
+                  </li>
+                </ul>
+              </div> <!-- suite-section-content -->
+            </div> <!-- result-section -->
+          </div> <!-- navigator-suite-content -->
+        </div> <!-- rounded-window -->
+      </div> <!-- suite -->
+    </div> <!-- navigator-root -->
+    <div class="wrapper">
+      <div class="main-panel-root">
+        <div panel-name="suite-NavatarSuite" class="panel NavatarSuite">
+          <div class="suite-NavatarSuite-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">com.navatar.scripts.SmokeTestCases</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="PESmokeTc086_VerifyActivitiesAtOldInstitutionContactTransferAcc4(Testing, Lightning)">
+                  </a> <!-- PESmokeTc086_VerifyActivitiesAtOldInstitutionContactTransferAcc4(Testing, Lightning) -->
+                  <span class="method-name">PESmokeTc086_VerifyActivitiesAtOldInstitutionContactTransferAcc4</span>
+                  <span class="parameters">(Testing, Lightning)</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="PESmokeTc087_VerifyActivitiesAtOldInstitutionContactTransferAcc5(Testing, Lightning)">
+                  </a> <!-- PESmokeTc087_VerifyActivitiesAtOldInstitutionContactTransferAcc5(Testing, Lightning) -->
+                  <span class="method-name">PESmokeTc087_VerifyActivitiesAtOldInstitutionContactTransferAcc5</span>
+                  <span class="parameters">(Testing, Lightning)</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="PESmokeTc088_VerifyActivitiesAtNewInstitutionContactTransferAcc6(Testing, Lightning)">
+                  </a> <!-- PESmokeTc088_VerifyActivitiesAtNewInstitutionContactTransferAcc6(Testing, Lightning) -->
+                  <span class="method-name">PESmokeTc088_VerifyActivitiesAtNewInstitutionContactTransferAcc6</span>
+                  <span class="parameters">(Testing, Lightning)</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="PESmokeTc089_1_VerifyBulkEmailfunctionality(Testing, Lightning)">
+                  </a> <!-- PESmokeTc089_1_VerifyBulkEmailfunctionality(Testing, Lightning) -->
+                  <span class="method-name">PESmokeTc089_1_VerifyBulkEmailfunctionality</span>
+                  <span class="parameters">(Testing, Lightning)</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="PESmokeTc089_2_verifyCancelNextPreviousOnBulkEmail(Testing, Lightning)">
+                  </a> <!-- PESmokeTc089_2_verifyCancelNextPreviousOnBulkEmail(Testing, Lightning) -->
+                  <span class="method-name">PESmokeTc089_2_verifyCancelNextPreviousOnBulkEmail</span>
+                  <span class="parameters">(Testing, Lightning)</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="PESmokeTc090_VerifySearchingOfContactAndSendingEmailByBulkEmail(Testing, Lightning)">
+                  </a> <!-- PESmokeTc090_VerifySearchingOfContactAndSendingEmailByBulkEmail(Testing, Lightning) -->
+                  <span class="method-name">PESmokeTc090_VerifySearchingOfContactAndSendingEmailByBulkEmail</span>
+                  <span class="parameters">(Testing, Lightning)</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="PESmokeTc091_verifyReceivedEmailAndCreatedActivity(Testing, Lightning)">
+                  </a> <!-- PESmokeTc091_verifyReceivedEmailAndCreatedActivity(Testing, Lightning) -->
+                  <span class="method-name">PESmokeTc091_verifyReceivedEmailAndCreatedActivity</span>
+                  <span class="parameters">(Testing, Lightning)</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-NavatarSuite-class-passed -->
+        </div> <!-- panel NavatarSuite -->
+        <div panel-name="test-xml-NavatarSuite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE suite SYSTEM &quot;https://testng.org/testng-1.0.dtd&quot;&gt;
+&lt;suite name=&quot;NavatarSuite&quot;&gt;
+  &lt;listeners&gt;
+    &lt;listener class-name=&quot;com.navatar.generic.AppListeners&quot;/&gt;
+  &lt;/listeners&gt;
+  &lt;test thread-count=&quot;5&quot; name=&quot;Test&quot;&gt;
+    &lt;parameter name=&quot;browser&quot; value=&quot;chrome&quot;/&gt;
+    &lt;parameter name=&quot;environment&quot; value=&quot;Testing&quot;/&gt;
+    &lt;parameter name=&quot;mode&quot; value=&quot;Lightning&quot;/&gt;
+    &lt;classes&gt;
+      &lt;class name=&quot;com.navatar.scripts.SmokeTestCases&quot;&gt;
+        &lt;methods&gt;
+          &lt;exclude name=&quot;PESmokeTc000_1_addField&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc001_1_createCRMUser&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc001_2_AddRemoveTabAndActivateLighting&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc001_3_createCustomEmailAndTemplate&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc001_4_createPreCondition&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc002_verifyAddProspectAndAddContacts&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc003_verifyAddContactsFromPastMarketingInitiativeTab&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc004_verifyErrorMsgOnReportsTabInAddProspects&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc005_1_addContactsOnReportsTabInAddProspects&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc005_2_addFilterLogicAndAddColumnFromWrenchIcon&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc006_verifyEmailProspectAndSendEmail&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc007_verifyEmailAndCreateActivity&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc008_verifyEmailProspectPageAndSendMail&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc009_1_verifyEmailAndCreateActivityforContact2&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc009_2_addFilterLogicAndAddColumnFromWrenchIconInEMailProspect&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc010_verifyCreateFundRaisingButton&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc011_verifyCreateFundraisingsFromHomePage&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc012_1_verifyCreateFundraisingsForCoInvestment&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc012_2_addFilterLogicInCreateFundraising&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc013_verifySelectFundPopupfromCompanyPage&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc014_verifyCoInvestmentSetting&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc015_verifyErrorMsgRelatedToOtherCoInvestmentFund&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc016_1_createFundraisingFromCompanyPage&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc016_2_addFilterLogicOnCreateFundraising&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc017_1_verifyCancelNextPreviousOnEmailFundraisingContacts&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc017_2_EmailFundraisingContactsAndSendEMail&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc018_verifyRecievedEmailAndCreatedActivity&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc019_SendCustomEMailFromEmailFundraisingContact&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc020_1_verifyRecievedCustomEmailAndCreatedActivityforContact3&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc020_2_verifyAddFilterLogicFundraisingContacts&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc021_verifyCommmitmentButtonOnPages&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc022_createCommitmentFromHomePage&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc023_VerifyCommitmentCreationSetUpPage&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc024_createCommitmentFromFundraisingPage&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc025_1_createCommitmentFromHomePageUsingFundButton&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc025_2_createCommitmentFromHomePageUsingFundButton&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc026_createCommitmentFromFundraisingForCoInvestment&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc027_verifyErrorMessageFundraisingForCoInvestment&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc028_createCommitmentFromCompanyPageForCoInvestment&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc029_VerifyRevertToDefaultForCommitmentTabInNavatarSetup&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc030_VerifyOpeningofDealCreatioPageAndCreationOfCompanyPipelineSourceFirmSourceContact&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc031_VerifyDealCreationSetUpPage&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc032_VerifyDealCreationPageAndCreationOfCompanyPipeLineSourceFirm&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc033_VerifyDealCreationWithSelectExistingSourceFirmAndSourceContact&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc034_VerifyRevertToDefaultInNavatarSetup&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc035_1_ActivatePipelineStageLogAction&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc035_2_ActivatePipelineStageImpact&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc036_EditPipelineStageAndVerifyPipelineStageLog&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc037_enableIndividualInvestorCreation&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc038_verifyCreateNewIndividualInvestorLabels&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc039_CreateNewIndividualInvestor&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc040_updateCreatedIndividualInvestorDetails&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc041_updateCreatedContactDetails&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc042_addMoreFieldsInIndividualInvestorCreation&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc043_CreateNewIndividualInvestorAfterAddingMoreFields&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc044_1_VerifyRevertToDefaultInIndiviualInvestorCreation&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc044_2_VerifyAccountAssociationsLink&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc044_3_verifyAccountAssociationImpact&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc045_1_VerifyFundDrawdownPage&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc045_2_VerifyFundDrawdownPage&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc046_VerifyCreatedCapitalCalls&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc047_VerifyEditingCapitalCalls&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc048_VerifyCommitmentPage&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc049_VerifySendCapitalCallNotices&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc050_1_AddContactToCorrespondingList&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc050_2_verifyCancelNextPreviousOnCapitalCallNotice&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc051_VerifyEmailSendToOneContact&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc052_VerifySentEmailAndActivityFromDrawdownPage&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc053_1_VerifyWrenchatSendCapitalCallNoticesPage&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc053_2_VerifySentEmailAndActivityFromCapitalCallPage&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc054_VerifyMailReceivedAndActivity&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc055_1_CreateDistributionAndVerify&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc055_2_CreateDistributionAndVerify&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc056_VerifyCreatedInvestorDistribution&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc057_VerifyCommitmentPageAfterDistributions&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc058_1_verifyCancelNextPreviousOnSendDistributionNotice&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc058_2_VerifySendDistributionNoticesFromFundDistribution&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc059_verifyReceivedEmailAndCreatedActivityForFundDistribution&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc060_1_VerifyWrenchatSendDistributionNoticesPage&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc060_2_VerifySendDistributionNoticesFromInvestorDistribution&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc061_verifyReceivedEmailAndCreatedActivityForInvestorDistribution&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc062_VerifyContactTransferButtonAtContactPageAndOfficeLocationRelatedListAtAccountPage&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc063_EnableContactTransferSettingFromNavatarSetup&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc064_VerifyOfficeLocationSetting&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc065_VerifyContactTransferButtonAtContactPageAndOfficeLocationRelatedListAtAccountPage&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc066_CreateOfficeLocationsForInstitutionContactTransferAcc1&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc067_VerifyBillingAddressOfInstitutionContactTransferAcc1AfterCreatingPrimaryOfficeLocation&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc068_VerifMailingAddressAtContactDetailpage&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc069_VerifyOfficeLocationsAtContactPageAndUpdationOfMailingAddressAfterSelectingOfficeLocation&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc070_UpdatePrimaryOfOfficeLocation1AtContactTransferAcc1DetailPageAndVerifyitsimpact&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc071_UpdatePrimaryOfficeLocationValueAndVerifyItsImpact&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc072_CreateActivitiesWithContact&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc073_VerifyContactTransferAB&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc074_VerifyActivitiesAtOldInstitutionContactTransferAcc1&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc075_VerifyActivitiesAtNewInstitutionContactTransferAcc2&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc076_VerifyContactTransferBC&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc077_VerifyActivitiesAtOldInstitutionContactTransferAcc1&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc078_VerifyActivitiesAtOldInstitutionContactTransferAcc2&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc079_VerifyActivitiesAtNewInstitutionContactTransferAcc3&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc080_ChangeContactTransferSetting&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc081_CreateActivitiesWithContact&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc082_VerifyContactTransferAB&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc083_VerifyActivitiesAtOldInstitutionContactTransferAcc4&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc084_VerifyActivitiesAtNewInstitutionContactTransferAcc5&quot;/&gt;
+          &lt;exclude name=&quot;PESmokeTc085_VerifyContactTransferBC&quot;/&gt;
+        &lt;/methods&gt;
+      &lt;/class&gt; &lt;!-- com.navatar.scripts.SmokeTestCases --&gt;
+    &lt;/classes&gt;
+  &lt;/test&gt; &lt;!-- Test --&gt;
+&lt;/suite&gt; &lt;!-- NavatarSuite --&gt;
+            </pre>
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="testlist-NavatarSuite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Tests for NavatarSuite</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <ul>
+              <li>
+                <span class="test-name">Test (1 class)</span>
+              </li>
+            </ul>
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="group-NavatarSuite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Groups for NavatarSuite</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="times-NavatarSuite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Times for NavatarSuite</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <div class="times-div">
+              <script type="text/javascript">
+suiteTableInitFunctions.push('tableData_NavatarSuite');
+function tableData_NavatarSuite() {
+var data = new google.visualization.DataTable();
+data.addColumn('number', 'Number');
+data.addColumn('string', 'Method');
+data.addColumn('string', 'Class');
+data.addColumn('number', 'Time (ms)');
+data.addRows(7);
+data.setCell(0, 0, 0)
+data.setCell(0, 1, 'PESmokeTc091_verifyReceivedEmailAndCreatedActivity')
+data.setCell(0, 2, 'com.navatar.scripts.SmokeTestCases')
+data.setCell(0, 3, 402100);
+data.setCell(1, 0, 1)
+data.setCell(1, 1, 'PESmokeTc089_2_verifyCancelNextPreviousOnBulkEmail')
+data.setCell(1, 2, 'com.navatar.scripts.SmokeTestCases')
+data.setCell(1, 3, 293514);
+data.setCell(2, 0, 2)
+data.setCell(2, 1, 'PESmokeTc086_VerifyActivitiesAtOldInstitutionContactTransferAcc4')
+data.setCell(2, 2, 'com.navatar.scripts.SmokeTestCases')
+data.setCell(2, 3, 137039);
+data.setCell(3, 0, 3)
+data.setCell(3, 1, 'PESmokeTc090_VerifySearchingOfContactAndSendingEmailByBulkEmail')
+data.setCell(3, 2, 'com.navatar.scripts.SmokeTestCases')
+data.setCell(3, 3, 128439);
+data.setCell(4, 0, 4)
+data.setCell(4, 1, 'PESmokeTc087_VerifyActivitiesAtOldInstitutionContactTransferAcc5')
+data.setCell(4, 2, 'com.navatar.scripts.SmokeTestCases')
+data.setCell(4, 3, 114940);
+data.setCell(5, 0, 5)
+data.setCell(5, 1, 'PESmokeTc088_VerifyActivitiesAtNewInstitutionContactTransferAcc6')
+data.setCell(5, 2, 'com.navatar.scripts.SmokeTestCases')
+data.setCell(5, 3, 112452);
+data.setCell(6, 0, 6)
+data.setCell(6, 1, 'PESmokeTc089_1_VerifyBulkEmailfunctionality')
+data.setCell(6, 2, 'com.navatar.scripts.SmokeTestCases')
+data.setCell(6, 3, 96635);
+window.suiteTableData['NavatarSuite']= { tableData: data, tableDiv: 'times-div-NavatarSuite'}
+return data;
+}
+              </script>
+              <span class="suite-total-time">Total running time: 21 minutes</span>
+              <div id="times-div-NavatarSuite">
+              </div> <!-- times-div-NavatarSuite -->
+            </div> <!-- times-div -->
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="reporter-NavatarSuite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Reporter output for NavatarSuite</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="ignored-methods-NavatarSuite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">105 ignored methods</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <div class="ignored-class-div">
+              <span class="ignored-class-name">com.navatar.scripts.SmokeTestCases</span>
+              <div class="ignored-methods-div">
+                <span class="ignored-method-name">PESmokeTc071_UpdatePrimaryOfficeLocationValueAndVerifyItsImpact</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc051_VerifyEmailSendToOneContact</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc081_CreateActivitiesWithContact</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc062_VerifyContactTransferButtonAtContactPageAndOfficeLocationRelatedListAtAccountPage</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc016_1_createFundraisingFromCompanyPage</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc064_VerifyOfficeLocationSetting</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc021_verifyCommmitmentButtonOnPages</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc040_updateCreatedIndividualInvestorDetails</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc052_VerifySentEmailAndActivityFromDrawdownPage</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc014_verifyCoInvestmentSetting</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc020_1_verifyRecievedCustomEmailAndCreatedActivityforContact3</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc027_verifyErrorMessageFundraisingForCoInvestment</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc028_createCommitmentFromCompanyPageForCoInvestment</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc009_2_addFilterLogicAndAddColumnFromWrenchIconInEMailProspect</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc059_verifyReceivedEmailAndCreatedActivityForFundDistribution</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc003_verifyAddContactsFromPastMarketingInitiativeTab</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc025_1_createCommitmentFromHomePageUsingFundButton</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc078_VerifyActivitiesAtOldInstitutionContactTransferAcc2</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc066_CreateOfficeLocationsForInstitutionContactTransferAcc1</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc029_VerifyRevertToDefaultForCommitmentTabInNavatarSetup</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc012_2_addFilterLogicInCreateFundraising</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc041_updateCreatedContactDetails</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc026_createCommitmentFromFundraisingForCoInvestment</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc002_verifyAddProspectAndAddContacts</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc043_CreateNewIndividualInvestorAfterAddingMoreFields</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc039_CreateNewIndividualInvestor</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc035_1_ActivatePipelineStageLogAction</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc068_VerifMailingAddressAtContactDetailpage</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc076_VerifyContactTransferBC</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc075_VerifyActivitiesAtNewInstitutionContactTransferAcc2</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc019_SendCustomEMailFromEmailFundraisingContact</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc074_VerifyActivitiesAtOldInstitutionContactTransferAcc1</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc044_3_verifyAccountAssociationImpact</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc072_CreateActivitiesWithContact</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc050_1_AddContactToCorrespondingList</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc079_VerifyActivitiesAtNewInstitutionContactTransferAcc3</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc016_2_addFilterLogicOnCreateFundraising</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc017_2_EmailFundraisingContactsAndSendEMail</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc022_createCommitmentFromHomePage</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc030_VerifyOpeningofDealCreatioPageAndCreationOfCompanyPipelineSourceFirmSourceContact</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc070_UpdatePrimaryOfOfficeLocation1AtContactTransferAcc1DetailPageAndVerifyitsimpact</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc036_EditPipelineStageAndVerifyPipelineStageLog</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc054_VerifyMailReceivedAndActivity</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc063_EnableContactTransferSettingFromNavatarSetup</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc038_verifyCreateNewIndividualInvestorLabels</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc057_VerifyCommitmentPageAfterDistributions</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc049_VerifySendCapitalCallNotices</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc005_2_addFilterLogicAndAddColumnFromWrenchIcon</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc001_2_AddRemoveTabAndActivateLighting</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc031_VerifyDealCreationSetUpPage</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc017_1_verifyCancelNextPreviousOnEmailFundraisingContacts</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc065_VerifyContactTransferButtonAtContactPageAndOfficeLocationRelatedListAtAccountPage</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc010_verifyCreateFundRaisingButton</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc061_verifyReceivedEmailAndCreatedActivityForInvestorDistribution</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc007_verifyEmailAndCreateActivity</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc012_1_verifyCreateFundraisingsForCoInvestment</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc080_ChangeContactTransferSetting</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc025_2_createCommitmentFromHomePageUsingFundButton</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc000_1_addField</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc034_VerifyRevertToDefaultInNavatarSetup</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc084_VerifyActivitiesAtNewInstitutionContactTransferAcc5</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc004_verifyErrorMsgOnReportsTabInAddProspects</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc060_1_VerifyWrenchatSendDistributionNoticesPage</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc023_VerifyCommitmentCreationSetUpPage</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc045_2_VerifyFundDrawdownPage</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc018_verifyRecievedEmailAndCreatedActivity</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc009_1_verifyEmailAndCreateActivityforContact2</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc035_2_ActivatePipelineStageImpact</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc058_1_verifyCancelNextPreviousOnSendDistributionNotice</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc045_1_VerifyFundDrawdownPage</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc024_createCommitmentFromFundraisingPage</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc073_VerifyContactTransferAB</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc008_verifyEmailProspectPageAndSendMail</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc044_1_VerifyRevertToDefaultInIndiviualInvestorCreation</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc042_addMoreFieldsInIndividualInvestorCreation</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc058_2_VerifySendDistributionNoticesFromFundDistribution</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc085_VerifyContactTransferBC</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc001_4_createPreCondition</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc037_enableIndividualInvestorCreation</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc060_2_VerifySendDistributionNoticesFromInvestorDistribution</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc005_1_addContactsOnReportsTabInAddProspects</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc032_VerifyDealCreationPageAndCreationOfCompanyPipeLineSourceFirm</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc001_1_createCRMUser</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc006_verifyEmailProspectAndSendEmail</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc067_VerifyBillingAddressOfInstitutionContactTransferAcc1AfterCreatingPrimaryOfficeLocation</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc015_verifyErrorMsgRelatedToOtherCoInvestmentFund</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc046_VerifyCreatedCapitalCalls</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc044_2_VerifyAccountAssociationsLink</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc055_2_CreateDistributionAndVerify</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc069_VerifyOfficeLocationsAtContactPageAndUpdationOfMailingAddressAfterSelectingOfficeLocation</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc013_verifySelectFundPopupfromCompanyPage</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc077_VerifyActivitiesAtOldInstitutionContactTransferAcc1</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc048_VerifyCommitmentPage</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc082_VerifyContactTransferAB</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc011_verifyCreateFundraisingsFromHomePage</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc001_3_createCustomEmailAndTemplate</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc056_VerifyCreatedInvestorDistribution</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc053_2_VerifySentEmailAndActivityFromCapitalCallPage</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc050_2_verifyCancelNextPreviousOnCapitalCallNotice</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc047_VerifyEditingCapitalCalls</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc083_VerifyActivitiesAtOldInstitutionContactTransferAcc4</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc053_1_VerifyWrenchatSendCapitalCallNoticesPage</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc020_2_verifyAddFilterLogicFundraisingContacts</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc055_1_CreateDistributionAndVerify</span>
+                <br/>
+                <span class="ignored-method-name">PESmokeTc033_VerifyDealCreationWithSelectExistingSourceFirmAndSourceContact</span>
+                <br/>
+              </div> <!-- ignored-methods-div -->
+            </div> <!-- ignored-class-div -->
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="chronological-NavatarSuite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Methods in chronological order</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <div class="chronological-class">
+              <div class="chronological-class-name">com.navatar.scripts.SmokeTestCases</div> <!-- chronological-class-name -->
+              <div class="configuration-suite before">
+                <span class="method-name">reportConfig</span>
+                <span class="method-start">0 ms</span>
+              </div> <!-- configuration-suite before -->
+              <div class="configuration-class before">
+                <span class="method-name">config(chrome)</span>
+                <span class="method-start">255 ms</span>
+              </div> <!-- configuration-class before -->
+              <div class="configuration-method before">
+                <span class="method-name">settingsBeforeTests</span>
+                <span class="method-start">7514 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">PESmokeTc086_VerifyActivitiesAtOldInstitutionContactTransferAcc4(Testing, Lightning)</span>
+                <span class="method-start">66663 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">settingsAfterTests([TestResult name=PESmokeTc086_VerifyActivitiesAtOldInstitutionContactTransferAcc4 on [unknown locato...)</span>
+                <span class="method-start">204221 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">settingsBeforeTests</span>
+                <span class="method-start">204225 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">PESmokeTc087_VerifyActivitiesAtOldInstitutionContactTransferAcc5(Testing, Lightning)</span>
+                <span class="method-start">263780 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">settingsAfterTests([TestResult name=PESmokeTc087_VerifyActivitiesAtOldInstitutionContactTransferAcc5 on [unknown locato...)</span>
+                <span class="method-start">379440 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">settingsBeforeTests</span>
+                <span class="method-start">379441 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">PESmokeTc088_VerifyActivitiesAtNewInstitutionContactTransferAcc6(Testing, Lightning)</span>
+                <span class="method-start">439168 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">settingsAfterTests([TestResult name=PESmokeTc088_VerifyActivitiesAtNewInstitutionContactTransferAcc6 on [unknown locato...)</span>
+                <span class="method-start">552046 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">settingsBeforeTests</span>
+                <span class="method-start">552047 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">PESmokeTc089_1_VerifyBulkEmailfunctionality(Testing, Lightning)</span>
+                <span class="method-start">611144 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">settingsAfterTests([TestResult name=PESmokeTc089_1_VerifyBulkEmailfunctionality on [unknown locator] status=SUCCESS met...)</span>
+                <span class="method-start">708206 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">settingsBeforeTests</span>
+                <span class="method-start">708207 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">PESmokeTc089_2_verifyCancelNextPreviousOnBulkEmail(Testing, Lightning)</span>
+                <span class="method-start">767889 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">settingsAfterTests([TestResult name=PESmokeTc089_2_verifyCancelNextPreviousOnBulkEmail on [unknown locator] status=SUCC...)</span>
+                <span class="method-start">1061832 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">settingsBeforeTests</span>
+                <span class="method-start">1061835 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">PESmokeTc090_VerifySearchingOfContactAndSendingEmailByBulkEmail(Testing, Lightning)</span>
+                <span class="method-start">1120329 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">settingsAfterTests([TestResult name=PESmokeTc090_VerifySearchingOfContactAndSendingEmailByBulkEmail on [unknown locator...)</span>
+                <span class="method-start">1249252 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">settingsBeforeTests</span>
+                <span class="method-start">1249252 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">PESmokeTc091_verifyReceivedEmailAndCreatedActivity(Testing, Lightning)</span>
+                <span class="method-start">1308627 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">settingsAfterTests([TestResult name=PESmokeTc091_verifyReceivedEmailAndCreatedActivity on [unknown locator] status=SUCC...)</span>
+                <span class="method-start">1711739 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-class after">
+                <span class="method-name">closeBrowser</span>
+                <span class="method-start">1711741 ms</span>
+              </div> <!-- configuration-class after -->
+              <div class="configuration-suite after">
+                <span class="method-name">reportConfigEnd</span>
+                <span class="method-start">1714046 ms</span>
+              </div> <!-- configuration-suite after -->
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+      </div> <!-- main-panel-root -->
+    </div> <!-- wrapper -->
+  </body>
+</html>
