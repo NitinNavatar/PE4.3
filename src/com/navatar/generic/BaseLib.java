@@ -92,25 +92,6 @@ public class BaseLib extends AppListeners {
 	@BeforeClass
 	public void config(String browserName){
 		if (browserName.equalsIgnoreCase("Chrome")) {
-//			System.setProperty("webdriver.chrome.driver",
-//					System.getProperty("user.dir") + "\\exefiles\\chromedriver.exe");
-//			ChromeOptions options = new ChromeOptions();
-//			options.addArguments("disable-infobars");
-//			options.addArguments("--start-maximized");
-//			options.addArguments("--disable-notifications");
-//			Map<String, Object> prefs = new HashMap<String, Object>();
-//			prefs.put("credentials_enable_service", false);
-//			prefs.put("profile.default_content_settings.popups", 0);
-//			prefs.put("download.default_directory", downloadedFilePath);
-//			prefs.put("profile.password_manager_enabled", false);
-//			options.setExperimentalOption("prefs", prefs);
-//			DesiredCapabilities dp = DesiredCapabilities.chrome();
-//			dp.setCapability(ChromeOptions.CAPABILITY, options);
-//			dp.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
-//			edriver = new ChromeDriver(dp);
-			
-			//Upgrade ...
-			
 			System.setProperty("webdriver.chrome.driver",
 					System.getProperty("user.dir") + "\\exefiles\\chromedriver.exe");
 			ChromeOptions options = new ChromeOptions();
@@ -120,6 +101,7 @@ public class BaseLib extends AppListeners {
 			options.setExperimentalOption("useAutomationExtension", false);
 			options.addArguments("start-maximized");
 			
+			options.addArguments("--disable-notifications");
 			System.setProperty(ChromeDriverService.CHROME_DRIVER_SILENT_OUTPUT_PROPERTY, "true");
 		    Logger.getLogger("org.openqa.selenium").setLevel(Level.OFF);
 			Map<String, Object> prefs = new HashMap<String, Object>();
@@ -128,10 +110,10 @@ public class BaseLib extends AppListeners {
 			prefs.put("download.default_directory", downloadedFilePath);
 			prefs.put("profile.password_manager_enabled", false);
 			options.setExperimentalOption("prefs", prefs);
-			DesiredCapabilities dp = new DesiredCapabilities();
-			dp.setCapability(ChromeOptions.CAPABILITY, options);
-			dp.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
-			edriver = new ChromeDriver(dp);
+//			DesiredCapabilities dp = new DesiredCapabilities();
+//			dp.setCapability(ChromeOptions.CAPABILITY, options);
+//			dp.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
+			edriver = new ChromeDriver(options);
 			
 			
 		} else if (browserName.equalsIgnoreCase("firefox")) {
