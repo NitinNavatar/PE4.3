@@ -35,7 +35,7 @@ public class ExcelUtils{
 				}
 			}
 			fis.close();
-		} catch (IOException | EncryptedDocumentException | InvalidFormatException e) {
+		} catch (IOException | EncryptedDocumentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -74,7 +74,7 @@ public class ExcelUtils{
 			wb.write(fos);
 			wb.close();
 			fos.close();
-		} catch (IOException | EncryptedDocumentException | InvalidFormatException e) {
+		} catch (IOException | EncryptedDocumentException e) {
 			e.printStackTrace();
 		}
 
@@ -96,7 +96,7 @@ public class ExcelUtils{
 			wb.getSheet(sheetName).getRow(rowNum).createCell(cellNum).setCellValue(msg.toString());
 			wb.write(fos);
 			fos.close();
-		} catch (IOException | EncryptedDocumentException | InvalidFormatException e) {
+		} catch (IOException | EncryptedDocumentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -416,7 +416,7 @@ public class ExcelUtils{
 			fis=new FileInputStream(new File(path));
 			wb=WorkbookFactory.create(fis);
 			return wb.getSheet(sheetName).getLastRowNum();
-		} catch (EncryptedDocumentException | InvalidFormatException | IOException e) {
+		} catch (EncryptedDocumentException | IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -448,7 +448,7 @@ public class ExcelUtils{
 					}
 				}
 			}
-		} catch (EncryptedDocumentException | InvalidFormatException | IOException e) {
+		} catch (EncryptedDocumentException | IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -486,7 +486,7 @@ public class ExcelUtils{
 					return i;
 				}
 			}
-		} catch (EncryptedDocumentException | InvalidFormatException | IOException e) {
+		} catch (EncryptedDocumentException | IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -565,7 +565,7 @@ public class ExcelUtils{
 			wb.write(fos);
 			wb.close();
 			fos.close();
-		} catch (IOException | EncryptedDocumentException | InvalidFormatException e) {
+		} catch (IOException | EncryptedDocumentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -614,7 +614,7 @@ public class ExcelUtils{
 //					AppListeners.appLog.error(basedOnValue + " value is not found under label " + basedOnLabel.toString());
 				}
 			}
-		} catch (EncryptedDocumentException | InvalidFormatException | IOException e) {
+		} catch (EncryptedDocumentException | IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
@@ -649,7 +649,7 @@ public class ExcelUtils{
 					}
 				}
 			}
-		} catch (EncryptedDocumentException | InvalidFormatException | IOException e) {
+		} catch (EncryptedDocumentException | IOException e) {
 			// TODO Auto-generated catch block
 //			e.printStackTrace();
 		} finally {
@@ -671,7 +671,7 @@ public class ExcelUtils{
 			fis = new FileInputStream(new File(filePath));
 			wb = WorkbookFactory.create(fis);
 			lastColumn = wb.getSheet(sheetName).getRow(rowNum).getLastCellNum();
-		} catch (EncryptedDocumentException | InvalidFormatException | IOException e) {
+		} catch (EncryptedDocumentException | IOException e) {
 			// TODO Auto-generated catch block
 //			e.printStackTrace();
 		} finally {
