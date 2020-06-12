@@ -763,7 +763,7 @@ public class EnumConstants {
 		};
 	
 	public static enum ShowMoreActionDropDownList{
-			Create_Commitments,Send_Capital_Call_Notices,Create_Drawdown, Create_Distribution,Send_Distribution_Notices_Button,Send_Distribution_Notices;
+			Create_Commitments,Send_Capital_Call_Notices,Create_Drawdown, Create_Distribution,Send_Distribution_Notices_Button,Send_Distribution_Notices, Add_Prospect, Email_Prospects, Contact_Transfer;
 			};
 		
 	public static enum IndiviualInvestorSectionsName{

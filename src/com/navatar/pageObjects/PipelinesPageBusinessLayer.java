@@ -4,6 +4,7 @@ import static com.navatar.generic.AppListeners.appLog;
 import static com.navatar.generic.CommonLib.FindElement;
 import static com.navatar.generic.CommonLib.FindElements;
 import static com.navatar.generic.CommonLib.ThreadSleep;
+import static com.navatar.generic.CommonLib.changeNumberIntoUSFormat;
 import static com.navatar.generic.CommonLib.click;
 import static com.navatar.generic.CommonLib.getSelectedOptionOfDropDown;
 import static com.navatar.generic.CommonLib.isDisplayed;
@@ -21,6 +22,7 @@ import com.navatar.generic.EnumConstants.Mode;
 import com.navatar.generic.EnumConstants.RecordType;
 import com.navatar.generic.EnumConstants.TabName;
 import com.navatar.generic.EnumConstants.action;
+import com.navatar.generic.EnumConstants.excelLabel;
 import com.navatar.generic.SoftAssert;
 
 public class PipelinesPageBusinessLayer extends PipelinesPage {
@@ -64,6 +66,39 @@ public class PipelinesPageBusinessLayer extends PipelinesPage {
 						+ "']/../following-sibling::div//span//*";
 			}
 			
+			
+			/////////////////  Lighting New Start /////////////////////////////////////
+		
+			
+		
+				xpath = "//span[text()='"+finalLabelName+"']/../following-sibling::div//*[text()='"+labelValue+"']";
+			
+		
+		ele = 		FindElement(driver, xpath, finalLabelName + " label text with  " + labelValue, action.SCROLLANDBOOLEAN, 10);
+		scrollDownThroughWebelement(driver, ele, finalLabelName + " label text with  " + labelValue);
+		ele = 	isDisplayed(driver,ele,"Visibility", 10, finalLabelName + " label text with  " + labelValue);
+		if (ele != null) {
+//			String aa = ele.getText().trim();
+//			
+//			if(aa.contains(labelValue) || labelValue.contains(aa)) {
+//				appLog.info(finalLabelName + " label text with  " + labelValue+" verified");
+//				return true;
+//				
+//			}else {
+//				appLog.error("<<<<<<   "+finalLabelName + " label text with  " + labelValue+" not verified "+"   >>>>>>"+" Expected: "+labelValue+" /t Actual : "+aa);
+//				
+//			}
+			appLog.info(finalLabelName + " label text with  " + labelValue+" verified");
+			return true;
+
+		} else {
+			appLog.error("<<<<<<   "+finalLabelName + " label text with  " + labelValue+" not verified "+"   >>>>>>");
+		}
+		return false;
+		
+
+		/////////////////  Lighting New End /////////////////////////////////////
+		
 			
 		}
 		scrollDownThroughWebelement(driver, ele, finalLabelName);
@@ -184,9 +219,9 @@ public class PipelinesPageBusinessLayer extends PipelinesPage {
 					 values = FindElements(driver, "//table[@data-aura-class='uiVirtualDataTable']/tbody/tr/*", "Values");
 					int i = 0;
 					for (String[] headerWithValue : headersWithValues) {
-						appLog.info("From PAGE    : "+header.get(i).getText()+"  <<<<<>>>>> "+values.get(i+1).getText());
+						appLog.info("From PAGE    : "+header.get(i).getText()+"  <<<<<>>>>> "+values.get(i+2).getText());
 						appLog.info("fROM tESTcASE  : "+headerWithValue[0].replace("_", " ")+"  <<<<<>>>>> "+headerWithValue[1]);
-						if(/*header.get(i).getText().contains(headerWithValue[0].replace("_", " ").toUpperCase()) && */values.get(i+1).getText().contains(headerWithValue[1])){
+						if(/*header.get(i).getText().contains(headerWithValue[0].replace("_", " ").toUpperCase()) && */values.get(i+2).getText().contains(headerWithValue[1])){
 							appLog.info("Value matched : "+headerWithValue[1]);
 						}else{
 							flag=false;
@@ -205,7 +240,7 @@ public class PipelinesPageBusinessLayer extends PipelinesPage {
 		
 		if(mode.equalsIgnoreCase(Mode.Lightning.toString())){
 		
-			click(driver, getdetailsTab_Lighting(environment, TabName.Pipelines, 10), "Details Tab", action.SCROLLANDBOOLEAN);
+			click(driver, getdetailsTab_Lighting(environment, TabName.Pipelines, 5), "Details Tab", action.SCROLLANDBOOLEAN);
 		
 		}
 			
@@ -240,56 +275,111 @@ public class PipelinesPageBusinessLayer extends PipelinesPage {
 	}
 
 	public SoftAssert verifyPipeLineStageLogForAllRows(String environment,String mode,RecordType RecordType,String[][] rowValues){
-		
 		SoftAssert saa = new SoftAssert();
-		List<WebElement> rows = new ArrayList<WebElement>();
-		List<WebElement> values = new ArrayList<WebElement>();
-		if(mode.equalsIgnoreCase(Mode.Classic.toString())){
+		try {
 		
-		FindElement(driver, "//div[@class='bRelatedList']//h3[text()='//div[@class='bRelatedList']//h3[text()='Pipeline Stage Logs']']", "Pipeline Stage Logs", action.SCROLLANDBOOLEAN, 10);
-		
-		rows = FindElements(driver, "//h3[text()='Pipeline Stage Logs']/ancestor::div[@class='bRelatedList']//div[@class='pbBody']//tr", "Header");
-		 for (int i = 1; i < rows.size(); i++) {
-			 values = FindElements(driver, "//h3[text()='Pipeline Stage Logs']/ancestor::div[@class='bRelatedList']//div[@class='pbBody']//tr["+(i+1)+"]/*", "Values");	
-			 
-			 for(int j=1;j<values.size()-3;j++){
-					appLog.info("From PAGE    : "+values.get(j).getText());
-					appLog.info("From testCase  : "+rowValues[i-1][j-1]); 
-				 if(values.get(j).getText().contains(rowValues[i-1][j-1])){
-					 appLog.info((i-1)+","+(j-1)+" : Value matched >> "+rowValues[i-1][j-1]); 
-				 }else{
-						appLog.error((i-1)+","+(j-1)+" : Value Not matched Actual :> "+values.get(j).getText()+"  \t Expected :> "+rowValues[i-1][j-1]);
-						saa.assertTrue(false, (i-1)+","+(j-1)+" : Value Not matched Actual :> "+values.get(j).getText()+"  \t Expected :> "+rowValues[i-1][j-1]);	 
-				 }
+			List<WebElement> rows = new ArrayList<WebElement>();
+			List<WebElement> values = new ArrayList<WebElement>();
+			if(mode.equalsIgnoreCase(Mode.Classic.toString())){
+			
+			FindElement(driver, "//div[@class='bRelatedList']//h3[text()='//div[@class='bRelatedList']//h3[text()='Pipeline Stage Logs']']", "Pipeline Stage Logs", action.SCROLLANDBOOLEAN, 10);
+			
+			rows = FindElements(driver, "//h3[text()='Pipeline Stage Logs']/ancestor::div[@class='bRelatedList']//div[@class='pbBody']//tr", "Header");
+			 for (int i = 1; i < rows.size(); i++) {
+				 values = FindElements(driver, "//h3[text()='Pipeline Stage Logs']/ancestor::div[@class='bRelatedList']//div[@class='pbBody']//tr["+(i+1)+"]/*", "Values");	
 				 
-			 }
-		}
-		
-		}else{
-					ThreadSleep(1000);
-					rows = FindElements(driver, "//h1[text()='Pipeline Stage Logs']/../../../../../following-sibling::div//table/tbody/tr", "Rows");
-					appLog.info("No. of Rows : "+rows.size());
-					 for (int i = 0; i < rows.size(); i++) {
-						 values = FindElements(driver, "//h1[text()='Pipeline Stage Logs']/../../../../../following-sibling::div//table/tbody/tr["+(i+1)+"]/*", "Values");	
-							appLog.info("No. of Values : "+values.size());
-						 for(int j=1;j<values.size()-3;j++){
-							 appLog.info("Rows :  "+i+"<><> VALUES : "+j);
-								appLog.info("From PAGE    : "+values.get(j).getText());
-								appLog.info("fROM tESTcASE  : "+rowValues[i][j-1]); 
-							 if(values.get(j).getText().contains(rowValues[i][j-1])){
-								 appLog.info((i)+","+(j-1)+" : Value matched for "+rowValues[i][j-1]); 
-							 }else{
-									appLog.error((i)+","+(j-1)+" : Value Not matched Actual :> "+values.get(j).getText()+" \t Expected :> "+rowValues[i][j-1]);
-									saa.assertTrue(false, (i)+","+(j-1)+" : Value Not matched Actual :> "+values.get(j).getText()+" \t Expected :> "+rowValues[i][j-1]);	 
-							 }
-							 
-						 }
+				 for(int j=1;j<values.size()-3;j++){
+						appLog.info("From PAGE    : "+values.get(j).getText());
+						appLog.info("From testCase  : "+rowValues[i-1][j-1]); 
+					 if(values.get(j).getText().contains(rowValues[i-1][j-1])){
+						 appLog.info((i-1)+","+(j-1)+" : Value matched >> "+rowValues[i-1][j-1]); 
+					 }else{
+							appLog.error((i-1)+","+(j-1)+" : Value Not matched Actual :> "+values.get(j).getText()+"  \t Expected :> "+rowValues[i-1][j-1]);
+							saa.assertTrue(false, (i-1)+","+(j-1)+" : Value Not matched Actual :> "+values.get(j).getText()+"  \t Expected :> "+rowValues[i-1][j-1]);	 
+					 }
+					 
+				 }
+			}
+			
+			}else{
+//						ThreadSleep(1000);
+//						rows = FindElements(driver, "//h1[text()='Pipeline Stage Logs']/../../../../../following-sibling::div//table/tbody/tr", "Rows");
+//						appLog.info("No. of Rows : "+rows.size());
+//						 for (int i = 0; i < rows.size(); i++) {
+//							 values = FindElements(driver, "//h1[text()='Pipeline Stage Logs']/../../../../../following-sibling::div//table/tbody/tr["+(i)+"]/*", "Values");	
+//								appLog.info("No. of Values : "+values.size());
+//							 for(int j=2;j<values.size()-3;j++){
+//								 appLog.info("Rows :  "+i+"<><> VALUES : "+j);
+//									appLog.info("From PAGE    : "+values.get(j).getText());
+//									appLog.info("fROM tESTcASE  : "+rowValues[i][j-1]); 
+//								 if(values.get(j).getText().contains(rowValues[i][j-1])){
+//									 appLog.info((i)+","+(j-1)+" : Value matched for "+rowValues[i][j-1]); 
+//								 }else{
+//										appLog.error((i)+","+(j-1)+" : Value Not matched Actual :> "+values.get(j).getText()+" \t Expected :> "+rowValues[i][j-1]);
+//										saa.assertTrue(false, (i)+","+(j-1)+" : Value Not matched Actual :> "+values.get(j).getText()+" \t Expected :> "+rowValues[i][j-1]);	 
+//								 }
+//								 
+//							 }
+//						}
+				
+				
+				String xpath ="";
+				String value="";
+				
+				//h1[text()='Pipeline Stage Logs']/ancestor::div/following-sibling::div//tr//td//*[text()='0']/../../preceding-sibling::td[1]//*[text()='New/Initial Interest']/../../preceding-sibling::th//*/*
+				
+				for (String  rowValue[] : rowValues) {
+				
+					xpath="//h1[text()='Pipeline Stage Logs']/ancestor::div/following-sibling::div//tr//td//*[text()='"+rowValue[2]+"']";
+					xpath=xpath+"/../../preceding-sibling::td[1]//*[text()='"+rowValue[1]+"']";
+					xpath=xpath+"/../../preceding-sibling::th";
+					WebElement ele = FindElement(driver, xpath, "Data With Row : Date : "+rowValue[0]+"  Stage : "+rowValue[1]+"  Age : "+rowValue[2], action.BOOLEAN, 10);
+					ele = isDisplayed(driver, ele, "Visibility", 5, "Data With Row : Date : "+rowValue[0]+"  Stage : "+rowValue[1]+"  Age : "+rowValue[2]);
+				
+					if (ele!=null) {
+						
+						value=ele.getText().trim();
+						appLog.info("Date Value : "+value);	
+						
+						if (rowValue[0].isEmpty() || rowValue[0].equalsIgnoreCase("")) {
+							
+							if (value.equals(rowValue[0])) {
+								
+								appLog.info("Data With Row Verified : <<<  Date : "+rowValue[0]+" >>> <<< Stage : "+rowValue[1]+" >>> <<< Age : "+rowValue[2]+" >>>");	
+							} else {
+								appLog.error("Data With Row Not Verified : <<<  Date : "+rowValue[0]+" >>> <<< Stage : "+rowValue[1]+" >>> <<< Age : "+rowValue[2]+" >>>");
+								saa.assertTrue(false, "Data With Row Not Verified : <<<  Date : "+rowValue[0]+" >>> <<< Stage : "+rowValue[1]+" >>> <<< Age : "+rowValue[2]+" >>>");	
+							}
+							
+						} else {
+
+							if (value.equals(rowValue[0])) {
+								
+								appLog.info("Data With Row Verified : <<<  Date : "+rowValue[0]+" >>> <<< Stage : "+rowValue[1]+" >>> <<< Age : "+rowValue[2]+" >>>");	
+							} else {
+								appLog.error("Data With Row Not Verified : <<<  Date : "+rowValue[0]+" >>> <<< Stage : "+rowValue[1]+" >>> <<< Age : "+rowValue[2]+" >>>");
+								saa.assertTrue(false, "Data With Row Not Verified : <<<  Date : "+rowValue[0]+" >>> <<< Stage : "+rowValue[1]+" >>> <<< Age : "+rowValue[2]+" >>>");	
+							}
+						}
+						
+						appLog.info("Data With Row Verified : <<<  Date : "+rowValue[0]+" >>> <<< Stage : "+rowValue[1]+" >>> <<< Age : "+rowValue[2]+" >>>");	
+					} else {
+						appLog.error("Data With Row Not Verified : <<<  Date : "+rowValue[0]+" >>> <<< Stage : "+rowValue[1]+" >>> <<< Age : "+rowValue[2]+" >>>");
+						saa.assertTrue(false, "Data With Row Not Verified : <<<  Date : "+rowValue[0]+" >>> <<< Stage : "+rowValue[1]+" >>> <<< Age : "+rowValue[2]+" >>>");	
 					}
-			
-			
+					
+				}
+					
+			}
+		
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+		//	e.printStackTrace();
+			appLog.error("Exception on verify PipeLine Stage Log For All Rows method check j value");
+			saa.assertTrue(false, "Exception on verify PipeLine Stage Log For All Rows method check j value");	 
+
 		}
 		return saa;
-	
 	}
 
 }

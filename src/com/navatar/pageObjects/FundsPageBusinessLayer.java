@@ -120,11 +120,21 @@ public class FundsPageBusinessLayer extends FundsPage {
 					
 				}
 				if (click(driver, getSaveButton(environment, mode, 60), "Save Button", action.BOOLEAN)) {
-					ThreadSleep(500);
-					if (getFundNameInViewMode(environment, mode, 60) != null) {
+					ThreadSleep(5000);
+					
+					WebElement ele;
+					if (Mode.Lightning.toString().equalsIgnoreCase(mode)) {
+						String	xpath="//*[contains(text(),'Fund')]/..//*[text()='"+fundName+"']";
+						 ele = FindElement(driver, xpath, "Header : "+fundName, action.BOOLEAN, 30);
+						 ele=isDisplayed(driver, ele, "Visibility", 10, "Fund Name in View Mode Lighting");
+					
+					} else {
+						ele=getFundNameInViewMode(environment, mode, 60);
+					}
+					
+					if (ele != null) {
 						ThreadSleep(2000);
-						String fundNameViewMode = getText(driver, getFundNameInViewMode(environment, mode, 60),
-								"Fund Name", action.BOOLEAN);
+						String fundNameViewMode = ele.getText().trim();
 						if (fundNameViewMode.contains(fundName)) {
 							appLog.info("Fund is created successfully.:" + fundName);
 							if(labelNames!=null && labelValue!=null ) {
@@ -253,12 +263,45 @@ public class FundsPageBusinessLayer extends FundsPage {
 				xpath = "//td[text()='"+ labelName +"']/../td[2]/div";
 			}
 		} else {
+			//////////////////////////////////  
 			
-			xpath = "//span[@class='test-id__field-label'][text()='" + labelName
-					+ "']/../following-sibling::div//lightning-formatted-text";
+			if(labelName.contains("Date")) {
+				xpath = "//span[text()='"+labelName+"']/../following-sibling::div//*[contains(text(),'"+labelValue+"')]";
+				ele = 	FindElement(driver, xpath, labelName + " label text with  " + labelValue, action.SCROLLANDBOOLEAN, 10);
+				scrollDownThroughWebelement(driver, ele, labelName + " label text with  " + labelValue);
+				ele = 	isDisplayed(driver,ele,"Visibility", 10, labelName + " label text with  " + labelValue);
+				if (ele != null) {
+					String aa = ele.getText().trim();
+					appLog.info(labelName + " label text with value : " + labelValue+" verified");
+					return true;
+
+				} else {
+					appLog.error("<<<<<<   "+labelName + " label text with value : " + labelValue+" not verified "+">>>>>>");
+				}
+				
+			}else {
+				xpath = "//span[text()='"+labelName+"']/../following-sibling::div//*[contains(text(),'"+labelValue+"')]";
+				ele = 		FindElement(driver, xpath, labelName + " label text with  " + labelValue, action.SCROLLANDBOOLEAN, 10);
+				scrollDownThroughWebelement(driver, ele, labelName + " label text with  " + labelValue);
+				ele = 	isDisplayed(driver,ele,"Visibility", 10, labelName + " label text with  " + labelValue);
+				if (ele != null) {
+					String aa = ele.getText().trim();
+					appLog.info(labelName + " label text with value : " + labelValue+" verified");
+					return true;
+
+				} else {
+					appLog.error("<<<<<<   "+labelName + " label text with  " + labelValue+" not verified "+">>>>>>");
+				}	
+			}
+			
+			return false;
+			
+			
+			///////////////////////////////////////
+			
 		}
 		ele = isDisplayed(driver,
-				FindElement(driver, xpath, labelName + " label text in " + mode, action.SCROLLANDBOOLEAN, 60),
+				FindElement(driver, xpath, labelName + " label text in " + mode, action.SCROLLANDBOOLEAN, 10),
 				"Visibility", 30, labelName + " label text in " + mode);
 		if (ele != null) {
 			String aa = ele.getText().trim();

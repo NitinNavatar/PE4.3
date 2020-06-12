@@ -626,45 +626,6 @@ public class BasePageBusinessLayer extends BasePage implements BasePageErrorMess
 		return flag;
 	}
 
-	/**
-	 * @author Ankit Jaiswal
-	 * @param environment
-	 * @param mode
-	 * @param tabName
-	 * @param labelName
-	 * @param labelValue
-	 * @return true/false
-	 */
-	public boolean FieldValueVerificationOnAllPages(String environment, String mode, TabName tabName,
-			String labelName,String labelValue) {
-		String xpath = "";
-		WebElement ele = null;
-		if (mode.equalsIgnoreCase(Mode.Classic.toString())) {
-			xpath = "//td[contains(text(),'"+ labelName +"')]/../td[2]/div";
-		} else {
-			xpath = "//span[@class='test-id__field-label'][contains(text(),'" + labelName
-					+ "')]/../following-sibling::div/span/*//a";
-		}
-		ele = isDisplayed(driver,
-				FindElement(driver, xpath, labelName + " label text in " + mode, action.SCROLLANDBOOLEAN, 60),
-				"Visibility", 30, labelName + " label text in " + mode);
-		if (ele != null) {
-			String aa = ele.getText().trim();
-			appLog.info("Lable Value is: "+aa);
-			if(aa.contains(labelValue)) {
-				appLog.info(labelValue + " Value is matched successfully.");
-				return true;
-				
-			}else {
-				appLog.info(labelValue + " Value is not matched. Expected: "+labelValue+" /t Actual : "+aa);
-			}
-		} else {
-			appLog.error(labelName + " Value is not visible so cannot matched  label Value "+labelValue);
-		}
-		return false;
-
-	}
-
 	public boolean clickOnAlreadyCreated_Lighting(String environment, String mode, TabName tabName,
 			String alreadyCreated, int timeout) {
 
@@ -841,7 +802,7 @@ public class BasePageBusinessLayer extends BasePage implements BasePageErrorMess
 	 */
 	public WebElement getRelatedTab_Lighting(String environment,RecordType RecordType,int timeOut) {
 		
-		List<WebElement> eleList = FindElements(driver, "//span[text()='Related']", "Related Tab");
+		List<WebElement> eleList = FindElements(driver, "//*[text()='Related']", "Related Tab");
 		int i=0;
 		for (WebElement ele : eleList) {
 			i++;
@@ -859,7 +820,7 @@ public class BasePageBusinessLayer extends BasePage implements BasePageErrorMess
 	}
 	
 	
-	@FindBy(xpath="//span[text()='Details']")
+	@FindBy(xpath="//*[text()='Details']")
 	private WebElement detailsTab_Lighting;
 	
 	/**
@@ -1628,86 +1589,74 @@ public class BasePageBusinessLayer extends BasePage implements BasePageErrorMess
 	
 
 	public boolean clickOnShowMoreActionDownArrow(String environment,String mode,PageName pageName, ShowMoreActionDropDownList showMoreActionDropDownList, int timeOut) {
-		int i=1;
-		String xpath="";
+	
 		WebElement ele;
 		boolean flag =false;
-		String actionDropDown = showMoreActionDropDownList.toString().replace("_", " ");
-		if(mode.toString().equalsIgnoreCase(Mode.Lightning.toString())) {
-			if(pageName.toString().equalsIgnoreCase(PageName.ContactsPage.toString())) {
-				i=2;
-				xpath="(//a[contains(@title,'more actions')])["+i+"]";
-			}
-			else if(pageName.toString().equalsIgnoreCase(PageName.CapitalCall.toString()) ||  pageName.toString().equalsIgnoreCase(PageName.InvestorDistribution.toString()))
-				xpath="//a[contains(@title,'more action')]";
-			
-			else
-				xpath="(//a[contains(@title,'more actions')])["+i+"]";
-			 ele=FindElement(driver, xpath, "show more action down arrow", action.SCROLLANDBOOLEAN, 10);
-			if(click(driver, ele, "show more action on "+pageName.toString(), action.SCROLLANDBOOLEAN)) {
-				ThreadSleep(3000);
-				log(LogStatus.INFO, "clicked on show more actions icon", YesNo.No);
-				 xpath="//div[@role='menu']//li/a[@title='"+actionDropDown+"']";
-				 ThreadSleep(3000);
-				 ele=FindElement(driver, xpath, "show more action down arrow", action.BOOLEAN, 10);
-				 mouseOverOperation(driver, ele);
-				 if(click(driver, ele, "show more action on "+pageName.toString(), action.BOOLEAN)) {
-						log(LogStatus.INFO, "clicked on "+actionDropDown+" link", YesNo.No);
-						flag=true;
-				 }else {
-						log(LogStatus.ERROR, "Not able to click on "+actionDropDown+" link", YesNo.Yes);
-					}
-			}else {
-				log(LogStatus.ERROR, "Not able to click on show more action down arrow", YesNo.Yes);
-			}
-		}else {
-			 xpath="//input[@title='"+actionDropDown+"']";
-			 ele=FindElement(driver, xpath, "show more action down arrow", action.SCROLLANDBOOLEAN, 10);
-			 if(click(driver, ele, "show more action on "+pageName.toString(), action.SCROLLANDBOOLEAN)) {
-					log(LogStatus.INFO, "clicked on "+actionDropDown+" link", YesNo.No);
-					flag=true;
-			 }else {
-					log(LogStatus.ERROR, "Not able to click on "+actionDropDown+" link", YesNo.Yes);
-				}
-			 
+		ThreadSleep(3000);
+		if (clickOnShowMoreDropdownOnly(environment, mode, pageName)) {
+			log(LogStatus.INFO, "clicked on show more actions icon", YesNo.No);
+			ThreadSleep(3000);
 		
+			ele=actionDropdownElement(environment, mode, pageName, showMoreActionDropDownList, timeOut);
+			
+			if (click(driver, ele, showMoreActionDropDownList.toString(), action.SCROLLANDBOOLEAN)) {
+				log(LogStatus.INFO, "Clicked on : "+showMoreActionDropDownList.toString().replace("_", " "), YesNo.No);
+				ThreadSleep(3000);
+				flag=true;
+			} else {
+				log(LogStatus.FAIL, "Not ABle to Clicked on : "+showMoreActionDropDownList.toString().replace("_", " "), YesNo.No);
+				ThreadSleep(3000);
+			}
+		} else {
+			log(LogStatus.FAIL, "Not Able to Clicked on Show more action", YesNo.No);
+			
 		}
+		
 		return flag;
 		
 	}
 	
 	public boolean clickOnShowMoreDropdownOnly(String environment,String mode,PageName pageName) {
-		{
+			ThreadSleep(5000);
 			String xpath = "";int i =1;
 			WebElement ele=null;
 			boolean flag = true;
 			if(mode.toString().equalsIgnoreCase(Mode.Lightning.toString())) {
-				if(pageName.toString().equalsIgnoreCase(PageName.FundraisingPage.toString()) || pageName.toString().equalsIgnoreCase(PageName.ContactsPage.toString())) {
-					i=2;
-					xpath="(//a[contains(@title,'more actions')])["+i+"]";
-				}
-				else if(pageName.toString().equalsIgnoreCase(PageName.CapitalCall.toString()))
-					xpath="//a[contains(@title,'more action')]";
-				else
-				xpath="(//a[contains(@title,'more actions')])["+i+"]";
-				ele=FindElement(driver, xpath, "show more action down arrow", action.SCROLLANDBOOLEAN, 10);
+				xpath="//*[contains(@title,'more actions') or contains(text(),'more actions')]/..";
+			List<WebElement> ele1= FindElements(driver, xpath, "Show more action Icon");
+			
+			for (int j = 0; j < ele1.size(); j++) {
+				log(LogStatus.INFO, "Size :  "+ele1.size()+"  >>>>>>>>  "+i, YesNo.No);
+				ele = isDisplayed(driver, ele1.get(j), "visibility", 5, "Show more action Icon");
 				if(click(driver, ele, "show more action on "+pageName.toString(), action.SCROLLANDBOOLEAN)) {
-					log(LogStatus.INFO, "clicked on show more actions icon", YesNo.No);
-
-				}
-				else {
-					log(LogStatus.FAIL, "cannot click on show more actions icon", YesNo.Yes);
-					flag = false;
+					log(LogStatus.INFO, "clicked on show more actions icon ", YesNo.No);
+					return flag;
+				}else {
+					if (j==ele1.size()-1) {
+						log(LogStatus.FAIL, "cannot click on show more actions icon", YesNo.Yes);
+						flag = false;	
+					}
+					
 				}
 			}
+				
+			}
 			return flag;
-		}					
+						
 	}
 	
-	public WebElement actionDropdownElement(String environment, String mode,PageName pageName, ShowMoreActionDropDownList smaddl, int timeOut) {
-		String actionDropDown = smaddl.toString().replace("_", " ");
-		return isDisplayed(driver, FindElement(driver, "//div[@role='menu']//li/a[@title='"+actionDropDown+"']", "show more action down arrow", action.SCROLLANDBOOLEAN, 10), "visibility", timeOut, actionDropDown);
-	}
+	public WebElement actionDropdownElement(String environment, String mode,PageName pageName, ShowMoreActionDropDownList showMoreActionDropDownList, int timeOut) {
+		String actionDropDown = showMoreActionDropDownList.toString().replace("_", " ");
+		
+		if(mode.toString().equalsIgnoreCase(Mode.Lightning.toString())) {
+			return isDisplayed(driver, FindElement(driver, "//*[@title='"+actionDropDown+"' or text()='"+actionDropDown+"']", "show more action down arrow : "+actionDropDown, action.SCROLLANDBOOLEAN, 10), "visibility", timeOut, actionDropDown);
+			
+		} else {
+			
+			return isDisplayed(driver, FindElement(driver, "//input[@value='"+actionDropDown+"']", "show more action down arrow : "+actionDropDown, action.SCROLLANDBOOLEAN, 10), "visibility", timeOut, actionDropDown);
+			
+		}
+		}
 	
 	public static String convertNumberAccordingToFormatWithCurrencySymbol(String number,String format){
 
@@ -1947,7 +1896,7 @@ public class BasePageBusinessLayer extends BasePage implements BasePageErrorMess
 						if (parentId!=null) {
 							ThreadSleep(5000);
 							if (Mode.Lightning.toString().equalsIgnoreCase(mode)) {
-								XpathelementTOSearch = "//div/span[contains(text(),'"+contactOrAccountOrFRName+"')]";
+								XpathelementTOSearch = "//h1//*[contains(text(),'"+contactOrAccountOrFRName+"')]";
 							}else{
 								XpathelementTOSearch = "//h2[contains(text(),'"+contactOrAccountOrFRName+"')]";	
 							}
@@ -2236,6 +2185,26 @@ public WebElement getStep4CongratsMsg(PageName pageName,int timeOut){
 	
 }
 	
+public boolean verifyDate(String dateToCheck, String valueOnPage) {
+	int size1=dateToCheck.split("/").length;
+	int size2=valueOnPage.split("/").length;
+	if (!dateToCheck.isEmpty() && !dateToCheck.equals("") && size1==3 && size2==3) {
+		String[] dates = dateToCheck.split("/");
+		String[] values = valueOnPage.split("/");
+		appLog.info("Excel Date : "+dateToCheck);
+		appLog.info("Page Date : "+valueOnPage);
+		if (dates[0].contains(values[0]) && dates[1].contains(values[1]) && dates[2].contains(values[2])) {
+			log(LogStatus.INFO, "Value matched "+dateToCheck+" For Grid Data", YesNo.No);
+			return true;
+		} else {
+			log(LogStatus.ERROR,  "Value not matched Actual: "+valueOnPage+" Expected : "+dateToCheck+" For Grid Data : ", YesNo.No);
+		}
+	}else {
+		log(LogStatus.ERROR, "passed date is in wrong format", YesNo.No);
+	}
+
+	return false;
+}
 	
 	
 }

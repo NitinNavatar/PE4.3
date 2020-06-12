@@ -297,7 +297,7 @@ public class HomePage extends BasePageBusinessLayer {
 		return isDisplayed(driver, selectInvestorGridScrollBox, "Visibility", timeOut, "select Investor Grid Scroll Box");
 	}
 	
-	@FindBy(xpath="//div[contains(@class,'ContactAccess_fancybox')]//button[text()='Apply']")
+	@FindBy(xpath="//div[contains(@class,'ContactAccess_fancybox')]//*[text()='Apply']")
 	private WebElement fundraisingContactPopUpApplyBtn;
 
 	/**

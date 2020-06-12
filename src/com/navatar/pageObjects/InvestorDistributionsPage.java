@@ -25,7 +25,7 @@ public class InvestorDistributionsPage extends BasePageBusinessLayer {
 			return isDisplayed(driver,capitalRecallableValue_Lighting , "visibility", timeOut, "capitalRecallableValue checkbox");
 			}
 	
-	@FindBy(xpath = "//span[text()='Capital Recallable']/../following-sibling::div//span//img")
+	@FindBy(xpath = "//*[text()='Capital Recallable']/../following-sibling::div//*[@class='slds-checkbox_faux']")
 	private WebElement capitalRecallableValue_Lighting;
 	
 	@FindBy(xpath = "//td[text()='Capital Recallable']/../td[2]/div/img")

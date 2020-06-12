@@ -124,6 +124,7 @@ import static com.navatar.generic.AppListeners.appLog;
 import static com.navatar.generic.CommonLib.*;
 public class SmokeTestCases extends BaseLib {
 	String passwordResetLink = null;
+	Scanner scn = new Scanner(System.in);
 	// DRSmoke Modules Starts from here
 	
 //	Default Settings of PE:-
@@ -609,7 +610,9 @@ public class SmokeTestCases extends BaseLib {
 						"Not able to click on Institute Tab so cannot Create institute, indiviual insvestor and company",
 						YesNo.Yes);
 			}
-			
+			System.err.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>.");
+			scn.nextLine();
+			System.err.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>.");
 		}
 		for (int i = 0; i < 4; i++) {
 			if (lp.clickOnTab(environment, mode, TabName.ContactTab)) {
@@ -723,37 +726,40 @@ public class SmokeTestCases extends BaseLib {
 					if (fund.createFund(environment, mode, Smoke_Fund1, SmokeFund1_Type, SmokeFund1_InvestmentCategory,
 							FieldLabels, Values[i])) {
 						appLog.info("Fund is created Successfully: " + Smoke_Fund1);
-						ExcelUtils.writeData(smokeFilePath, date, "Funds", excelLabel.Variable_Name, "SmokeFund1",
-								excelLabel.Frist_Closing_Date);
+						
 					} else {
 						appLog.error("Not able to click on fund: " + Smoke_Fund1);
 						sa.assertTrue(false, "Not able to click on fund: " + Smoke_Fund1);
 						log(LogStatus.SKIP, "Not able to click on fund: " + Smoke_Fund1, YesNo.Yes);
 					}
+					ExcelUtils.writeData(smokeFilePath, date, "Funds", excelLabel.Variable_Name, "SmokeFund1",
+							excelLabel.Frist_Closing_Date);
 				}
 				if (i == 1) {
 					if (fund.createFund(environment, mode, Smoke_Fund2, SmokeFund2_Type, SmokeFund2_InvestmentCategory,
 							FieldLabels, Values[i])) {
 						appLog.info("Fund is created Successfully: " + Smoke_Fund2);
-						ExcelUtils.writeData(smokeFilePath, date, "Funds", excelLabel.Variable_Name, "SmokeFund2",
-								excelLabel.Frist_Closing_Date);
+				
 					} else {
 						appLog.error("Not able to click on fund: " + Smoke_Fund2);
 						sa.assertTrue(false, "Not able to click on fund: " + Smoke_Fund2);
 						log(LogStatus.SKIP, "Not able to click on fund: " + Smoke_Fund2, YesNo.Yes);
 					}
+					ExcelUtils.writeData(smokeFilePath, date, "Funds", excelLabel.Variable_Name, "SmokeFund2",
+							excelLabel.Frist_Closing_Date);
 				}
 				if (i == 2) {
 					if (fund.createFund(environment, mode, Smoke_Fund3, SmokeFund3_Type, SmokeFund3_InvestmentCategory,
 							FieldLabels, Values[i])) {
 						appLog.info("Fund is created Successfully: " + Smoke_Fund3);
-						ExcelUtils.writeData(smokeFilePath, date, "Funds", excelLabel.Variable_Name, "SmokeFund3",
-								excelLabel.Frist_Closing_Date);
+					
 					} else {
 						appLog.error("Not able to click on fund: " + Smoke_Fund3);
 						sa.assertTrue(false, "Not able to click on fund: " + Smoke_Fund3);
 						log(LogStatus.SKIP, "Not able to click on fund: " + Smoke_Fund3, YesNo.Yes);
 					}
+					ExcelUtils.writeData(smokeFilePath, date, "Funds", excelLabel.Variable_Name, "SmokeFund3",
+							excelLabel.Frist_Closing_Date);
 				}
 				
 			} else {
@@ -810,6 +816,7 @@ public class SmokeTestCases extends BaseLib {
 				sa.assertTrue(false, "could not click on settings links");
 			}
 		}
+		ThreadSleep(5000);
 		lp.CRMlogout(environment, mode);
 		sa.assertAll();
 
@@ -834,8 +841,7 @@ public class SmokeTestCases extends BaseLib {
 			if (market.clickOnCreatedMarketInitiatives(environment, mode, Smoke_MI1)) {
 				appLog.info("clicked on MI : " + Smoke_MI1);
 				if (mode.equalsIgnoreCase(Mode.Lightning.toString())) {
-					if (click(driver, market.getShow4MoreActionsBtn_Lighting(20), "show 4 more action butotn",
-							action.SCROLLANDBOOLEAN)) {
+					if (market.clickOnShowMoreDropdownOnly(environment, mode, PageName.MarketingInitiatives)) {
 						appLog.info("clicked on show 4 more action button in lighting");
 					} else {
 						appLog.error("Not able to click on show 4 more action button in lighting ");
@@ -843,21 +849,21 @@ public class SmokeTestCases extends BaseLib {
 						log(LogStatus.ERROR, "Not able to click on show 4 more action button in lighting ", YesNo.Yes);
 					}
 				}
-				if (market.getAddProspectBtn(environment, mode, 30) != null) {
+				if (market.actionDropdownElement(environment, mode, PageName.MarketingInitiatives, ShowMoreActionDropDownList.Add_Prospect, 10) != null) {
 					appLog.info("add prospects button is displaying on MI : " + Smoke_MI1);
 				} else {
 					appLog.error("Add prospect button is not visible on created MI: " + Smoke_MI1);
 					sa.assertTrue(false, "Add prospect button is not visible on created MI: " + Smoke_MI1);
 					log(LogStatus.ERROR, "Add prospect button is not visible on created MI: " + Smoke_MI1, YesNo.Yes);
 				}
-				if (market.getEmailProspectsBtn(environment, mode, 30) != null) {
+				if (market.actionDropdownElement(environment, mode, PageName.MarketingInitiatives, ShowMoreActionDropDownList.Email_Prospects, 10) != null) {
 					appLog.info("Email prospects button is displaying on MI : " + Smoke_MI1);
 				} else {
 					appLog.error("Email prospect button is not visible on created MI: " + Smoke_MI1);
 					sa.assertTrue(false, "Email prospect button is not visible on created MI: " + Smoke_MI1);
 					log(LogStatus.ERROR, "Email prospect button is not visible on created MI: " + Smoke_MI1, YesNo.Yes);
 				}
-				if (click(driver, market.getAddProspectBtn(environment, mode, 30), " add prospects button",
+				if (click(driver, market.actionDropdownElement(environment, mode, PageName.MarketingInitiatives, ShowMoreActionDropDownList.Add_Prospect, 10), " add prospects button",
 						action.BOOLEAN)) {
 					ThreadSleep(2000);
 					if (mode.equalsIgnoreCase(Mode.Lightning.toString())) {
@@ -928,6 +934,7 @@ public class SmokeTestCases extends BaseLib {
 		MarketingInitiativesPageBusinesslayer market = new MarketingInitiativesPageBusinesslayer(driver);
 		FundsPageBusinessLayer fund = new FundsPageBusinessLayer(driver);
 		lp.CRMLogin(crmUser1EmailID, adminPassword);
+		WebElement ele=null;
 		HashMap<String, String> ContactAndAccountName = new HashMap<>();
 		ContactAndAccountName.put(SmokeC1_FName + " " + SmokeC1_LName, SmokeINS1);
 		ContactAndAccountName.put(SmokeC2_FName + " " + SmokeC2_LName, SmokeINS1);
@@ -937,8 +944,7 @@ public class SmokeTestCases extends BaseLib {
 			if (market.clickOnCreatedMarketInitiatives(environment, mode, Smoke_MI2)) {
 				appLog.info("clicked on MI : " + Smoke_MI2);
 				if (mode.equalsIgnoreCase(Mode.Lightning.toString())) {
-					if (click(driver, market.getShow4MoreActionsBtn_Lighting(20), "show 4 more action butotn",
-							action.SCROLLANDBOOLEAN)) {
+					if (market.clickOnShowMoreDropdownOnly(environment, mode, PageName.MarketingInitiatives)) {
 						appLog.info("clicked on show 4 more action button in lighting");
 					} else {
 						appLog.error("Not able to click on show 4 more action button in lighting ");
@@ -947,8 +953,8 @@ public class SmokeTestCases extends BaseLib {
 					}
 				}
 				ThreadSleep(2000);
-				if (click(driver, market.getAddProspectBtn(environment, mode, 30), " add prospects button",
-						action.BOOLEAN)) {
+				ele=market.actionDropdownElement(environment, mode, PageName.MarketingInitiatives, ShowMoreActionDropDownList.Add_Prospect, 10);
+				if (click(driver, ele, " add prospects button",action.BOOLEAN)) {
 					if (mode.equalsIgnoreCase(Mode.Lightning.toString())) {
 						switchToFrame(driver, 20, market.getMarketInitiativeFrame_Lightning(20));
 					}
@@ -1007,8 +1013,7 @@ public class SmokeTestCases extends BaseLib {
 			if (market.clickOnCreatedMarketInitiatives(environment, mode, Smoke_MI3)) {
 				appLog.info("clicked on MI : " + Smoke_MI2);
 				if (mode.equalsIgnoreCase(Mode.Lightning.toString())) {
-					if (click(driver, market.getShow4MoreActionsBtn_Lighting(20), "show 4 more action butotn",
-							action.BOOLEAN)) {
+					if (market.clickOnShowMoreDropdownOnly(environment, mode, PageName.MarketingInitiatives)) {
 						appLog.info("clicked on show 4 more action button in lighting");
 					} else {
 						appLog.error("Not able to click on show 4 more action button in lighting ");
@@ -1016,8 +1021,8 @@ public class SmokeTestCases extends BaseLib {
 						log(LogStatus.ERROR, "Not able to click on show 4 more action button in lighting ", YesNo.Yes);
 					}
 				}
-				if (click(driver, market.getAddProspectBtn(environment, mode, 30), " add prospects button",
-						action.BOOLEAN)) {
+				ele = market.actionDropdownElement(environment, mode, PageName.MarketingInitiatives, ShowMoreActionDropDownList.Add_Prospect, 10);
+				if (click(driver, ele, " add prospects button",action.BOOLEAN)) {
 					ThreadSleep(2000);
 					if (mode.equalsIgnoreCase(Mode.Lightning.toString())) {
 						switchToFrame(driver, 20, market.getMarketInitiativeFrame_Lightning(20));
@@ -1469,8 +1474,7 @@ public class SmokeTestCases extends BaseLib {
 			if (market.clickOnCreatedMarketInitiatives(environment, mode, Smoke_MI3)) {
 				appLog.info("clicked on MI : " + Smoke_MI2);
 				if (mode.equalsIgnoreCase(Mode.Lightning.toString())) {
-					if (click(driver, market.getShow4MoreActionsBtn_Lighting(20), "show 4 more action butotn",
-							action.BOOLEAN)) {
+					if (market.clickOnShowMoreDropdownOnly(environment, mode, PageName.MarketingInitiatives)) {
 						appLog.info("clicked on show 4 more action button in lighting");
 					} else {
 						appLog.error("Not able to click on show 4 more action button in lighting ");
@@ -1478,8 +1482,8 @@ public class SmokeTestCases extends BaseLib {
 						log(LogStatus.ERROR, "Not able to click on show 4 more action button in lighting ", YesNo.Yes);
 					}
 				}
-				if (click(driver, market.getAddProspectBtn(environment, mode, 30), " add prospects button",
-						action.BOOLEAN)) {
+				WebElement ele = market.actionDropdownElement(environment, mode, PageName.MarketingInitiatives, ShowMoreActionDropDownList.Add_Prospect, 10);
+				if (click(driver, ele, " add prospects button",action.BOOLEAN)) {
 					ThreadSleep(2000);
 					if (mode.equalsIgnoreCase(Mode.Lightning.toString())) {
 						switchToFrame(driver, 20, market.getMarketInitiativeFrame_Lightning(20));
@@ -1488,7 +1492,7 @@ public class SmokeTestCases extends BaseLib {
 						appLog.info("clicked on reports tab");
 						for (int i = 0; i < 2; i++) {
 							if (i == 1) {
-								WebElement ele = market.getAddProspectsHideSearchPopUp(5);
+								 ele = market.getAddProspectsHideSearchPopUp(5);
 								if (ele != null) {
 									if (click(driver, ele, "add prospects hide pop up image",
 											action.SCROLLANDBOOLEAN)) {
@@ -1595,7 +1599,7 @@ public class SmokeTestCases extends BaseLib {
 													appLog.info(
 															"clicked on Exclude Any Accounts Included In This MI remove button");
 													ThreadSleep(2000);
-													WebElement ele = market
+													 ele = market
 															.getReomveContactConfirmationPopUpErrorMsg(30);
 													if (ele != null) {
 														String aa = ele.getText().trim();
@@ -1777,8 +1781,7 @@ public class SmokeTestCases extends BaseLib {
 			if (market.clickOnCreatedMarketInitiatives(environment, mode, Smoke_MI3)) {
 				appLog.info("clicked on MI : " + Smoke_MI3);
 				if (mode.equalsIgnoreCase(Mode.Lightning.toString())) {
-					if (click(driver, market.getShow4MoreActionsBtn_Lighting(20), "show 4 more action butotn",
-							action.BOOLEAN)) {
+					if (market.clickOnShowMoreDropdownOnly(environment, mode, PageName.MarketingInitiatives)) {
 						appLog.info("clicked on show 4 more action button in lighting");
 					} else {
 						appLog.error("Not able to click on show 4 more action button in lighting ");
@@ -1788,8 +1791,8 @@ public class SmokeTestCases extends BaseLib {
 				}
 				
 				
-				
-				if (click(driver, market.getAddProspectBtn(environment, mode, 30), " add prospects button",action.BOOLEAN)) {
+				ele=market.actionDropdownElement(environment, mode, PageName.MarketingInitiatives, ShowMoreActionDropDownList.Add_Prospect, 10);
+				if (click(driver, ele, " add prospects button",action.BOOLEAN)) {
 					ThreadSleep(2000);
 					if (mode.equalsIgnoreCase(Mode.Lightning.toString())) {
 						switchToFrame(driver, 20, market.getMarketInitiativeFrame_Lightning(20));
@@ -2075,8 +2078,7 @@ public class SmokeTestCases extends BaseLib {
 			if (market.clickOnCreatedMarketInitiatives(environment, mode, Smoke_MI1)) {
 				appLog.info("clicked on MI : " + Smoke_MI1);
 				if (mode.equalsIgnoreCase(Mode.Lightning.toString())) {
-					if (click(driver, market.getShow4MoreActionsBtn_Lighting(60), "show 4 more action butotn",
-							action.BOOLEAN)) {
+					if (market.clickOnShowMoreDropdownOnly(environment, mode, PageName.MarketingInitiatives)) {
 						appLog.info("clicked on show 4 more action button in lighting");
 						log(LogStatus.ERROR, "clicked on show 4 more action button in lighting", YesNo.No);
 
@@ -2086,13 +2088,14 @@ public class SmokeTestCases extends BaseLib {
 						log(LogStatus.ERROR, "Not able to click on show 4 more action button in lighting ", YesNo.Yes);
 					}
 				}
-				if (click(driver, market.getEmailProspectsBtn(environment, mode, 30), " add prospects button",
+				WebElement ele=market.actionDropdownElement(environment, mode, PageName.MarketingInitiatives, ShowMoreActionDropDownList.Email_Prospects, 10);
+				if (click(driver, ele, " Email prospects button",
 						action.BOOLEAN)) {
 					if (mode.equalsIgnoreCase(Mode.Lightning.toString())) {
 						switchToFrame(driver, 20, market.getMarketInitiativeFrame_Lightning(20));
 					}
 					ThreadSleep(5000);
-					WebElement ele = isDisplayed(driver,
+					 ele = isDisplayed(driver,
 							FindElement(driver, XpathelementTOSearch, "", action.BOOLEAN, 20), "visibility", 20,
 							SmokeC4_FName + " " + SmokeC4_LName + " Contact Name input box");
 					if (ele == null) {
@@ -2496,8 +2499,7 @@ public class SmokeTestCases extends BaseLib {
 			if (market.clickOnCreatedMarketInitiatives(environment, mode, Smoke_MI1)) {
 				appLog.info("clicked on MI : " + Smoke_MI2);
 				if (mode.equalsIgnoreCase(Mode.Lightning.toString())) {
-					if (click(driver, market.getShow4MoreActionsBtn_Lighting(60), "show 4 more action butotn",
-							action.BOOLEAN)) {
+					if (market.clickOnShowMoreDropdownOnly(environment, mode, PageName.MarketingInitiatives)) {
 						log(LogStatus.ERROR, "clicked on show 4 more action button in lighting", YesNo.No);
 
 					} else {
@@ -2506,8 +2508,8 @@ public class SmokeTestCases extends BaseLib {
 					}
 				}
 				ThreadSleep(3000);
-				if (click(driver, market.getEmailProspectsBtn(environment, mode, 30), " add prospects button",
-						action.BOOLEAN)) {
+				WebElement ele = market.actionDropdownElement(environment, mode, PageName.MarketingInitiatives, ShowMoreActionDropDownList.Email_Prospects, 10);
+				if (click(driver, ele, " Email prospects button",action.BOOLEAN)) {
 					if (mode.equalsIgnoreCase(Mode.Lightning.toString())) {
 						switchToFrame(driver, 20, market.getMarketInitiativeFrame_Lightning(20));
 					}
@@ -2580,8 +2582,7 @@ public class SmokeTestCases extends BaseLib {
 			if (market.clickOnCreatedMarketInitiatives(environment, mode, Smoke_MI2)) {
 				appLog.info("clicked on MI : " + Smoke_MI2);
 				if (mode.equalsIgnoreCase(Mode.Lightning.toString())) {
-					if (click(driver, market.getShow4MoreActionsBtn_Lighting(60), "show 4 more action butotn",
-							action.BOOLEAN)) {
+					if (lp.clickOnShowMoreDropdownOnly(environment, mode, PageName.MarketingInitiatives)) {
 						appLog.info("clicked on show 4 more action button in lighting");
 						log(LogStatus.ERROR, "Not able to click on show 4 more action button in lighting ", YesNo.Yes);
 
@@ -2594,8 +2595,8 @@ public class SmokeTestCases extends BaseLib {
 				ThreadSleep(3000);
 				
 				// Azhar Start
-				if (click(driver, market.getEmailProspectsBtn(environment, mode, 30), " add prospects button",
-						action.BOOLEAN)) {
+				ele = market.actionDropdownElement(environment, mode, PageName.MarketingInitiatives, ShowMoreActionDropDownList.Email_Prospects, 10);
+				if (click(driver, ele, " Email prospects button",action.BOOLEAN)) {
 					ThreadSleep(5000);
 					
 					if (mode.equalsIgnoreCase(Mode.Lightning.toString())) {
@@ -2620,8 +2621,7 @@ public class SmokeTestCases extends BaseLib {
 				switchToDefaultContent(driver);
 				
 				if (mode.equalsIgnoreCase(Mode.Lightning.toString())) {
-					if (click(driver, market.getShow4MoreActionsBtn_Lighting(60), "show 4 more action butotn",
-							action.BOOLEAN)) {
+					if (lp.clickOnShowMoreDropdownOnly(environment, mode, PageName.MarketingInitiatives)) {
 						appLog.info("clicked on show 4 more action button in lighting");
 						log(LogStatus.ERROR, "Not able to click on show 4 more action button in lighting ", YesNo.Yes);
 
@@ -2632,9 +2632,9 @@ public class SmokeTestCases extends BaseLib {
 					}
 				}
 				ThreadSleep(3000);
+				ele = market.actionDropdownElement(environment, mode, PageName.MarketingInitiatives, ShowMoreActionDropDownList.Email_Prospects, 10);
 				
-				if (click(driver, market.getEmailProspectsBtn(environment, mode, 30), " add prospects button",
-						action.BOOLEAN)) {
+				if (click(driver, ele, " Email prospects button",action.BOOLEAN)) {
 					ThreadSleep(5000);
 					if (market.EmailProspects(environment, mode,PageName.emailProspects, "Contact:Last Name", "equals", SmokeC2_LName,
 							ContactAndAccountName, searchContactInEmailProspectGrid.No, emailFolderName,
@@ -2746,8 +2746,7 @@ public class SmokeTestCases extends BaseLib {
 			if (market.clickOnCreatedMarketInitiatives(environment, mode, Smoke_MI2)) {
 				appLog.info("clicked on MI : " + Smoke_MI2);
 				if (mode.equalsIgnoreCase(Mode.Lightning.toString())) {
-					if (click(driver, market.getShow4MoreActionsBtn_Lighting(60), "show 4 more action butotn",
-							action.BOOLEAN)) {
+					if (market.clickOnShowMoreDropdownOnly(environment, mode, PageName.MarketingInitiatives)) {
 						appLog.info("clicked on show 4 more action button in lighting");
 						log(LogStatus.ERROR, "Not able to click on show 4 more action button in lighting ", YesNo.Yes);
 
@@ -2757,8 +2756,8 @@ public class SmokeTestCases extends BaseLib {
 						log(LogStatus.ERROR, "Not able to click on show 4 more action button in lighting ", YesNo.Yes);
 					}
 				}
-				if (click(driver, market.getEmailProspectsBtn(environment, mode, 30), " add prospects button",
-						action.BOOLEAN)) {
+				WebElement ele = market.actionDropdownElement(environment, mode, PageName.MarketingInitiatives, ShowMoreActionDropDownList.Email_Prospects, 10);
+				if (click(driver, ele, " Email prospects button",action.BOOLEAN)) {
 					if (mode.equalsIgnoreCase(Mode.Lightning.toString())) {
 						switchToFrame(driver, 20, market.getMarketInitiativeFrame_Lightning(20));
 					}
@@ -2829,8 +2828,7 @@ public class SmokeTestCases extends BaseLib {
 				// Azhar Start
 				
 				if (mode.equalsIgnoreCase(Mode.Lightning.toString())) {
-					if (click(driver, market.getShow4MoreActionsBtn_Lighting(20), "show 4 more action butotn",
-							action.BOOLEAN)) {
+					if (market.clickOnShowMoreDropdownOnly(environment, mode, PageName.MarketingInitiatives)) {
 						appLog.info("clicked on show 4 more action button in lighting");
 					} else {
 						appLog.error("Not able to click on show 4 more action button in lighting ");
@@ -2839,7 +2837,9 @@ public class SmokeTestCases extends BaseLib {
 					}
 					
 				}
-					if (click(driver, market.getEmailProspectsBtn(environment, mode, 30), " email prospects button",action.BOOLEAN)) {
+				ele = market.actionDropdownElement(environment, mode, PageName.MarketingInitiatives, ShowMoreActionDropDownList.Email_Prospects, 10);
+				
+					if (click(driver, ele, " email prospects button",action.BOOLEAN)) {
 						ThreadSleep(2000);
 						log(LogStatus.ERROR, "clicked on Email Prospect Btn", YesNo.No);
 						if (mode.equalsIgnoreCase(Mode.Lightning.toString())) {
@@ -2898,12 +2898,12 @@ public class SmokeTestCases extends BaseLib {
 							ThreadSleep(2000);
 							
 							if (mode.equalsIgnoreCase(Mode.Lightning.toString())) {
-								if (click(driver, market.getShow4MoreActionsBtn_Lighting(20), "show 4 more action butotn",
-										action.BOOLEAN)) {
+								if (market.clickOnShowMoreDropdownOnly(environment, mode, PageName.MarketingInitiatives)) {
 									appLog.info("clicked on show 4 more action button in lighting");
 									ThreadSleep(1000);
 									
-									if (click(driver, market.getEmailProspectsBtn(environment, mode, 30), " email prospects button",action.BOOLEAN)) {
+									ele = market.actionDropdownElement(environment, mode, PageName.MarketingInitiatives, ShowMoreActionDropDownList.Email_Prospects, 10);
+									if (click(driver, ele, " email prospects button",action.BOOLEAN)) {
 										ThreadSleep(2000);
 										log(LogStatus.ERROR, "clicked on Email Prospect Btn", YesNo.No);
 										if (mode.equalsIgnoreCase(Mode.Lightning.toString())) {
@@ -2949,8 +2949,7 @@ public class SmokeTestCases extends BaseLib {
 					switchToDefaultContent(driver);
 				
 				if (mode.equalsIgnoreCase(Mode.Lightning.toString())) {
-					if (click(driver, market.getShow4MoreActionsBtn_Lighting(20), "show 4 more action butotn",
-							action.BOOLEAN)) {
+					if (market.clickOnShowMoreDropdownOnly(environment, mode, PageName.MarketingInitiatives)) {
 						appLog.info("clicked on show 4 more action button in lighting");
 					} else {
 						appLog.error("Not able to click on show 4 more action button in lighting ");
@@ -2958,7 +2957,9 @@ public class SmokeTestCases extends BaseLib {
 						log(LogStatus.ERROR, "Not able to click on show 4 more action button in lighting ", YesNo.Yes);
 					}
 				}
-				if (click(driver, market.getEmailProspectsBtn(environment, mode, 30), " email prospects button",action.BOOLEAN)) {
+				
+				ele = market.actionDropdownElement(environment, mode, PageName.MarketingInitiatives, ShowMoreActionDropDownList.Email_Prospects, 10);
+				if (click(driver, ele, " email prospects button",action.BOOLEAN)) {
 					ThreadSleep(2000);
 					if (mode.equalsIgnoreCase(Mode.Lightning.toString())) {
 						switchToFrame(driver, 20, market.getMarketInitiativeFrame_Lightning(20));
@@ -3885,6 +3886,7 @@ public class SmokeTestCases extends BaseLib {
 									if(ele!=null) {
 										if(mouseOverOperation(driver,ele)) {
 											log(LogStatus.INFO, "mouse over on account name "+SmokeINS1, YesNo.No);
+											ThreadSleep(5000);
 											ele=isDisplayed(driver, FindElement(driver,"//a[contains(text(),'"+SmokeC1_FName+"')][contains(text(),'"+SmokeC1_LName+"')]/../../following-sibling::span//a[text()='"+SmokeINS1+"']/following-sibling::a//img", "", action.BOOLEAN,10), "visibility",10,SmokeINS1+" info icon");
 											if(ele!=null) {
 												if(click(driver, ele,"account name info icon", action.SCROLLANDBOOLEAN)) {
@@ -4034,6 +4036,8 @@ public class SmokeTestCases extends BaseLib {
 																sa.assertTrue(false, "fundraising contact record contact is not matched");
 															}
 //														home.getFundraisingContactPopUpApplyBtn(20);
+														System.err.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>.");
+														ThreadSleep(10000);
 														if(click(driver, home.getFundraisingContactPopUpApplyBtn(20), "apply button", action.SCROLLANDBOOLEAN)) {
 															log(LogStatus.INFO, "clicked on apply button", YesNo.No);
 															if(click(driver, home.getCreateFundraisingDefaultFundraisingValuesAddRowsLink(10), "add row buton", action.SCROLLANDBOOLEAN)) {
@@ -5232,6 +5236,7 @@ public class SmokeTestCases extends BaseLib {
 			log(LogStatus.ERROR, "Not able to click on institution tab so cannot create fundraising from company page", YesNo.Yes);
 			sa.assertTrue(false, "Not able to click on institution tab so cannot create fundraising from company page");
 		}
+		switchToDefaultContent(driver);
 		lp.CRMlogout(environment, mode);
 		sa.assertAll();
 	}
@@ -6213,6 +6218,7 @@ public class SmokeTestCases extends BaseLib {
 		HomePageBusineesLayer home = new HomePageBusineesLayer(driver);
 		BasePageBusinessLayer bp = new BasePageBusinessLayer(driver);
 		CommitmentsPageBusinessLayer comm = new CommitmentsPageBusinessLayer(driver);
+		WebElement ele;
 		lp.CRMLogin(crmUser1EmailID, adminPassword);
 		if (market.clickOnTab(environment, mode, TabName.InstituitonsTab)) {
 			if (ins.clickOnCreatedCompany(environment, mode, SmokeCOM1)) {
@@ -6243,31 +6249,16 @@ public class SmokeTestCases extends BaseLib {
 			sa.assertTrue(false, "Not able to clicked on Institution Tab so cannot verify create Commitments button.");
 			log(LogStatus.SKIP, "Not able to clicked on Institution Tab so cannot verify  create Commitments button.",YesNo.Yes);
 		}
+		switchToDefaultContent(driver);
 		if (market.clickOnTab(environment, mode, TabName.FundraisingsTab)) {
 			if (frpg.clickOnCreatedFundRaising(environment, mode, Smoke_FR1)) {
 				appLog.info("clicked on FR : " + Smoke_FR1);
-				if(mode.equalsIgnoreCase(Mode.Lightning.toString())) {
-					if (mode.equalsIgnoreCase(Mode.Lightning.toString())) {
-						refresh(driver);
-						if (click(driver, market.getShow4MoreActionsBtn_Lighting(60), "show 4 more action butotn",
-								action.BOOLEAN)) {
-							appLog.info("clicked on show 4 more action button in lighting");
-							log(LogStatus.INFO, "clicked on show 4 more action button in lighting", YesNo.No);
-
-						} else {
-							appLog.error("Not able to click on show 4 more action button in lighting ");
-							sa.assertTrue(false, "Not able to click on show 4 more action button in lighting ");
-							log(LogStatus.ERROR, "Not able to click on show 4 more action button in lighting ", YesNo.Yes);
-						}
-					}
-				}
-				ThreadSleep(5000);
-				WebElement ele = fund.getCreateCommitmentsBtn(environment, mode, PageName.CompanyPage, 20);
-				if (ele != null) {
+			ThreadSleep(5000);
+				boolean flag=fund.clickOnShowMoreActionDownArrow(environment, mode, PageName.FundraisingPage, ShowMoreActionDropDownList.Create_Commitments, 10);
 					ThreadSleep(2000);
 					log(LogStatus.INFO, "Create Commitments button is visible on CompanyPage "+SmokeCOM1, YesNo.No);
 					// Azhar Start//click(driver, ele, "Create Commitment Button", action.SCROLLANDBOOLEAN)
-					if (clickUsingJavaScript(driver, fund.getCreateCommitmentsBtn(environment, mode, PageName.CompanyPage, 20), "Create Commitment")) {
+					if (flag) {
 						log(LogStatus.INFO, "Clicked on Commitment Creation Button"+SmokeCOM1, YesNo.No);
 						ThreadSleep(2000);
 
@@ -6283,23 +6274,11 @@ public class SmokeTestCases extends BaseLib {
 							//
 
 							switchToDefaultContent(driver);
-							if(mode.equalsIgnoreCase(Mode.Lightning.toString())) {
-								if (mode.equalsIgnoreCase(Mode.Lightning.toString())) {
-									refresh(driver);
-									if (click(driver, market.getShow4MoreActionsBtn_Lighting(60), "show 4 more action butotn",
-											action.BOOLEAN)) {
-										appLog.info("clicked on show 4 more action button in lighting");
-										log(LogStatus.INFO, "clicked on show 4 more action button in lighting", YesNo.No);
-
-									} else {
-										appLog.error("Not able to click on show 4 more action button in lighting ");
-										sa.assertTrue(false, "Not able to click on show 4 more action button in lighting ");
-										log(LogStatus.ERROR, "Not able to click on show 4 more action button in lighting ", YesNo.Yes);
-									}
-								}
-							}
+							
+							 flag=fund.clickOnShowMoreActionDownArrow(environment, mode, PageName.FundraisingPage, ShowMoreActionDropDownList.Create_Commitments, 10);
+							
 							ThreadSleep(2000);
-							if (click(driver, ele, "Create Commitment Button", action.SCROLLANDBOOLEAN)) {
+							if (flag) {
 								log(LogStatus.INFO, "Clicked on Commitment Creation Button"+SmokeCOM1, YesNo.No);
 								ThreadSleep(2000);
 
@@ -6331,10 +6310,7 @@ public class SmokeTestCases extends BaseLib {
 						sa.assertTrue(false, "Not Able to Click on Create Commitment Button "+SmokeCOM1);
 					}
 					// Azhar End
-				} else {
-					log(LogStatus.ERROR, "Create Commitments button is not visible on CompanyPage "+SmokeCOM1, YesNo.Yes);
-					sa.assertTrue(false, "Create Commitments button is not visible on CompanyPage "+SmokeCOM1);
-				}
+				
 
 
 			} else {
@@ -6345,6 +6321,7 @@ public class SmokeTestCases extends BaseLib {
 			sa.assertTrue(false, "Not able to clicked on FundraisingsTab so cannot verify Commitments button.");
 			log(LogStatus.SKIP, "Not able to clicked on FundraisingsTab so cannot verify Commitments button.",YesNo.Yes);
 		}
+		switchToDefaultContent(driver);
 		if (market.clickOnTab(environment, mode, TabName.HomeTab)) {
 			if (mode.equalsIgnoreCase(Mode.Lightning.toString())) {
 				if (click(driver, home.getNavatarQuickLink_Lighting(environment, 20), "Navatar Quik Link",
@@ -6375,6 +6352,7 @@ public class SmokeTestCases extends BaseLib {
 			sa.assertTrue(false, "Not able to clicked on Home Tab so cannot verify navatar quick links.");
 			log(LogStatus.SKIP, "Not able to clicked on Home Tab so cannot verify navatar quick links.", YesNo.Yes);
 		}
+		switchToDefaultContent(driver);
 		lp.CRMlogout(environment, mode);
 		sa.assertAll();
 	}
@@ -6736,6 +6714,7 @@ public class SmokeTestCases extends BaseLib {
 			log(LogStatus.ERROR, "Not able to click on Create New Commitment link so cannot create commitments", YesNo.Yes);
 			sa.assertTrue(false, "Not able to click on Create New Commitment link so cannot create commitments");
 		}
+		switchToDefaultContent(driver);
 		lp.CRMlogout(environment, mode);
 		sa.assertAll();
 	}
@@ -8296,6 +8275,8 @@ public class SmokeTestCases extends BaseLib {
 											}
 										}else {
 											log(LogStatus.ERROR, "Not able to click on create commitment id "+SmokeCOMM6_ID+" so cannot verify data", YesNo.Yes);
+											sa.assertTrue(false, "Not able to click on create commitment id "+SmokeCOMM6_ID+" so cannot verify data");
+											
 										}
 									}else {
 										log(LogStatus.ERROR, "Not able to click on commitment tab so cannot verify data on commit id "+SmokeCOMM6_ID, YesNo.Yes);
@@ -8597,12 +8578,25 @@ public class SmokeTestCases extends BaseLib {
 							
 						}
 						
-						if (pl.isRelatedListAvailable(environment, mode, TabName.Pipelines, RelatedList.Pipeline_Stage_Logs, 10)) {
-							sa.assertTrue(false, "Related List is  Available : "+ RelatedList.Pipeline_Stage_Logs);
-							log(LogStatus.FAIL, "Related List is  Available : "+ RelatedList.Pipeline_Stage_Logs, YesNo.Yes);
+						ThreadSleep(3000);
+						if (cp.clickOnRelatedList(environment, mode, RecordType.Contact, RelatedList.Pipeline_Stage_Logs)) {
+							log(LogStatus.INFO, "Clicked on Realed Tab",YesNo.No);	
+							ThreadSleep(3000);
+							if (pl.isRelatedListAvailable(environment, mode, TabName.Pipelines, RelatedList.Pipeline_Stage_Logs, 10)) {
+								log(LogStatus.PASS, "Related List is Available : "+ RelatedList.Pipeline_Stage_Logs, YesNo.No);
+							} else {
+								sa.assertTrue(false, "Related List Should be Available : "+ RelatedList.Pipeline_Stage_Logs);
+								log(LogStatus.FAIL, "Related List Should be Available : "+ RelatedList.Pipeline_Stage_Logs, YesNo.Yes);
+
+
+							}
+
 						} else {
-							log(LogStatus.PASS, "Related List is not Available : "+ RelatedList.Pipeline_Stage_Logs, YesNo.No);
+							sa.assertTrue(false, "Not Able to Click on Realed Tab");
+							log(LogStatus.SKIP, "Not Able to Click on Realed Tab",YesNo.Yes);
 						}
+						
+						
 						
 						// Company
 						appLog.info("Going on Company Tab");
@@ -8614,7 +8608,7 @@ public class SmokeTestCases extends BaseLib {
 										{ excelLabel.Record_Type.toString(), "Company" } };
 								
 								for (String[] labelAndValue : labelsAndValuesforComp) {
-									if (ip.fieldValueVerificationOnCompanyPage(environment, mode, TabName.CompaniesTab,
+									if (ip.fieldValueVerificationOnInstitutionPage(environment, mode, TabName.CompaniesTab,
 											labelAndValue[0], labelAndValue[1])) {;
 											log(LogStatus.INFO, labelAndValue[0] + " with value : " + labelAndValue[1]+ " verified on Company Page ", YesNo.No);
 									} else {
@@ -9497,7 +9491,7 @@ public class SmokeTestCases extends BaseLib {
 							{ excelLabel.Record_Type.toString(), "Company" } };
 
 					for (String[] labelAndValue : labelsAndValuesforComp) {
-						if (ip.fieldValueVerificationOnCompanyPage(environment, mode, TabName.CompaniesTab,
+						if (ip.fieldValueVerificationOnInstitutionPage(environment, mode, TabName.CompaniesTab,
 								labelAndValue[0], labelAndValue[1])) {
 							appLog.info(labelAndValue[0] + " with value : " + labelAndValue[1]
 									+ " verified on Company Page ");
@@ -10107,6 +10101,7 @@ public class SmokeTestCases extends BaseLib {
 						if (pl.clickOnViewAllRelatedList(environment, mode, RelatedList.Pipeline_Stage_Logs)) {
 						
 							log(LogStatus.PASS, "Clicked on Related : "+RelatedList.Pipeline_Stage_Logs, YesNo.No);
+							ThreadSleep(2000);
 							if (pl.verifyPipeLineStageLog(environment, mode, RecordType.PipeLine, pipeLineFieldsAndValues)) {
 								appLog.info("PipeLine Stage Log verified for : " + Smoke_PL1Name);
 							} else {
@@ -10804,6 +10799,7 @@ public class SmokeTestCases extends BaseLib {
 		if(ins.clickOnTab(environment, mode, TabName.InstituitonsTab)) {
 			if(ins.clickOnCreatedInstitution(environment, mode, SmokeINDINV4)) {
 				ThreadSleep(3000);
+				ins.clickOnShowMoreDropdownOnly(environment, mode, PageName.InstitutionsPage);
 				if(click(driver,ins.getEditButton(environment, mode, 60), "edit button", action.SCROLLANDBOOLEAN)) {
 				
 				String[][] labelAndValue= {{excelLabel.Street.toString(),SmokeINDINV5_Street},{excelLabel.Description.toString(),SmokeC7_Description+" Updated"},
@@ -10830,6 +10826,7 @@ public class SmokeTestCases extends BaseLib {
 					
 				}
 				if(click(driver,ins.getSaveButton(environment, mode, 30),"save button", action.SCROLLANDBOOLEAN)) {
+					ThreadSleep(5000);
 					if(contact.clickOnTab(environment, mode, TabName.ContactTab)) {
 						if(contact.clickOnCreatedContact(environment, mode, SmokeC8_FName, SmokeC8_LName)) {
 							String[][] contactLabelAndValue= {{excelLabel.Description.toString(),SmokeC7_Description+" Updated"},
@@ -10898,6 +10895,7 @@ public class SmokeTestCases extends BaseLib {
 		if(contact.clickOnTab(environment, mode, TabName.ContactTab)) {
 			if(contact.clickOnCreatedContact(environment, mode, SmokeC9_FName, SmokeC9_LName)) {
 				ThreadSleep(3000);
+				contact.clickOnShowMoreDropdownOnly(environment, mode, PageName.ContactsPage);
 				if(click(driver,ins.getEditButton(environment, mode, 60), "edit button", action.SCROLLANDBOOLEAN)) {
 				
 				String[][] labelAndValue= {{excelLabel.Mailing_Street.toString(),SmokeC9_MailingStreet},
@@ -10923,6 +10921,7 @@ public class SmokeTestCases extends BaseLib {
 					}
 				}
 				if(click(driver,ins.getSaveButton(environment, mode, 30),"save button", action.SCROLLANDBOOLEAN)) {
+					ThreadSleep(5000);
 					if(ins.clickOnTab(environment, mode, TabName.InstituitonsTab)) {
 						if(ins.clickOnCreatedInstitution(environment, mode, SmokeINDINV6)) {
 							String[][] InstitutionPagelabelAndValue= {
@@ -11609,9 +11608,9 @@ public class SmokeTestCases extends BaseLib {
 					appLog.info("Fundraising is created Successfully:  Test FRD 1");
 					
 				} else {
-					appLog.error("Not able to click on Fundraising:  Test FRD 1");
-					sa.assertTrue(false, "Not able to click on Fundraising:  Test FRD 1");
-					log(LogStatus.SKIP, "Not able to click on Fundraising:  Test FRD 1", YesNo.Yes);
+					appLog.error("Fundraising not created Successfully:  Test FRD 1");
+					sa.assertTrue(false, "Fundraising not created Successfully:  Test FRD 1");
+					log(LogStatus.SKIP, "Fundraising not created Successfully:  Test FRD 1", YesNo.Yes);
 				}
 			} else {
 				appLog.error("Not able to click on fund Tab so cannot Fund");
@@ -11623,9 +11622,9 @@ public class SmokeTestCases extends BaseLib {
 					appLog.info("Fundraising is created Successfully:  Test FRD 2");
 					
 				} else {
-					appLog.error("Not able to click on Fundraising:  Test FRD 2");
-					sa.assertTrue(false, "Not able to click on Fundraising:  Test FRD 2");
-					log(LogStatus.SKIP, "Not able to click on Fundraising:  Test FRD 2", YesNo.Yes);
+					appLog.error("Fundraising not created Successfully:  Test FRD 2");
+					sa.assertTrue(false, "Fundraising not created Successfully:  Test FRD 2");
+					log(LogStatus.SKIP, "Fundraising not created Successfully:  Test FRD 2", YesNo.Yes);
 				}
 			} else {
 				appLog.error("Not able to click on fund Tab so cannot Fund");
@@ -11750,7 +11749,7 @@ public class SmokeTestCases extends BaseLib {
 										if (click(driver, ele, linkClick[j], action.SCROLLANDBOOLEAN)) {
 											switchToDefaultContent(driver);
 											if (Mode.Lightning.toString().equalsIgnoreCase(mode)) {
-												xpath = "//div/span[contains(text(),'"+linkClick[j]+"')]";
+												xpath = "//*[contains(text(),'"+linkClick[j]+"')]";
 											}else{
 												xpath = "//h2[contains(text(),'"+linkClick[j]+"')]";	
 											}
@@ -12814,7 +12813,7 @@ public class SmokeTestCases extends BaseLib {
 					
 					String xpath;
 					if (Mode.Lightning.toString().equalsIgnoreCase(mode)) {
-						xpath = "//div/span[contains(text(),'"+SmokeDD1_ID+"')]";
+						xpath = "//*[contains(text(),'Fund Drawdown')]/..//*[contains(text(),'"+SmokeDD1_ID+"')]";
 					}else{
 						xpath = "//h2[contains(text(),'"+SmokeDD1_ID+"')]";	
 					}
@@ -13565,7 +13564,7 @@ public class SmokeTestCases extends BaseLib {
 						if (parentId!=null) {
 							ThreadSleep(2000);
 							if (Mode.Lightning.toString().equalsIgnoreCase(mode)) {
-								xpath = "//div/span[contains(text(),'"+linkClick[j]+"')]";
+								xpath = "//*[contains(text(),'"+linkClick[j]+"')]";
 								}else{
 									xpath = "//h2[contains(text(),'"+linkClick[j]+"')]";	
 								}
@@ -13810,7 +13809,7 @@ public class SmokeTestCases extends BaseLib {
 	
 	@Parameters({ "environment", "mode" })
 	@Test
-	public void PESmokeTc052_VerifySentEmailAndActivityFromDrawdownPage(String environment, String mode) {
+	public void PESmokeTc052_1_VerifySentEmailAndActivityFromDrawdownPage(String environment, String mode) {
 		LoginPageBusinessLayer lp = new LoginPageBusinessLayer(driver);
 		ContactsPageBusinessLayer cp = new ContactsPageBusinessLayer(driver);
 		FundDrawdownsPageBusinessLayer fd = new FundDrawdownsPageBusinessLayer(driver);
@@ -13861,10 +13860,8 @@ public class SmokeTestCases extends BaseLib {
 			log(LogStatus.ERROR, "contacts tab is not clickable", YesNo.Yes);
 			sa.assertTrue(false, "contacts tab is not clickable");
 		}
+		switchToDefaultContent(driver);
 		lp.CRMlogout(environment, mode);
-		driver.close();
-		
-	
 		boolean flag = false;
 		for (int i=0;i<10;i++) {
 			if (EmailLib.mailReceived(gmailUserName,adminPassword, crmUser1EmailID, SmokeC1_EmailID,subjectWithoutEmail , "")) {
@@ -13890,14 +13887,21 @@ public class SmokeTestCases extends BaseLib {
 			log(LogStatus.ERROR, "could not verify email present", YesNo.Yes);
 			sa.assertTrue(false, "could not verify email present");
 		}
-		config(ExcelUtils.readDataFromPropertyFile("Browser"));
-		lp = new LoginPageBusinessLayer(driver);
-		cp = new ContactsPageBusinessLayer(driver);
-		fd = new FundDrawdownsPageBusinessLayer(driver);
-		hp = new HomePageBusineesLayer(driver);
-		bp = new BasePageBusinessLayer(driver);
 		
-		lp.CRMLogin(crmUser1EmailID, adminPassword);
+		sa.assertAll();
+	}
+	
+	
+	@Parameters({ "environment", "mode" })
+	@Test
+	public void PESmokeTc052_2_VerifySentEmailAndActivityFromDrawdownPage(String environment, String mode) {
+		LoginPageBusinessLayer lp = new LoginPageBusinessLayer(driver);
+		ContactsPageBusinessLayer cp = new ContactsPageBusinessLayer(driver);
+		FundDrawdownsPageBusinessLayer fd = new FundDrawdownsPageBusinessLayer(driver);
+		HomePageBusineesLayer hp = new HomePageBusineesLayer(driver);
+		BasePageBusinessLayer bp = new BasePageBusinessLayer(driver);
+	lp.CRMLogin(crmUser1EmailID, adminPassword);
+	
 		SoftAssert saa = new SoftAssert();
 		if (bp.clickOnTab(environment, mode, TabName.FundDrawdowns)) {
 			if (fd.clickOnCreatedDrawdown(environment, mode, SmokeDD1_ID)) {
@@ -13965,6 +13969,7 @@ public class SmokeTestCases extends BaseLib {
 		lp.CRMlogout(environment, mode);
 		sa.assertAll();
 	}
+	
 	
 	@Parameters({ "environment", "mode" })
 	@Test
@@ -14492,7 +14497,7 @@ public class SmokeTestCases extends BaseLib {
 									if (click(driver, ele, linkClick[j], action.SCROLLANDBOOLEAN)) {
 										switchToDefaultContent(driver);
 										if (Mode.Lightning.toString().equalsIgnoreCase(mode)) {
-											xpath = "//div/span[contains(text(),'"+linkClick[j]+"')]";
+											xpath = "//*[contains(text(),'"+linkClick[j]+"')]";
 										}else{
 											xpath = "//h2[contains(text(),'"+linkClick[j]+"')]";	
 										}
@@ -15035,12 +15040,19 @@ public class SmokeTestCases extends BaseLib {
 						log(LogStatus.INFO, "capital recallable checkbox is successfully checked", YesNo.No);
 				}
 				else {//lighting
-					if (id.getCapitalRecallableValue(mode, 30).getAttribute("class").contains("unchecked")) {
-						log(LogStatus.ERROR, "checkbox for capital recallabel checkbox is unchecked but it should be", YesNo.Yes);
-						sa.assertTrue(false, "checkbox for capital recallabel checkbox is unchecked but it should be");
+					try {
+						if (id.getCapitalRecallableValue(mode, 30).getAttribute("class").contains("unchecked")) {
+							log(LogStatus.ERROR, "checkbox for capital recallabel checkbox is unchecked but it should be", YesNo.Yes);
+							sa.assertTrue(false, "checkbox for capital recallabel checkbox is unchecked but it should be");
+						}
+						else {
+							log(LogStatus.INFO, "capital recallable checkbox is successfully checked", YesNo.No);
+						}
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						log(LogStatus.ERROR, "Exception on checkbox for capital recallabel checkbox", YesNo.Yes);
+						sa.assertTrue(false, "Exception on checkbox for capital recallabel checkbox");
 					}
-					else
-						log(LogStatus.INFO, "capital recallable checkbox is successfully checked", YesNo.No);
 				}
 			}
 			else {
@@ -16971,7 +16983,7 @@ public class SmokeTestCases extends BaseLib {
 
 					if (click(driver, ctt.getSaveButtonforNavatarSetUpSideMenuTab(environment, mode,
 							NavatarSetupSideMenuTab.ContactTransfer, 10, TopOrBottom.TOP), "Save Button", action.BOOLEAN)) {
-						ThreadSleep(2000);
+						ThreadSleep(7000);
 						log(LogStatus.INFO, "Clicked on Save Button for Yes Button", YesNo.No);
 
 						String msg = ctt.getconfirmationPopUpMsg(environment, 10).getText();
@@ -16995,7 +17007,7 @@ public class SmokeTestCases extends BaseLib {
 						if (click(driver, ctt.getConfirmationPopUpYesButton(environment, 10), "Yes Button",
 								action.BOOLEAN)) {
 							log(LogStatus.INFO, "Clicked on Yes Button", YesNo.No);
-							ThreadSleep(2000);
+							ThreadSleep(10000);
 							keepActivitiesDefaultValue = "Old Institution Only";
 							SoftAssert tsa = ctt.verifyingContactTransferTab(environment, mode, EditViewMode.View,
 									CheckBox.Checked, keepActivitiesDefaultValue, selectIncludeActivitiesValue);
@@ -17104,7 +17116,7 @@ public class SmokeTestCases extends BaseLib {
 							// 3rd
 							if (click(driver, ctt.getSaveButtonforNavatarSetUpSideMenuTab(environment, mode,
 									NavatarSetupSideMenuTab.OfficeLocations, 10, TopOrBottom.TOP), "Save Button", action.BOOLEAN)) {
-								ThreadSleep(5000);
+								ThreadSleep(10000);
 								log(LogStatus.INFO, "Clicked on Save Button", YesNo.No);
 
 								if (isSelected(driver,
@@ -17825,6 +17837,7 @@ public class SmokeTestCases extends BaseLib {
 				{ OfficeLocationLabel.Country.toString(), Smoke_OFFLoc1UpdCountry },
 				{ excelLabel.Postal_Code.toString(), Smoke_OFFLoc1UpdZIP } };
 
+		boolean flag=false;
 		lp.CRMLogin(crmUser1EmailID, adminPassword);
 		log(LogStatus.INFO, "Login with CRM User", YesNo.No);
 		log(LogStatus.INFO, "Going to Update information about Office Location 1", YesNo.No);
@@ -17847,6 +17860,7 @@ public class SmokeTestCases extends BaseLib {
 
 							tsa = ip.EnterValueForLabelonOfficeLocation(environment, mode, updatedOfficeLocation1);
 							sa.combineAssertions(tsa);
+							flag=true;
 						} else {
 							sa.assertTrue(false, "Not Able to Click on Office Location : " + Smoke_OFFLoc1Name);
 							log(LogStatus.SKIP, "Not Able to Click on Office Location  : " + Smoke_OFFLoc1Name, YesNo.Yes);
@@ -17874,117 +17888,122 @@ public class SmokeTestCases extends BaseLib {
 			sa.assertTrue(false, "Not Able to Click on Institution Tab");
 			log(LogStatus.SKIP, "Not Able to Click on Institution Tab", YesNo.Yes);
 		}
+		if (flag) {
+			
+			log(LogStatus.INFO, "Going to Verify Office Location 1", YesNo.No);
 
-		log(LogStatus.INFO, "Going to Verify Office Location 1", YesNo.No);
+			if (ip.clickOnTab(environment, mode, TabName.InstituitonsTab)) {
+				log(LogStatus.INFO, "Clicked on Institution Tab", YesNo.No);
+				if (ip.clickOnCreatedInstitution(environment, mode, SmokeINS2)) {
+					log(LogStatus.INFO, "Clicked on Created Institution : " + SmokeINS2, YesNo.No);
 
-		if (ip.clickOnTab(environment, mode, TabName.InstituitonsTab)) {
-			log(LogStatus.INFO, "Clicked on Institution Tab", YesNo.No);
-			if (ip.clickOnCreatedInstitution(environment, mode, SmokeINS2)) {
-				log(LogStatus.INFO, "Clicked on Created Institution : " + SmokeINS2, YesNo.No);
-
-				if (ip.clickOnRelatedList(environment, mode, RecordType.IndividualInvestor, RelatedList.Office_Locations)) {
-					
-					log(LogStatus.PASS, "Clicked on Related TAB : "+RelatedList.Office_Locations, YesNo.No);
-					
-					if (ip.clickOnViewAllRelatedList(environment, mode, RelatedList.Office_Locations)) {
+					if (ip.clickOnRelatedList(environment, mode, RecordType.IndividualInvestor, RelatedList.Office_Locations)) {
 						
-						log(LogStatus.PASS, "Clicked on Related : "+RelatedList.Office_Locations, YesNo.No);
+						log(LogStatus.PASS, "Clicked on Related TAB : "+RelatedList.Office_Locations, YesNo.No);
 						
-						if (ip.verifyOfficeLocationRelatedListGrid(environment, mode, Smoke_OFFLoc1UpdName,
-								Smoke_OFFLoc1UpdStreet, Smoke_OFFLoc1UpdCity, Smoke_OFFLoc1UpdStateProvince,
-								Smoke_OFFLoc1UpdCountry, Smoke_OFFLoc1UpdPrimary)) {
-							log(LogStatus.PASS, "Grid Verified for : " + Smoke_OFFLoc1UpdName, YesNo.Yes);
-						} else {
-							sa.assertTrue(false, "Grid Not Verified for : " + Smoke_OFFLoc1UpdName);
-							log(LogStatus.FAIL, "Grid Not Verified for : " + Smoke_OFFLoc1UpdName, YesNo.Yes);
+						if (ip.clickOnViewAllRelatedList(environment, mode, RelatedList.Office_Locations)) {
+							
+							log(LogStatus.PASS, "Clicked on Related : "+RelatedList.Office_Locations, YesNo.No);
+							
+							if (ip.verifyOfficeLocationRelatedListGrid(environment, mode, Smoke_OFFLoc1UpdName,
+									Smoke_OFFLoc1UpdStreet, Smoke_OFFLoc1UpdCity, Smoke_OFFLoc1UpdStateProvince,
+									Smoke_OFFLoc1UpdCountry, Smoke_OFFLoc1UpdPrimary)) {
+								log(LogStatus.PASS, "Grid Verified for : " + Smoke_OFFLoc1UpdName, YesNo.Yes);
+							} else {
+								sa.assertTrue(false, "Grid Not Verified for : " + Smoke_OFFLoc1UpdName);
+								log(LogStatus.FAIL, "Grid Not Verified for : " + Smoke_OFFLoc1UpdName, YesNo.Yes);
+							}
+							
+							} else {
+							sa.assertTrue(false, "Not Able to Click on Related List View All for " + RelatedList.Office_Locations);
+							log(LogStatus.FAIL, "Not Able to Click on Related List View All for " + RelatedList.Office_Locations, YesNo.Yes);
 						}
 						
-						} else {
-						sa.assertTrue(false, "Not Able to Click on Related List View All for " + RelatedList.Office_Locations);
-						log(LogStatus.FAIL, "Not Able to Click on Related List View All for " + RelatedList.Office_Locations, YesNo.Yes);
+						
+					} else {
+						sa.assertTrue(false, "Not Able to Click on Related List " + RelatedList.Office_Locations);
+						log(LogStatus.FAIL, "Not Able to Click on Related List " + RelatedList.Office_Locations, YesNo.Yes);
 					}
-					
-					
+
+						
+
+
 				} else {
-					sa.assertTrue(false, "Not Able to Click on Related List " + RelatedList.Office_Locations);
-					log(LogStatus.FAIL, "Not Able to Click on Related List " + RelatedList.Office_Locations, YesNo.Yes);
+					sa.assertTrue(false, "Not Able to Click on Created Institution : " + SmokeINS2);
+					log(LogStatus.SKIP, "Not Able to Click on Created Institution : " + SmokeINS2, YesNo.Yes);
 				}
 
-					
-
-
 			} else {
-				sa.assertTrue(false, "Not Able to Click on Created Institution : " + SmokeINS2);
-				log(LogStatus.SKIP, "Not Able to Click on Created Institution : " + SmokeINS2, YesNo.Yes);
+				sa.assertTrue(false, "Not Able to Click on Institution Tab");
+				log(LogStatus.SKIP, "Not Able to Click on Institution Tab", YesNo.Yes);
 			}
 
-		} else {
-			sa.assertTrue(false, "Not Able to Click on Institution Tab");
-			log(LogStatus.SKIP, "Not Able to Click on Institution Tab", YesNo.Yes);
-		}
+			log(LogStatus.INFO, "Going to Verify Address Information on INstitution ", YesNo.No);
+			if (ip.clickOnTab(environment, mode, TabName.InstituitonsTab)) {
+				log(LogStatus.INFO, "Clicked on Institution Tab", YesNo.No);
+				if (ip.clickOnCreatedInstitution(environment, mode, SmokeINS2)) {
+					log(LogStatus.INFO, "Clicked on Created Institution : " + SmokeINS2, YesNo.No);
 
-		log(LogStatus.INFO, "Going to Verify Address Information on INstitution ", YesNo.No);
-		if (ip.clickOnTab(environment, mode, TabName.InstituitonsTab)) {
-			log(LogStatus.INFO, "Clicked on Institution Tab", YesNo.No);
-			if (ip.clickOnCreatedInstitution(environment, mode, SmokeINS2)) {
-				log(LogStatus.INFO, "Clicked on Created Institution : " + SmokeINS2, YesNo.No);
+					for (String[] labelWithValue : labelsWithValues) {
 
-				for (String[] labelWithValue : labelsWithValues) {
-
-					if (ip.fieldValueVerificationOnInstitutionPage(environment, mode, TabName.InstituitonsTab,
-							labelWithValue[0], labelWithValue[1])) {
-						log(LogStatus.PASS, labelWithValue[0] + " : with value : " + labelWithValue[1] + "  Verified",
-								YesNo.No);
-					} else {
-						sa.assertTrue(false,
-								labelWithValue[0] + " : with value : " + labelWithValue[1] + " Not Verified");
-						log(LogStatus.FAIL,
-								labelWithValue[0] + " : with value : " + labelWithValue[1] + " Not Verified",
-								YesNo.Yes);
+						if (ip.fieldValueVerificationOnInstitutionPage(environment, mode, TabName.InstituitonsTab,
+								labelWithValue[0], labelWithValue[1])) {
+							log(LogStatus.PASS, labelWithValue[0] + " : with value : " + labelWithValue[1] + "  Verified",
+									YesNo.No);
+						} else {
+							sa.assertTrue(false,
+									labelWithValue[0] + " : with value : " + labelWithValue[1] + " Not Verified");
+							log(LogStatus.FAIL,
+									labelWithValue[0] + " : with value : " + labelWithValue[1] + " Not Verified",
+									YesNo.Yes);
+						}
 					}
+
+				} else {
+					sa.assertTrue(false, "Not Able to Click on Created Institution : " + SmokeINS2);
+					log(LogStatus.SKIP, "Not Able to Click on Created Institution : " + SmokeINS2, YesNo.Yes);
 				}
 
 			} else {
-				sa.assertTrue(false, "Not Able to Click on Created Institution : " + SmokeINS2);
-				log(LogStatus.SKIP, "Not Able to Click on Created Institution : " + SmokeINS2, YesNo.Yes);
+				sa.assertTrue(false, "Not Able to Click on Institution Tab");
+				log(LogStatus.SKIP, "Not Able to Click on Institution Tab", YesNo.Yes);
 			}
 
-		} else {
-			sa.assertTrue(false, "Not Able to Click on Institution Tab");
-			log(LogStatus.SKIP, "Not Able to Click on Institution Tab", YesNo.Yes);
-		}
+			refresh(driver);
+			log(LogStatus.INFO, "Going to Verify Address Information on Conatct ", YesNo.No);
+			if (ip.clickOnTab(environment, mode, TabName.ContactTab)) {
+				log(LogStatus.INFO, "Clicked on Contact Tab", YesNo.No);
+				if (cp.clickOnCreatedContact(environment, mode, SmokeC5_FName, SmokeC5_LName)) {
+					log(LogStatus.INFO, "Clicked on Created Contact : " + SmokeC5_FName + " " + SmokeC5_LName, YesNo.No);
 
-		refresh(driver);
-		log(LogStatus.INFO, "Going to Verify Address Information on Conatct ", YesNo.No);
-		if (ip.clickOnTab(environment, mode, TabName.ContactTab)) {
-			log(LogStatus.INFO, "Clicked on Contact Tab", YesNo.No);
-			if (cp.clickOnCreatedContact(environment, mode, SmokeC5_FName, SmokeC5_LName)) {
-				log(LogStatus.INFO, "Clicked on Created Contact : " + SmokeC5_FName + " " + SmokeC5_LName, YesNo.No);
+					for (String[] labelWithValue : labelsWithValues) {
 
-				for (String[] labelWithValue : labelsWithValues) {
-
-					if (cp.fieldValueVerificationOnContactPage(environment, mode, TabName.ContactTab, labelWithValue[0],
-							labelWithValue[1])) {
-						log(LogStatus.PASS, labelWithValue[0] + " : with value : " + labelWithValue[1] + "  Verified",
-								YesNo.No);
-					} else {
-						sa.assertTrue(false,
-								labelWithValue[0] + " : with value : " + labelWithValue[1] + " Not Verified");
-						log(LogStatus.FAIL,
-								labelWithValue[0] + " : with value : " + labelWithValue[1] + " Not Verified",
-								YesNo.Yes);
+						if (cp.fieldValueVerificationOnContactPage(environment, mode, TabName.ContactTab, labelWithValue[0],
+								labelWithValue[1])) {
+							log(LogStatus.PASS, labelWithValue[0] + " : with value : " + labelWithValue[1] + "  Verified",
+									YesNo.No);
+						} else {
+							sa.assertTrue(false,
+									labelWithValue[0] + " : with value : " + labelWithValue[1] + " Not Verified");
+							log(LogStatus.FAIL,
+									labelWithValue[0] + " : with value : " + labelWithValue[1] + " Not Verified",
+									YesNo.Yes);
+						}
 					}
+
+				} else {
+					sa.assertTrue(false, "Contact not Found : " + SmokeC5_FName + " " + SmokeC5_LName);
+					log(LogStatus.SKIP, "Contact not Found : " + SmokeC5_FName + " " + SmokeC5_LName, YesNo.Yes);
 				}
 
 			} else {
-				sa.assertTrue(false, "Contact not Found : " + SmokeC5_FName + " " + SmokeC5_LName);
-				log(LogStatus.SKIP, "Contact not Found : " + SmokeC5_FName + " " + SmokeC5_LName, YesNo.Yes);
+				sa.assertTrue(false, "Not Able to Click on Contact Tab");
+				log(LogStatus.SKIP, "Not Able to Click on Contact Tab", YesNo.Yes);
 			}
-
-		} else {
-			sa.assertTrue(false, "Not Able to Click on Contact Tab");
-			log(LogStatus.SKIP, "Not Able to Click on Contact Tab", YesNo.Yes);
+			
 		}
+
+		
 
 		switchToDefaultContent(driver);
 		lp.CRMlogout(environment, mode);

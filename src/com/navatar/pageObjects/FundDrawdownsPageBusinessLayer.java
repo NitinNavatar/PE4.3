@@ -161,11 +161,30 @@ public class FundDrawdownsPageBusinessLayer extends FundDrawdownsPage {
 				xpath = "//span[@class='test-id__field-label'][text()='" + finalLabelName
 						+ "']/../following-sibling::div/span/span";
 			}
+			
+			////////////////////////////////////////////////////////////////////////
+			
+	xpath = "//span[text()='"+finalLabelName+"']/../following-sibling::div//*[text()='"+labelValue+"']";
+		
+	ele = 	FindElement(driver, xpath, finalLabelName + " label text with  " + labelValue, action.SCROLLANDBOOLEAN, 10);
+	scrollDownThroughWebelement(driver, ele, finalLabelName + " label text with  " + labelValue);
+	ele = 	isDisplayed(driver,ele,"Visibility", 5, finalLabelName + " label text with  " + labelValue);
+	if (ele != null) {
+		String aa = ele.getText().trim();
+		appLog.info(finalLabelName + " label text with  " + labelValue+" verified");
+		return true;
+
+	} else {
+		appLog.error("<<<<<<   "+finalLabelName + " label text with  " + labelValue+" not verified "+"   >>>>>>");
+	}
+	return false;
+	
+			//////////////////////////////////////////////////////////////////
 
 		}
 		ele = isDisplayed(driver,
-				FindElement(driver, xpath, finalLabelName + " label text in " + mode, action.SCROLLANDBOOLEAN, 60),
-				"Visibility", 30, finalLabelName + " label text in " + mode);
+				FindElement(driver, xpath, finalLabelName + " label text in " + mode, action.SCROLLANDBOOLEAN, 10),
+				"Visibility", 5, finalLabelName + " label text in " + mode);
 		if (ele != null) {
 			String aa = ele.getText().trim();
 			if (aa.equals("")) {

@@ -737,6 +737,7 @@ public class DealCreationTabBusinessLayer extends DealCreationTab {
 						String[] labelValue = sourceFirmValues.split(",");
 					
 						for(int i=0; i<labelNames.length; i++) {
+							ThreadSleep(3000);
 							WebElement ele = getSourceFirmPopUpTextBoxOrRichTextBoxWebElement(environment, mode, labelNames[i].trim(), 30);
 							if(sendKeys(driver, ele, labelValue[i], labelNames[i]+" text box", action.SCROLLANDBOOLEAN)) {
 								appLog.info("passed value "+labelValue[i]+" in "+labelNames[i]+" field");
@@ -744,6 +745,7 @@ public class DealCreationTabBusinessLayer extends DealCreationTab {
 								appLog.error("Not able to pass value "+labelValue[i]+" in "+labelNames[i]+" field");
 								BaseLib.sa.assertTrue(false, "Not able to pass value "+labelValue[i]+" in "+labelNames[i]+" field");
 							}
+						
 						}
 						
 						if(click(driver, getNewSourceFirmAddButton(environment, mode, 10), "Add Button on New Source Firm", action.BOOLEAN)){
@@ -833,6 +835,7 @@ public class DealCreationTabBusinessLayer extends DealCreationTab {
 						String[] labelValue = sourceContactValues.split(",");
 					
 						for(int i=0; i<labelNames.length; i++) {
+							ThreadSleep(3000);
 							WebElement ele = getSourceContactPopUpTextBoxOrRichTextBoxWebElement(environment, mode, labelNames[i].trim(), 30);
 							if(sendKeys(driver, ele, labelValue[i], labelNames[i]+" text box", action.SCROLLANDBOOLEAN)) {
 								appLog.info("passed value "+labelValue[i]+" in "+labelNames[i]+" field");

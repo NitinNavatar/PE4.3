@@ -62,11 +62,13 @@ public class CorrespondenceListPageBusinessLayer extends CorrespondenceListPage{
 
 		if (click(driver, getCustomTabSaveBtn(environment, mode, 30), "SaveBtn", action.SCROLLANDBOOLEAN)) {
 			log(LogStatus.PASS, "clicked on save button", YesNo.No);
+	
 		}
 		else {
 			log(LogStatus.ERROR, "save button is not clickable", YesNo.Yes);
 			flag = false;
 		}
+		ThreadSleep(4000);
 		return flag;
 	}
 

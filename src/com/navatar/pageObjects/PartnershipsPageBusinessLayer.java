@@ -182,9 +182,9 @@ public class PartnershipsPageBusinessLayer extends PartnershipsPage {
 					}
 				} else {
 					if(pageName.toString().equalsIgnoreCase(PageName.LimitedPartnerPage.toString())){
-						xpath=baseXapth+"/../../preceding-sibling::td/span/span";
+						xpath=baseXapth+"/../../preceding-sibling::td[1]/span/span";
 					}else {
-						xpath=baseXapth+"/../../following-sibling::td/span/span";
+						xpath=baseXapth+"/../../following-sibling::td[1]/span/span";
 					}
 					ele = FindElement(driver, xpath, "company name", action.SCROLLANDBOOLEAN, 10);
 					if(ele!=null) {

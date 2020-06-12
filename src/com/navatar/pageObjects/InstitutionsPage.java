@@ -94,9 +94,11 @@ public class InstitutionsPage extends BasePageBusinessLayer {
 	 * @return the radioButtonforNewInstitution
 	 */
 	public WebElement getRadioButtonforRecordType(String recordType,int timeOut) {
-		String xpath="//div[@class='changeRecordTypeRow']//span[text()='"+recordType+"']/../..";
+		String xpath="//div[@class='changeRecordTypeRow']//span[text()='"+recordType+"']/../..//input";
 		WebElement ele = null;
+		ThreadSleep(500);
 		ele=FindElement(driver, xpath, "radio button of record type "+recordType, action.SCROLLANDBOOLEAN,timeOut);
+		ThreadSleep(500);
 		return isDisplayed(driver,ele,"visibility",timeOut,"radio button of record type "+recordType);
 	}
 	

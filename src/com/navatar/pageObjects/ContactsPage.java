@@ -171,9 +171,9 @@ public class ContactsPage extends BasePageBusinessLayer {
 		if(mode.equalsIgnoreCase(Mode.Classic.toString())){
 			return isDisplayed(driver, contactTransferBtn_Classic, "Visibility", timeOut, "Contact Transfer Button");
 		}else{
-			click(driver, contactViewHierrachyIcon_Lighting, "Contact View Hierrachy Icon", action.SCROLLANDBOOLEAN);
+			clickOnShowMoreDropdownOnly(environment, mode, PageName.ContactsPage);
 			ThreadSleep(1000);
-			return contactTransferLink_Lighting;
+			return actionDropdownElement(environment, mode, PageName.ContactsPage, ShowMoreActionDropDownList.Contact_Transfer, 5);
 		//	return isDisplayed(driver, contactTransferLink_Lighting, "Visibility", timeOut, "Contact Transfer Lighting");
 		}
 	

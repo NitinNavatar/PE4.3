@@ -4,6 +4,7 @@ import static com.navatar.generic.AppListeners.appLog;
 import static com.navatar.generic.CommonLib.FindElement;
 import static com.navatar.generic.CommonLib.FindElements;
 import static com.navatar.generic.CommonLib.isDisplayed;
+import static com.navatar.generic.CommonLib.scrollDownThroughWebelement;
 
 import java.util.List;
 
@@ -55,6 +56,23 @@ public class InvestorDistributionsPageBusinessLayer extends InvestorDistribution
 						+ "']/../following-sibling::div/span/span";
 			}
 
+			//////////////////////////////////////////////////////////////
+	xpath = "//span[text()='"+finalLabelName+"']/../following-sibling::div//*[text()='"+labelValue+"']";
+		
+	ele = FindElement(driver, xpath, finalLabelName + " label text with  " + labelValue, action.SCROLLANDBOOLEAN, 10);
+	scrollDownThroughWebelement(driver, ele, finalLabelName + " label text with  " + labelValue);
+	ele = 	isDisplayed(driver,ele,"Visibility", 10, finalLabelName + " label text with  " + labelValue);
+	if (ele != null) {
+		String aa = ele.getText().trim();
+		appLog.info(finalLabelName + " label text with  " + labelValue+" verified");
+		return true;
+
+	} else {
+		appLog.error("<<<<<<   "+finalLabelName + " label text with  " + labelValue+" not verified "+"   >>>>>>");
+	}
+	return false;
+			
+			///////////////////////////////////////////////////
 		}
 		ele = isDisplayed(driver,
 				FindElement(driver, xpath, finalLabelName + " label text in " + mode, action.SCROLLANDBOOLEAN, 60),

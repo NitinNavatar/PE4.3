@@ -6,6 +6,8 @@ import static com.navatar.generic.AppListeners.appLog;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import com.navatar.generic.EnumConstants.Mode;
+import com.navatar.generic.EnumConstants.action;
 import com.relevantcodes.extentreports.LogStatus;
 
 import static com.navatar.generic.CommonLib.*;
@@ -69,9 +71,17 @@ public class FundraisingsPageBusinessLayer extends FundraisingsPage {
 							ThreadSleep(500);
 							if (getFundraisingNameInViewMode(environment,mode,60) != null) {
 								ThreadSleep(2000);
-								String fundraising = getText(driver, getFundraisingNameInViewMode(environment,mode,60),
-										"Fundraising name	", action.BOOLEAN);
-								if (fundraising.contains(fundraisingName)) {
+								String fundraising=null;
+								WebElement ele;
+								if (Mode.Lightning.toString().equalsIgnoreCase(mode)) {
+									String	xpath="//*[contains(text(),'Fundraising')]/..//*[text()='"+fundraisingName+"']";
+									 ele = FindElement(driver, xpath, "Header : "+fundraisingName, action.BOOLEAN, 30);
+								
+								} else {
+									ele=getFundraisingNameInViewMode(environment, mode, 60);
+								}
+								
+								if (ele!=null) {
 									appLog.info("Fundraising is created successfully.:" + fundraisingName);
 									return true;
 								} else {

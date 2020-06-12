@@ -67,46 +67,7 @@ public class MarketingInitiativesPage extends BasePageBusinessLayer {
 		}
 	}
 	
-	
-	@FindBy(xpath="//td[@id='topButtonRow']//input[@title='Add Prospect']")
-	private WebElement addProspectBtn_Classic;
-	
 
-	@FindBy(xpath="//a[@title='Add Prospect']/div")
-	private WebElement addProspectBtn_Lighting;
-	
-	public WebElement getAddProspectBtn(String environment, String mode, int timeOut) {
-		if(mode.equalsIgnoreCase(Mode.Classic.toString())){
-			return isDisplayed(driver, addProspectBtn_Classic, "Visibility", timeOut, "add prospect button in Classic");	
-		}else{
-			return  isDisplayed(driver, addProspectBtn_Lighting, "Visibility", timeOut, "add prospect button in Lighting");	
-		}
-	}
-	
-	@FindBy(xpath="//td[@id='topButtonRow']//input[@title='Email Prospects']")
-	private WebElement emailProspectsBtn_Classic;
-	
-	@FindBy(xpath="//a[@title='Email Prospects']")
-	private WebElement emailProspects_lighting;
-	
-	public WebElement getEmailProspectsBtn(String environment, String mode, int timeOut) {
-		if(mode.equalsIgnoreCase(Mode.Classic.toString())){
-			return isDisplayed(driver, emailProspectsBtn_Classic, "Visibility", timeOut, "email prospect button in Classic");	
-		}else{
-			return  isDisplayed(driver, emailProspects_lighting, "Visibility", timeOut, "email prospect button in Lighting");	
-		}
-	}
-	
-	@FindBy(xpath="//a[contains(@title,'more actions')]")
-	private WebElement show4MoreActionsBtn_Lighting;
-	
-	/**
-	 * @return the show4MoreActionsBtn_Lighting
-	 */
-	public WebElement getShow4MoreActionsBtn_Lighting(int timeOut) {
-		return isDisplayed(driver, show4MoreActionsBtn_Lighting, "Visibility", timeOut, "show 4 more actions button in lighting");
-	}
-	
 	@FindBy(xpath="//p[@class='slds-page-header__title slds-truncate slds-align-middle']")
 	private WebElement addProspectsHeaderText;
 	

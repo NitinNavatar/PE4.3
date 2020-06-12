@@ -1251,7 +1251,7 @@ public abstract class BasePage {
 	 @FindBy(xpath="//div[@class='pbHeader']//input[@title='Edit']")
 	 private WebElement editButton_Classic;
 	 
-	 @FindBy(xpath="//a[@title='Edit']")
+	 @FindBy(xpath="//*[@title='Edit' or text()='Edit']")
 	 private WebElement editButton_Lighting;
 	
 	 /**
@@ -1261,6 +1261,9 @@ public abstract class BasePage {
 		if(mode.equalsIgnoreCase(Mode.Classic.toString())){
 			return isDisplayed(driver, editButton_Classic, "Visibility", timeOut, "Edit Button Classic");	
 		}else{
+			BasePageBusinessLayer bp = new BasePageBusinessLayer(driver);
+			bp.clickOnShowMoreDropdownOnly(environment, mode, PageName.ContactsPage);
+			ThreadSleep(2000);
 		return isDisplayed(driver, editButton_Lighting, "Visibility", timeOut, "Edit Button Lighting");	
 		
 		}

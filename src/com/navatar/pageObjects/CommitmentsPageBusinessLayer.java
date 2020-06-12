@@ -161,7 +161,7 @@ public class CommitmentsPageBusinessLayer extends CommitmentsPage{
 		else if(labelName.toString().equalsIgnoreCase(CommitmentPageFieldLabelText.Commitment_Called.toString())||
 				labelName.toString().equalsIgnoreCase(CommitmentPageFieldLabelText.Called_Due.toString())){
 			
-			labelValue=convertNumberAccordingToFormatWithoutCurrencySymbol(labelValue, "0.00");
+			labelValue=convertNumberAccordingToFormatWithoutCurrencySymbol(labelValue, "0.00")+"%";
 		}
 			else if(labelName.toString().equalsIgnoreCase(CommitmentPageFieldLabelText.Total_Uncalled_Amount.toString()))
 				labelValue=convertNumberAccordingToFormatWithCurrencySymbol(labelValue, "0,000.00");
@@ -169,8 +169,9 @@ public class CommitmentsPageBusinessLayer extends CommitmentsPage{
 		labelName=labelName.replace("_", " ");
 		if(labelName.contains(excelLabel.Placement_Fee.toString().replace("_", " "))) {
 			labelName=labelName+" %";
+			labelValue=labelValue+"%";
 		}
-	
+
 		if (mode.equalsIgnoreCase(Mode.Classic.toString())) {
 			
 			xpath = "//td[text()='"+ labelName +"']/../td[2]/div";
@@ -191,7 +192,37 @@ public class CommitmentsPageBusinessLayer extends CommitmentsPage{
 				xpath = "//span[@class='test-id__field-label'][text()='"+labelName+"']/../following-sibling::div/span/span";
 			else
 				xpath = "//span[@class='test-id__field-label'][text()='"+labelName+"']/../following-sibling::div/span";
+	
+		
+			
+			/////////////////  Lighting New Start /////////////////////////////////////
+		
+			
+			if (labelName.toString().equalsIgnoreCase(CommitmentPageFieldLabelText.Commitment_Called.toString()) ||
+					labelName.toString().equalsIgnoreCase(CommitmentPageFieldLabelText.Called_Due.toString())) {
+				xpath = "//span[text()='"+labelName+"']/../following-sibling::div/span/span";	
+			} else {
+				xpath = "//span[text()='"+labelName+"']/../following-sibling::div//*[text()='"+labelValue+"']";
+			}
+			xpath = "//span[text()='"+labelName+"']/../following-sibling::div//*[text()='"+labelValue+"']";
+		ele = FindElement(driver, xpath, labelName + " label text with  " + labelValue, action.SCROLLANDBOOLEAN, 10);
+		scrollDownThroughWebelement(driver, ele, labelName + " label text with  " + labelValue);
+		ele = 	isDisplayed(driver,ele,"Visibility", 5, labelName + " label text with  " + labelValue);
+		if (ele != null) {
+			String aa = ele.getText().trim();
+			appLog.info(labelName + " label text with  " + labelValue+" verified");
+			return true;
+
+		} else {
+			appLog.error("<<<<<<   "+labelName + " label text with  " + labelValue+" not verified "+"   >>>>>>");
 		}
+		return false;
+		
+
+		/////////////////  Lighting New End /////////////////////////////////////
+	}
+		
+	
 		
 			ele = isDisplayed(driver,
 				FindElement(driver, xpath, labelName + " label text in " + mode, action.SCROLLANDBOOLEAN, 60),

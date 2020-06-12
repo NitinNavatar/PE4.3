@@ -345,11 +345,47 @@ public class ContactsPageBusinessLayer extends ContactsPage implements ContactPa
 
 		} else {
 
-			xpath = "//span[@class='test-id__field-label'][text()='" + finalLabelName
-					+ "']/../following-sibling::div/span";
+			/////////////////  Lighting New Start /////////////////////////////////////
+			if(finalLabelName.contains("Street") || finalLabelName.contains("City") || finalLabelName.contains("State") || finalLabelName.contains("Postal") || finalLabelName.contains("ZIP") || finalLabelName.contains("Zip")|| finalLabelName.contains("Country")) {
+
+				if(finalLabelName.contains("Other") || finalLabelName.contains("Other Street") || finalLabelName.contains("Other City") || finalLabelName.contains("Other State") || finalLabelName.contains("Other Zip") || finalLabelName.contains("Other Country")) {
+					xpath="//span[text()='Other Address']/../following-sibling::div//a[contains(@title,'"+labelValue+"')]";	
+				}else{
+					xpath="//span[text()='Mailing Address']/../following-sibling::div//a[contains(@title,'"+labelValue+"')]";
+				}
+
+			}else {
+
+				if (labelName.equalsIgnoreCase(excelLabel.Phone.toString()) || labelName.equalsIgnoreCase(excelLabel.Fax.toString())||
+						labelName.equalsIgnoreCase(ContactPageFieldLabelText.Mobile.toString()) ||
+						labelName.equalsIgnoreCase(excelLabel.Asst_Phone.toString())) {
+					xpath = "//span[text()='"+finalLabelName+"']/../following-sibling::div//*[contains(text(),'"+labelValue+"') or contains(text(),'"+changeNumberIntoUSFormat(labelValue)+"')]";	
+				} else {
+					xpath = "//span[text()='"+finalLabelName+"']/../following-sibling::div//*[text()='"+labelValue+"']";
+				}
+
+
+			}
+			ele = 		FindElement(driver, xpath, finalLabelName + " label text with  " + labelValue, action.SCROLLANDBOOLEAN, 10);
+			scrollDownThroughWebelement(driver, ele, finalLabelName + " label text with  " + labelValue);
+			ele = 	isDisplayed(driver,ele,"Visibility", 10, finalLabelName + " label text with  " + labelValue);
+			if (ele != null) {
+				String aa = ele.getText().trim();
+				appLog.info(finalLabelName + " label text with  " + labelValue+" verified");
+				return true;
+
+			} else {
+				appLog.error("<<<<<<   "+finalLabelName + " label text with  " + labelValue+" not verified "+">>>>>>");
+			}
+			return false;
+
+
+			/////////////////  Lighting New End /////////////////////////////////////
+
 
 		}
 
+		/////////////////////////////////////////////////////////////////////////////////////////
 		if(finalLabelName.contains("Street") || finalLabelName.contains("City") || finalLabelName.contains("State") || finalLabelName.contains("Postal") || finalLabelName.contains("ZIP") || finalLabelName.contains("Zip")|| finalLabelName.contains("Country")) {
 
 			if(mode.equalsIgnoreCase(Mode.Lightning.toString())) {
@@ -764,6 +800,21 @@ public class ContactsPageBusinessLayer extends ContactsPage implements ContactPa
 						saa.assertTrue(false, value+" : for Label Not Entered : "+finalLabelName);
 						CommonLib.log(LogStatus.ERROR, value+" for Label Not Entered : "+finalLabelName,YesNo.Yes);
 					}
+					
+					ele = FindElement(driver, "(//legend"+xpath + "//input)[2]", finalLabelName , action.SCROLLANDBOOLEAN, timeOut);
+					try {
+						ele.sendKeys("");
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					if (sendKeysWithoutClearingTextBox(driver, ele, "", value, action.SCROLLANDBOOLEAN)) {
+						CommonLib.log(LogStatus.INFO, value+" : for Label Entered : "+finalLabelName,YesNo.No);
+					} else {
+						saa.assertTrue(false, value+" : for Label Not Entered : "+finalLabelName);
+						CommonLib.log(LogStatus.ERROR, value+" for Label Not Entered : "+finalLabelName,YesNo.Yes);
+					}
+					
 					
 				}else{
 					saa.assertTrue(false, "Label not in Method : "+finalLabelName);

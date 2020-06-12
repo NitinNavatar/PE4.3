@@ -66,15 +66,19 @@ public class MarketingInitiativesPageBusinesslayer extends MarketingInitiativesP
 			if(sendKeys(driver, getMarketInitiativeNameTextBox(environment, mode, 60), marketInitiativeName, "market initiative name text box", action.SCROLLANDBOOLEAN)) {
 				appLog.info("passed value in Name text box: "+marketInitiativeName);
 				if(click(driver, getSaveButton(environment, mode, 30), "save button", action.SCROLLANDBOOLEAN)) {
-					appLog.info("clicked on market Initiative: "+marketInitiativeName);
-					ele=getmarketInitiativeLabelLabelText(environment, mode, 60);
+					appLog.info("clicked on Save Button For market Initiative: "+marketInitiativeName);
+
+					if (Mode.Lightning.toString().equalsIgnoreCase(mode)) {
+						String	xpath="//*[contains(text(),'Fundraising')]/..//*[text()='"+marketInitiativeName+"']";
+						 ele = FindElement(driver, xpath, "Header : "+marketInitiativeName, action.BOOLEAN, 30);
+					
+					} else {
+						ele=getmarketInitiativeLabelLabelText(environment, mode, 60);
+					}
 					if(ele!=null) {
-						if(getText(driver, ele, marketInitiativeName+" label text", action.SCROLLANDBOOLEAN).contains(marketInitiativeName)) {
 							appLog.info("Market initiative is created successfully: "+marketInitiativeName);
 							return true;
-						}else {
-							appLog.error("Market initiative is not verifed: "+marketInitiativeName);
-						}
+						
 					}else {
 						appLog.error("Create market initiative label text is not visible so cannot verify created market initiative text: "+marketInitiativeName);
 					}

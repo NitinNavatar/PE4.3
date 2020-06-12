@@ -3,6 +3,7 @@ package com.navatar.pageObjects;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import com.navatar.generic.BaseLib;
+import com.navatar.generic.EnumConstants.InstitutionPageFieldLabelText;
 import com.navatar.generic.EnumConstants.Mode;
 import com.navatar.generic.EnumConstants.RecordType;
 import com.navatar.generic.EnumConstants.TabName;
@@ -17,6 +18,8 @@ import static com.navatar.generic.SmokeCommonVariables.Smoke_PL3CompanyName;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
+import javax.print.attribute.standard.Fidelity;
 
 import static com.navatar.generic.AppListeners.*;
 
@@ -86,6 +89,22 @@ public class InstitutionsPageBusinessLayer extends InstitutionsPage {
 								WebElement ele = getInstitutionPageTextBoxOrRichTextBoxWebElement(environment, mode, labelNames[i].trim(), 30);
 								if(sendKeys(driver, ele, labelValue[i], labelNames[i]+" text box", action.SCROLLANDBOOLEAN)) {
 									appLog.info("passed value "+labelValue[i]+" in "+labelNames[i]+" field");
+									
+
+									if (mode.equalsIgnoreCase(Mode.Lightning.toString()) && labelNames[i].toString().equalsIgnoreCase(InstitutionPageFieldLabelText.Parent_Institution.toString())) {
+										
+										ThreadSleep(1000);
+										if (click(driver,
+												FindElement(driver,
+														"//div[contains(@class,'uiAutocomplete')]//a//div//div[contains(@class,'primary') and @title='"+labelValue[i]+"']",
+														"Legal Name List", action.SCROLLANDBOOLEAN, 30),
+												labelValue[i] + "   :   Legal Name", action.SCROLLANDBOOLEAN)) {
+											appLog.info(labelValue[i] + "  is present in list.");
+										} else {
+											appLog.info(labelValue[i] + "  is not present in the list.");
+										}
+									}
+									
 								}else {
 									appLog.error("Not able to pass value "+labelValue[i]+" in "+labelNames[i]+" field");
 									BaseLib.sa.assertTrue(false, "Not able to pass value "+labelValue[i]+" in "+labelNames[i]+" field");
@@ -96,60 +115,60 @@ public class InstitutionsPageBusinessLayer extends InstitutionsPage {
 						if (click(driver, getSaveButton(environment,mode,30), "save button", action.SCROLLANDBOOLEAN)) {
 							appLog.info("clicked on save button");
 							ThreadSleep(2000);
-							String str = getText(driver, getLegalNameLabelTextbox(environment,mode,institutionName,30), "legal Name Label Text",
-									action.SCROLLANDBOOLEAN);
-							System.err.println("STR : "+str+ " "+">>>>>>>>>>>>>");
-							System.err.println("INS: "+institutionName);
-							if (str != null) {
-								if (str.contains(institutionName)) {
-									appLog.info(
-											"created institution " + institutionName + " is verified successfully.");
+							String	xpath="//span[@class='custom-truncate uiOutputText'][text()='"+institutionName+"']";
+							WebElement ele = FindElement(driver, xpath, "Header : "+institutionName, action.BOOLEAN, 30);
+							if (ele != null) {
+									appLog.info("created institution " + institutionName + " is verified successfully.");
 									appLog.info(institutionName + " is created successfully.");
 									
 									if(labelNames!=null && labelValue!=null ) {
 										for(int i=0; i<labelNames.length; i++) {
-											
-											if(labelNames[i].contains("Street") || labelNames[i].contains("City") || labelNames[i].contains("State") || labelNames[i].contains("Postal") || labelNames[i].contains("Country")) {
-												WebElement ele= null;
-												String xpath="";
-												if(mode.equalsIgnoreCase(Mode.Lightning.toString())) {
-													xpath="//span[text()='Address Information']/../../following-sibling::div";
-												}else {
-													xpath="//h3[text()='Address Information']/../following-sibling::div[1]//td//tbody/tr[1]/td";
-												}
-												ele = isDisplayed(driver,
-														FindElement(driver,xpath,"address label text in " + mode, action.SCROLLANDBOOLEAN, 10),
-														"Visibility", 10,"address label text in " + mode);
-												if (ele != null) {
-													String aa = ele.getText().trim();
-													appLog.info("Lable Value is: "+aa);
-													if(aa.contains(labelValue[i])) {
-														appLog.info(labelValue[i] + " Value is matched successfully.");
-														
-													}else {
-														appLog.info("Address Label Value is not matched. Expected: "+labelValue[i]+" /t Actual : "+aa);
-														BaseLib.sa.assertTrue(false, "Address Label Value is not matched. Expected: "+labelValue[i]+" /t Actual : "+aa);
-													}
-												} else {
-													appLog.error("Address Label Value is not visible so cannot matched label Value "+labelValue[i]);
-												}
+//											
+											if(fieldValueVerificationOnInstitutionPage(environment, mode, null, labelNames[i].replace("_", " ").trim(),labelValue[i])){
+												appLog.info(labelNames[i]+" label value "+labelValue[i]+" is matched successfully.");
 											}else {
-												if(!labelNames[i].contains(excelLabel.Phone.toString())) {
-													if(FieldValueVerificationOnAllPages(environment, mode, null, labelNames[i].replace("_", " ").trim(),labelValue[i])){
-														appLog.info(labelNames[i]+" label value "+labelValue[i]+" is matched successfully.");
-													}else {
-														appLog.info(labelNames[i]+" label value "+labelValue[i]+" is not matched successfully.");
-														BaseLib.sa.assertTrue(false, labelNames[i]+" label value "+labelValue[i]+" is not matched.");
-													}
-												}
+												appLog.info(labelNames[i]+" label value "+labelValue[i]+" is not matched successfully.");
+												BaseLib.sa.assertTrue(false, labelNames[i]+" label value "+labelValue[i]+" is not matched.");
 											}
+											
+//											if(labelNames[i].contains("Street") || labelNames[i].contains("City") || labelNames[i].contains("State") || labelNames[i].contains("Postal") || labelNames[i].contains("Country")) {
+//												 ele= null;
+//												 xpath="";
+//												if(mode.equalsIgnoreCase(Mode.Lightning.toString())) {
+//													xpath="//span[text()='Address Information']/../../following-sibling::div";
+//												}else {
+//													xpath="//h3[text()='Address Information']/../following-sibling::div[1]//td//tbody/tr[1]/td";
+//												}
+//												ele = isDisplayed(driver,
+//														FindElement(driver,xpath,"address label text in " + mode, action.SCROLLANDBOOLEAN, 10),
+//														"Visibility", 10,"address label text in " + mode);
+//												if (ele != null) {
+//													String aa = ele.getText().trim();
+//													appLog.info("Lable Value is: "+aa);
+//													if(aa.contains(labelValue[i])) {
+//														appLog.info(labelValue[i] + " Value is matched successfully.");
+//														
+//													}else {
+//														appLog.info("Address Label Value is not matched. Expected: "+labelValue[i]+" /t Actual : "+aa);
+//														BaseLib.sa.assertTrue(false, "Address Label Value is not matched. Expected: "+labelValue[i]+" /t Actual : "+aa);
+//													}
+//												} else {
+//													appLog.error("Address Label Value is not visible so cannot matched label Value "+labelValue[i]);
+//												}
+//											}else {
+//												if(!labelNames[i].contains(excelLabel.Phone.toString())) {
+//													if(FieldValueVerificationOnAllPages(environment, mode, null, labelNames[i].replace("_", " ").trim(),labelValue[i])){
+//														appLog.info(labelNames[i]+" label value "+labelValue[i]+" is matched successfully.");
+//													}else {
+//														appLog.info(labelNames[i]+" label value "+labelValue[i]+" is not matched successfully.");
+//														BaseLib.sa.assertTrue(false, labelNames[i]+" label value "+labelValue[i]+" is not matched.");
+//													}
+//												}
+//											}
 										}
 									}
 									return true;
-								} else {
-									appLog.error(
-											"Created institution " + institutionName + " is not matched with " + str);
-								}
+								
 							} else {
 								appLog.error("Created institution " + institutionName + " is not visible");
 							}
@@ -405,6 +424,8 @@ public class InstitutionsPageBusinessLayer extends InstitutionsPage {
 			String labelName,String labelValue) {
 		String finalLabelName;
 
+		
+		
 		if(labelName.contains(excelLabel.Total_CoInvestment_Commitments.toString())) {
 			labelName=LimitedPartnerPageFieldLabelText.Total_CoInvestment_Commitments.toString();
 			labelValue=convertNumberIntoMillions(labelValue);
@@ -432,15 +453,40 @@ public class InstitutionsPageBusinessLayer extends InstitutionsPage {
 			}
 
 		} else {
-
-			if (finalLabelName.contains("Record Type")) {
-				xpath = "//span[@class='test-id__field-label'][text()='"+finalLabelName+"']/../following-sibling::div/span";
-			} else {
-				xpath = "//span[@class='test-id__field-label'][text()='" + finalLabelName
-						+ "']/../following-sibling::div/span/span";
+					/////////////////  Lighting New Start /////////////////////////////////////
+				if(finalLabelName.contains("Street") || finalLabelName.contains("City") || finalLabelName.contains("State") || finalLabelName.contains("Postal") || finalLabelName.contains("Zip") || finalLabelName.contains("Country")) {
+				
+				if(finalLabelName.contains("Shipping") ||finalLabelName.contains("Other Street") || finalLabelName.contains("Other City") || finalLabelName.contains("Other State") || finalLabelName.contains("Other Zip") || finalLabelName.contains("Other Country") ) {
+					xpath="//span[text()='Shipping Address']/../following-sibling::div//a[contains(@title,'"+labelValue+"')]";	
+				}else{
+					xpath="//span[text()='Address']/../following-sibling::div//a[contains(@title,'"+labelValue+"')]";
+				}
+				
+			}else {
+				
+				if (labelName.equalsIgnoreCase(excelLabel.Phone.toString()) || labelName.equalsIgnoreCase(excelLabel.Fax.toString())) {
+					xpath = "//span[text()='"+finalLabelName+"']/../following-sibling::div//*[contains(text(),'"+labelValue+"') or contains(text(),'"+changeNumberIntoUSFormat(labelValue)+"')]";	
+				} else {
+					xpath = "//span[text()='"+finalLabelName+"']/../following-sibling::div//*[text()='"+labelValue+"']";
+				}
+				
+				
 			}
+			ele = 		FindElement(driver, xpath, finalLabelName + " label text with  " + labelValue, action.SCROLLANDBOOLEAN, 10);
+			scrollDownThroughWebelement(driver, ele, finalLabelName + " label text with  " + labelValue);
+			ele = 	isDisplayed(driver,ele,"Visibility", 10, finalLabelName + " label text with  " + labelValue);
+			if (ele != null) {
+				String aa = ele.getText().trim();
+				appLog.info(finalLabelName + " label text with  " + labelValue+" verified");
+				return true;
 
+			} else {
+				appLog.error("<<<<<<   "+finalLabelName + " label text with  " + labelValue+" not verified "+"   >>>>>>");
+			}
+			return false;
+			
 
+			/////////////////  Lighting New End /////////////////////////////////////
 		}
 
 		if(finalLabelName.contains("Street") || finalLabelName.contains("City") || finalLabelName.contains("State") || finalLabelName.contains("Postal") || finalLabelName.contains("Zip") || finalLabelName.contains("Country")) {

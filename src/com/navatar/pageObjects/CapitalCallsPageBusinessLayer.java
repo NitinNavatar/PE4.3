@@ -5,6 +5,7 @@ import static com.navatar.generic.CommonLib.FindElement;
 import static com.navatar.generic.CommonLib.click;
 import static com.navatar.generic.CommonLib.getSelectedOptionOfDropDown;
 import static com.navatar.generic.CommonLib.isDisplayed;
+import static com.navatar.generic.CommonLib.scrollDownThroughWebelement;
 import static com.navatar.generic.CommonLib.selectVisibleTextFromDropDown;
 
 import org.openqa.selenium.ElementNotVisibleException;
@@ -204,6 +205,26 @@ public class CapitalCallsPageBusinessLayer extends CapitalCallsPage {
 						xpath = "//span[@class='test-id__field-label'][text()='" + finalLabelName
 								+ "']/../following-sibling::div/span/span";
 					}
+					
+					////////////////////////////////////
+					
+			xpath = "//span[text()='"+finalLabelName+"']/../following-sibling::div//*[text()='"+labelValue+"']";
+				
+			ele = FindElement(driver, xpath, finalLabelName + " label text with  " + labelValue, action.SCROLLANDBOOLEAN, 10);
+			scrollDownThroughWebelement(driver, ele, finalLabelName + " label text with  " + labelValue);
+			ele = 	isDisplayed(driver,ele,"Visibility", 10, finalLabelName + " label text with  " + labelValue);
+			if (ele != null) {
+				String aa = ele.getText().trim();
+				appLog.info(finalLabelName + " label text with  " + labelValue+" verified");
+				return true;
+
+			} else {
+				appLog.error("<<<<<<   "+finalLabelName + " label text with  " + labelValue+" not verified "+"   >>>>>>");
+			}
+			return false;
+					
+					
+					////////////////////////////
 				}
 				else {//edit
 					if (finalLabelName.contains("Call Date")|| finalLabelName.contains("Due Date")||finalLabelName.contains("Received Date")){
@@ -218,7 +239,7 @@ public class CapitalCallsPageBusinessLayer extends CapitalCallsPage {
 				}
 				
 			}
-			ele = FindElement(driver, xpath, finalLabelName + " label text in " + mode, action.SCROLLANDBOOLEAN, 60);
+			ele = FindElement(driver, xpath, finalLabelName + " label text in " + mode, action.SCROLLANDBOOLEAN, 5);
 			if (ele != null) {
 				String aa = ele.getText().trim();
 				if (aa.equals("")) {
