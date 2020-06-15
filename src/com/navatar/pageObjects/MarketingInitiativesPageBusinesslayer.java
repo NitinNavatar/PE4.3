@@ -9,6 +9,7 @@ import org.sikuli.script.App;
 
 import com.google.common.collect.MapMaker;
 import com.navatar.generic.BaseLib;
+import com.navatar.generic.EnumConstants.Header;
 import com.navatar.generic.EnumConstants.Mode;
 import com.navatar.generic.EnumConstants.TabName;
 import com.navatar.generic.EnumConstants.YesNo;
@@ -69,8 +70,9 @@ public class MarketingInitiativesPageBusinesslayer extends MarketingInitiativesP
 					appLog.info("clicked on Save Button For market Initiative: "+marketInitiativeName);
 
 					if (Mode.Lightning.toString().equalsIgnoreCase(mode)) {
-						String	xpath="//*[contains(text(),'Fundraising')]/..//*[text()='"+marketInitiativeName+"']";
-						 ele = FindElement(driver, xpath, "Header : "+marketInitiativeName, action.BOOLEAN, 30);
+//						String	xpath="//*[contains(text(),'Marketing Initiative')]/..//*[text()='"+marketInitiativeName+"']";
+//						 ele = FindElement(driver, xpath, "Header : "+marketInitiativeName, action.BOOLEAN, 30);
+							 ele = verifyCreatedItemOnPage(Header.Marketing_Initiative, marketInitiativeName);
 					
 					} else {
 						ele=getmarketInitiativeLabelLabelText(environment, mode, 60);

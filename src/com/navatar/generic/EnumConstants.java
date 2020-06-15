@@ -876,5 +876,7 @@ public class EnumConstants {
 		Cancel,Cross;	  
 		};
 	
-	
+		public static enum Header{
+			Fund,Contact,Institution,Marketing_Initiative;	  
+			};
 }

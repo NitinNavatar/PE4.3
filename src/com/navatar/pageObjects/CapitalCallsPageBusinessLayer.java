@@ -198,14 +198,7 @@ public class CapitalCallsPageBusinessLayer extends CapitalCallsPage {
 
 			} else {//lightning
 				if (ev == EditViewMode.View){
-					if (finalLabelName.contains("Fund Drawdown")||finalLabelName.contains("Commitment")) {
-
-						xpath = "//span[@class='test-id__field-label'][text()='"+finalLabelName+"']/../following-sibling::div/span//a";
-					} else {
-						xpath = "//span[@class='test-id__field-label'][text()='" + finalLabelName
-								+ "']/../following-sibling::div/span/span";
-					}
-					
+		
 					////////////////////////////////////
 					
 			xpath = "//span[text()='"+finalLabelName+"']/../following-sibling::div//*[text()='"+labelValue+"']";

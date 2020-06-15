@@ -1261,10 +1261,16 @@ public abstract class BasePage {
 		if(mode.equalsIgnoreCase(Mode.Classic.toString())){
 			return isDisplayed(driver, editButton_Classic, "Visibility", timeOut, "Edit Button Classic");	
 		}else{
-			BasePageBusinessLayer bp = new BasePageBusinessLayer(driver);
-			bp.clickOnShowMoreDropdownOnly(environment, mode, PageName.ContactsPage);
-			ThreadSleep(2000);
-		return isDisplayed(driver, editButton_Lighting, "Visibility", timeOut, "Edit Button Lighting");	
+			WebElement ele = isDisplayed(driver, editButton_Lighting, "Visibility", timeOut, "Edit Button Lighting");
+			if (ele!=null) {
+				return ele;
+			}else {
+				BasePageBusinessLayer bp = new BasePageBusinessLayer(driver);
+				bp.clickOnShowMoreDropdownOnly(environment, mode, PageName.ContactsPage);
+				ThreadSleep(2000);
+				return isDisplayed(driver, editButton_Lighting, "Visibility", timeOut, "Edit Button Lighting");		
+			}
+		
 		
 		}
 		
@@ -2952,6 +2958,7 @@ public abstract class BasePage {
 	 * @return the saveButton
 	 */
 	public WebElement getSaveButton(String environment,String mode,int timeOut) {
+		ThreadSleep(2000);
 		if(mode.equalsIgnoreCase(Mode.Classic.toString())){
 			return isDisplayed(driver, saveButtonClassic, "Visibility", timeOut, "Save Button Classic");
 		}else{

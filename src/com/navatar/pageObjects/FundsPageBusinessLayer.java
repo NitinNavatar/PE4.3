@@ -10,6 +10,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import com.navatar.generic.BaseLib;
+import com.navatar.generic.EnumConstants.Header;
 import com.navatar.generic.EnumConstants.Mode;
 import com.navatar.generic.EnumConstants.TabName;
 import com.navatar.generic.EnumConstants.action;
@@ -125,8 +126,10 @@ public class FundsPageBusinessLayer extends FundsPage {
 					WebElement ele;
 					if (Mode.Lightning.toString().equalsIgnoreCase(mode)) {
 						String	xpath="//*[contains(text(),'Fund')]/..//*[text()='"+fundName+"']";
-						 ele = FindElement(driver, xpath, "Header : "+fundName, action.BOOLEAN, 30);
-						 ele=isDisplayed(driver, ele, "Visibility", 10, "Fund Name in View Mode Lighting");
+//						 ele = FindElement(driver, xpath, "Header : "+fundName, action.BOOLEAN, 30);
+//						 ele=isDisplayed(driver, ele, "Visibility", 10, "Fund Name in View Mode Lighting");
+//						 
+						 ele = verifyCreatedItemOnPage(Header.Fund, fundName);
 					
 					} else {
 						ele=getFundNameInViewMode(environment, mode, 60);

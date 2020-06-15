@@ -2206,5 +2206,15 @@ public boolean verifyDate(String dateToCheck, String valueOnPage) {
 	return false;
 }
 	
-	
+public WebElement verifyCreatedItemOnPage(Header header,String itemName)
+{
+	WebElement ele;
+	String xpath ="";
+	String head =header.toString().replace("_", " ");
+	ThreadSleep(3000);
+	xpath="//*[contains(text(),'"+head+"')]/..//*[text()='"+itemName+"']";
+	 ele = FindElement(driver, xpath, "Header : "+itemName, action.BOOLEAN, 30);
+	 ele = isDisplayed(driver, ele, "Visibility", 10, head+" : "+itemName);
+	return ele;
+}
 }

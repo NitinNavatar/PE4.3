@@ -124,7 +124,7 @@ import static com.navatar.generic.AppListeners.appLog;
 import static com.navatar.generic.CommonLib.*;
 public class SmokeTestCases extends BaseLib {
 	String passwordResetLink = null;
-	Scanner scn = new Scanner(System.in);
+//	Scanner scn = new Scanner(System.in);
 	// DRSmoke Modules Starts from here
 	
 //	Default Settings of PE:-
@@ -611,7 +611,7 @@ public class SmokeTestCases extends BaseLib {
 						YesNo.Yes);
 			}
 			System.err.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>.");
-			scn.nextLine();
+		
 			System.err.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>.");
 		}
 		for (int i = 0; i < 4; i++) {
@@ -715,7 +715,7 @@ public class SmokeTestCases extends BaseLib {
 		}
 		FieldLabels = excelLabel.Target_Commitments + "," + excelLabel.Vintage_Year + ","
 				+ FundPageFieldLabelText.Frist_Closing_Date;
-		String date = getDateAccToTimeZone("America/New_York", "MM/dd/YYYY");
+		String date = getDateAccToTimeZone("America/New_York", "M/dd/YYYY");
 		String Values1 = SmokeFund1Target_Commitments + "," + SmokeFund1_VintageYear + "," + date;
 		String Values2 = SmokeFund2Target_Commitments + "," + SmokeFund2_VintageYear + "," + date;
 		String Value3 = SmokeFund2Target_Commitments + "," + SmokeFund3_VintageYear + "," + date;
@@ -9978,8 +9978,6 @@ public class SmokeTestCases extends BaseLib {
 							appLog.error("Enable PipeLine Stage Log is Unchecked");
 							sa.assertTrue(false, "Enable PipeLine Stage Log is  Unchecked");
 							log(LogStatus.SKIP, "Enable PipeLine Stage Log is Unchecked", YesNo.Yes);
-							
-
 							appLog.info("Enable PipeLine Stage Log is checked");
 
 							if (click(driver,
@@ -10108,8 +10106,7 @@ public class SmokeTestCases extends BaseLib {
 								appLog.error("PipeLine Stage Log Not verified for : " + Smoke_PL1Name);
 								sa.assertTrue(false, "PipeLine Stage Log Not verified for : " + Smoke_PL1Name);
 								log(LogStatus.FAIL, "PipeLine Stage Log Not verified for :" + Smoke_PL1Name, YesNo.Yes);
-							}
-							
+							}							
 						} else {
 							sa.assertTrue(false, "Not Able to Click on Related List View All for " + RelatedList.Pipeline_Stage_Logs);
 							log(LogStatus.FAIL, "Not Able to Click on Related List View All for " + RelatedList.Pipeline_Stage_Logs, YesNo.Yes);
@@ -10825,7 +10822,8 @@ public class SmokeTestCases extends BaseLib {
 					
 					
 				}
-				if(click(driver,ins.getSaveButton(environment, mode, 30),"save button", action.SCROLLANDBOOLEAN)) {
+				//driver,ins.getSaveButton(environment, mode, 30),"save button", action.SCROLLANDBOOLEAN
+				if(clickUsingJavaScript(driver,ins.getSaveButton(environment, mode, 30),"save button")) {
 					ThreadSleep(5000);
 					if(contact.clickOnTab(environment, mode, TabName.ContactTab)) {
 						if(contact.clickOnCreatedContact(environment, mode, SmokeC8_FName, SmokeC8_LName)) {
@@ -10920,7 +10918,8 @@ public class SmokeTestCases extends BaseLib {
 						BaseLib.sa.assertTrue(false, "Not able to pass value "+strings[1]+" in "+strings[0]+" field");
 					}
 				}
-				if(click(driver,ins.getSaveButton(environment, mode, 30),"save button", action.SCROLLANDBOOLEAN)) {
+				ThreadSleep(2000);
+				if(clickUsingJavaScript(driver,ins.getSaveButton(environment, mode, 30),"save button")) {
 					ThreadSleep(5000);
 					if(ins.clickOnTab(environment, mode, TabName.InstituitonsTab)) {
 						if(ins.clickOnCreatedInstitution(environment, mode, SmokeINDINV6)) {
@@ -16698,12 +16697,23 @@ public class SmokeTestCases extends BaseLib {
 			log(LogStatus.INFO, "Clicked on Institution Tab", YesNo.No);
 			if (ip.clickOnCreatedInstitution(environment, mode, SmokeINS2)) {
 				log(LogStatus.INFO, "Clicked on Created Institution : " + SmokeINS2, YesNo.No);
-				if (ip.getOfficeLocation(environment, mode, RecordType.IndividualInvestor, 5) == null) {
-					log(LogStatus.INFO, "Office Location Related List is not Available", YesNo.Yes);
+
+				if (cp.clickOnRelatedList(environment, mode, RecordType.IndividualInvestor, RelatedList.Office_Locations)) {
+					log(LogStatus.INFO, "Click on Related Tab for Office Locations", YesNo.No);
+
+					if (ip.getOfficeLocation(environment, mode, RecordType.IndividualInvestor, 5) == null) {
+						log(LogStatus.INFO, "Office Location Related List is not Available", YesNo.Yes);
+					} else {
+						sa.assertTrue(false, "Office Location Related List is Available");
+						log(LogStatus.ERROR, "Office Location Related List is Available", YesNo.Yes);
+					}
+
 				} else {
-					sa.assertTrue(false, "Office Location Related List is Available");
-					log(LogStatus.ERROR, "Office Location Related List is Available", YesNo.Yes);
+					sa.assertTrue(false, "Not Able to Click on Related Tab for Office Locations");
+					log(LogStatus.SKIP, "Not Able to Click on Related Tab for Office Locations", YesNo.Yes);
 				}
+
+				
 			} else {
 				sa.assertTrue(false, "Not Able to Click on Created Institution : " + SmokeINS2);
 				log(LogStatus.SKIP, "Not Able to Click on Created Institution : " + SmokeINS2, YesNo.Yes);
@@ -18258,19 +18268,6 @@ public class SmokeTestCases extends BaseLib {
 									log(LogStatus.ERROR, "could not scroll to affiliations related list", YesNo.Yes);
 									sa.assertTrue(false, "could not scroll to affiliations related list");
 								}
-								if (cp.clickOnViewAllRelatedList(environment, mode,RelatedList.Affiliations)) {
-									log(LogStatus.INFO, "Click on View All Affiliations", YesNo.No);
-									
-									if (cp.verifyAffliationRelatedList(environment, mode,TabName.ContactTab, SmokeINS2)) {
-										log(LogStatus.PASS, "Affialition Grid Verified For "+SmokeINS2, YesNo.Yes);	
-									} else {
-										sa.assertTrue(false, "Affialition Grid Not Verified For "+SmokeINS2);
-										log(LogStatus.FAIL, "Affialition Grid Not Verified For "+SmokeINS2, YesNo.Yes);
-									}
-								} else {
-									sa.assertTrue(false, "Not Able to Click on View All Affiliations");
-									log(LogStatus.SKIP, "Not Able to Click on View All Affiliations", YesNo.Yes);
-								}
 								
 								if (cp.verifyOpenActivityRelatedList(environment, mode,TabName.ContactTab, Smoke_NewTask1Subject, SmokeINS2, null)) {
 									log(LogStatus.INFO, "Open Activity Grid  Verified For "+Smoke_NewTask1Subject, YesNo.No);	
@@ -18292,6 +18289,23 @@ public class SmokeTestCases extends BaseLib {
 									sa.assertTrue(false, "Activity History Grid Not Verified For "+Smoke_CallLog1Subject);
 									log(LogStatus.FAIL, "Activity History Grid Not Verified For "+Smoke_CallLog1Subject, YesNo.Yes);
 								}
+								
+								
+								if (cp.clickOnViewAllRelatedList(environment, mode,RelatedList.Affiliations)) {
+									log(LogStatus.INFO, "Click on View All Affiliations", YesNo.No);
+									
+									if (cp.verifyAffliationRelatedList(environment, mode,TabName.ContactTab, SmokeINS2)) {
+										log(LogStatus.PASS, "Affialition Grid Verified For "+SmokeINS2, YesNo.Yes);	
+									} else {
+										sa.assertTrue(false, "Affialition Grid Not Verified For "+SmokeINS2);
+										log(LogStatus.FAIL, "Affialition Grid Not Verified For "+SmokeINS2, YesNo.Yes);
+									}
+								} else {
+									sa.assertTrue(false, "Not Able to Click on View All Affiliations");
+									log(LogStatus.SKIP, "Not Able to Click on View All Affiliations", YesNo.Yes);
+								}
+								
+								
 								
 								
 								
@@ -18886,7 +18900,7 @@ public class SmokeTestCases extends BaseLib {
 						ThreadSleep(1000);
 						if (click(driver, ctt.getSaveButtonforNavatarSetUpSideMenuTab(environment, mode,
 								NavatarSetupSideMenuTab.ContactTransfer, 10, TopOrBottom.TOP), "Save Button", action.BOOLEAN)) {
-							ThreadSleep(1000);
+							ThreadSleep(10000);
 							log(LogStatus.INFO, "Clicked on Save Button", YesNo.No);
 							ThreadSleep(1000);
 								SoftAssert tsa = ctt.verifyingContactTransferTab(environment, mode, EditViewMode.View,
@@ -20672,52 +20686,5 @@ public class SmokeTestCases extends BaseLib {
 		lp.CRMlogout(environment, mode);
 		sa.assertAll();
 	}
-
-	/*@Parameters({ "environment", "mode" })
-	@Test
-	public void PESmokeTc092_FormatNumber(String environment, String mode) {
-		LoginPageBusinessLayer lp = new LoginPageBusinessLayer(driver);
-		ContactsPageBusinessLayer contact = new ContactsPageBusinessLayer(driver);
-		lp.CRMLogin(crmUser1EmailID, adminPassword);
-		CommonLib.scrollThroughOutWindow(driver);
-		   double d = 1234564478; 
-		    NumberFormat nf = NumberFormat.getInstance(Locale.US); 
-		    System.out.println("US representation of " + d + " : "
-		                                           + nf.format(d));
-		    float ff = 3000000;
-		    double dd =3000000;
-		    double f = ff/1000000;
-		    System.out.println(f);
-		    Pattern p = Pattern.compile("0.00");
-		    double fff =123456785674567f;
-		    DecimalFormat myFormatter = new DecimalFormat("0,000.00", new DecimalFormatSymbols(Locale.US));
-		      String output = myFormatter.format(d);
-		      System.out.println(" outpurttt >>>> "   + new DecimalFormatSymbols(Locale.US)+output);
-		      System.err.println("Function Call format :  "+CommonLib.convertNumberAccordingToFormatWithCurrencySymbol("123456789", "0,000.00"));
-		      
-		      System.err.println("Function Call mill :  "+CommonLib.convertNumberIntoMillions("3000000"));
-		      $1,oo,ooo.00;
-		      
-		      String FieldLabels = excelLabel.Street.toString() + "," + excelLabel.City.toString() + ","
-						+ excelLabel.State.toString() + "," + excelLabel.Postal_Code.toString() + ","
-						+ excelLabel.Country.toString() + "," + excelLabel.Phone.toString() + "," + excelLabel.Fax.toString();
-						
-						
-						String emailId = contact.generateRandomEmailId();
-								String contact6FieldLabels=excelLabel.Other_Street.toString()+","+excelLabel.Other_City.toString()+","+excelLabel.Other_State.toString()+","+excelLabel.Other_Zip.toString()+","+excelLabel.Other_Country.toString();
-								String contact6FieldValues=SmokeC6_Other_Street+","+SmokeC6_Other_City+","+SmokeC6_Other_State+","+SmokeC6_Other_Zip+","+SmokeC6_Other_Country;
-								if (contact.createContact(environment, mode, "Ankit1A1", "Jais1A1", SmokeINS4, emailId,
-										contact6FieldLabels, contact6FieldValues, CreationPage.ContactPage)) {
-									appLog.info("Contact is create Successfully: " + SmokeC6_FName + " " + SmokeC6_LName);
-									ExcelUtils.writeData(smokeFilePath, emailId, "Contacts", excelLabel.Variable_Name,
-											"SmokeC6", excelLabel.Contact_EmailId);
-								} else {
-									appLog.error("Not able to create Contact: " + SmokeC5_FName + " " + SmokeC5_LName);
-									sa.assertTrue(false, "Not able to create Contact: " + SmokeC5_FName + " " + SmokeC5_LName);
-									log(LogStatus.ERROR, "Not able to create Contact: " + SmokeC5_FName + " " + SmokeC5_LName,
-											YesNo.Yes);
-								}
-		      
-	}*/
 	
 }

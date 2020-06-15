@@ -115,8 +115,9 @@ public class InstitutionsPageBusinessLayer extends InstitutionsPage {
 						if (click(driver, getSaveButton(environment,mode,30), "save button", action.SCROLLANDBOOLEAN)) {
 							appLog.info("clicked on save button");
 							ThreadSleep(2000);
-							String	xpath="//span[@class='custom-truncate uiOutputText'][text()='"+institutionName+"']";
-							WebElement ele = FindElement(driver, xpath, "Header : "+institutionName, action.BOOLEAN, 30);
+//							String	xpath="//span[@class='custom-truncate uiOutputText'][text()='"+institutionName+"']";
+//							WebElement ele = FindElement(driver, xpath, "Header : "+institutionName, action.BOOLEAN, 30);
+							WebElement ele = verifyCreatedItemOnPage(Header.Institution, institutionName);
 							if (ele != null) {
 									appLog.info("created institution " + institutionName + " is verified successfully.");
 									appLog.info(institutionName + " is created successfully.");
@@ -130,41 +131,7 @@ public class InstitutionsPageBusinessLayer extends InstitutionsPage {
 												appLog.info(labelNames[i]+" label value "+labelValue[i]+" is not matched successfully.");
 												BaseLib.sa.assertTrue(false, labelNames[i]+" label value "+labelValue[i]+" is not matched.");
 											}
-											
-//											if(labelNames[i].contains("Street") || labelNames[i].contains("City") || labelNames[i].contains("State") || labelNames[i].contains("Postal") || labelNames[i].contains("Country")) {
-//												 ele= null;
-//												 xpath="";
-//												if(mode.equalsIgnoreCase(Mode.Lightning.toString())) {
-//													xpath="//span[text()='Address Information']/../../following-sibling::div";
-//												}else {
-//													xpath="//h3[text()='Address Information']/../following-sibling::div[1]//td//tbody/tr[1]/td";
-//												}
-//												ele = isDisplayed(driver,
-//														FindElement(driver,xpath,"address label text in " + mode, action.SCROLLANDBOOLEAN, 10),
-//														"Visibility", 10,"address label text in " + mode);
-//												if (ele != null) {
-//													String aa = ele.getText().trim();
-//													appLog.info("Lable Value is: "+aa);
-//													if(aa.contains(labelValue[i])) {
-//														appLog.info(labelValue[i] + " Value is matched successfully.");
-//														
-//													}else {
-//														appLog.info("Address Label Value is not matched. Expected: "+labelValue[i]+" /t Actual : "+aa);
-//														BaseLib.sa.assertTrue(false, "Address Label Value is not matched. Expected: "+labelValue[i]+" /t Actual : "+aa);
-//													}
-//												} else {
-//													appLog.error("Address Label Value is not visible so cannot matched label Value "+labelValue[i]);
-//												}
-//											}else {
-//												if(!labelNames[i].contains(excelLabel.Phone.toString())) {
-//													if(FieldValueVerificationOnAllPages(environment, mode, null, labelNames[i].replace("_", " ").trim(),labelValue[i])){
-//														appLog.info(labelNames[i]+" label value "+labelValue[i]+" is matched successfully.");
-//													}else {
-//														appLog.info(labelNames[i]+" label value "+labelValue[i]+" is not matched successfully.");
-//														BaseLib.sa.assertTrue(false, labelNames[i]+" label value "+labelValue[i]+" is not matched.");
-//													}
-//												}
-//											}
+										
 										}
 									}
 									return true;
@@ -603,55 +570,7 @@ public class InstitutionsPageBusinessLayer extends InstitutionsPage {
 		}
 		return false;
 	}
-	
-	public boolean fieldValueVerificationOnCompanyPage(String environment, String mode, TabName tabName,
-			String labelName,String labelValue) {
-		String finalLabelName;
-		if (labelName.contains("_")) {
-			finalLabelName = labelName.replace("_", " ");
-		} else {
-			finalLabelName = labelName;
-		}
-		String xpath = "";
-		WebElement ele = null;
-		if (mode.equalsIgnoreCase(Mode.Classic.toString())) {
-				xpath = "//td[text()='" + finalLabelName + "']/../td[2]/div";
-				if (finalLabelName.contains("Record Type")) {
-					xpath = "//td[text()='"+finalLabelName+"']/following-sibling::td/div";
-				} else {
-					xpath = "//td[text()='" + finalLabelName + "']/../td[2]/div";
-				}
-				
-		} else {
-			
-			if (finalLabelName.contains("Record Type")) {
-				xpath = "//span[@class='test-id__field-label'][text()='"+finalLabelName+"']/../following-sibling::div/span";
-			} else {
-				xpath = "//span[@class='test-id__field-label'][text()='" + finalLabelName
-						+ "']/../following-sibling::div/span/span";
-			}
-		
-			
-		}
-		ele = isDisplayed(driver,
-				FindElement(driver, xpath, finalLabelName + " label text in " + mode, action.SCROLLANDBOOLEAN, 60),
-				"Visibility", 30, finalLabelName + " label text in " + mode);
-		if (ele != null) {
-			String aa = ele.getText().trim();
-			appLog.info("Lable Value is: "+aa);
-			if(aa.contains(labelValue)) {
-				appLog.info(labelValue + " Value is matched successfully.");
-				return true;
-				
-			}else {
-				appLog.info(labelValue + " Value is not matched. Expected: "+labelValue+" /t Actual : "+aa);
-			}
-		} else {
-			appLog.error(finalLabelName + " Value is not visible so cannot matched  label Value "+labelValue);
-		}
-		return false;
 
-	}
 
 	public boolean verifyPipeLineRelatedList(String environment,String mode,RecordType RecordType,String[][] headersWithValues){
 		boolean flag=true;

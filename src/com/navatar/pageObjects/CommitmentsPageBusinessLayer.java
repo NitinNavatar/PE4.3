@@ -186,14 +186,6 @@ public class CommitmentsPageBusinessLayer extends CommitmentsPage{
 		
 		else {
 			if (labelName.equalsIgnoreCase("Limited Partner") || labelName.equalsIgnoreCase("Partnership"))
-				xpath = "//span[@class='test-id__field-label'][text()='"+labelName+"']/../following-sibling::div//a";
-			else if(labelName.toString().equalsIgnoreCase(CommitmentPageFieldLabelText.Commitment_Called.toString()) ||
-					labelName.toString().equalsIgnoreCase(CommitmentPageFieldLabelText.Called_Due.toString()))
-				xpath = "//span[@class='test-id__field-label'][text()='"+labelName+"']/../following-sibling::div/span/span";
-			else
-				xpath = "//span[@class='test-id__field-label'][text()='"+labelName+"']/../following-sibling::div/span";
-	
-		
 			
 			/////////////////  Lighting New Start /////////////////////////////////////
 		
@@ -210,6 +202,20 @@ public class CommitmentsPageBusinessLayer extends CommitmentsPage{
 		ele = 	isDisplayed(driver,ele,"Visibility", 5, labelName + " label text with  " + labelValue);
 		if (ele != null) {
 			String aa = ele.getText().trim();
+			
+			if (labelName.toString().equalsIgnoreCase(CommitmentPageFieldLabelText.Commitment_Called.toString()) ||
+					labelName.toString().equalsIgnoreCase(CommitmentPageFieldLabelText.Called_Due.toString())) {
+				if (aa.contains(labelValue)) {
+					appLog.info(labelName + " label text with  " + labelValue+" verified");
+				} else {
+				
+					appLog.error("<<<<<<   "+labelName + " label text with  " + labelValue+" not verified "+"   >>>>>> Actual : "+aa);
+					return false;
+				}
+				appLog.info(labelName + " label text with  " + labelValue+" verified");
+				
+			}
+			
 			appLog.info(labelName + " label text with  " + labelValue+" verified");
 			return true;
 

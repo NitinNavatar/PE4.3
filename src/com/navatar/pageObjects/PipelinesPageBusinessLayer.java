@@ -54,27 +54,14 @@ public class PipelinesPageBusinessLayer extends PipelinesPage {
 			
 		} else {
 			
-			
-			if (finalLabelName.contains("Source Firm") || finalLabelName.contains("Source Contact") || finalLabelName.contains("Company Name")) {
-				xpath = "//span[@class='test-id__field-label'][text()='"+finalLabelName+"']/../following-sibling::div/span//a";
-			}else if (finalLabelName.contains("Age of Current Stage") || finalLabelName.contains("Pipeline Name") || finalLabelName.contains("Last Stage Change Date")
-					|| finalLabelName.contains("Highest Stage Reached") || finalLabelName.contains("Stage") || finalLabelName.contains("Source") || finalLabelName.contains("Deal Type") ) {
-				xpath = "//span[@class='test-id__field-label'][text()='" + finalLabelName
-						+ "']/../following-sibling::div//span//*";
-			} else {
-				xpath = "//span[@class='test-id__field-label'][text()='" + finalLabelName
-						+ "']/../following-sibling::div//span//*";
-			}
-			
-			
-			/////////////////  Lighting New Start /////////////////////////////////////
+		/////////////////  Lighting New Start /////////////////////////////////////
 		
 			
 		
-				xpath = "//span[text()='"+finalLabelName+"']/../following-sibling::div//*[text()='"+labelValue+"']";
+		xpath = "//span[text()='"+finalLabelName+"']/../following-sibling::div//*[text()='"+labelValue+"']";
 			
 		
-		ele = 		FindElement(driver, xpath, finalLabelName + " label text with  " + labelValue, action.SCROLLANDBOOLEAN, 10);
+		ele = 	FindElement(driver, xpath, finalLabelName + " label text with  " + labelValue, action.SCROLLANDBOOLEAN, 10);
 		scrollDownThroughWebelement(driver, ele, finalLabelName + " label text with  " + labelValue);
 		ele = 	isDisplayed(driver,ele,"Visibility", 10, finalLabelName + " label text with  " + labelValue);
 		if (ele != null) {
@@ -374,7 +361,7 @@ public class PipelinesPageBusinessLayer extends PipelinesPage {
 		
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-		//	e.printStackTrace();
+			e.printStackTrace();
 			appLog.error("Exception on verify PipeLine Stage Log For All Rows method check j value");
 			saa.assertTrue(false, "Exception on verify PipeLine Stage Log For All Rows method check j value");	 
 

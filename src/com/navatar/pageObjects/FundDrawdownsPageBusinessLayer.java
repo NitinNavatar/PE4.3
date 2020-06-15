@@ -155,12 +155,7 @@ public class FundDrawdownsPageBusinessLayer extends FundDrawdownsPage {
 			
 
 		} else {//lightning
-			if (finalLabelName.contains("Fund Name")) {
-				xpath = "//span[@class='test-id__field-label'][text()='"+finalLabelName+"']/../following-sibling::div/span//a";
-			} else {
-				xpath = "//span[@class='test-id__field-label'][text()='" + finalLabelName
-						+ "']/../following-sibling::div/span/span";
-			}
+			
 			
 			////////////////////////////////////////////////////////////////////////
 			

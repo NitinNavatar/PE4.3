@@ -49,13 +49,7 @@ public class InvestorDistributionsPageBusinessLayer extends InvestorDistribution
 			
 
 		} else {//lightning
-			if (finalLabelName.contains("Fund Distribution") || finalLabelName.equalsIgnoreCase(InvestorDistributionPageFieldLabelText.Commitment.toString())) {
-				xpath = "//span[@class='test-id__field-label'][text()='"+finalLabelName+"']/../following-sibling::div/span//a";
-			} else {
-				xpath = "//span[@class='test-id__field-label'][text()='" + finalLabelName
-						+ "']/../following-sibling::div/span/span";
-			}
-
+			
 			//////////////////////////////////////////////////////////////
 	xpath = "//span[text()='"+finalLabelName+"']/../following-sibling::div//*[text()='"+labelValue+"']";
 		
