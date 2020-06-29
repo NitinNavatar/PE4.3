@@ -179,45 +179,40 @@ public class PipelinesPageBusinessLayer extends PipelinesPage {
 		boolean flag=true;
 		List<WebElement> header = new ArrayList<WebElement>();
 		List<WebElement> values = new ArrayList<WebElement>();
-		if(mode.equalsIgnoreCase(Mode.Classic.toString())){
-		
-		FindElement(driver, "//div[@class='bRelatedList']//h3[text()='//div[@class='bRelatedList']//h3[text()='Pipeline Stage Logs']']", "", action.SCROLLANDBOOLEAN, 10);
-		 header = FindElements(driver, "//h3[text()='Pipeline Stage Logs']/ancestor::div[@class='bRelatedList']//div[@class='pbBody']//tr[1]/*", "Header");
-		 values = FindElements(driver, "//h3[text()='Pipeline Stage Logs']/ancestor::div[@class='bRelatedList']//div[@class='pbBody']//tr[2]/*", "Values");
-		int i = 1;
-		for (String[] headerWithValue : headersWithValues) {
-			appLog.info("From PAGE    : "+header.get(i).getText()+"  <<<<<>>>>> "+values.get(i).getText());
-			appLog.info("fROM tESTcASE  : "+headerWithValue[0].replace("_", " ")+"  <<<<<>>>>> "+headerWithValue[1]);
-			if(header.get(i).getText().contains(headerWithValue[0].replace("_", " ")) && values.get(i).getText().contains(headerWithValue[1])){
-				appLog.info("Value matched : "+headerWithValue[1]);
-			}else{
-				flag=false;
-				appLog.error("Value Not matched : "+headerWithValue[1]);
-				BaseLib.sa.assertTrue(false, "Value Not matched : "+headerWithValue[1]);	
-			}
-			i++;
-		}
-		}else{
-			ThreadSleep(2000);
-			driver.navigate().refresh();
-			ThreadSleep(5000);
+		try {
+			if(mode.equalsIgnoreCase(Mode.Classic.toString())){
 			
-					 header = FindElements(driver, "//table[@data-aura-class='uiVirtualDataTable']/thead/tr/th//a/span[2]", "Header");
-					 values = FindElements(driver, "//table[@data-aura-class='uiVirtualDataTable']/tbody/tr/*", "Values");
-					int i = 0;
-					for (String[] headerWithValue : headersWithValues) {
-						appLog.info("From PAGE    : "+header.get(i).getText()+"  <<<<<>>>>> "+values.get(i+2).getText());
-						appLog.info("fROM tESTcASE  : "+headerWithValue[0].replace("_", " ")+"  <<<<<>>>>> "+headerWithValue[1]);
-						if(/*header.get(i).getText().contains(headerWithValue[0].replace("_", " ").toUpperCase()) && */values.get(i+2).getText().contains(headerWithValue[1])){
-							appLog.info("Value matched : "+headerWithValue[1]);
-						}else{
-							flag=false;
-							appLog.error("Value Not matched : "+headerWithValue[1]);
-							BaseLib.sa.assertTrue(false, "Value Not matched : "+headerWithValue[1]);	
-						}
-						i++;
-					}
+			FindElement(driver, "//div[@class='bRelatedList']//h3[text()='//div[@class='bRelatedList']//h3[text()='Pipeline Stage Logs']']", "", action.SCROLLANDBOOLEAN, 10);
+			 header = FindElements(driver, "//h3[text()='Pipeline Stage Logs']/ancestor::div[@class='bRelatedList']//div[@class='pbBody']//tr[1]/*", "Header");
+			 values = FindElements(driver, "//h3[text()='Pipeline Stage Logs']/ancestor::div[@class='bRelatedList']//div[@class='pbBody']//tr[2]/*", "Values");
+			int i = 1;
+			for (String[] headerWithValue : headersWithValues) {
+				appLog.info("From PAGE    : "+header.get(i).getText()+"  <<<<<>>>>> "+values.get(i).getText());
+				appLog.info("fROM tESTcASE  : "+headerWithValue[0].replace("_", " ")+"  <<<<<>>>>> "+headerWithValue[1]);
+				if(header.get(i).getText().contains(headerWithValue[0].replace("_", " ")) && values.get(i).getText().contains(headerWithValue[1])){
+					appLog.info("Value matched : "+headerWithValue[1]);
+				}else{
+					flag=false;
+					appLog.error("Value Not matched : "+headerWithValue[1]);
+					BaseLib.sa.assertTrue(false, "Value Not matched : "+headerWithValue[1]);	
 				}
+				i++;
+			}
+			}else{
+				ThreadSleep(3000);
+				driver.navigate().refresh();
+				ThreadSleep(5000);
+				
+			flag=verifyRelatedListViewAllColumnAndValue(headersWithValues);
+				
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			flag=false;
+			appLog.error("Exception Occur on verifyPipeLineStageLog");
+			BaseLib.sa.assertTrue(false, "Exception Occur on verifyPipeLineStageLog");
+		}
 		
 		return flag;
 	

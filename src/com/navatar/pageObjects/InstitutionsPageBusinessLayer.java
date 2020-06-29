@@ -102,6 +102,7 @@ public class InstitutionsPageBusinessLayer extends InstitutionsPage {
 											appLog.info(labelValue[i] + "  is present in list.");
 										} else {
 											appLog.info(labelValue[i] + "  is not present in the list.");
+											BaseLib.sa.assertTrue(false,labelValue[i] + "  is not present in the list.");
 										}
 									}
 									
@@ -439,11 +440,35 @@ public class InstitutionsPageBusinessLayer extends InstitutionsPage {
 				
 				
 			}
+				
+				if (labelValue.isEmpty() || labelValue.equals("")) {
+						xpath = "//span[text()='"+finalLabelName+"']/../following-sibling::div//*";
+						ele = 		FindElement(driver, xpath, finalLabelName + " label text with  " + labelValue, action.SCROLLANDBOOLEAN, 10);
+						scrollDownThroughWebelement(driver, ele, finalLabelName + " label text with  " + labelValue);
+						if (ele!=null) {
+							String aa = ele.getText().trim();
+							System.err.println("Value  "+aa);
+
+							if (aa.isEmpty() || aa.equals(labelValue)) {
+
+								return true;	
+							}else {
+								return false;
+							}
+
+						}else {
+							return false;
+						}
+
+					}
+			
 			ele = 		FindElement(driver, xpath, finalLabelName + " label text with  " + labelValue, action.SCROLLANDBOOLEAN, 10);
 			scrollDownThroughWebelement(driver, ele, finalLabelName + " label text with  " + labelValue);
 			ele = 	isDisplayed(driver,ele,"Visibility", 10, finalLabelName + " label text with  " + labelValue);
 			if (ele != null) {
 				String aa = ele.getText().trim();
+				System.err.println("Value  "+aa);
+				
 				appLog.info(finalLabelName + " label text with  " + labelValue+" verified");
 				return true;
 
@@ -576,49 +601,43 @@ public class InstitutionsPageBusinessLayer extends InstitutionsPage {
 		boolean flag=true;
 		List<WebElement> header = new ArrayList<WebElement>();
 		List<WebElement> values = new ArrayList<WebElement>();
-		if(mode.equalsIgnoreCase(Mode.Classic.toString())){
-		
-		FindElement(driver, "//div[@class='bRelatedList']//h3[text()='Pipelines']", "", action.SCROLLANDBOOLEAN, 10);
-		 header = FindElements(driver, "//h3[text()='Pipelines']/ancestor::div[@class='bRelatedList']//div[@class='pbBody']//tr[1]/*", "Header");
-		 values = FindElements(driver, "//h3[text()='Pipelines']/ancestor::div[@class='bRelatedList']//div[@class='pbBody']//tr[2]/*", "Values");
-		int i = 1;
-		for (String[] headerWithValue : headersWithValues) {
-			appLog.info("From PAGE    : "+header.get(i).getText()+"  <<<<<>>>>> "+values.get(i).getText());
-			appLog.info("fROM tESTcASE  : "+headerWithValue[0].replace("_", " ")+"  <<<<<>>>>> "+headerWithValue[1]);
-			if(header.get(i).getText().contains(headerWithValue[0].replace("_", " ")) && values.get(i).getText().contains(headerWithValue[1])){
-				appLog.info("Value matched : "+headerWithValue[1]);
-			}else{
-				flag=false;
-				appLog.error("Value Not matched : "+headerWithValue[1]);
-				BaseLib.sa.assertTrue(false, "Value Not matched : "+headerWithValue[1]);	
+		try {
+			if(mode.equalsIgnoreCase(Mode.Classic.toString())){
+			
+			FindElement(driver, "//div[@class='bRelatedList']//h3[text()='Pipelines']", "", action.SCROLLANDBOOLEAN, 10);
+			 header = FindElements(driver, "//h3[text()='Pipelines']/ancestor::div[@class='bRelatedList']//div[@class='pbBody']//tr[1]/*", "Header");
+			 values = FindElements(driver, "//h3[text()='Pipelines']/ancestor::div[@class='bRelatedList']//div[@class='pbBody']//tr[2]/*", "Values");
+			int i = 1;
+			for (String[] headerWithValue : headersWithValues) {
+				appLog.info("From PAGE    : "+header.get(i).getText()+"  <<<<<>>>>> "+values.get(i).getText());
+				appLog.info("fROM tESTcASE  : "+headerWithValue[0].replace("_", " ")+"  <<<<<>>>>> "+headerWithValue[1]);
+				if(header.get(i).getText().contains(headerWithValue[0].replace("_", " ")) && values.get(i).getText().contains(headerWithValue[1])){
+					appLog.info("Value matched : "+headerWithValue[1]);
+				}else{
+					flag=false;
+					appLog.error("Value Not matched : "+headerWithValue[1]);
+					BaseLib.sa.assertTrue(false, "Value Not matched : "+headerWithValue[1]);	
+				}
+				i++;
 			}
-			i++;
-		}
-		}else{
-		
-			if(click(driver, getRelatedTab_Lighting(environment,RecordType, 10), "Related Tab", action.SCROLLANDBOOLEAN)){
-				ThreadSleep(3000);
-				log(LogStatus.INFO, "Clicked on Related Tab", YesNo.No);
-				if(click(driver, getPipeLineViewAll_Lighting(environment, 10), "PipeLine View All", action.SCROLLANDBOOLEAN)){
+			}else{
+			
+				if(click(driver, getRelatedTab_Lighting(environment,RecordType, 10), "Related Tab", action.SCROLLANDBOOLEAN)){
 					ThreadSleep(3000);
-					header = FindElements(driver, "//h1[text()='Pipelines']/../../../../../following-sibling::div//table//thead/tr/th//a/span[2]", "Header");
-					 values = FindElements(driver, "//h1[text()='Pipelines']/../../../../../following-sibling::div//table[@data-aura-class='uiVirtualDataTable']//tbody/tr/*", "Values");
-					 int i = 0;
-					for (String[] headerWithValue : headersWithValues) {
-						appLog.info("From PAGE    : "+header.get(i).getText()+"  <<<<<>>>>> "+values.get(i+1).getText());
-						appLog.info("fROM tESTcASE  : "+headerWithValue[0].replace("_", " ")+"  <<<<<>>>>> "+headerWithValue[1]);
-						if(/*header.get(i).getText().trim().contains(headerWithValue[0].replace("_", " ").toUpperCase()) &&*/ values.get(i+1).getText().contains(headerWithValue[1])){
-							appLog.info("Value matched : "+headerWithValue[1]);
-						}else{
-							flag=false;
-							appLog.error("Value Not matched : "+headerWithValue[1]);
-							BaseLib.sa.assertTrue(false, "Value Not matched : "+headerWithValue[1]);	
-						}
-						i++;
+					log(LogStatus.INFO, "Clicked on Related Tab", YesNo.No);
+					if(click(driver, getPipeLineViewAll_Lighting(environment, 10), "PipeLine View All", action.SCROLLANDBOOLEAN)){
+						ThreadSleep(3000);
+						driver.navigate().refresh();
+						ThreadSleep(5000);
+						flag=verifyRelatedListViewAllColumnAndValue(headersWithValues);
 					}
 				}
+				
 			}
-			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			flag=false;
 		}
 		return flag;
 	
@@ -628,58 +647,40 @@ public class InstitutionsPageBusinessLayer extends InstitutionsPage {
 		boolean flag=true;
 		List<WebElement> header = new ArrayList<WebElement>();
 		List<WebElement> values = new ArrayList<WebElement>();
-		if(mode.equalsIgnoreCase(Mode.Classic.toString())){
-		
-		FindElement(driver, "//div[@class='bRelatedList']//h3[text()='Deals Sourced']", "", action.SCROLLANDBOOLEAN, 10);
-		 header = FindElements(driver, "//h3[text()='Deals Sourced']/ancestor::div[@class='bRelatedList']//div[@class='pbBody']//tr[1]/*", "Header");
-		 values = FindElements(driver, "//h3[text()='Deals Sourced']/ancestor::div[@class='bRelatedList']//div[@class='pbBody']//tr[2]/*", "Values");
-		int i = 1;
-		for (String[] headerWithValue : headersWithValues) {
-			appLog.info("From PAGE    : "+header.get(i).getText()+"  <<<<<>>>>> "+values.get(i).getText());
-			appLog.info("fROM tESTcASE  : "+headerWithValue[0].replace("_", " ")+"  <<<<<>>>>> "+headerWithValue[1]);
-			if(header.get(i).getText().contains(headerWithValue[0].replace("_", " ")) && values.get(i).getText().contains(headerWithValue[1])){
-				appLog.info("Value matched : "+headerWithValue[1]);
-			}else{
-				flag=false;
-				appLog.error("Value Not matched : "+headerWithValue[1]);
-				BaseLib.sa.assertTrue(false, "Value Not matched : "+headerWithValue[1]);	
-			}
-			i++;
-		}
-		}else{
-			int rt=0;
-			if(RecordType.toString().equalsIgnoreCase(RecordType.IndividualInvestor.toString())){
-			rt=2;	
-			}else{
-				rt=2;
-			}
-			/*if(click(driver, getRelatedTab_Lighting(environment,RecordType, 10), "Related Tab", action.SCROLLANDBOOLEAN)){
-				log(LogStatus.INFO, "Clicked on Related Tab", YesNo.No);
-				ThreadSleep(3000);
-				if(click(driver, getDealSourcedViewAll_Lighting(environment, 10), "Deal Sourced View All", action.SCROLLANDBOOLEAN)){*/
-					ThreadSleep(3000);
-					 header = FindElements(driver, "//h1[text()='Deals Sourced']/../../../../../following-sibling::div//table//thead/tr/th//a/span[2]", "Header");
-					 values = FindElements(driver, "//h1[text()='Deals Sourced']/../../../../../following-sibling::div//table[@data-aura-class='uiVirtualDataTable']//tbody/tr/*", "Values");
-					int i = 0;
-					for (String[] headerWithValue : headersWithValues) {
-						appLog.info("From PAGE    : "+header.get(i).getText()+"  <<<<<>>>>> "+values.get(i+1).getText());
-						appLog.info("fROM tESTcASE  : "+headerWithValue[0].replace("_", " ")+"  <<<<<>>>>> "+headerWithValue[1]);
-						if(header.get(i).getText().trim().equalsIgnoreCase(headerWithValue[0].replace("_", " ")) && values.get(i+1).getText().contains(headerWithValue[1])){
-							appLog.info("Value matched : "+headerWithValue[1]);
-						}else{
-							flag=false;
-							appLog.error("Value Not matched : "+headerWithValue[1]);
-							BaseLib.sa.assertTrue(false, "Value Not matched : "+headerWithValue[1]);	
-						}
-						i++;
-					}
-				/*}else{
-					flag=false;	
-				}
-			}else{
-				flag=false;
-			}*/
+		try {
+			if(mode.equalsIgnoreCase(Mode.Classic.toString())){
 			
+			FindElement(driver, "//div[@class='bRelatedList']//h3[text()='Deals Sourced']", "", action.SCROLLANDBOOLEAN, 10);
+			 header = FindElements(driver, "//h3[text()='Deals Sourced']/ancestor::div[@class='bRelatedList']//div[@class='pbBody']//tr[1]/*", "Header");
+			 values = FindElements(driver, "//h3[text()='Deals Sourced']/ancestor::div[@class='bRelatedList']//div[@class='pbBody']//tr[2]/*", "Values");
+			int i = 1;
+			for (String[] headerWithValue : headersWithValues) {
+				appLog.info("From PAGE    : "+header.get(i).getText()+"  <<<<<>>>>> "+values.get(i).getText());
+				appLog.info("fROM tESTcASE  : "+headerWithValue[0].replace("_", " ")+"  <<<<<>>>>> "+headerWithValue[1]);
+				if(header.get(i).getText().contains(headerWithValue[0].replace("_", " ")) && values.get(i).getText().contains(headerWithValue[1])){
+					appLog.info("Value matched : "+headerWithValue[1]);
+				}else{
+					flag=false;
+					appLog.error("Value Not matched : "+headerWithValue[1]);
+					BaseLib.sa.assertTrue(false, "Value Not matched : "+headerWithValue[1]);	
+				}
+				i++;
+			}
+			}else{
+				
+						ThreadSleep(2000);
+						driver.navigate().refresh();
+						ThreadSleep(5000);
+						flag=verifyRelatedListViewAllColumnAndValue(headersWithValues);
+				
+				
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			flag=false;
+			appLog.error("Exception Occur verifyDealSourcedRelatedList");
+			BaseLib.sa.assertTrue(false, "Exception Occur verifyDealSourcedRelatedList");
 		}
 		return flag;
 	

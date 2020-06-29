@@ -2217,4 +2217,78 @@ public WebElement verifyCreatedItemOnPage(Header header,String itemName)
 	 ele = isDisplayed(driver, ele, "Visibility", 10, head+" : "+itemName);
 	return ele;
 }
+
+public boolean verifyRelatedListViewAllColumnAndValue(String[][] headersWithValues){
+	String columnXpath="";
+	String valuXpath="";
+	WebElement ele;
+	String actual="";
+	String[] headerValues = new String[headersWithValues.length];
+	String[] Values = new String[headersWithValues.length];
+	boolean flag=true;
+	ThreadSleep(5000);
+	for (int j = 0; j < headerValues.length; j++) {
+		headerValues[j]=headersWithValues[j][0].replace("_", " ");
+		Values[j]=headersWithValues[j][1];
+	}
+
+	columnXpath="//*[@title='"+headerValues[0]+"']";
+	String columnOrder=headerValues[0];
+
+	for (int j = 1; j < headerValues.length; j++) {
+		columnXpath=columnXpath+"//following-sibling::*[@title='"+headerValues[j]+"']";
+		columnOrder=columnOrder+"  <>  "+headerValues[j];
+	}
+
+	ele = FindElement(driver, columnXpath, "Header ", action.BOOLEAN, 30);
+
+	if (ele!=null) {
+		appLog.info("Header Column Matched with order : "+columnOrder);
+	}else {
+		flag=false;
+		appLog.error("Header Column Not Matched with order : "+columnOrder);
+		BaseLib.sa.assertTrue(false, "Header Column Not Matched with order : "+columnOrder);
+
+	}
+
+	String val="";
+	for (int j = 1; j < Values.length; j++) {
+		val=Values[j];
+		if (Values[j].isEmpty() || Values[j].equals("")) {
+			valuXpath="//*[contains(@title,'"+Values[0]+"')]/../..//following-sibling::td["+j+"]//span//*";
+		} else {
+			valuXpath="//*[contains(@title,'"+Values[0]+"')]/../..//following-sibling::td["+j+"]//*[contains(@title,'"+val+"') or contains(text(),'"+val+"')]";
+		}
+
+		ele = FindElement(driver, valuXpath, val, action.BOOLEAN, 5);
+
+		if (ele!=null) {
+
+			actual=ele.getText().trim();
+			if (Values[j].isEmpty() || Values[j].equals("")) {
+				if (actual.isEmpty() || actual.equals("")) {
+					appLog.info("Header Column "+headerValues[j]+" Matched with Value "+Values[j]);
+				}else {
+					flag=false;
+					appLog.error("Header Column "+headerValues[j]+" Not Matched with Value "+Values[j]);
+					BaseLib.sa.assertTrue(false, "Header Column "+headerValues[j]+" Not Matched with Value "+Values[j]);
+
+				}
+			}else {
+				appLog.info("Header Column "+headerValues[j]+" Matched with Value "+Values[j]);
+			}
+
+		}else {
+			flag=false;
+			appLog.error("Header Column "+headerValues[j]+" Not Matched with Value "+Values[j]);
+			BaseLib.sa.assertTrue(false, "Header Column "+headerValues[j]+" Not Matched with Value "+Values[j]);
+
+		}
+
+	}
+
+	return flag;
+
+
+}
 }

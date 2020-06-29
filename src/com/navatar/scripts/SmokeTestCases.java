@@ -3881,15 +3881,15 @@ public class SmokeTestCases extends BaseLib {
 										sa.assertTrue(false, "Not able to click on contact "+SmokeC1_FName+" "+SmokeC1_LName+" info icon so cannot verify past fundraising data");
 									}
 									System.err.println("><><><><>< ");
-								
+									ThreadSleep(5000);
 									WebElement ele = FindElement(driver, "//a[contains(text(),'"+SmokeC1_FName+"')][contains(text(),'"+SmokeC1_LName+"')]/../../following-sibling::span//a[text()='"+SmokeINS1+"']", "account name link", action.SCROLLANDBOOLEAN,10);
 									if(ele!=null) {
 										if(mouseOverOperation(driver,ele)) {
 											log(LogStatus.INFO, "mouse over on account name "+SmokeINS1, YesNo.No);
 											ThreadSleep(5000);
-											ele=isDisplayed(driver, FindElement(driver,"//a[contains(text(),'"+SmokeC1_FName+"')][contains(text(),'"+SmokeC1_LName+"')]/../../following-sibling::span//a[text()='"+SmokeINS1+"']/following-sibling::a//img", "", action.BOOLEAN,10), "visibility",10,SmokeINS1+" info icon");
+											ele=FindElement(driver,"//a[contains(text(),'"+SmokeC1_FName+"')][contains(text(),'"+SmokeC1_LName+"')]/../../following-sibling::span//a[text()='"+SmokeINS1+"']/following-sibling::a//img", "", action.BOOLEAN,10);
 											if(ele!=null) {
-												if(click(driver, ele,"account name info icon", action.SCROLLANDBOOLEAN)) {
+												if(clickUsingJavaScript(driver, ele,"account name info icon", action.SCROLLANDBOOLEAN)) {
 													log(LogStatus.INFO, "clicked on account name "+SmokeINS1, YesNo.No);
 													ThreadSleep(2000);
 													if(home.checkContactOrAccountOrFundraisingPage(environment, mode, Smoke_FR1, PageName.pastFundraisingAccountPopUp, columnName.Fundraising_Name, home.getPastFundraisingsPopUpScrollBox(PageName.pastFundraisingAccountPopUp,5))) {
@@ -4038,8 +4038,9 @@ public class SmokeTestCases extends BaseLib {
 //														home.getFundraisingContactPopUpApplyBtn(20);
 														System.err.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>.");
 														ThreadSleep(10000);
-														if(click(driver, home.getFundraisingContactPopUpApplyBtn(20), "apply button", action.SCROLLANDBOOLEAN)) {
+														if(clickUsingJavaScript(driver, home.getFundraisingContactPopUpApplyBtn(20), "apply button", action.SCROLLANDBOOLEAN)) {
 															log(LogStatus.INFO, "clicked on apply button", YesNo.No);
+															ThreadSleep(5000);
 															if(click(driver, home.getCreateFundraisingDefaultFundraisingValuesAddRowsLink(10), "add row buton", action.SCROLLANDBOOLEAN)) {
 																log(LogStatus.INFO, "Clicked on Add row link in Default Fundraising Values", YesNo.No);
 															}else {
@@ -7967,6 +7968,10 @@ public class SmokeTestCases extends BaseLib {
 										if(ins.clickOnCreatedCompany(environment, mode,SmokeCOM2)) {
 											if(partnership.clickOnRelatedList(environment, mode, RecordType.Institution, RelatedList.Commitments)) {
 												log(LogStatus.INFO, "clicked on related list "+RelatedList.Commitments.toString(), YesNo.No);
+												ThreadSleep(5000);
+												if (mode.toString().equalsIgnoreCase(Mode.Lightning.toString()))
+													ins.scrollToRelatedListViewAll_Lightning(environment, mode, RelatedList.Commitments, true);
+												ThreadSleep(2000);
 												if(partnership.clickOnViewAllRelatedList(environment, mode, RelatedList.Commitments)) {
 													ThreadSleep(2000);
 													if(partnership.verifyPartnerShipRelatedList(environment, mode, PageName.CompanyPage, SmokeCOMM6_ID,Smoke_LP4,Smoke_P3,SmokeCOMM6_CommitmentAmount)) {
@@ -8166,8 +8171,8 @@ public class SmokeTestCases extends BaseLib {
 					if(ins.ClickonRelatedTab_Lighting(environment, RecordType.Company)) {
 						log(LogStatus.INFO, "clicked on related tab", YesNo.No);
 						ThreadSleep(3000);
-						windowScrollYAxis(driver, 0, 1000);
-						scrollThroughOutWindow(driver);
+						ins.scrollToRelatedListViewAll_Lightning(environment, mode, RelatedList.Commitments, true);
+						ThreadSleep(3000);
 					}else {
 						log(LogStatus.ERROR, "Not able to click on related tab so cannot click on create commitment button", YesNo.Yes);
 						sa.assertTrue(false, "Not able to click on related tab so cannot click on create commitment button");
@@ -9121,7 +9126,7 @@ public class SmokeTestCases extends BaseLib {
 									log(LogStatus.FAIL, "Not Able click Add Source Firm pop up cancel button", YesNo.Yes);
 									sa.assertTrue(false, "Not Able click Add Source Firm pop up cancel button");
 								}
-
+								ThreadSleep(2000);
 							} else {
 								appLog.error("Not Able to Add Source Firm");
 								sa.assertTrue(false, "Not Able to Add Source Firm");
@@ -9129,6 +9134,7 @@ public class SmokeTestCases extends BaseLib {
 							}
 
 						}
+				
 						if(i==1) {
 							if(click(driver, dctb.getSourceFirmPencilIcon(10), "source firm pencil icon", action.SCROLLANDBOOLEAN)) {
 								log(LogStatus.FAIL, "Clicked on sourceFirm pop up cross button", YesNo.No);
@@ -9139,7 +9145,7 @@ public class SmokeTestCases extends BaseLib {
 									sa.assertTrue(false, "Not Able click Add Source Firm pop up Cross button");
 								}
 
-
+								ThreadSleep(2000);
 
 							}else {
 								log(LogStatus.FAIL, "Not Able click Add Source Firm pencil icon", YesNo.Yes);
@@ -9191,7 +9197,7 @@ public class SmokeTestCases extends BaseLib {
 									log(LogStatus.FAIL, "Not Able click Add Source Contact pop up cancel button", YesNo.Yes);
 									sa.assertTrue(false, "Not Able click Add Source Contact pop up cancel button");
 								}
-
+								ThreadSleep(2000);
 							} else {
 								appLog.error("Not Able to Add Source Contact");
 								sa.assertTrue(false, "Not Able to Add Source Contact");
@@ -9208,7 +9214,7 @@ public class SmokeTestCases extends BaseLib {
 									log(LogStatus.FAIL, "Not Able click Add Source Contact pop up Cross button", YesNo.Yes);
 									sa.assertTrue(false, "Not Able click Add Source Contact pop up Cross button");
 								}
-
+								ThreadSleep(2000);
 
 
 							}else {
@@ -10819,10 +10825,11 @@ public class SmokeTestCases extends BaseLib {
 						appLog.error("Not able to pass value "+strings[1]+" in "+strings[0]+" field");
 						BaseLib.sa.assertTrue(false, "Not able to pass value "+strings[1]+" in "+strings[0]+" field");
 					}
-					
+					ThreadSleep(500);
 					
 				}
 				//driver,ins.getSaveButton(environment, mode, 30),"save button", action.SCROLLANDBOOLEAN
+				ThreadSleep(5000);
 				if(clickUsingJavaScript(driver,ins.getSaveButton(environment, mode, 30),"save button")) {
 					ThreadSleep(5000);
 					if(contact.clickOnTab(environment, mode, TabName.ContactTab)) {
@@ -10917,8 +10924,9 @@ public class SmokeTestCases extends BaseLib {
 						appLog.error("Not able to pass value "+strings[1]+" in "+strings[0]+" field");
 						BaseLib.sa.assertTrue(false, "Not able to pass value "+strings[1]+" in "+strings[0]+" field");
 					}
+					ThreadSleep(500);
 				}
-				ThreadSleep(2000);
+				ThreadSleep(5000);
 				if(clickUsingJavaScript(driver,ins.getSaveButton(environment, mode, 30),"save button")) {
 					ThreadSleep(5000);
 					if(ins.clickOnTab(environment, mode, TabName.InstituitonsTab)) {
@@ -11523,58 +11531,58 @@ public class SmokeTestCases extends BaseLib {
 			if (lp.clickOnTab(environment, mode, TabName.InstituitonsTab)) {
 				ThreadSleep(2000);
 				if (j == 0) {
-					if (ins.createInstitution(environment, mode, "Test FM", "Fund Manager",null, null)) {
-						appLog.info("Fund Manage is created Fund Manager : " + "Test FM");
+					if (ins.createInstitution(environment, mode, "ADTest FM", "Fund Manager",null, null)) {
+						appLog.info("Fund Manager is created Fund Manager : " + "ADTest FM");
 					} else {
-						appLog.error("Not able to click on create Fund Manager : Test FM");
-						sa.assertTrue(false, "Not able to click on Fund Manager : Test FM");
-						log(LogStatus.ERROR, "Not able to click on create Fund Manager : Test FM", YesNo.Yes);
+						appLog.error("Not able to click on create Fund Manager : ADTest FM");
+						sa.assertTrue(false, "Not able to click on Fund Manager : ADTest FM");
+						log(LogStatus.ERROR, "Not able to click on create Fund Manager : ADTest FM", YesNo.Yes);
 					}
 				}
 				if (j == 1) {
 					refresh(driver);
-					if (ins.createInstitution(environment, mode, "Test FMF", "Fund Manager’s Fund", InstitutionPageFieldLabelText.Parent_Institution.toString(), "Test FM")) {
-						appLog.info("Fund Manage is created Fund Manage's Fund : " + "Test FMF");
+					if (ins.createInstitution(environment, mode, "ADTest FMF", "Fund Manager’s Fund", InstitutionPageFieldLabelText.Parent_Institution.toString(), "ADTest FM")) {
+						appLog.info("Fund Manager’s Fund is created Fund Manage's Fund : " + "ADTest FMF");
 					} else {
-						appLog.error("Not able to click on create Fund Manage's Fund : Test FMF");
-						sa.assertTrue(false, "Not able to click on Fund Manage's Fund : Test FMF");
-						log(LogStatus.ERROR, "Not able to click on create Fund Manage's Fund : Test FMF", YesNo.Yes);
+						appLog.error("Not able to click on create Fund Manager’s Fund : ADTest FMF");
+						sa.assertTrue(false, "Not able to click on Fund Manager’s Fund : ADTest FMF");
+						log(LogStatus.ERROR, "Not able to click on create Fund Manager’s Fund : ADTest FMF", YesNo.Yes);
 					}
 				}
 				if (j == 2) {
-					if (ins.createInstitution(environment, mode, "Test INS 1", "Institution", InstitutionPageFieldLabelText.Parent_Institution.toString(), "Test FM")) {
-						appLog.info("Fund Manage is created institution : Test INS 1");
+					if (ins.createInstitution(environment, mode, "ADTest INS 1", "Institution", InstitutionPageFieldLabelText.Parent_Institution.toString(), "ADTest FM")) {
+						appLog.info("Institution created  : ADTest INS 1");
 					} else {
-						appLog.error("Not able to click on create institution : Test INS 1");
-						sa.assertTrue(false, "Not able to click on institution : Test INS 1");
-						log(LogStatus.ERROR, "Not able to click on create institution :Test INS 1", YesNo.Yes);
+						appLog.error("Not able to click on create institution : ADTest INS 1");
+						sa.assertTrue(false, "Not able to click on institution : ADTest INS 1");
+						log(LogStatus.ERROR, "Not able to click on create institution :ADTest INS 1", YesNo.Yes);
 					}
 				}
 				if (j == 3) {
-					if (ins.createInstitution(environment, mode, "Test INS 2", "Institution", InstitutionPageFieldLabelText.Parent_Institution.toString(), "Test FMF")) {
-						appLog.info("Fund Manage is created institution : Test INS 2");
+					if (ins.createInstitution(environment, mode, "ADTest INS 2", "Institution", InstitutionPageFieldLabelText.Parent_Institution.toString(), "ADTest FMF")) {
+						appLog.info("Institution created  :  ADTest INS 2");
 					} else {
-						appLog.error("Not able to click on create institution : Test INS 2");
-						sa.assertTrue(false, "Not able to click on institution : Test INS 2");
-						log(LogStatus.ERROR, "Not able to click on create institution :Test INS 2", YesNo.Yes);
+						appLog.error("Not able to click on create institution : ADTest INS 2");
+						sa.assertTrue(false, "Not able to click on institution : ADTest INS 2");
+						log(LogStatus.ERROR, "Not able to click on create institution :ADTest INS 2", YesNo.Yes);
 					}
 				}
 				if (j == 4) {
-					if (ins.createInstitution(environment, mode, "Test COM 1", SmokeCOM1_RecordType, InstitutionPageFieldLabelText.Parent_Institution.toString(), "Test FM")) {
-						appLog.info("Company is created :  Test COM 1");
+					if (ins.createInstitution(environment, mode, "ADTest COM 1", SmokeCOM1_RecordType, InstitutionPageFieldLabelText.Parent_Institution.toString(), "ADTest FM")) {
+						appLog.info("Company is created :  ADTest COM 1");
 					} else {
-						appLog.error("Not able to click on create Company :  Test COM 1");
-						sa.assertTrue(false, "Not able to click on create Company :  Test COM 1");
-						log(LogStatus.ERROR, "Not able to click on create Company :  Test COM 1", YesNo.Yes);
+						appLog.error("Not able to click on create Company :  ADTest COM 1");
+						sa.assertTrue(false, "Not able to click on create Company :  ADTest COM 1");
+						log(LogStatus.ERROR, "Not able to click on create Company :  ADTest COM 1", YesNo.Yes);
 					}
 				}
 				if (j == 5) {
-					if (ins.createInstitution(environment, mode, "Test COM 2", SmokeCOM1_RecordType, InstitutionPageFieldLabelText.Parent_Institution.toString(), "Test FMF")) {
-						appLog.info("Company is created :  Test COM 2");
+					if (ins.createInstitution(environment, mode, "ADTest COM 2", SmokeCOM1_RecordType, InstitutionPageFieldLabelText.Parent_Institution.toString(), "ADTest FMF")) {
+						appLog.info("Company is created :  ADTest COM 2");
 					} else {
-						appLog.error("Not able to click on create Company :  Test COM 2");
-						sa.assertTrue(false, "Not able to click on create Company :  Test COM 2");
-						log(LogStatus.ERROR, "Not able to click on create Company :  Test COM 2", YesNo.Yes);
+						appLog.error("Not able to click on create Company :  ADTest COM 2");
+						sa.assertTrue(false, "Not able to click on create Company :  ADTest COM 2");
+						log(LogStatus.ERROR, "Not able to click on create Company :  ADTest COM 2", YesNo.Yes);
 					}
 				}
 			} else {
@@ -11588,13 +11596,13 @@ public class SmokeTestCases extends BaseLib {
 			}
 		}
 			if (fund.clickOnTab(environment, mode, TabName.FundsTab)) {
-				if (fund.createFund(environment, mode, "Test Fund 1", SmokeFund1_Type, SmokeFund1_InvestmentCategory,null, null)) {
-					appLog.info("Fund is created Successfully:  Test Fund 1");
+				if (fund.createFund(environment, mode, "ADTest Fund 1", SmokeFund1_Type, SmokeFund1_InvestmentCategory,null, null)) {
+					appLog.info("Fund is created Successfully:  ADTest Fund 1");
 					
 				} else {
-					appLog.error("Not able to click on fund:  Test Fund 1");
-					sa.assertTrue(false, "Not able to click on fund:  Test Fund 1");
-					log(LogStatus.SKIP, "Not able to click on fund:  Test Fund 1", YesNo.Yes);
+					appLog.error("Not able to click on fund:  ADTest Fund 1");
+					sa.assertTrue(false, "Not able to click on fund:  ADTest Fund 1");
+					log(LogStatus.SKIP, "Not able to click on fund:  ADTest Fund 1", YesNo.Yes);
 				}
 			} else {
 				appLog.error("Not able to click on fund Tab so cannot Fund");
@@ -11603,32 +11611,32 @@ public class SmokeTestCases extends BaseLib {
 			}
 			
 			if (fund.clickOnTab(environment, mode, TabName.FundraisingsTab)) {
-				if (fundraising.createFundRaising(environment, mode, "Test FRD 1", "Test Fund 1", "Test FM")) {
-					appLog.info("Fundraising is created Successfully:  Test FRD 1");
+				if (fundraising.createFundRaising(environment, mode, "ADTest FRD 1", "ADTest Fund 1", "ADTest FM")) {
+					appLog.info("Fundraising is created Successfully:  ADTest FRD 1");
 					
 				} else {
-					appLog.error("Fundraising not created Successfully:  Test FRD 1");
-					sa.assertTrue(false, "Fundraising not created Successfully:  Test FRD 1");
-					log(LogStatus.SKIP, "Fundraising not created Successfully:  Test FRD 1", YesNo.Yes);
+					appLog.error("Fundraising not created Successfully:  ADTest FRD 1");
+					sa.assertTrue(false, "Fundraising not created Successfully:  ADTest FRD 1");
+					log(LogStatus.SKIP, "Fundraising not created Successfully:  ADTest FRD 1", YesNo.Yes);
 				}
 			} else {
-				appLog.error("Not able to click on fund Tab so cannot Fund");
-				sa.assertTrue(false, "Not able to click on fund Tab so cannot Fund");
-				log(LogStatus.SKIP, "Not able to click on fund Tab so cannot Fund", YesNo.Yes);
+				appLog.error("Not able to click on FundRaising Tab so cannot FundRaising");
+				sa.assertTrue(false, "Not able to click on FundRaising Tab so cannot FundRaising");
+				log(LogStatus.SKIP, "Not able to click on FundRaising Tab so cannot FundRaising", YesNo.Yes);
 			}
 			if (fund.clickOnTab(environment, mode, TabName.FundraisingsTab)) {
-				if (fundraising.createFundRaising(environment, mode, "Test FRD 2", "Test Fund 1", "Test FMF")) {
-					appLog.info("Fundraising is created Successfully:  Test FRD 2");
+				if (fundraising.createFundRaising(environment, mode, "ADTest FRD 2", "ADTest Fund 1", "ADTest FMF")) {
+					appLog.info("Fundraising is created Successfully:  ADTest FRD 2");
 					
 				} else {
-					appLog.error("Fundraising not created Successfully:  Test FRD 2");
-					sa.assertTrue(false, "Fundraising not created Successfully:  Test FRD 2");
-					log(LogStatus.SKIP, "Fundraising not created Successfully:  Test FRD 2", YesNo.Yes);
+					appLog.error("Fundraising not created Successfully:  ADTest FRD 2");
+					sa.assertTrue(false, "Fundraising not created Successfully:  ADTest FRD 2");
+					log(LogStatus.SKIP, "Fundraising not created Successfully:  ADTest FRD 2", YesNo.Yes);
 				}
 			} else {
-				appLog.error("Not able to click on fund Tab so cannot Fund");
-				sa.assertTrue(false, "Not able to click on fund Tab so cannot Fund");
-				log(LogStatus.SKIP, "Not able to click on fund Tab so cannot Fund", YesNo.Yes);
+				appLog.error("Not able to click on FundRaising Tab so cannot FundRaising");
+				sa.assertTrue(false, "Not able to click on FundRaising Tab so cannot FundRaising");
+				log(LogStatus.SKIP, "Not able to click on FundRaising Tab so cannot FundRaising", YesNo.Yes);
 			}
 		
 		lp.CRMlogout(environment, mode);
@@ -13948,10 +13956,13 @@ public class SmokeTestCases extends BaseLib {
 					switchToFrame(driver, 30, hp.getCreateFundraisingsFrame_Lighting(30));
 				}
 				//verify contact 1 and contact2 on emailing grid
-				SmokeCC2_ID = ExcelUtils.readData(smokeFilePath, "capitalCall", excelLabel.Commitment_ID, SmokeCOMM2_ID, excelLabel.CapitalCalllID);
+				System.err.println("SmokeCOMM1_ID : "+SmokeCOMM1_ID);
+				SmokeCC1_ID=ExcelUtils.readData(smokeFilePath,"CapitalCall",excelLabel.Commitment_ID, SmokeCOMM1_ID, excelLabel.CapitalCalllID);
+				System.err.println("SmokeCC1_ID : "+SmokeCC1_ID);
 				saa = fd.verifyEmailingContentGrid(driver, PageName.FundDrawdown,SmokeC1_FName+" "+SmokeC1_LName, SmokeINS1, SmokeC1_EmailID, SmokeCC1_ID, SmokeCOMM8_ID, Smoke_LP1, Smoke_P1, true);
 				sa.combineAssertions(saa);
 				
+				SmokeCC2_ID = ExcelUtils.readData(smokeFilePath, "capitalCall", excelLabel.Commitment_ID, SmokeCOMM2_ID, excelLabel.CapitalCalllID);
 				saa = fd.verifyEmailingContentGrid(driver, PageName.FundDrawdown,SmokeC2_FName+" "+SmokeC2_LName, SmokeINS1, SmokeC2_EmailID, SmokeCC2_ID, SmokeCOMM2_ID, Smoke_LP2, Smoke_P1, false);
 				sa.combineAssertions(saa);
 				switchToDefaultContent(driver);
@@ -14594,7 +14605,7 @@ public class SmokeTestCases extends BaseLib {
 				if (fp.clickOnCreatedFund(environment, mode, Smoke_Fund1)) {
 					
 					
-					/*for (int i = 1; i <= 2; i++) {
+					for (int i = 1; i <= 2; i++) {
 						ThreadSleep(2000);
 						if (bp.clickOnShowMoreActionDownArrow(environment, mode, PageName.FundsPage, ShowMoreActionDropDownList.Create_Distribution, 30)) {
 							log(LogStatus.INFO, "clicked on Create_Distributions : "+i, YesNo.No);
@@ -14624,7 +14635,7 @@ public class SmokeTestCases extends BaseLib {
 						
 						
 					}
-					*/
+					
 					if (bp.clickOnShowMoreActionDownArrow(environment, mode, PageName.FundsPage, ShowMoreActionDropDownList.Create_Distribution, 30)) {
 						log(LogStatus.INFO, "clicked on Create_Distributions", YesNo.No);
 						if (mode.equalsIgnoreCase(Mode.Lightning.toString()))
@@ -20686,5 +20697,6 @@ public class SmokeTestCases extends BaseLib {
 		lp.CRMlogout(environment, mode);
 		sa.assertAll();
 	}
+
 	
 }

@@ -2303,5 +2303,28 @@ public class CommonLib extends EnumConstants implements Comparator<String>  {
 		System.out.println("Change US Number Formate >>>>> "+number);
 		return s;
 	}
+	
+	/**
+	 * @author Ankit Jaiswal
+	 * @param driver
+	 * @param element
+	 * @param elementName
+	 * @return Text/null
+	 */
+	public static boolean clickUsingJavaScript(WebDriver driver, WebElement element,String elementName,action action) {
+		String text =null;
+		try {
+		//text=(String) ((JavascriptExecutor) driver).executeScript("return $('"+Jquery+"')[0].value");
+			((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
+			appLog.info("Able to Clicked using JavaScript");
+			return true;
+		}catch (Exception e) {
+			// TODO: handle exception
+			appLog.error("Exception in Clicked using JavaScript");
+			System.err.println("Cannot Click Element: "+elementName);
+		}
+		appLog.info("Not Able to Click using JavaScript");
+		return false;
+	}
 
 }

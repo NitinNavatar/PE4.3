@@ -280,7 +280,7 @@ public class FundDrawdownsPageBusinessLayer extends FundDrawdownsPage {
 
 
 					System.err.println(">>>>>>> from WebPage "+dcContact+" "+dcAccountName+" "+dcEmail+" "+dcCCID+" "+dcCommitmentID+" "+dcLP+" "+dcPartnership+" "+"email sent status "+dcEmailSentStatus+" <<<<<<<<");
-					System.out.println("<<<<<<<<< pASSING "+contact +" "+accountName+" "+email+" "+CCID+" "+commitmentID+" "+lp+" "+partnership +"email sent status "+emailSentStatus+"  <<<<<<<<<");
+					System.out.println("<<<<<<<<< pASSING "+contact +" "+accountName+" "+email+" "+CCID+" "+commitmentID+" "+lp+" "+partnership +" email sent status "+emailSentStatus+"  <<<<<<<<<");
 					appLog.info(">>>>>>> from WebPage "+dcContact+" "+dcAccountName+" "+dcEmail+" "+dcCCID+" "+dcCommitmentID+" "+dcLP+" "+dcPartnership+" <<<<<<<<");
 					appLog.error("<<<<<<<<< pASSING "+contact +" "+accountName+" "+email+" "+CCID+" "+commitmentID+" "+lp+" "+partnership +" <<<<<<<<<");
 

@@ -36,6 +36,7 @@ public class CoInvestmentSettingsTabBusinessLayer extends NavatarSetupPageBusine
 						if(click(driver, getSaveButtonforNavatarSetUpSideMenuTab(environment, mode, NavatarSetupSideMenuTab.CoInvestmentSettings, 30, TopOrBottom.TOP), "save button", action.SCROLLANDBOOLEAN)) {
 							log(LogStatus.INFO, "Clicked on save button successfully", YesNo.Yes);
 							flag=true;
+							ThreadSleep(5000);
 						}else {
 							log(LogStatus.ERROR, "Not able to Click on save button so cannot activate co-investment settings", YesNo.Yes);
 						}

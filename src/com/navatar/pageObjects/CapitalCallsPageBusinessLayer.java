@@ -201,7 +201,27 @@ public class CapitalCallsPageBusinessLayer extends CapitalCallsPage {
 		
 					////////////////////////////////////
 					
-			xpath = "//span[text()='"+finalLabelName+"']/../following-sibling::div//*[text()='"+labelValue+"']";
+					if (labelValue.isEmpty() || labelValue.equals("")) {
+						xpath = "//span[text()='"+finalLabelName+"']/../following-sibling::div//*";
+						ele = 		FindElement(driver, xpath, finalLabelName + " label text with  " + labelValue, action.SCROLLANDBOOLEAN, 10);
+						scrollDownThroughWebelement(driver, ele, finalLabelName + " label text with  " + labelValue);
+						if (ele!=null) {
+							String aa = ele.getText().trim();
+							System.err.println("Value  "+aa);
+
+							if (aa.isEmpty() || aa.equals(labelValue)) {
+
+								return true;	
+							}else {
+								return false;
+							}
+
+						}else {
+							return false;
+						}
+
+					}
+					xpath = "//span[text()='"+finalLabelName+"']/../following-sibling::div//*[contains(text(),'"+labelValue+"')]";
 				
 			ele = FindElement(driver, xpath, finalLabelName + " label text with  " + labelValue, action.SCROLLANDBOOLEAN, 10);
 			scrollDownThroughWebelement(driver, ele, finalLabelName + " label text with  " + labelValue);
@@ -252,7 +272,32 @@ public class CapitalCallsPageBusinessLayer extends CapitalCallsPage {
 			return false;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
+			appLog.info("Inside Exception");
+			WebElement  ele;
+			String finalLabelName = labelName.replace("_", " ");
+
+			if (labelValue.isEmpty() || labelValue.equals("")) {
+			String	xpath = "//span[text()='"+finalLabelName+"']/../following-sibling::div//*";
+				ele = 		FindElement(driver, xpath, finalLabelName + " label text with  " + labelValue, action.SCROLLANDBOOLEAN, 10);
+				scrollDownThroughWebelement(driver, ele, finalLabelName + " label text with  " + labelValue);
+				if (ele!=null) {
+					String aa = ele.getText().trim();
+					System.err.println("Value  "+aa);
+
+					if (aa.isEmpty() || aa.equals(labelValue)) {
+
+						return true;	
+					}else {
+						return false;
+					}
+
+				}else {
+					return false;
+				}
+
+			}
+			
 			return false;
 		}
 

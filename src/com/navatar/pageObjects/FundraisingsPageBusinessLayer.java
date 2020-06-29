@@ -69,7 +69,7 @@ public class FundraisingsPageBusinessLayer extends FundraisingsPage {
 						}
 						if (click(driver, getSaveButton(environment,mode,60), "Save Button", action.SCROLLANDBOOLEAN)) {
 							ThreadSleep(500);
-							if (getFundraisingNameInViewMode(environment,mode,60) != null) {
+							
 								ThreadSleep(2000);
 								String fundraising=null;
 								WebElement ele;
@@ -87,9 +87,7 @@ public class FundraisingsPageBusinessLayer extends FundraisingsPage {
 								} else {
 									appLog.info("FundRaising is not created successfully.:" + fundraisingName);
 								}
-							} else {
-								appLog.error("Not able to find fundraising name in view mode");
-							}
+							
 						} else {
 							appLog.error("Not able to click on save button");
 						}
@@ -152,80 +150,90 @@ public class FundraisingsPageBusinessLayer extends FundraisingsPage {
 
 	
 	public List<String> verifyfundraisingContacts(String mode,List<List<String>> contactDetails) {
-		List<String> result = new ArrayList<String>();
-		List<List<WebElement>> allDataOfGrid = new ArrayList<List<WebElement>>();
-		String xpath="";
-		String xpath1="";
-		if(mode.equalsIgnoreCase(Mode.Lightning.toString())) {
-			 //xpath="//th[@title='Fundraising Contact: Fundraising Contact ID']/preceding-sibling::th[@class=' selectionColumnHeader']/following-sibling::th[contains(@class,'initialSort')]//span[@class='slds-truncate']";
-			xpath = "//th[@title='Fundraising Contact: Fundraising Contact ID']/preceding-sibling::th[contains(@class,'errorColumnHeader')]/following-sibling::th[contains(@class,'initialSort')]//span[@class='slds-truncate']";
-		}else {
-			 xpath="//div[@class='listRelatedObject Custom28Block']//tr[@class='headerRow']/th";
-		}
-		List<WebElement> headers = FindElements(driver,xpath, "Header");
-		for(int i = 1; i < headers.size(); i++) {
+	
+		
+			List<String> result = new ArrayList<String>();
+			List<List<WebElement>> allDataOfGrid = new ArrayList<List<WebElement>>();
+			String xpath="";
+			String xpath1="";
+			try {
 			if(mode.equalsIgnoreCase(Mode.Lightning.toString())) {
-				if(headers.get(i-1).getText().trim().equalsIgnoreCase("Primary")) {
-					xpath1="//span[text()='Fundraising Contact: Fundraising Contact ID']/../../../../../following-sibling::tbody/tr/*[7]//img";
-				}else {
-					xpath1="//span[text()='Fundraising Contact: Fundraising Contact ID']/../../../../../following-sibling::tbody/tr/*["+(i+2)+"]";
-				}
+				 //xpath="//th[@title='Fundraising Contact: Fundraising Contact ID']/preceding-sibling::th[@class=' selectionColumnHeader']/following-sibling::th[contains(@class,'initialSort')]//span[@class='slds-truncate']";
+				xpath = "//th[@title='Fundraising Contact: Fundraising Contact ID']/preceding-sibling::th[contains(@class,'errorColumnHeader')]/following-sibling::th[contains(@class,'initialSort')]//span[@class='slds-truncate']";
 			}else {
-				if(headers.get(i).getText().trim().equalsIgnoreCase("Primary")) {
-					xpath1="//th[text()='Fundraising Contact: Fundraising Contact ID']/../following-sibling::tr/*[6]/img";
-				}else {
-					xpath1="//th[text()='Fundraising Contact: Fundraising Contact ID']/../following-sibling::tr/*["+(i+1)+"]";
-				}
+				 xpath="//div[@class='listRelatedObject Custom28Block']//tr[@class='headerRow']/th";
 			}
-			allDataOfGrid.add(FindElements(driver,xpath1, ""));
-		}
-		String headerName=null;
-		for(int i = 0; i < contactDetails.size(); i++) {
-			List<String> details = contactDetails.get(i);
-			headers = FindElements(driver, xpath, "Header");
-			for(int j = 0; j < details.size(); j++) {
-				if(mode.toString().equalsIgnoreCase(Mode.Lightning.toString())) {
-					headerName = headers.get(i).getText();
-					System.err.println("header: "+ headerName);
-				} else {
-					headerName = headers.get(i+1).getText();
-					System.err.println("header: "+ headerName);
+			List<WebElement> headers = FindElements(driver,xpath, "Header");
+			for(int i = 1; i < headers.size(); i++) {
+				if(mode.equalsIgnoreCase(Mode.Lightning.toString())) {
+					if(headers.get(i-1).getText().trim().equalsIgnoreCase("Primary")) {
+						xpath1="//span[text()='Fundraising Contact: Fundraising Contact ID']/../../../../../following-sibling::tbody/tr/*[7]//img";
+					}else {
+						xpath1="//span[text()='Fundraising Contact: Fundraising Contact ID']/../../../../../following-sibling::tbody/tr/*["+(i+2)+"]";
+					}
+				}else {
+					if(headers.get(i).getText().trim().equalsIgnoreCase("Primary")) {
+						xpath1="//th[text()='Fundraising Contact: Fundraising Contact ID']/../following-sibling::tr/*[6]/img";
+					}else {
+						xpath1="//th[text()='Fundraising Contact: Fundraising Contact ID']/../following-sibling::tr/*["+(i+1)+"]";
+					}
 				}
-				if(headerName.trim().equalsIgnoreCase("Primary")) {
-					if(mode.equalsIgnoreCase(Mode.Lightning.toString())) {
-						String detail="";
-						if(details.get(j).equalsIgnoreCase("Checked")) {
-							 detail="True";
+				allDataOfGrid.add(FindElements(driver,xpath1, ""));
+			}
+			String headerName=null;
+			for(int i = 0; i < contactDetails.size(); i++) {
+				List<String> details = contactDetails.get(i);
+				headers = FindElements(driver, xpath, "Header");
+				for(int j = 0; j < details.size(); j++) {
+					if(mode.toString().equalsIgnoreCase(Mode.Lightning.toString())) {
+						headerName = headers.get(i).getText();
+						System.err.println("header: "+ headerName);
+					} else {
+						headerName = headers.get(i+1).getText();
+						System.err.println("header: "+ headerName);
+					}
+					if(headerName.trim().equalsIgnoreCase("Primary")) {
+						if(mode.equalsIgnoreCase(Mode.Lightning.toString())) {
+							String detail="";
+							if(details.get(j).equalsIgnoreCase("Checked")) {
+								 detail="True";
+							}else {
+								 detail="False";
+							}
+							if(detail.equalsIgnoreCase(allDataOfGrid.get(i).get(j).getAttribute("alt").trim())) {
+								log(LogStatus.INFO, headerName+" header data is matched successfully", YesNo.No);
+							} else {
+								log(LogStatus.ERROR, headerName+" header data is not matched. Expected: "+detail+"\tActual: "+allDataOfGrid.get(i).get(j).getAttribute("alt"), YesNo.Yes);
+								result.add(headerName+" header data is not matched. Expected: "+detail+"\tActual: "+allDataOfGrid.get(i).get(j).getAttribute("alt"));
+							}
 						}else {
-							 detail="False";
-						}
-						if(detail.equalsIgnoreCase(allDataOfGrid.get(i).get(j).getAttribute("alt").trim())) {
-							log(LogStatus.INFO, headerName+" header data is matched successfully", YesNo.No);
-						} else {
-							log(LogStatus.ERROR, headerName+" header data is not matched. Expected: "+detail+"\tActual: "+allDataOfGrid.get(i).get(j).getAttribute("alt"), YesNo.Yes);
-							result.add(headerName+" header data is not matched. Expected: "+detail+"\tActual: "+allDataOfGrid.get(i).get(j).getAttribute("alt"));
+							if(details.get(j).equalsIgnoreCase(allDataOfGrid.get(i).get(j).getAttribute("alt").trim())) {
+								log(LogStatus.INFO, headerName+" header data is matched successfully", YesNo.No);
+							} else {
+								log(LogStatus.ERROR, headerName+" header data is not matched. Expected: "+details.get(j)+"\tActual: "+allDataOfGrid.get(i).get(j).getAttribute("alt"), YesNo.Yes);
+								result.add(headerName+" header data is not matched. Expected: "+details.get(j)+"\tActual: "+allDataOfGrid.get(i).get(j).getAttribute("alt"));
+							}
 						}
 					}else {
-						if(details.get(j).equalsIgnoreCase(allDataOfGrid.get(i).get(j).getAttribute("alt").trim())) {
+						System.err.println("details: "+details.get(j)+" data on grid "+allDataOfGrid.get(i).get(j).getText());
+						if(details.get(j).equalsIgnoreCase(allDataOfGrid.get(i).get(j).getText().trim())) {
 							log(LogStatus.INFO, headerName+" header data is matched successfully", YesNo.No);
 						} else {
-							log(LogStatus.ERROR, headerName+" header data is not matched. Expected: "+details.get(j)+"\tActual: "+allDataOfGrid.get(i).get(j).getAttribute("alt"), YesNo.Yes);
-							result.add(headerName+" header data is not matched. Expected: "+details.get(j)+"\tActual: "+allDataOfGrid.get(i).get(j).getAttribute("alt"));
+							log(LogStatus.ERROR, headerName+" header data is not matched. Expected: "+details.get(j)+"\tActual: "+allDataOfGrid.get(i).get(j).getText(), YesNo.Yes);
+							result.add(headerName+" header data is not matched. Expected: "+details.get(j)+"\tActual: "+allDataOfGrid.get(i).get(j).getText());
 						}
-					}
-				}else {
-					System.err.println("details: "+details.get(j)+" data on grid "+allDataOfGrid.get(i).get(j).getText());
-					if(details.get(j).equalsIgnoreCase(allDataOfGrid.get(i).get(j).getText().trim())) {
-						log(LogStatus.INFO, headerName+" header data is matched successfully", YesNo.No);
-					} else {
-						log(LogStatus.ERROR, headerName+" header data is not matched. Expected: "+details.get(j)+"\tActual: "+allDataOfGrid.get(i).get(j).getText(), YesNo.Yes);
-						result.add(headerName+" header data is not matched. Expected: "+details.get(j)+"\tActual: "+allDataOfGrid.get(i).get(j).getText());
 					}
 				}
 			}
-		}
-		return result;
 		
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			log(LogStatus.ERROR, "Excetion Occur verify fundraising Contacts method", YesNo.Yes);
+			result.add("Excetion Occur verify fundraising Contacts method");
+
+		}
+		return result;	
 	}
 	
 	public String getfundraisingContactID(String mode,String contactName) {
