@@ -530,7 +530,7 @@ public class InstitutionsPageBusinessLayer extends InstitutionsPage {
 
 	}
 	
-	public boolean clickOnCreatedCompany(String environment,String mode,String company_name) {
+	public boolean clickOnCreatedProperty(String environment,String mode,String company_name) {
 		if(mode.equalsIgnoreCase(Mode.Classic.toString())){
 		int i =1;
 		if (getSelectedOptionOfDropDown(driver, getViewDropdown(60), "View dropdown", "text")
@@ -586,7 +586,7 @@ public class InstitutionsPageBusinessLayer extends InstitutionsPage {
 			}
 	}
 		}else{
-			if(clickOnAlreadyCreated_Lighting(environment, mode, TabName.CompaniesTab, company_name, 30)){
+			if(clickOnAlreadyCreated_Lighting(environment, mode, TabName.PropertiesTab, company_name, 30)){
 				appLog.info("Clicked on Company name : " + company_name);
 				return true;
 			}else{

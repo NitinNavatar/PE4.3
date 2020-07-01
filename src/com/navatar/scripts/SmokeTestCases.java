@@ -150,8 +150,8 @@ public class SmokeTestCases extends BaseLib {
 		lp.switchToClassic();	
 		if (home.clickOnSetUpLink(environment, Mode.Classic.toString())) {
 			List<String> layoutName = new ArrayList<String>();
-			layoutName.add("Company");
-			layoutName.add("Institution");
+			layoutName.add("Property");
+			layoutName.add("Institution - Real Estate");
 			layoutName.add("Individual Investor");
 			HashMap<String, String> sourceANDDestination = new HashMap<String, String>();
 			sourceANDDestination.put("Account Record Type", "Account Name");
@@ -3249,7 +3249,7 @@ public class SmokeTestCases extends BaseLib {
 		}
 		switchToDefaultContent(driver);
 		if (market.clickOnTab(environment, mode, TabName.InstituitonsTab)) {
-			if (ins.clickOnCreatedCompany(environment, mode, SmokeCOM1)) {
+			if (ins.clickOnCreatedProperty(environment, mode, SmokeCOM1)) {
 				appLog.info("clicked on Fund : " + Smoke_Fund1);
 				
 				for(int i=0; i<2; i++) {
@@ -4547,7 +4547,7 @@ public class SmokeTestCases extends BaseLib {
 		FundraisingsPageBusinessLayer frpg = new FundraisingsPageBusinessLayer(driver);
 		lp.CRMLogin(crmUser1EmailID, adminPassword);
 		if(ins.clickOnTab(environment, mode, TabName.InstituitonsTab)) {
-			if(ins.clickOnCreatedCompany(environment, mode, SmokeCOM1)) {
+			if(ins.clickOnCreatedProperty(environment, mode, SmokeCOM1)) {
 				if(mode.equalsIgnoreCase(Mode.Lightning.toString())) {
 					if(ins.ClickonRelatedTab_Lighting(environment, RecordType.Institution)) {
 						log(LogStatus.INFO, "clicked on related tab", YesNo.No);
@@ -4800,7 +4800,7 @@ public class SmokeTestCases extends BaseLib {
 		actionsList.add(SmokeC1_FName+" "+SmokeC1_LName+"<break>"+fundraisingContactActions.Role_DecisionMaker.toString());
 		lp.CRMLogin(crmUser1EmailID, adminPassword);
 		if(ins.clickOnTab(environment, mode, TabName.InstituitonsTab)) {
-			if(ins.clickOnCreatedCompany(environment, mode, SmokeCOM2)) {
+			if(ins.clickOnCreatedProperty(environment, mode, SmokeCOM2)) {
 				if(mode.equalsIgnoreCase(Mode.Lightning.toString())) {
 					if(home.ClickonRelatedTab_Lighting(environment, RecordType.Institution)) {
 						log(LogStatus.INFO, "clicked on related tab", YesNo.No);
@@ -5023,7 +5023,7 @@ public class SmokeTestCases extends BaseLib {
 		String Xpath = null;
 		lp.CRMLogin(crmUser1EmailID, adminPassword);
 		if(ins.clickOnTab(environment, mode, TabName.InstituitonsTab)) {
-			if(ins.clickOnCreatedCompany(environment, mode, SmokeCOM2)) {
+			if(ins.clickOnCreatedProperty(environment, mode, SmokeCOM2)) {
 				if(mode.equalsIgnoreCase(Mode.Lightning.toString())) {
 					if(home.ClickonRelatedTab_Lighting(environment, RecordType.Institution)) {
 						log(LogStatus.INFO, "clicked on related tab", YesNo.No);
@@ -6222,7 +6222,7 @@ public class SmokeTestCases extends BaseLib {
 		WebElement ele;
 		lp.CRMLogin(crmUser1EmailID, adminPassword);
 		if (market.clickOnTab(environment, mode, TabName.InstituitonsTab)) {
-			if (ins.clickOnCreatedCompany(environment, mode, SmokeCOM1)) {
+			if (ins.clickOnCreatedProperty(environment, mode, SmokeCOM1)) {
 				appLog.info("clicked on Fund : " + SmokeCOM1);
 				if(ins.clickOnRelatedList(environment, mode, RecordType.Institution, RelatedList.Commitments)) {
 					if (bp.scrollToRelatedList(environment, mode, RelatedList.Commitments)) {
@@ -7965,7 +7965,7 @@ public class SmokeTestCases extends BaseLib {
 										sa.assertTrue(false, "Not able to click on institution tab so cannot verify commitment details");
 									}
 									if(ins.clickOnTab(environment, mode, TabName.InstituitonsTab)) {
-										if(ins.clickOnCreatedCompany(environment, mode,SmokeCOM2)) {
+										if(ins.clickOnCreatedProperty(environment, mode,SmokeCOM2)) {
 											if(partnership.clickOnRelatedList(environment, mode, RecordType.Institution, RelatedList.Commitments)) {
 												log(LogStatus.INFO, "clicked on related list "+RelatedList.Commitments.toString(), YesNo.No);
 												ThreadSleep(5000);
@@ -8164,7 +8164,7 @@ public class SmokeTestCases extends BaseLib {
 		String FifteenDayAfterDate=previousOrForwardDate(15, "M/d/yyyy");
 		String[][] commitmentInformation= {{Smoke_LP5+"<break>"+CreatedOrNot.NotCreated+"<break>"+excelLabel.Bank_Name,SmokeCOMM7_CommitmentAmount,Smoke_P4+"<break>"+CreatedOrNot.NotCreated+"<break>"+excelLabel.Fund_Investment_Category.toString(),FifteenDayAfterDate}};
 		if(ins.clickOnTab(environment, mode, TabName.InstituitonsTab)) {
-			if(ins.clickOnCreatedCompany(environment, mode, SmokeCOM2)) {
+			if(ins.clickOnCreatedProperty(environment, mode, SmokeCOM2)) {
 				log(LogStatus.INFO, "click on created Company "+SmokeCOM2, YesNo.No);
 //				if(frsp.clickOnShowMoreActionDownArrow(environment, mode, PageName.InstitutionsPage, ShowMoreActionDropDownList.Create_Commitments,20)) {
 				if(mode.equalsIgnoreCase(Mode.Lightning.toString())) {
@@ -8606,14 +8606,14 @@ public class SmokeTestCases extends BaseLib {
 						// Company
 						appLog.info("Going on Company Tab");
 						if (bp.clickOnTab(environment, mode, TabName.InstituitonsTab)) {
-							if (ip.clickOnCreatedCompany(environment, mode, Smoke_PL1CompanyName)) {
+							if (ip.clickOnCreatedProperty(environment, mode, Smoke_PL1CompanyName)) {
 								appLog.info("Click on Created Company : " + Smoke_PL1CompanyName);
 								
 								String[][] labelsAndValuesforComp = { { excelLabel.Legal_Name.toString(), Smoke_PL1CompanyName },
 										{ excelLabel.Record_Type.toString(), "Company" } };
 								
 								for (String[] labelAndValue : labelsAndValuesforComp) {
-									if (ip.fieldValueVerificationOnInstitutionPage(environment, mode, TabName.CompaniesTab,
+									if (ip.fieldValueVerificationOnInstitutionPage(environment, mode, TabName.PropertiesTab,
 											labelAndValue[0], labelAndValue[1])) {;
 											log(LogStatus.INFO, labelAndValue[0] + " with value : " + labelAndValue[1]+ " verified on Company Page ", YesNo.No);
 									} else {
@@ -9362,7 +9362,7 @@ public class SmokeTestCases extends BaseLib {
 
 						appLog.info("Going on Company Tab");
 						if (ip.clickOnTab(environment, mode, TabName.InstituitonsTab)) {
-						if (ip.clickOnCreatedCompany(environment, mode, Smoke_PL2CompanyName)) {
+						if (ip.clickOnCreatedProperty(environment, mode, Smoke_PL2CompanyName)) {
 							appLog.info("Click on Created Contact : " + Smoke_PL2CompanyName);
 
 							String[][] labelsAndValuesforComp = {
@@ -9370,7 +9370,7 @@ public class SmokeTestCases extends BaseLib {
 									{ excelLabel.Employees.toString(), Smoke_PL2Employees } };
 
 							for (String[] labelAndValue : labelsAndValuesforComp) {
-								if (ip.fieldValueVerificationOnInstitutionPage(environment, mode, TabName.CompaniesTab,
+								if (ip.fieldValueVerificationOnInstitutionPage(environment, mode, TabName.PropertiesTab,
 										labelAndValue[0], labelAndValue[1])) {
 									appLog.info(labelAndValue[0] + " with value : " + labelAndValue[1]
 											+ " verified on Company Page ");
@@ -9490,14 +9490,14 @@ public class SmokeTestCases extends BaseLib {
 			// Company
 			appLog.info("Going on Company Tab");
 			if (bp.clickOnTab(environment, mode, TabName.InstituitonsTab)) {
-				if (ip.clickOnCreatedCompany(environment, mode, Smoke_PL3CompanyName)) {
+				if (ip.clickOnCreatedProperty(environment, mode, Smoke_PL3CompanyName)) {
 					appLog.info("Click on Created Company : " + Smoke_PL3CompanyName);
 
 					String[][] labelsAndValuesforComp = { { excelLabel.Legal_Name.toString(), Smoke_PL3CompanyName },
 							{ excelLabel.Record_Type.toString(), "Company" } };
 
 					for (String[] labelAndValue : labelsAndValuesforComp) {
-						if (ip.fieldValueVerificationOnInstitutionPage(environment, mode, TabName.CompaniesTab,
+						if (ip.fieldValueVerificationOnInstitutionPage(environment, mode, TabName.PropertiesTab,
 								labelAndValue[0], labelAndValue[1])) {
 							appLog.info(labelAndValue[0] + " with value : " + labelAndValue[1]
 									+ " verified on Company Page ");

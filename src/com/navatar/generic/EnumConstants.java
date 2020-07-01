@@ -99,7 +99,7 @@ public class EnumConstants {
 		InstituitonsTab, ContactTab, FundraisingsTab, FundsTab, NIMTab, CommitmentsTab, PartnershipsTab, 
 		NavatarInvestorAddOns, CurrentInvesment, PotentialInvesment, RecentActivities, AllDocuments, HomeTab, 
 		FolderTemplate, FundDistributions, InvestorDistributions, MarketingInitiatives, MarketingProspects, 
-		NavatarSetup, Pipelines, FundDrawdowns, CapitalCalls, FundraisingContacts, LimitedPartne, ReportsTab, LimitedPartner,CompaniesTab;
+		NavatarSetup, Pipelines, FundDrawdowns, CapitalCalls, FundraisingContacts, LimitedPartne, ReportsTab, LimitedPartner,PropertiesTab;
 	}
 	
 	public static enum Mode{
