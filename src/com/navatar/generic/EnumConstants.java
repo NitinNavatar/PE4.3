@@ -36,7 +36,7 @@ public class EnumConstants {
 				return "1st Closing Date";
 			}
 		}
-			, Pipeline_Name, Company_Name, Stage, Source, Source_Firm, Source_Contact, Deal_Type, Employees, Website, Email, Legal_Name, Name, Investment_Size, Log_In_Date, Our_Role, Last_Name, Last_Stage_Change_Date, Highest_Stage_Reached, Age_of_Current_Stage, Date_Stage_Changed, Changed_Stage, Age, First_Stage_Changed, Second_Stage_Changed, Office_Location_Name, State_Province, ZIP, Organization_Name, Primary, Updated_Primary, Start, Related_To, Due_Date,Investment_Likely_Amount,Total_Fundraising_Contacts,Fundraising_Contact_ID,Fundraising,Role, Other_Address, Mailing_Address,Total_Commitments,Commitment_Amount,Partner_Type,Tax_Forms,Final_Commitment_Date,Company,Bank_Name,Placement_Fee,Fund_Investment_Category,Total_CoInvestment_Commitments,Total_Fund_Commitments, Institution_Type, Fund_Preferences, Industry_Preferences, Shipping_Street, Shipping_City, Shipping_State, Shipping_Zip, Shipping_Country, Mobile_Phone, Assistant, Asst_Phone, Phone,Total_Call_Amount_Received, Total_Amount_Called,Total_Amount_Received,Total_Uncalled_Amount,Total_Commitment_Due,Commitment_Called,Called_Due,Preferred_Mode_of_Contact,Percent, TotalCommitment, Priority;
+			, Pipeline_Name, Company_Name,Property_Name, Stage, Source, Source_Firm, Source_Contact, Deal_Type, Employees, Website, Email, Legal_Name, Name, Investment_Size, Log_In_Date, Our_Role, Last_Name, Last_Stage_Change_Date, Highest_Stage_Reached, Age_of_Current_Stage, Date_Stage_Changed, Changed_Stage, Age, First_Stage_Changed, Second_Stage_Changed, Office_Location_Name, State_Province, ZIP, Organization_Name, Primary, Updated_Primary, Start, Related_To, Due_Date,Investment_Likely_Amount,Total_Fundraising_Contacts,Fundraising_Contact_ID,Fundraising,Role, Other_Address, Mailing_Address,Total_Commitments,Commitment_Amount,Partner_Type,Tax_Forms,Final_Commitment_Date,Company,Bank_Name,Placement_Fee,Fund_Investment_Category,Total_CoInvestment_Commitments,Total_Fund_Commitments, Institution_Type, Fund_Preferences, Industry_Preferences, Shipping_Street, Shipping_City, Shipping_State, Shipping_Zip, Shipping_Country, Mobile_Phone, Assistant, Asst_Phone, Phone,Total_Call_Amount_Received, Total_Amount_Called,Total_Amount_Received,Total_Uncalled_Amount,Total_Commitment_Due,Commitment_Called,Called_Due,Preferred_Mode_of_Contact,Percent, TotalCommitment, Priority;
 };
 
 	public static enum fileDistributor {
@@ -128,7 +128,7 @@ public class EnumConstants {
 	
 	public static enum PageName{
 		  FundsPage,ContactsPage,InstitutionsPage,CommitmentsPage,HomePage,NavatarInvestorAddOnsPage,AllFirmsPage,InvestorFirmPage,CurrentInvestmentPgae,PotentialInvestmentPage,NavatarInvestorManager,ManageFolderPopUp,BulkDownload,ManageApprovalsPopUp,AllDocumentTab
-		  ,RecentActivitiesTab,FundPageAlertPopUp,ContactPageAlertPopUp,LimitedPartnerPage,BuildStep2Of3,CompanyPage,WarningPopUp,CreateFundraisingPage,emailProspects,emailFundraisingContact,CreateCommitmentFundType,CreateCommitmentCoInvestmentType,FundraisingPage,FundDrawdown, CapitalCall,PartnershipsPage,FundDistribution,InvestorDistribution, MarketingInitiatives, EmailTargets, ManageTarget, DealPage,pastFundraisingContactPopUp,pastFundraisingAccountPopUp, emailCapitalCallNotice, Send_Distribution_Notices, BulkEmail;
+		  ,RecentActivitiesTab,FundPageAlertPopUp,ContactPageAlertPopUp,LimitedPartnerPage,BuildStep2Of3,PropertyPage,WarningPopUp,CreateFundraisingPage,emailProspects,emailFundraisingContact,CreateCommitmentFundType,CreateCommitmentCoInvestmentType,FundraisingPage,FundDrawdown, CapitalCall,PartnershipsPage,FundDistribution,InvestorDistribution, MarketingInitiatives, EmailTargets, ManageTarget, DealPage,pastFundraisingContactPopUp,pastFundraisingAccountPopUp, emailCapitalCallNotice, Send_Distribution_Notices, BulkEmail;
 		 }
 	
 	public static enum NavatarSetupSideMenuTab{
@@ -392,7 +392,7 @@ public class EnumConstants {
 			public String toString() {
 					return "Investment Likely Amount (mn)";
 		}
-		},Fund_Name,Company;
+		},Fund_Name,Property;
 		
 	}
 	

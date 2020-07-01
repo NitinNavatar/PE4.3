@@ -151,7 +151,7 @@ public class SmokeTestCases extends BaseLib {
 		if (home.clickOnSetUpLink(environment, Mode.Classic.toString())) {
 			List<String> layoutName = new ArrayList<String>();
 			layoutName.add("Property");
-			layoutName.add("Institution - Real Estate");
+			layoutName.add("Institution");
 			layoutName.add("Individual Investor");
 			HashMap<String, String> sourceANDDestination = new HashMap<String, String>();
 			sourceANDDestination.put("Account Record Type", "Account Name");
@@ -175,7 +175,7 @@ public class SmokeTestCases extends BaseLib {
 
 		if (home.clickOnSetUpLink(environment, Mode.Classic.toString())) {
 			List<String> layoutName = new ArrayList<String>();
-			layoutName.add("Company");
+			layoutName.add("Property");
 			layoutName.add("Institution");
 			layoutName.add("Individual Investor");
 			HashMap<String, String> sourceANDDestination = new HashMap<String, String>();
@@ -3267,14 +3267,14 @@ public class SmokeTestCases extends BaseLib {
 						}
 					}
 					if(i==0) {
-						if (fund.getCreateFundRaisingBtn(environment, mode, PageName.CompanyPage, 60) != null) {
+						if (fund.getCreateFundRaisingBtn(environment, mode, PageName.PropertyPage, 60) != null) {
 							log(LogStatus.INFO, "Create Fundraising button is visible on CompanyPage", YesNo.No);
 						} else {
 							log(LogStatus.ERROR, "Create Fundraising button is not visible on CompanyPage", YesNo.Yes);
 							sa.assertTrue(false, "Create Fundraising button is not visible on CompanyPage");
 						}
 					}
-					if(click(driver, fund.getCreateFundRaisingBtn(environment, mode, PageName.CompanyPage, 60), "create fundraising button", action.SCROLLANDBOOLEAN)) {
+					if(click(driver, fund.getCreateFundRaisingBtn(environment, mode, PageName.PropertyPage, 60), "create fundraising button", action.SCROLLANDBOOLEAN)) {
 						log(LogStatus.INFO, "Clicked on Create Fundraising button on CompanyPage", YesNo.No);
 						if(mode.equalsIgnoreCase(Mode.Lightning.toString())) {
 							switchToFrame(driver, 30, home.getCreateFundraisingsFrame_Lighting(20));
@@ -6232,15 +6232,15 @@ public class SmokeTestCases extends BaseLib {
 						log(LogStatus.ERROR, "could not scroll to create commitments button", YesNo.Yes);
 						sa.assertTrue(false, "could not scroll to create commitments button");
 					}
-					if (fund.getCreateCommitmentsBtn(environment, mode, PageName.CompanyPage, 20) != null) {
-						log(LogStatus.INFO, "Create Commitments button is visible on CompanyPage "+SmokeCOM1, YesNo.No);
+					if (fund.getCreateCommitmentsBtn(environment, mode, PageName.PropertyPage, 20) != null) {
+						log(LogStatus.INFO, "Create Commitments button is visible on PropertyPage "+SmokeCOM1, YesNo.No);
 					} else {
-						log(LogStatus.ERROR, "Create Commitments button is not visible on CompanyPage "+SmokeCOM1, YesNo.Yes);
-						sa.assertTrue(false, "Create Commitments button is not visible on CompanyPage "+SmokeCOM1);
+						log(LogStatus.ERROR, "Create Commitments button is not visible on PropertyPage "+SmokeCOM1, YesNo.Yes);
+						sa.assertTrue(false, "Create Commitments button is not visible on PropertyPage "+SmokeCOM1);
 					}
 				}else {
-					log(LogStatus.ERROR, "Not able to click on related tab so cannot verify commit button on company page "+SmokeCOM1, YesNo.Yes);
-					sa.assertTrue(false, "Not able to click on related tab so cannot verify commit button on company page "+SmokeCOM1);
+					log(LogStatus.ERROR, "Not able to click on related tab so cannot verify commit button on Property page "+SmokeCOM1, YesNo.Yes);
+					sa.assertTrue(false, "Not able to click on related tab so cannot verify commit button on Property page "+SmokeCOM1);
 				}
 			} else {
 				sa.assertTrue(false, "Not able to clicked on created Company: " + SmokeCOM1);
@@ -6471,13 +6471,13 @@ public class SmokeTestCases extends BaseLib {
 										log(LogStatus.INFO, "clicked on fund tab", YesNo.No);
 										if(fund.clickOnRelatedList(environment, mode, RecordType.Fund, RelatedList.Partnerships)) {
 											log(LogStatus.INFO, "Clicked on Partnerships related list", YesNo.No);
-											if(fund.clickOnViewAllRelatedList(environment, mode, RelatedList.Partnerships)) {
+											if(fund.clickOnViewAllRelatedList(environment, mode, RelatedList.Partnerships, null)) {
 												log(LogStatus.INFO, "clicked on view all",YesNo.No);
 												if(fund.clickOncreatedPartnershipFromRelatedList(environment, mode, Smoke_P1)) {
 													log(LogStatus.INFO, "clicked on partnership "+Smoke_P1, YesNo.No);
 													if(partnership.clickOnRelatedList(environment, mode, RecordType.Partnerships, RelatedList.Commitments)) {
 														log(LogStatus.INFO, "clicked on related list "+RelatedList.Partnerships.toString(), YesNo.No);
-														if(partnership.clickOnViewAllRelatedList(environment, mode, RelatedList.Commitments)) {
+														if(partnership.clickOnViewAllRelatedList(environment, mode, RelatedList.Commitments, PageName.PartnershipsPage)) {
 															log(LogStatus.INFO, "clicked on commitments view all ", YesNo.No);
 															String id=partnership.getCommitmentID(mode, Smoke_LP1);
 															if(!id.isEmpty()) {
@@ -6618,7 +6618,7 @@ public class SmokeTestCases extends BaseLib {
 											
 											if(partnership.clickOnRelatedList(environment, mode, RecordType.Institution, RelatedList.Commitments)) {
 												log(LogStatus.INFO, "clicked on related list "+RelatedList.Commitments.toString(), YesNo.No);
-												if(partnership.clickOnViewAllRelatedList(environment, mode, RelatedList.Commitments)) {
+												if(partnership.clickOnViewAllRelatedList(environment, mode, RelatedList.Commitments, null)) {
 													ThreadSleep(2000);
 													if(partnership.verifyPartnerShipRelatedList(environment, mode, PageName.LimitedPartnerPage, SmokeCOMM1_ID,Smoke_P1,null,SmokeCOMM1_CommitmentAmount)) {
 														log(LogStatus.INFO, "Commitment Related details are verified on Limited Partner page "+Smoke_LP1, YesNo.No);
@@ -6659,7 +6659,7 @@ public class SmokeTestCases extends BaseLib {
 											
 											if(partnership.clickOnRelatedList(environment, mode, RecordType.Institution, RelatedList.Commitments)) {
 												log(LogStatus.INFO, "clicked on related list "+RelatedList.Commitments.toString(), YesNo.No);
-												if(partnership.clickOnViewAllRelatedList(environment, mode, RelatedList.Commitments)) {
+												if(partnership.clickOnViewAllRelatedList(environment, mode, RelatedList.Commitments, null)) {
 													ThreadSleep(2000);
 													if(partnership.verifyPartnerShipRelatedList(environment, mode, PageName.LimitedPartnerPage, SmokeCOMM2_ID,Smoke_P1,null,SmokeCOMM2_CommitmentAmount)) {
 														log(LogStatus.INFO, "Commitment Related details are verified on Limited Partner page "+Smoke_LP2, YesNo.No);
@@ -6748,7 +6748,7 @@ public class SmokeTestCases extends BaseLib {
 						ThreadSleep(2000);
 
 						// Deal Information 2nd
-						String expectedResult = "Company" + "," + "Fund Manager" + "," + "Fund Manager’s Fund" + ","
+						String expectedResult = "Property" + "," + "Fund Manager" + "," + "Fund Manager’s Fund" + ","
 								+ "Individual Investor" + "," + "Institution" + "," + "Limited Partner";
 						checkBox = nspbl.getEnableCheckBoxforNavatarSetUpSideMenuTab(environment, mode,
 								NavatarSetupSideMenuTab.CommitmentCreation, EditViewMode.Edit, ClickOrCheckEnableDisableCheckBox.EnableOrDisable, 10);
@@ -6759,7 +6759,7 @@ public class SmokeTestCases extends BaseLib {
 							log(LogStatus.FAIL, "Check Box not Verified", YesNo.Yes);
 						}
 						
-						String[] labels= {"Fundraising Name","Legal Name","Fund Name","Company","None","None"};
+						String[] labels= {"Fundraising Name","Legal Name","Fund Name","Property","None","None"};
 						////////////////
 						if(nspbl.verifyLabelInEditModeforNavatarSetUpSideMenuTab(environment, mode, NavatarSetupSideMenuTab.CommitmentCreation, NavatarSetupSideMenuTabLayoutSection.CommitmentCreation_FundRaisingInformation, labels).isEmpty()) {
 							log(LogStatus.PASS, "Commitment Creation FundRaising Information labels are verified ", YesNo.No);
@@ -6767,7 +6767,7 @@ public class SmokeTestCases extends BaseLib {
 							log(LogStatus.FAIL, "Commitment Creation FundRaising Information labels are not verified ", YesNo.Yes);
 							sa.assertTrue(false, "Commitment Creation FundRaising Information labels are not verified ");
 						}
-						String[] labels1= {"Legal Name","Fund Name","Company"};
+						String[] labels1= {"Legal Name","Fund Name","Property"};
 						if(nspbl.verifyLabelInEditModeforNavatarSetUpSideMenuTab(environment, mode, NavatarSetupSideMenuTab.CommitmentCreation, NavatarSetupSideMenuTabLayoutSection.CommitmentCreation_GeneralInformation, labels1).isEmpty()) {
 							log(LogStatus.PASS, "Commitment Creation Genral Information labels are verified ", YesNo.No);
 						}else {
@@ -6851,7 +6851,7 @@ public class SmokeTestCases extends BaseLib {
 									log(LogStatus.INFO, "click on Limited Partner required field link", YesNo.No);
 									ThreadSleep(5000);
 									List<WebElement> options = allOptionsInDropDrop(driver, nspbl.getNewLP_CommitmentTab_DropDownList(environment, mode, 10), "limited partner drop down list");
-									if(compareMultipleList(driver, "Company,Fund Manager,Fund Manager’s Fund,Individual Investor,Institution,Limited Partner", options).isEmpty()) {
+									if(compareMultipleList(driver, "Property,Fund Manager,Fund Manager’s Fund,Individual Investor,Institution,Limited Partner", options).isEmpty()) {
 										log(LogStatus.INFO, "Limited partner drop down list is verified ", YesNo.No);
 									}else {
 										log(LogStatus.FAIL, "Limited partner drop down list is not verified ", YesNo.No);
@@ -7011,13 +7011,13 @@ public class SmokeTestCases extends BaseLib {
 										log(LogStatus.INFO, "clicked on fund tab", YesNo.No);
 										if(fund.clickOnRelatedList(environment, mode, RecordType.Fund, RelatedList.Partnerships)) {
 											log(LogStatus.INFO, "Clicked on Partnerships related list", YesNo.No);
-											if(fund.clickOnViewAllRelatedList(environment, mode, RelatedList.Partnerships)) {
+											if(fund.clickOnViewAllRelatedList(environment, mode, RelatedList.Partnerships, null)) {
 												log(LogStatus.INFO, "clicked on view all",YesNo.No);
 												if(fund.clickOncreatedPartnershipFromRelatedList(environment, mode, Smoke_P1)) {
 													log(LogStatus.INFO, "clicked on partnership "+Smoke_P1, YesNo.No);
 													if(partnership.clickOnRelatedList(environment, mode, RecordType.Partnerships, RelatedList.Commitments)) {
 														log(LogStatus.INFO, "clicked on related list "+RelatedList.Partnerships.toString(), YesNo.No);
-														if(partnership.clickOnViewAllRelatedList(environment, mode, RelatedList.Commitments)) {
+														if(partnership.clickOnViewAllRelatedList(environment, mode, RelatedList.Commitments, PageName.PartnershipsPage)) {
 															log(LogStatus.INFO, "clicked on commitments view all ", YesNo.No);
 															String id=partnership.getCommitmentID(mode, Smoke_LP1);
 															if(!id.isEmpty()) {
@@ -7070,7 +7070,7 @@ public class SmokeTestCases extends BaseLib {
 									if(partnership.clickOnCreatedPartnership(environment, mode, Smoke_P2)) {
 										if(partnership.clickOnRelatedList(environment, mode, RecordType.Partnerships, RelatedList.Commitments)) {
 											log(LogStatus.INFO, "clicked on related list "+RelatedList.Partnerships.toString(), YesNo.No);
-											if(partnership.clickOnViewAllRelatedList(environment, mode, RelatedList.Commitments)) {
+											if(partnership.clickOnViewAllRelatedList(environment, mode, RelatedList.Commitments, PageName.PartnershipsPage)) {
 												log(LogStatus.INFO, "clicked on commitments view all ", YesNo.No);
 												String id=partnership.getCommitmentID(mode, Smoke_LP3);
 												if(!id.isEmpty()) {
@@ -7308,7 +7308,7 @@ public class SmokeTestCases extends BaseLib {
 								if(partnership.clickOnCreatedPartnership(environment, mode, Smoke_P2)) {
 									if(partnership.clickOnRelatedList(environment, mode, RecordType.Partnerships, RelatedList.Commitments)) {
 										log(LogStatus.INFO, "clicked on related list "+RelatedList.Partnerships.toString(), YesNo.No);
-										if(partnership.clickOnViewAllRelatedList(environment, mode, RelatedList.Commitments)) {
+										if(partnership.clickOnViewAllRelatedList(environment, mode, RelatedList.Commitments, PageName.PartnershipsPage)) {
 											log(LogStatus.INFO, "clicked on commitments view all ", YesNo.No);
 											String id=partnership.getCommitmentID(mode, Smoke_LP4);
 											if(!id.isEmpty()) {
@@ -7359,7 +7359,7 @@ public class SmokeTestCases extends BaseLib {
 
 									if(partnership.clickOnRelatedList(environment, mode, RecordType.Institution, RelatedList.Commitments)) {
 										log(LogStatus.INFO, "clicked on related list "+RelatedList.Partnerships.toString(), YesNo.No);
-										if(partnership.clickOnViewAllRelatedList(environment, mode, RelatedList.Commitments)) {
+										if(partnership.clickOnViewAllRelatedList(environment, mode, RelatedList.Commitments, null)) {
 											ThreadSleep(2000);
 											if(partnership.verifyPartnerShipRelatedList(environment, mode, PageName.LimitedPartnerPage, SmokeCOMM5_ID,Smoke_P2,null,SmokeCOMM5_CommitmentAmount)) {
 												log(LogStatus.INFO, "Commitment Related details are verified on Limited Partner page "+Smoke_LP4, YesNo.No);
@@ -7520,7 +7520,7 @@ public class SmokeTestCases extends BaseLib {
 						xpath = "//span[@id='mypage:CommitmentCreationFormId:CompanyFundPanelId']//label";
 						eleList=FindElements(driver, xpath, "Commitment creation pop up Fund Label");
 
-						List<String> returnlist = compareMultipleList(driver, "Company,*Fund Name,*Legal Name",
+						List<String> returnlist = compareMultipleList(driver, "Property,*Fund Name,*Legal Name",
 								eleList);
 						if (returnlist.isEmpty()) {
 							log(LogStatus.PASS, "Commitment creation pop up Fund Label is Verified", YesNo.No);
@@ -7558,7 +7558,7 @@ public class SmokeTestCases extends BaseLib {
 							switchToFrame(driver, 30, home.getCreateCommitmentFrame_Lightning(20));
 
 						}
-						xpath = "//label[text()='Company']/../following-sibling::td//span/input[@id='mypage:CommitmentCreationFormId:CompanyInputId']";
+						xpath = "//label[text()='Property']/../following-sibling::td//span/input[@id='mypage:CommitmentCreationFormId:CompanyInputId']";
 						ele = FindElement(driver, xpath, "Company Text Value", action.BOOLEAN, 10);
 						if (sendKeys(driver, ele, "", "Company Blank Text Value", action.BOOLEAN)) {
 							log(LogStatus.INFO, "Clear Value of Company Text Box", YesNo.No);	
@@ -7614,21 +7614,21 @@ public class SmokeTestCases extends BaseLib {
 										sa.assertTrue(false, "Legal Name Label With Value Not Verified : "+SmokeINDINV1);
 									}
 
-									xpath = "//span[@id='mypage:CommitmentCreationFormId:GeneralDivId']//label[text()='Company']/../following-sibling::td/span";
-									ele = FindElement(driver, xpath, "Company Label Text Value", action.BOOLEAN, 10);
+									xpath = "//span[@id='mypage:CommitmentCreationFormId:GeneralDivId']//label[text()='Property']/../following-sibling::td/span";
+									ele = FindElement(driver, xpath, "Property Label Text Value", action.BOOLEAN, 10);
 									String txt=null;
 									if (ele!=null) {
-										log(LogStatus.INFO, "Company Label is Present", YesNo.Yes);
+										log(LogStatus.INFO, "Property Label is Present", YesNo.Yes);
 										txt = ele.getText().trim();
 										if (txt.isEmpty()) {
-											log(LogStatus.INFO, "Company Label have Blank Value", YesNo.Yes);
+											log(LogStatus.INFO, "Property Label have Blank Value", YesNo.Yes);
 										} else {
-											log(LogStatus.ERROR, "Company Label Should have Blank Value", YesNo.Yes);
-											sa.assertTrue(false, "Company Label Should have Blank Value");
+											log(LogStatus.ERROR, "Property Label Should have Blank Value", YesNo.Yes);
+											sa.assertTrue(false, "Property Label Should have Blank Value");
 
 										}} else {
-											log(LogStatus.ERROR, "Company Label is Not Present", YesNo.Yes);
-											sa.assertTrue(false, "Company Label is Not Present");
+											log(LogStatus.ERROR, "Property Label is Not Present", YesNo.Yes);
+											sa.assertTrue(false, "Property Label is Not Present");
 										}
 
 
@@ -7672,13 +7672,13 @@ public class SmokeTestCases extends BaseLib {
 										
 														
 													}else {
-														log(LogStatus.ERROR, "Not able to select Company Name "+SmokeCOM2, YesNo.Yes);
-														sa.assertTrue(false, "Not able to select Company Name "+SmokeCOM2);
+														log(LogStatus.ERROR, "Not able to select Property Name "+SmokeCOM2, YesNo.Yes);
+														sa.assertTrue(false, "Not able to select Property Name "+SmokeCOM2);
 													}
 													
 												}else {
-													log(LogStatus.ERROR, "Not able to click on company Name look up icon so cannot select Company Name "+SmokeCOM2,YesNo.Yes);
-													sa.assertTrue(false, "Not able to click on company Name look up icon so cannot select Company Name "+SmokeCOM2);
+													log(LogStatus.ERROR, "Not able to click on Property Name look up icon so cannot select Property Name "+SmokeCOM2,YesNo.Yes);
+													sa.assertTrue(false, "Not able to click on Property Name look up icon so cannot select Property Name "+SmokeCOM2);
 												}
 												
 												
@@ -7819,7 +7819,7 @@ public class SmokeTestCases extends BaseLib {
 						String[][] labelAndValue= {{CreateCommitmentPageFieldLabelText.Legal_Name.toString(),SmokeINDINV1},
 								{CreateCommitmentPageFieldLabelText.Fundraising_Name.toString(),Smoke_FR6},
 								{CreateCommitmentPageFieldLabelText.Investment_Likely_Amount.toString(),""},
-								{CreateCommitmentPageFieldLabelText.Company.toString(),""},
+								{CreateCommitmentPageFieldLabelText.Property.toString(),""},
 								{CreateCommitmentPageFieldLabelText.Fund_Name.toString(),Smoke_Fund3}};
 						SoftAssert result=home.verifyCreateCommitmentGenralOrFundraisingInfo(environment, mode, labelAndValue);
 						sa.combineAssertions(result);
@@ -7854,13 +7854,13 @@ public class SmokeTestCases extends BaseLib {
 											log(LogStatus.INFO, "clicked on fund tab", YesNo.No);
 											if(fund.clickOnRelatedList(environment, mode, RecordType.Fund, RelatedList.Partnerships)) {
 												log(LogStatus.INFO, "Clicked on Partnerships related list", YesNo.No);
-												if(fund.clickOnViewAllRelatedList(environment, mode, RelatedList.Partnerships)) {
+												if(fund.clickOnViewAllRelatedList(environment, mode, RelatedList.Partnerships, null)) {
 													log(LogStatus.INFO, "clicked on view all",YesNo.No);
 													if(fund.clickOncreatedPartnershipFromRelatedList(environment, mode, Smoke_P3)) {
 														log(LogStatus.INFO, "clicked on partnership "+Smoke_P3, YesNo.No);
 														if(partnership.clickOnRelatedList(environment, mode, RecordType.Partnerships, RelatedList.Commitments)) {
 															log(LogStatus.INFO, "clicked on related list "+RelatedList.Partnerships.toString(), YesNo.No);
-															if(partnership.clickOnViewAllRelatedList(environment, mode, RelatedList.Commitments)) {
+															if(partnership.clickOnViewAllRelatedList(environment, mode, RelatedList.Commitments, PageName.PartnershipsPage)) {
 																log(LogStatus.INFO, "clicked on commitments view all ", YesNo.No);
 																String id=partnership.getCommitmentID(mode, Smoke_LP4);
 																if(!id.isEmpty()) {
@@ -7972,13 +7972,13 @@ public class SmokeTestCases extends BaseLib {
 												if (mode.toString().equalsIgnoreCase(Mode.Lightning.toString()))
 													ins.scrollToRelatedListViewAll_Lightning(environment, mode, RelatedList.Commitments, true);
 												ThreadSleep(2000);
-												if(partnership.clickOnViewAllRelatedList(environment, mode, RelatedList.Commitments)) {
+												if(partnership.clickOnViewAllRelatedList(environment, mode, RelatedList.Commitments, null)) {
 													ThreadSleep(2000);
-													if(partnership.verifyPartnerShipRelatedList(environment, mode, PageName.CompanyPage, SmokeCOMM6_ID,Smoke_LP4,Smoke_P3,SmokeCOMM6_CommitmentAmount)) {
-														log(LogStatus.INFO, "Commitment Related details are verified on Company page "+SmokeCOM2, YesNo.No);
+													if(partnership.verifyPartnerShipRelatedList(environment, mode, PageName.PropertyPage, SmokeCOMM6_ID,Smoke_LP4,Smoke_P3,SmokeCOMM6_CommitmentAmount)) {
+														log(LogStatus.INFO, "Commitment Related details are verified on Property page "+SmokeCOM2, YesNo.No);
 													}else {
-														log(LogStatus.INFO, "Commitment Related details are not verified on Company page "+SmokeCOM2, YesNo.Yes);
-														sa.assertTrue(false, "Commitment Related details are not verified on Company page "+SmokeCOM2);
+														log(LogStatus.INFO, "Commitment Related details are not verified on Property page "+SmokeCOM2, YesNo.Yes);
+														sa.assertTrue(false, "Commitment Related details are not verified on Property page "+SmokeCOM2);
 													}
 												}else {
 													log(LogStatus.ERROR, "Not able to click on view all link so cannot verify partnership", YesNo.Yes);
@@ -8179,7 +8179,7 @@ public class SmokeTestCases extends BaseLib {
 						exit("Not able to click on related tab so cannot click on create commitment button");
 					}
 				}
-				if(click(driver, home.getCreateCommitmentsBtn(environment, mode, PageName.CompanyPage, 60), "create commitment button", action.SCROLLANDBOOLEAN)) {
+				if(click(driver, home.getCreateCommitmentsBtn(environment, mode, PageName.PropertyPage, 60), "create commitment button", action.SCROLLANDBOOLEAN)) {
 				
 					log(LogStatus.INFO, "clicked on create commitment button", YesNo.No);
 					ThreadSleep(5000);
@@ -8213,13 +8213,13 @@ public class SmokeTestCases extends BaseLib {
 											log(LogStatus.INFO, "clicked on fund tab", YesNo.No);
 											if(fund.clickOnRelatedList(environment, mode, RecordType.Fund, RelatedList.Partnerships)) {
 												log(LogStatus.INFO, "Clicked on Partnerships related list", YesNo.No);
-												if(fund.clickOnViewAllRelatedList(environment, mode, RelatedList.Partnerships)) {
+												if(fund.clickOnViewAllRelatedList(environment, mode, RelatedList.Partnerships, null)) {
 													log(LogStatus.INFO, "clicked on view all",YesNo.No);
 													if(fund.clickOncreatedPartnershipFromRelatedList(environment, mode, Smoke_P4)) {
 														log(LogStatus.INFO, "clicked on partnership "+Smoke_P4, YesNo.No);
 														if(partnership.clickOnRelatedList(environment, mode, RecordType.Partnerships, RelatedList.Commitments)) {
 															log(LogStatus.INFO, "clicked on related list "+RelatedList.Partnerships.toString(), YesNo.No);
-															if(partnership.clickOnViewAllRelatedList(environment, mode, RelatedList.Commitments)) {
+															if(partnership.clickOnViewAllRelatedList(environment, mode, RelatedList.Commitments, PageName.PartnershipsPage)) {
 																log(LogStatus.INFO, "clicked on commitments view all ", YesNo.No);
 																String id=partnership.getCommitmentID(mode, Smoke_LP5);
 																if(!id.isEmpty()) {
@@ -8565,7 +8565,7 @@ public class SmokeTestCases extends BaseLib {
 						switchToDefaultContent(driver);
 						String monthAndYear = getSystemDate("MMM") + " " + getSystemDate("yyyy");
 						String expectedPipeLineName = Smoke_PL1CompanyName + " " + "-" + " " + monthAndYear;
-						String[] labelName = "Pipeline Name,Company Name,Last Stage Change Date,Highest Stage Reached,Age of Current Stage,Source Contact,Source Firm".split(",");
+						String[] labelName = "Pipeline Name,Property Name,Last Stage Change Date,Highest Stage Reached,Age of Current Stage,Source Contact,Source Firm".split(",");
 						String labelValue = expectedPipeLineName + "," + Smoke_PL1CompanyName + "," + getSystemDate("M/d/yyyy") + ","
 								+ Smoke_PL1Stage + "," + Smoke_PL1AgeOfCurrentStage+ "," + Smoke_PL1SourceContact_Name+","+Smoke_PL1SourceFirm;
 						String[] labelValues =  labelValue.split(",");
@@ -8610,7 +8610,7 @@ public class SmokeTestCases extends BaseLib {
 								appLog.info("Click on Created Company : " + Smoke_PL1CompanyName);
 								
 								String[][] labelsAndValuesforComp = { { excelLabel.Legal_Name.toString(), Smoke_PL1CompanyName },
-										{ excelLabel.Record_Type.toString(), "Company" } };
+										{ excelLabel.Record_Type.toString(), "Property" } };
 								
 								for (String[] labelAndValue : labelsAndValuesforComp) {
 									if (ip.fieldValueVerificationOnInstitutionPage(environment, mode, TabName.PropertiesTab,
@@ -8643,7 +8643,7 @@ public class SmokeTestCases extends BaseLib {
 								
 								String[][] dealSourceFieldsAndValues = {
 										{ excelLabel.Pipeline_Name.toString(), expectedPipeLineName },
-										{ excelLabel.Company_Name.toString(), Smoke_PL1CompanyName },
+										{ excelLabel.Property_Name.toString(), Smoke_PL1CompanyName },
 										{ excelLabel.Deal_Type.toString(), "" },
 										{ excelLabel.Stage.toString(), Smoke_PL1Stage },
 										{ excelLabel.Source_Contact.toString(), Smoke_PL1SourceContact_Name }};
@@ -8653,7 +8653,7 @@ public class SmokeTestCases extends BaseLib {
 									log(LogStatus.INFO, "Click on Deal Sourced", YesNo.No);
 									
 									
-									if (ip.clickOnViewAllRelatedList(environment, mode,RelatedList.Deals_Sourced)) {
+									if (ip.clickOnViewAllRelatedList(environment, mode,RelatedList.Deals_Sourced, null)) {
 										log(LogStatus.INFO, "Click on View All Deal Sourced", YesNo.No);
 										
 										if (ip.verifyDealSourcedRelatedList(environment, mode, RecordType.IndividualInvestor,
@@ -8766,7 +8766,7 @@ public class SmokeTestCases extends BaseLib {
 						ThreadSleep(2000);
 
 						// Deal Information 2nd
-						String expectedResult = "Company" + "," + "Fund Manager" + "," + "Fund Manager’s Fund" + ","
+						String expectedResult = "Property" + "," + "Fund Manager" + "," + "Fund Manager’s Fund" + ","
 								+ "Individual Investor" + "," + "Institution" + "," + "Limited Partner";
 
 						checkBox = nspbl.getEnableCheckBoxforNavatarSetUpSideMenuTab(environment, mode,
@@ -8779,9 +8779,9 @@ public class SmokeTestCases extends BaseLib {
 							log(LogStatus.FAIL, "Check Box not Verified", YesNo.Yes);
 						}
 
-						String dealInfo_assignedRecordTypeDefaultValue = "Company";
+						String dealInfo_assignedRecordTypeDefaultValue = "Property";
 						String defaultvalue = getSelectedOptionOfDropDown(driver,
-								dctb.getDealInformationLayout_RecordType(environment, 10), "Company", "Text");
+								dctb.getDealInformationLayout_RecordType(environment, 10), "Property", "Text");
 						if (defaultvalue.equalsIgnoreCase(dealInfo_assignedRecordTypeDefaultValue)) {
 							log(LogStatus.PASS, "Deal Information Assigned Record type default value matched", YesNo.No);
 						} else {
@@ -8802,7 +8802,7 @@ public class SmokeTestCases extends BaseLib {
 							log(LogStatus.FAIL, "Deal Information Assigned Record type not matched", YesNo.Yes);
 						}
 
-						String[] OtherDropDown = { "Company Name", "Pipeline Name", "Stage", "Source Firm",
+						String[] OtherDropDown = { "Property Name", "Pipeline Name", "Stage", "Source Firm",
 								"Source Contact", "Source", "Legal Name", "Last Name" };
 
 						for (String selectvalue : OtherDropDown) {
@@ -8843,7 +8843,7 @@ public class SmokeTestCases extends BaseLib {
 						List<WebElement> newSourceFirm_RecordType = allOptionsInDropDrop(driver,
 								dctb.getNewSourceFirmLayout_RecordType(environment, 10),
 								"New Source Firm Record Type Drop Down");
-						expectedResult = "Company" + "," + "Fund Manager" + "," + "Fund Manager’s Fund" + ","
+						expectedResult = "Property" + "," + "Fund Manager" + "," + "Fund Manager’s Fund" + ","
 								+ "Individual Investor" + "," + "Institution" + "," + "Limited Partner";
 						returnlist = compareMultipleList(driver, expectedResult, newSourceFirm_RecordType);
 						if (returnlist.isEmpty()) {
@@ -8873,7 +8873,7 @@ public class SmokeTestCases extends BaseLib {
 							// PipeLine
 							appLog.info("Going to Verify Deal Room Information Required Field for PipeLine Layout");
 							String[][] pipeLineRowValues = { { "Pipeline Name", "Name", "string" },
-									{ "Company Name", "navpeII__Company_Name__c", "reference" },
+									{ "Property Name", "navpeII__Company_Name__c", "reference" },
 									{ "Stage", "navpeII__Stage__c", "picklist" } };
 							tcsa = dctb.verifyingPipeLineRequiredFieldListDealInformationLayout(environment, mode, null,
 									pipeLineRowValues);
@@ -9262,7 +9262,7 @@ public class SmokeTestCases extends BaseLib {
 								Smoke_PL2CompanyName, excelLabel.Pipeline_Name);
 
 						String[][] labelsAndValues = { { excelLabel.Pipeline_Name.toString(), expectedPipeLineName },
-								{ excelLabel.Company_Name.toString(), Smoke_PL2CompanyName },
+								{ excelLabel.Property_Name.toString(), Smoke_PL2CompanyName },
 								{ excelLabel.Stage.toString(), Smoke_PL2Stage },
 								{ excelLabel.Source.toString(), Smoke_PL2Source },
 								{ excelLabel.Source_Firm.toString(), Smoke_PL2SourceFirm },
@@ -9453,7 +9453,7 @@ public class SmokeTestCases extends BaseLib {
 							Smoke_PL3CompanyName, excelLabel.Pipeline_Name);
 
 					String[][] labelsAndValues = { { excelLabel.Pipeline_Name.toString(), expectedPipeLineName },
-							{ excelLabel.Company_Name.toString(), Smoke_PL3CompanyName },
+							{ excelLabel.Property_Name.toString(), Smoke_PL3CompanyName },
 							{ excelLabel.Stage.toString(), Smoke_PL3Stage },
 							{ excelLabel.Source.toString(), Smoke_PL3Source },
 							{ excelLabel.Source_Firm.toString(), Smoke_PL3SourceFirm },
@@ -9494,7 +9494,7 @@ public class SmokeTestCases extends BaseLib {
 					appLog.info("Click on Created Company : " + Smoke_PL3CompanyName);
 
 					String[][] labelsAndValuesforComp = { { excelLabel.Legal_Name.toString(), Smoke_PL3CompanyName },
-							{ excelLabel.Record_Type.toString(), "Company" } };
+							{ excelLabel.Record_Type.toString(), "Property" } };
 
 					for (String[] labelAndValue : labelsAndValuesforComp) {
 						if (ip.fieldValueVerificationOnInstitutionPage(environment, mode, TabName.PropertiesTab,
@@ -9553,7 +9553,7 @@ public class SmokeTestCases extends BaseLib {
 					if (ip.clickOnRelatedList(environment, mode, RecordType.IndividualInvestor, RelatedList.Deals_Sourced)) {
 						log(LogStatus.INFO, "Click on Deal Sourced", YesNo.No);
 						
-						if (ip.clickOnViewAllRelatedList(environment, mode,RelatedList.Deals_Sourced)) {
+						if (ip.clickOnViewAllRelatedList(environment, mode,RelatedList.Deals_Sourced, null)) {
 							log(LogStatus.INFO, "Click on View All Deal Sourced", YesNo.No);
 							
 							if (ip.verifyDealSourcedRelatedList(environment, mode, RecordType.IndividualInvestor,
@@ -9611,7 +9611,7 @@ public class SmokeTestCases extends BaseLib {
 						log(LogStatus.INFO, "Click on Deal Sourced", YesNo.No);
 
 
-						if (ip.clickOnViewAllRelatedList(environment, mode,RelatedList.Deals_Sourced)) {
+						if (ip.clickOnViewAllRelatedList(environment, mode,RelatedList.Deals_Sourced, null)) {
 							log(LogStatus.INFO, "Click on View All Deal Sourced", YesNo.No);
 
 							if (ip.verifyDealSourcedRelatedList(environment, mode, RecordType.Contact,
@@ -10066,7 +10066,7 @@ public class SmokeTestCases extends BaseLib {
 					appLog.info("Click on Created PipeLine : " + Smoke_PL1Name);
 
 					String[][] labelsAndValuesforComp = { { excelLabel.Pipeline_Name.toString(), Smoke_PL1Name },
-							{ excelLabel.Company_Name.toString(), Smoke_PL1CompanyName },
+							{ excelLabel.Property_Name.toString(), Smoke_PL1CompanyName },
 							{ excelLabel.Stage.toString(), Smoke_PL1Stage },
 							{ excelLabel.Last_Stage_Change_Date.toString(), getSystemDate("M/d/yyyy") },
 							{ excelLabel.Highest_Stage_Reached.toString(), Smoke_PL1HighestStageReached },
@@ -10102,7 +10102,7 @@ public class SmokeTestCases extends BaseLib {
 							log(LogStatus.FAIL, "Pipeline Stage Logs Count Not Verified", YesNo.Yes);
 						}
 						
-						if (pl.clickOnViewAllRelatedList(environment, mode, RelatedList.Pipeline_Stage_Logs)) {
+						if (pl.clickOnViewAllRelatedList(environment, mode, RelatedList.Pipeline_Stage_Logs, null)) {
 						
 							log(LogStatus.PASS, "Clicked on Related : "+RelatedList.Pipeline_Stage_Logs, YesNo.No);
 							ThreadSleep(2000);
@@ -10207,7 +10207,7 @@ public class SmokeTestCases extends BaseLib {
 						}
 						
 
-						if (pl.clickOnViewAllRelatedList(environment, mode, RelatedList.Pipeline_Stage_Logs)) {
+						if (pl.clickOnViewAllRelatedList(environment, mode, RelatedList.Pipeline_Stage_Logs, null)) {
 							
 							log(LogStatus.INFO, "Clicked on Related : "+RelatedList.Pipeline_Stage_Logs, YesNo.No);
 							
@@ -10295,7 +10295,7 @@ public class SmokeTestCases extends BaseLib {
 									log(LogStatus.ERROR, "could not scroll to stage log related list", YesNo.Yes);
 									sa.assertTrue(false, "could not scroll to stage log related list");
 								}
-								if (pl.clickOnViewAllRelatedList(environment, mode, RelatedList.Pipeline_Stage_Logs)) {
+								if (pl.clickOnViewAllRelatedList(environment, mode, RelatedList.Pipeline_Stage_Logs, null)) {
 									
 									log(LogStatus.PASS, "Clicked on Related : "+RelatedList.Pipeline_Stage_Logs, YesNo.No);
 									String[][] pipeLineFieldsAndValues = {
@@ -10376,7 +10376,7 @@ public class SmokeTestCases extends BaseLib {
 						log(LogStatus.FAIL, Smoke_PL2Name+" : Pipeline Stage Logs Count Not Verified : "+logValue, YesNo.Yes);
 					}
 					
-					if (pl.clickOnViewAllRelatedList(environment, mode, RelatedList.Pipeline_Stage_Logs)) {
+					if (pl.clickOnViewAllRelatedList(environment, mode, RelatedList.Pipeline_Stage_Logs, null)) {
 						
 						log(LogStatus.PASS, Smoke_PL2Name+" : Clicked on Related : "+RelatedList.Pipeline_Stage_Logs, YesNo.No);
 
@@ -11527,64 +11527,47 @@ public class SmokeTestCases extends BaseLib {
 		String FieldLabels = excelLabel.Street.toString() + "," + excelLabel.City.toString() + ","
 				+ excelLabel.State.toString() + "," + excelLabel.Postal_Code.toString() + ","
 				+ excelLabel.Country.toString() + "," + excelLabel.Phone.toString() + "," + excelLabel.Fax.toString();
-		for (int j = 0; j <6; j++) {
+		for (int j = 0; j <4; j++) {
 			if (lp.clickOnTab(environment, mode, TabName.InstituitonsTab)) {
 				ThreadSleep(2000);
 				if (j == 0) {
-					if (ins.createInstitution(environment, mode, "ADTest FM", "Fund Manager",null, null)) {
-						appLog.info("Fund Manager is created Fund Manager : " + "ADTest FM");
+					if (ins.createInstitution(environment, mode, "Test FM", "Fund Manager",null, null)) {
+						appLog.info("Fund Manager is created Fund Manager : " + "Test FM");
 					} else {
-						appLog.error("Not able to click on create Fund Manager : ADTest FM");
-						sa.assertTrue(false, "Not able to click on Fund Manager : ADTest FM");
-						log(LogStatus.ERROR, "Not able to click on create Fund Manager : ADTest FM", YesNo.Yes);
+						appLog.error("Not able to click on create Fund Manager : Test FM");
+						sa.assertTrue(false, "Not able to click on Fund Manager : Test FM");
+						log(LogStatus.ERROR, "Not able to click on create Fund Manager : Test FM", YesNo.Yes);
 					}
 				}
 				if (j == 1) {
 					refresh(driver);
-					if (ins.createInstitution(environment, mode, "ADTest FMF", "Fund Manager’s Fund", InstitutionPageFieldLabelText.Parent_Institution.toString(), "ADTest FM")) {
-						appLog.info("Fund Manager’s Fund is created Fund Manage's Fund : " + "ADTest FMF");
+					if (ins.createInstitution(environment, mode, "Test FMF", "Fund Manager’s Fund", InstitutionPageFieldLabelText.Parent_Institution.toString(), "Test FM")) {
+						appLog.info("Fund Manager’s Fund is created Fund Manage's Fund : " + "Test FMF");
 					} else {
-						appLog.error("Not able to click on create Fund Manager’s Fund : ADTest FMF");
-						sa.assertTrue(false, "Not able to click on Fund Manager’s Fund : ADTest FMF");
-						log(LogStatus.ERROR, "Not able to click on create Fund Manager’s Fund : ADTest FMF", YesNo.Yes);
+						appLog.error("Not able to click on create Fund Manager’s Fund : Test FMF");
+						sa.assertTrue(false, "Not able to click on Fund Manager’s Fund : Test FMF");
+						log(LogStatus.ERROR, "Not able to click on create Fund Manager’s Fund : Test FMF", YesNo.Yes);
 					}
 				}
 				if (j == 2) {
-					if (ins.createInstitution(environment, mode, "ADTest INS 1", "Institution", InstitutionPageFieldLabelText.Parent_Institution.toString(), "ADTest FM")) {
-						appLog.info("Institution created  : ADTest INS 1");
+					if (ins.createInstitution(environment, mode, "Test INS 1", "Institution", InstitutionPageFieldLabelText.Parent_Institution.toString(), "Test FM")) {
+						appLog.info("Institution created  : Test INS 1");
 					} else {
-						appLog.error("Not able to click on create institution : ADTest INS 1");
-						sa.assertTrue(false, "Not able to click on institution : ADTest INS 1");
-						log(LogStatus.ERROR, "Not able to click on create institution :ADTest INS 1", YesNo.Yes);
+						appLog.error("Not able to click on create institution : Test INS 1");
+						sa.assertTrue(false, "Not able to click on institution : Test INS 1");
+						log(LogStatus.ERROR, "Not able to click on create institution :Test INS 1", YesNo.Yes);
 					}
 				}
 				if (j == 3) {
-					if (ins.createInstitution(environment, mode, "ADTest INS 2", "Institution", InstitutionPageFieldLabelText.Parent_Institution.toString(), "ADTest FMF")) {
-						appLog.info("Institution created  :  ADTest INS 2");
+					if (ins.createInstitution(environment, mode, "Test INS 2", "Institution", InstitutionPageFieldLabelText.Parent_Institution.toString(), "Test FMF")) {
+						appLog.info("Institution created  :  Test INS 2");
 					} else {
-						appLog.error("Not able to click on create institution : ADTest INS 2");
-						sa.assertTrue(false, "Not able to click on institution : ADTest INS 2");
-						log(LogStatus.ERROR, "Not able to click on create institution :ADTest INS 2", YesNo.Yes);
+						appLog.error("Not able to click on create institution : Test INS 2");
+						sa.assertTrue(false, "Not able to click on institution : Test INS 2");
+						log(LogStatus.ERROR, "Not able to click on create institution :Test INS 2", YesNo.Yes);
 					}
 				}
-				if (j == 4) {
-					if (ins.createInstitution(environment, mode, "ADTest COM 1", SmokeCOM1_RecordType, InstitutionPageFieldLabelText.Parent_Institution.toString(), "ADTest FM")) {
-						appLog.info("Company is created :  ADTest COM 1");
-					} else {
-						appLog.error("Not able to click on create Company :  ADTest COM 1");
-						sa.assertTrue(false, "Not able to click on create Company :  ADTest COM 1");
-						log(LogStatus.ERROR, "Not able to click on create Company :  ADTest COM 1", YesNo.Yes);
-					}
-				}
-				if (j == 5) {
-					if (ins.createInstitution(environment, mode, "ADTest COM 2", SmokeCOM1_RecordType, InstitutionPageFieldLabelText.Parent_Institution.toString(), "ADTest FMF")) {
-						appLog.info("Company is created :  ADTest COM 2");
-					} else {
-						appLog.error("Not able to click on create Company :  ADTest COM 2");
-						sa.assertTrue(false, "Not able to click on create Company :  ADTest COM 2");
-						log(LogStatus.ERROR, "Not able to click on create Company :  ADTest COM 2", YesNo.Yes);
-					}
-				}
+				
 			} else {
 				appLog.error(
 						"Not able to click on Institute Tab so cannot Create institute, indiviual insvestor and company");
@@ -11596,13 +11579,13 @@ public class SmokeTestCases extends BaseLib {
 			}
 		}
 			if (fund.clickOnTab(environment, mode, TabName.FundsTab)) {
-				if (fund.createFund(environment, mode, "ADTest Fund 1", SmokeFund1_Type, SmokeFund1_InvestmentCategory,null, null)) {
-					appLog.info("Fund is created Successfully:  ADTest Fund 1");
+				if (fund.createFund(environment, mode, "Test Fund 1", SmokeFund1_Type, SmokeFund1_InvestmentCategory,null, null)) {
+					appLog.info("Fund is created Successfully:  Test Fund 1");
 					
 				} else {
-					appLog.error("Not able to click on fund:  ADTest Fund 1");
-					sa.assertTrue(false, "Not able to click on fund:  ADTest Fund 1");
-					log(LogStatus.SKIP, "Not able to click on fund:  ADTest Fund 1", YesNo.Yes);
+					appLog.error("Not able to click on fund:  Test Fund 1");
+					sa.assertTrue(false, "Not able to click on fund:  Test Fund 1");
+					log(LogStatus.SKIP, "Not able to click on fund:  Test Fund 1", YesNo.Yes);
 				}
 			} else {
 				appLog.error("Not able to click on fund Tab so cannot Fund");
@@ -11611,13 +11594,13 @@ public class SmokeTestCases extends BaseLib {
 			}
 			
 			if (fund.clickOnTab(environment, mode, TabName.FundraisingsTab)) {
-				if (fundraising.createFundRaising(environment, mode, "ADTest FRD 1", "ADTest Fund 1", "ADTest FM")) {
-					appLog.info("Fundraising is created Successfully:  ADTest FRD 1");
+				if (fundraising.createFundRaising(environment, mode, "Test FRD 1", "Test Fund 1", "Test FM")) {
+					appLog.info("Fundraising is created Successfully:  Test FRD 1");
 					
 				} else {
-					appLog.error("Fundraising not created Successfully:  ADTest FRD 1");
-					sa.assertTrue(false, "Fundraising not created Successfully:  ADTest FRD 1");
-					log(LogStatus.SKIP, "Fundraising not created Successfully:  ADTest FRD 1", YesNo.Yes);
+					appLog.error("Fundraising not created Successfully:  Test FRD 1");
+					sa.assertTrue(false, "Fundraising not created Successfully:  Test FRD 1");
+					log(LogStatus.SKIP, "Fundraising not created Successfully:  Test FRD 1", YesNo.Yes);
 				}
 			} else {
 				appLog.error("Not able to click on FundRaising Tab so cannot FundRaising");
@@ -11625,13 +11608,13 @@ public class SmokeTestCases extends BaseLib {
 				log(LogStatus.SKIP, "Not able to click on FundRaising Tab so cannot FundRaising", YesNo.Yes);
 			}
 			if (fund.clickOnTab(environment, mode, TabName.FundraisingsTab)) {
-				if (fundraising.createFundRaising(environment, mode, "ADTest FRD 2", "ADTest Fund 1", "ADTest FMF")) {
-					appLog.info("Fundraising is created Successfully:  ADTest FRD 2");
+				if (fundraising.createFundRaising(environment, mode, "Test FRD 2", "Test Fund 1", "Test FMF")) {
+					appLog.info("Fundraising is created Successfully:  Test FRD 2");
 					
 				} else {
-					appLog.error("Fundraising not created Successfully:  ADTest FRD 2");
-					sa.assertTrue(false, "Fundraising not created Successfully:  ADTest FRD 2");
-					log(LogStatus.SKIP, "Fundraising not created Successfully:  ADTest FRD 2", YesNo.Yes);
+					appLog.error("Fundraising not created Successfully:  Test FRD 2");
+					sa.assertTrue(false, "Fundraising not created Successfully:  Test FRD 2");
+					log(LogStatus.SKIP, "Fundraising not created Successfully:  Test FRD 2", YesNo.Yes);
 				}
 			} else {
 				appLog.error("Not able to click on FundRaising Tab so cannot FundRaising");
@@ -12074,7 +12057,7 @@ public class SmokeTestCases extends BaseLib {
 								
 								if (fd.clickOnRelatedList(environment, mode, RecordType.Fund, RelatedList.FundDrawdown)) {
 									
-									if (bp.clickOnViewAllRelatedList(environment, mode, RelatedList.FundDrawdown)) {
+									if (bp.clickOnViewAllRelatedList(environment, mode, RelatedList.FundDrawdown, null)) {
 										
 									}else{
 										log(LogStatus.ERROR, "Not Able to Click on View All for "+RelatedList.FundDrawdown, YesNo.Yes);
@@ -12096,7 +12079,7 @@ public class SmokeTestCases extends BaseLib {
 									
 									if (fd.clickOnRelatedList(environment, mode, RecordType.Fund, RelatedList.CapitalCalls)) {
 										
-										if (bp.clickOnViewAllRelatedList(environment, mode, RelatedList.CapitalCalls)) {
+										if (bp.clickOnViewAllRelatedList(environment, mode, RelatedList.CapitalCalls, null)) {
 											
 										}else{
 											log(LogStatus.ERROR, "Not Able to Click on View All for "+RelatedList.CapitalCalls, YesNo.Yes);
@@ -12905,7 +12888,7 @@ public class SmokeTestCases extends BaseLib {
 							log(LogStatus.ERROR, "could not scroll to correspondence list related list", YesNo.Yes);
 							sa.assertTrue(false, "could not scroll to correspondence list related list");
 						}
-						if (bp.clickOnViewAllRelatedList(environment, mode, RelatedList.Correspondence_Lists)) {
+						if (bp.clickOnViewAllRelatedList(environment, mode, RelatedList.Correspondence_Lists, null)) {
 						}
 						else {
 							log(LogStatus.ERROR, "view all button is not clickable", YesNo.Yes);
@@ -12974,7 +12957,7 @@ public class SmokeTestCases extends BaseLib {
 							log(LogStatus.ERROR, "could not scroll to correspondence list related list", YesNo.Yes);
 							sa.assertTrue(false, "could not scroll to correspondence list related list");
 						}
-						if (bp.clickOnViewAllRelatedList(environment, mode, RelatedList.Correspondence_Lists)) {
+						if (bp.clickOnViewAllRelatedList(environment, mode, RelatedList.Correspondence_Lists, null)) {
 						}
 						else {
 							log(LogStatus.FAIL, "could not click on view all button", YesNo.Yes);
@@ -13042,7 +13025,7 @@ public class SmokeTestCases extends BaseLib {
 							log(LogStatus.ERROR, "could not scroll to correspondence list related list", YesNo.Yes);
 							sa.assertTrue(false,"could not scroll to correspondence list related list");
 						}
-						if (bp.clickOnViewAllRelatedList(environment, mode, RelatedList.Correspondence_Lists)) {
+						if (bp.clickOnViewAllRelatedList(environment, mode, RelatedList.Correspondence_Lists, null)) {
 						}
 						else {
 							log(LogStatus.FAIL, "could not click on view all button related list", YesNo.Yes);
@@ -14883,7 +14866,7 @@ public class SmokeTestCases extends BaseLib {
 									log(LogStatus.ERROR, "coould not scroll to fund distribution related list", YesNo.Yes);
 									sa.assertTrue(false, "coould not scroll to fund distribution related list");
 								}
-								if (bp.clickOnViewAllRelatedList(environment, mode, RelatedList.FundDistribution)) {
+								if (bp.clickOnViewAllRelatedList(environment, mode, RelatedList.FundDistribution, null)) {
 
 								}
 								else {
@@ -14912,7 +14895,7 @@ public class SmokeTestCases extends BaseLib {
 										sa.assertTrue(false, "coould not scroll to InvestorDistributions related list");
 									}
 									
-									if (bp.clickOnViewAllRelatedList(environment, mode, RelatedList.InvestorDistributions)) {
+									if (bp.clickOnViewAllRelatedList(environment, mode, RelatedList.InvestorDistributions, null)) {
 										
 									}
 									else {
@@ -17391,7 +17374,7 @@ public class SmokeTestCases extends BaseLib {
 					
 					log(LogStatus.PASS, "Clicked on Related TAB : "+RelatedList.Office_Locations, YesNo.No);
 					
-					if (ip.clickOnViewAllRelatedList(environment, mode, RelatedList.Office_Locations)) {
+					if (ip.clickOnViewAllRelatedList(environment, mode, RelatedList.Office_Locations, null)) {
 						
 						log(LogStatus.PASS, "Clicked on Related : "+RelatedList.Office_Locations, YesNo.No);
 						
@@ -17688,7 +17671,7 @@ public class SmokeTestCases extends BaseLib {
 					
 					log(LogStatus.PASS, "Clicked on Related TAB : "+RelatedList.Office_Locations, YesNo.No);
 					
-					if (ip.clickOnViewAllRelatedList(environment, mode, RelatedList.Office_Locations)) {
+					if (ip.clickOnViewAllRelatedList(environment, mode, RelatedList.Office_Locations, null)) {
 						
 						log(LogStatus.PASS, "Clicked on Related : "+RelatedList.Office_Locations, YesNo.No);
 						
@@ -17740,7 +17723,7 @@ public class SmokeTestCases extends BaseLib {
 					
 					log(LogStatus.PASS, "Clicked on Related TAB : "+RelatedList.Office_Locations, YesNo.No);
 					
-					if (ip.clickOnViewAllRelatedList(environment, mode, RelatedList.Office_Locations)) {
+					if (ip.clickOnViewAllRelatedList(environment, mode, RelatedList.Office_Locations, null)) {
 						
 						log(LogStatus.PASS, "Clicked on Related : "+RelatedList.Office_Locations, YesNo.No);
 						
@@ -17871,7 +17854,7 @@ public class SmokeTestCases extends BaseLib {
 					
 					log(LogStatus.PASS, "Clicked on Related TAB : "+RelatedList.Office_Locations, YesNo.No);
 					
-					if (ip.clickOnViewAllRelatedList(environment, mode, RelatedList.Office_Locations)) {
+					if (ip.clickOnViewAllRelatedList(environment, mode, RelatedList.Office_Locations, null)) {
 						
 						log(LogStatus.PASS, "Clicked on Related : "+RelatedList.Office_Locations, YesNo.No);
 						if (ip.clickOnEditLinkForOfficeLocation(environment, mode, RecordType.Institution,
@@ -17922,7 +17905,7 @@ public class SmokeTestCases extends BaseLib {
 						
 						log(LogStatus.PASS, "Clicked on Related TAB : "+RelatedList.Office_Locations, YesNo.No);
 						
-						if (ip.clickOnViewAllRelatedList(environment, mode, RelatedList.Office_Locations)) {
+						if (ip.clickOnViewAllRelatedList(environment, mode, RelatedList.Office_Locations, null)) {
 							
 							log(LogStatus.PASS, "Clicked on Related : "+RelatedList.Office_Locations, YesNo.No);
 							
@@ -18302,7 +18285,7 @@ public class SmokeTestCases extends BaseLib {
 								}
 								
 								
-								if (cp.clickOnViewAllRelatedList(environment, mode,RelatedList.Affiliations)) {
+								if (cp.clickOnViewAllRelatedList(environment, mode,RelatedList.Affiliations, null)) {
 									log(LogStatus.INFO, "Click on View All Affiliations", YesNo.No);
 									
 									if (cp.verifyAffliationRelatedList(environment, mode,TabName.ContactTab, SmokeINS2)) {
@@ -18392,7 +18375,7 @@ public class SmokeTestCases extends BaseLib {
 									log(LogStatus.FAIL, "Activity History Grid Not Verified For No Records/No Past Activity Msg", YesNo.Yes);
 								}
 								
-								if (ip.clickOnViewAllRelatedList(environment, mode,RelatedList.Activities)) {
+								if (ip.clickOnViewAllRelatedList(environment, mode,RelatedList.Activities, null)) {
 									log(LogStatus.INFO, "Click on View All Affiliations", YesNo.No);
 									
 									String[][] activitiesRecords ={{Smoke_NewTask1Subject,SmokeC5_FName + " " + SmokeC5_LName,SmokeINS2},
@@ -18608,7 +18591,7 @@ public class SmokeTestCases extends BaseLib {
 									log(LogStatus.FAIL, "Activity History Grid Not Verified For "+Smoke_CallLog1Subject, YesNo.Yes);
 								}
 								
-								if (cp.clickOnViewAllRelatedList(environment, mode,RelatedList.Affiliations)) {
+								if (cp.clickOnViewAllRelatedList(environment, mode,RelatedList.Affiliations, null)) {
 									log(LogStatus.INFO, "Click on View All Affiliations", YesNo.No);
 									
 									if (cp.verifyAffliationRelatedList(environment, mode,TabName.ContactTab, SmokeINS2)) {
@@ -18703,7 +18686,7 @@ public class SmokeTestCases extends BaseLib {
 									log(LogStatus.ERROR, "could not scroll to activities related list",YesNo.Yes);
 									sa.assertTrue(false,  "could not scroll to activities related list");
 								}
-								if (ip.clickOnViewAllRelatedList(environment, mode,RelatedList.Activities)) {
+								if (ip.clickOnViewAllRelatedList(environment, mode,RelatedList.Activities, null)) {
 									log(LogStatus.INFO, "Click on View All Affiliations", YesNo.No);
 									
 									String[][] activitiesRecords ={{Smoke_NewTask1Subject,SmokeC5_FName + " " + SmokeC5_LName,SmokeINS2},
@@ -19210,7 +19193,7 @@ public class SmokeTestCases extends BaseLib {
 									log(LogStatus.ERROR, "could not scroll to affiliations related list",YesNo.Yes);
 									sa.assertTrue(false, "could not scroll to affiliations related list");
 								}
-								if (cp.clickOnViewAllRelatedList(environment, mode,RelatedList.Affiliations)) {
+								if (cp.clickOnViewAllRelatedList(environment, mode,RelatedList.Affiliations, null)) {
 									log(LogStatus.INFO, "Click on View All Affiliations", YesNo.No);
 									
 									if (cp.verifyAffliationRelatedList(environment, mode,TabName.ContactTab, SmokeINS4)) {
@@ -19287,7 +19270,7 @@ public class SmokeTestCases extends BaseLib {
 									log(LogStatus.FAIL, "Activity History Grid Not Verified For No Records/No Past Activity Msg", YesNo.Yes);
 								}
 								
-								if (ip.clickOnViewAllRelatedList(environment, mode,RelatedList.Activities)) {
+								if (ip.clickOnViewAllRelatedList(environment, mode,RelatedList.Activities, null)) {
 									log(LogStatus.INFO, "Click on View All Affiliations", YesNo.No);
 									
 									String[][] activitiesRecords ={{Smoke_NewTask2Subject,SmokeC6_FName + " " + SmokeC6_LName,null},
@@ -19506,7 +19489,7 @@ public class SmokeTestCases extends BaseLib {
 										log(LogStatus.ERROR, "could not scroll to affiliations related list", YesNo.Yes);
 										sa.assertTrue(false, "could not scroll to affiliations related list");
 									}
-								if (cp.clickOnViewAllRelatedList(environment, mode,RelatedList.Affiliations)) {
+								if (cp.clickOnViewAllRelatedList(environment, mode,RelatedList.Affiliations, null)) {
 									log(LogStatus.INFO, "Click on View All Affiliations", YesNo.No);
 									
 									if (cp.verifyAffliationRelatedList(environment, mode,TabName.ContactTab, SmokeINS4)) {
@@ -19591,7 +19574,7 @@ public class SmokeTestCases extends BaseLib {
 									log(LogStatus.FAIL, "Activity History Grid Not Verified For No Records/No Past Activity Msg", YesNo.Yes);
 								}
 								
-								if (ip.clickOnViewAllRelatedList(environment, mode,RelatedList.Activities)) {
+								if (ip.clickOnViewAllRelatedList(environment, mode,RelatedList.Activities, null)) {
 									log(LogStatus.INFO, "Click on View All Affiliations", YesNo.No);
 									
 									String[][] activitiesRecords ={{Smoke_NewTask2Subject,SmokeC6_FName + " " + SmokeC6_LName,null},

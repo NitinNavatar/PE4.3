@@ -126,7 +126,7 @@ public class PartnershipsPageBusinessLayer extends PartnershipsPage {
 		if(commitmentAmount!=null) {
 			commitmentAmount=convertNumberAccordingToFormatWithCurrencySymbol(commitmentAmount,"0,000.0");
 		}
-		if (pageName.toString().equalsIgnoreCase(PageName.PartnershipsPage.toString()) || pageName.toString().equalsIgnoreCase(PageName.LimitedPartnerPage.toString()) || pageName.toString().equalsIgnoreCase(PageName.CompanyPage.toString())) {
+		if (pageName.toString().equalsIgnoreCase(PageName.PartnershipsPage.toString()) || pageName.toString().equalsIgnoreCase(PageName.LimitedPartnerPage.toString()) || pageName.toString().equalsIgnoreCase(PageName.PropertyPage.toString())) {
 			if (mode.equalsIgnoreCase(Mode.Classic.toString())) {
 				baseXapth="//h3[text()='Commitments']/ancestor::div[contains(@class,'bRelatedList')]//div[@class='pbBody']//tr//th/a[contains(text(),'"+commitmentId+"')]/../following-sibling::td/a[text()='"+LPNameOrPartnerShipName+"']";
 				

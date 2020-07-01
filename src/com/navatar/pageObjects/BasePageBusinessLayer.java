@@ -962,7 +962,11 @@ public class BasePageBusinessLayer extends BasePage implements BasePageErrorMess
 		String xpath1 = "//*[text()='Related']";
 		String xpath2 = "//*[text()='Related']";
 		String xpath="";
-		if ((recordType == RecordType.Partnerships) || (recordType == RecordType.Fund)|| (recordType == RecordType.Fundraising)||(recordType == RecordType.Company) || (recordType == RecordType.IndividualInvestor) ||(recordType == RecordType.Institution)|| (recordType == RecordType.Contact))
+		if (recordType == RecordType.Partnerships) {
+			log(LogStatus.INFO, "related tab is not present on partnership page", YesNo.No);
+			return true;
+		}
+		else if ( (recordType == RecordType.Fund)|| (recordType == RecordType.Fundraising)||(recordType == RecordType.Company) || (recordType == RecordType.IndividualInvestor) ||(recordType == RecordType.Institution)|| (recordType == RecordType.Contact))
 		xpath = xpath1;
 		else
 			xpath = xpath2;
@@ -1046,7 +1050,7 @@ public class BasePageBusinessLayer extends BasePage implements BasePageErrorMess
 		return false;
 	}
 	
-	public boolean clickOnViewAllRelatedList(String environment,String mode, RelatedList RelatedList) {
+	public boolean clickOnViewAllRelatedList(String environment,String mode, RelatedList RelatedList, PageName pageName) {
 		if (mode.equalsIgnoreCase(Mode.Classic.toString())) {
 			if (clickOnRelatedList_Classic(environment, RelatedList)) {
 				return true;
@@ -1102,9 +1106,14 @@ public class BasePageBusinessLayer extends BasePage implements BasePageErrorMess
 			}
 			ThreadSleep(2000);
 			System.err.println("Passed switch statement");
-		
+			String xpath="";
+			if ((pageName == PageName.PartnershipsPage) &&( RelatedList == RelatedList.Commitments)) {
+				xpath="//span[text()='"+relatedList+"']/ancestor::div//span[text()='View All']";
+			}
+			else
+				xpath="//span[text()='"+relatedList+"']/ancestor::article//span[text()='View All']";
 				
-				ele = isDisplayed(driver, FindElement(driver, "//span[text()='"+relatedList+"']/ancestor::article//span[text()='View All']", relatedList,
+			ele = isDisplayed(driver, FindElement(driver, xpath, relatedList,
 						action.SCROLLANDBOOLEAN, 10), "visibility", 10, relatedList);
 				if (ele != null) {
 					if (click(driver, ele, relatedList, action.SCROLLANDBOOLEAN)) {

@@ -1163,14 +1163,14 @@ public class HomePageBusineesLayer extends HomePage {
 		for (String[] splitedlabelAndvalue : labelAndValue) {
 			String label =splitedlabelAndvalue[0].replace("_"," ");
 			String xpath="//label[text()='"+label+"']/../following-sibling::td/span";
-			if(label.equalsIgnoreCase(CreateCommitmentPageFieldLabelText.Company.toString())) {
-				companyName= FindElements(driver, xpath, "company name list");
+			if(label.equalsIgnoreCase(CreateCommitmentPageFieldLabelText.Property.toString())) {
+				companyName= FindElements(driver, xpath, "Property name list");
 				if(!companyName.isEmpty()) {
 					for (int i = 0; i < companyName.size(); i++) {
 						String aa =companyName.get(i).getText().trim();
 						if(splitedlabelAndvalue[1].isEmpty()) {
 							if(aa.contains(splitedlabelAndvalue[1])) {
-								log(LogStatus.INFO, "Company name is balnk. ", YesNo.No);
+								log(LogStatus.INFO, "Property name is balnk. ", YesNo.No);
 								
 							}else {
 								if(i==companyName.size()-1) {

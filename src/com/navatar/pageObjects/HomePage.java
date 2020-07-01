@@ -156,7 +156,7 @@ public class HomePage extends BasePageBusinessLayer {
 		return isDisplayed(driver, selectFundNameFromSelectFundPopUpLookUpIcon, "Visibility", timeOut, "select fund name look up in select fund pop up");
 	}
 	
-	@FindBy(xpath="(//img[@title='Company Lookup (New Window)'])[3]")
+	@FindBy(xpath="(//img[@title='Property Lookup (New Window)'])[3]")
 	private WebElement selectCompanyNameFromSelectFundPopUpLookUpIcon;
 
 	/**
@@ -392,7 +392,7 @@ public class HomePage extends BasePageBusinessLayer {
 		return isDisplayed(driver, pastFundraisingPopUpCrossIcon, "Visibility", timeOut, "past Fundraising Pop Up Cross Icon");
 	}
 	
-	@FindBy(xpath="(//img[@title='Company Lookup (New Window)'])[1]")
+	@FindBy(xpath="(//img[@title='Property Lookup (New Window)'])[1]")
 	private WebElement selectCompanyNameWarningPopUpLookUpIcon;
 
 	/**
@@ -536,7 +536,7 @@ public class HomePage extends BasePageBusinessLayer {
 	}
 	
 	
-	@FindBy(xpath="(//img[@title='Company Lookup (New Window)'])[2]")
+	@FindBy(xpath="(//img[@title='Property Lookup (New Window)'])[2]")
 	private WebElement selectCompanyNameLookUpIconOnCreateCommitmentPopUp;
 
 	/**
@@ -546,7 +546,7 @@ public class HomePage extends BasePageBusinessLayer {
 		return isDisplayed(driver, selectCompanyNameLookUpIconOnCreateCommitmentPopUp, "Visibility", timeOut, "select Company Name LookUpIcon On Create Commitment PopUp");
 	}
 	
-	@FindBy(xpath="//h2[text()='General Information']/..//table//label[text()='Company']/../following-sibling::td/span")
+	@FindBy(xpath="//h2[text()='General Information']/..//table//label[text()='Property']/../following-sibling::td/span")
 	private WebElement CompanyNameLabelTextOnCreateCommitment;
 	
 	
