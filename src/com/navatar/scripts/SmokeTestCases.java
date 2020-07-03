@@ -150,7 +150,7 @@ public class SmokeTestCases extends BaseLib {
 		lp.switchToClassic();	
 		if (home.clickOnSetUpLink(environment, Mode.Classic.toString())) {
 			List<String> layoutName = new ArrayList<String>();
-			layoutName.add("Company");
+			layoutName.add("Company_VC");
 			layoutName.add("Institution");
 			layoutName.add("Individual Investor");
 			HashMap<String, String> sourceANDDestination = new HashMap<String, String>();
@@ -175,7 +175,7 @@ public class SmokeTestCases extends BaseLib {
 
 		if (home.clickOnSetUpLink(environment, Mode.Classic.toString())) {
 			List<String> layoutName = new ArrayList<String>();
-			layoutName.add("Company");
+			layoutName.add("Company_VC");
 			layoutName.add("Institution");
 			layoutName.add("Individual Investor");
 			HashMap<String, String> sourceANDDestination = new HashMap<String, String>();
@@ -715,7 +715,7 @@ public class SmokeTestCases extends BaseLib {
 		}
 		FieldLabels = excelLabel.Target_Commitments + "," + excelLabel.Vintage_Year + ","
 				+ FundPageFieldLabelText.Frist_Closing_Date;
-		String date = getDateAccToTimeZone("America/New_York", "M/dd/YYYY");
+		String date = getDateAccToTimeZone("America/New_York", "M/d/YYYY");
 		String Values1 = SmokeFund1Target_Commitments + "," + SmokeFund1_VintageYear + "," + date;
 		String Values2 = SmokeFund2Target_Commitments + "," + SmokeFund2_VintageYear + "," + date;
 		String Value3 = SmokeFund2Target_Commitments + "," + SmokeFund3_VintageYear + "," + date;
@@ -6851,7 +6851,7 @@ public class SmokeTestCases extends BaseLib {
 									log(LogStatus.INFO, "click on Limited Partner required field link", YesNo.No);
 									ThreadSleep(5000);
 									List<WebElement> options = allOptionsInDropDrop(driver, nspbl.getNewLP_CommitmentTab_DropDownList(environment, mode, 10), "limited partner drop down list");
-									if(compareMultipleList(driver, "Company,Fund Manager,Fund Manager’s Fund,Individual Investor,Institution,Limited Partner", options).isEmpty()) {
+									if(compareMultipleList(driver, "Company_VC,Fund Manager,Fund Manager’s Fund,Individual Investor,Institution,Limited Partner", options).isEmpty()) {
 										log(LogStatus.INFO, "Limited partner drop down list is verified ", YesNo.No);
 									}else {
 										log(LogStatus.FAIL, "Limited partner drop down list is not verified ", YesNo.No);
@@ -9866,7 +9866,7 @@ public class SmokeTestCases extends BaseLib {
 								log(LogStatus.SKIP, "Warning PopUp Message Element is null", YesNo.Yes);
 							}
 
-							if (click(driver, nsp.getWarningPopUpYesButton(environment, 20, NavatarSetupSideMenuTab.DealCreation), "No Button",
+							if (click(driver, nsp.getWarningPopUpYesButton(environment, 20, NavatarSetupSideMenuTab.DealCreation), "yes Button",
 									action.BOOLEAN)) {
 								appLog.info("Clicked on Yes Button");
 								ThreadSleep(2000);
@@ -10701,12 +10701,20 @@ public class SmokeTestCases extends BaseLib {
 			if(indiviual.createIndiviualInvestor(environment, mode, labelNamesAndValue, null, TopOrBottom.TOP)) {
 				log(LogStatus.INFO, "Successfully Create Indiviual Investor "+SmokeINDINV4, YesNo.No);
 				ExcelUtils.writeData(smokeFilePath, emailId, "Contacts", excelLabel.Variable_Name,"SmokeC7", excelLabel.Contact_EmailId);
-				if(indiviual.getLabelHeaderText(environment, mode, 60).getText().trim().contains(SmokeINDINV4)) {
-					log(LogStatus.INFO, SmokeINDINV4+" header text is verified", YesNo.No);
-				}else {
-					log(LogStatus.ERROR, SmokeINDINV4+" header text is not matched ", YesNo.Yes);
-					sa.assertTrue(false, SmokeINDINV4+" header text is not matched ");
+				WebElement ele = indiviual.getLabelHeaderText(environment, mode, 60);
+				if (ele!=null) {
+					String msg=ele.getText().trim();
+					if(msg.contains(SmokeINDINV4)) {
+						log(LogStatus.INFO, SmokeINDINV4+" header text is verified", YesNo.No);
+					}else {
+						log(LogStatus.ERROR, SmokeINDINV4+" header text is not matched ", YesNo.Yes);
+						sa.assertTrue(false, SmokeINDINV4+" header text is not matched ");
+					}
+				} else {
+					log(LogStatus.ERROR, SmokeINDINV4+" header Element text is not Found ", YesNo.Yes);
+					sa.assertTrue(false, SmokeINDINV4+" header Element text is not Found ");
 				}
+				
 				
 				String[][] labelAndValue= {{excelLabel.Institution_Type.toString(),SmokeINDINV4_InstitutionType},
 						{excelLabel.Phone.toString(),SmokeINDINV4_Phone},
@@ -11116,12 +11124,21 @@ public class SmokeTestCases extends BaseLib {
 			if(indiviual.createIndiviualInvestor(environment, mode, labelNamesAndValue, "Yes", TopOrBottom.BOTTOM)) {
 				log(LogStatus.INFO, "Successfully Create Indiviual Investor "+SmokeINDINV7, YesNo.No);
 				ExcelUtils.writeData(smokeFilePath, emailId, "Contacts", excelLabel.Variable_Name,"SmokeC10", excelLabel.Contact_EmailId);
-				if(indiviual.getLabelHeaderText(environment, mode, 60).getText().trim().contains(SmokeINDINV7)) {
-					log(LogStatus.INFO, SmokeINDINV7+" header text is verified", YesNo.No);
-				}else {
-					log(LogStatus.ERROR, SmokeINDINV7+" header text is not matched ", YesNo.Yes);
-					sa.assertTrue(false, SmokeINDINV7+" header text is not matched ");
+				
+				WebElement ele = indiviual.getLabelHeaderText(environment, mode, 60);
+				if (ele!=null) {
+					String msg=ele.getText().trim();
+					if(msg.contains(SmokeINDINV7)) {
+						log(LogStatus.INFO, SmokeINDINV7+" header text is verified", YesNo.No);
+					}else {
+						log(LogStatus.ERROR, SmokeINDINV7+" header text is not matched ", YesNo.Yes);
+						sa.assertTrue(false, SmokeINDINV7+" header text is not matched ");
+					}
+				} else {
+					log(LogStatus.ERROR, SmokeINDINV7+" header Element text is not Found ", YesNo.Yes);
+					sa.assertTrue(false, SmokeINDINV7+" header Element text is not Found ");
 				}
+				
 				String[][] labelAndValue= {{excelLabel.Institution_Type.toString(),SmokeINDINV7_InstitutionType},
 						{excelLabel.Phone.toString(),SmokeINDINV7_Phone},
 						{excelLabel.Fax.toString(),SmokeINDINV7_Fax},

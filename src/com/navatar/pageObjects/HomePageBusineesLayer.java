@@ -494,9 +494,9 @@ public class HomePageBusineesLayer extends HomePage {
 		if(ele!=null) {
 			if(mouseOverOperation(driver,ele)) {
 				log(LogStatus.INFO, "mouse over on contact name "+contactName, YesNo.No);
-				ele=isDisplayed(driver, FindElement(driver,xpathOfSelectInvestorsInfoIcon(contactName, accountName), "", action.BOOLEAN,10), "visibility",10,contactName+" info icon");
+				ele=FindElement(driver,xpathOfSelectInvestorsInfoIcon(contactName, accountName), "", action.BOOLEAN,10);
 				if(ele!=null) {
-					if(click(driver, ele, contactName+" info icon", action.SCROLLANDBOOLEAN)) {
+					if(clickUsingJavaScript(driver, ele, contactName+" info icon", action.SCROLLANDBOOLEAN)) {
 						log(LogStatus.INFO, "clicked on contact name "+contactName, YesNo.No);
 						return true;
 					}else {
@@ -988,16 +988,18 @@ public class HomePageBusineesLayer extends HomePage {
 														log(LogStatus.ERROR, "Not able to enter value in "+labelsWithValue[0], YesNo.Yes);
 														flag = false;
 													}
+													ThreadSleep(1000);
 												}
 												
 											}else{
 												log(LogStatus.ERROR, "Tag Element is null for : " + labelsWithValue[0], YesNo.Yes);
 												flag = false;
 											}
-											
+											ThreadSleep(1000);
 										}
 										if(j==0) {
 											if(click(driver, getNewLimitedPartnerAddBtnInCreateCommitment(10), "new limited partner add button", action.SCROLLANDBOOLEAN)) {
+												ThreadSleep(2000);
 												log(LogStatus.INFO, "clicked on add button in limited partner pop up", YesNo.No);
 												String pencilIcon="//div[@id='LPEdit"+i+"']";
 												WebElement pencilIconElement=FindElement(driver, pencilIcon, "lp pencil icon", action.SCROLLANDBOOLEAN, 5);
@@ -1023,6 +1025,7 @@ public class HomePageBusineesLayer extends HomePage {
 																		log(LogStatus.ERROR, "value is not verified for "+ labelsWithValue[0] +" with value : " + labelsWithValue[1], YesNo.Yes);
 																		flag = false;
 																	}
+																	ThreadSleep(1000);
 																}
 															}else{
 																log(LogStatus.ERROR, "Tag Element is null for label : " + labelsWithValue[0]+" so cannot verify value", YesNo.Yes);
@@ -1050,6 +1053,7 @@ public class HomePageBusineesLayer extends HomePage {
 											}
 										}else if (j==2) {
 											if(click(driver, getNewPartnerShipAddbtnInCreateCommitment(10), "new partnership add button", action.SCROLLANDBOOLEAN)) {
+												ThreadSleep(2000);
 												log(LogStatus.INFO, "clicked on add button in new partnership pop up", YesNo.No);
 												String pencilIcon="//div[@id='PTEdit"+i+"']";
 												WebElement pencilIconElement=FindElement(driver, pencilIcon, "partnership pencil icon", action.SCROLLANDBOOLEAN, 5);
@@ -1114,6 +1118,7 @@ public class HomePageBusineesLayer extends HomePage {
 							log(LogStatus.ERROR, "Not able to pass value in text box "+aa[0]+" so cannot create commitment", YesNo.Yes);
 							flag = false;
 						}
+						ThreadSleep(1000);
 					}
 				}else { 
 					log(LogStatus.ERROR,"Limited partner text box is not visible so cannot create cimmitments", YesNo.Yes); 

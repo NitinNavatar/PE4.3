@@ -962,6 +962,9 @@ public class BasePageBusinessLayer extends BasePage implements BasePageErrorMess
 		String xpath1 = "//*[text()='Related']";
 		String xpath2 = "//*[text()='Related']";
 		String xpath="";
+		
+		if (recordType == RecordType.Partnerships) 
+			return true;
 		if ((recordType == RecordType.Partnerships) || (recordType == RecordType.Fund)|| (recordType == RecordType.Fundraising)||(recordType == RecordType.Company) || (recordType == RecordType.IndividualInvestor) ||(recordType == RecordType.Institution)|| (recordType == RecordType.Contact))
 		xpath = xpath1;
 		else
@@ -1096,7 +1099,18 @@ public class BasePageBusinessLayer extends BasePage implements BasePageErrorMess
 				break;
 			case Commitments:
 				relatedList = "Commitments";
-				break;
+				
+				ele = isDisplayed(driver, FindElement(driver, "//span[text()='"+relatedList+"']/../..//span[text()='View All']", relatedList,
+						action.SCROLLANDBOOLEAN, 10), "visibility", 10, relatedList);
+				if (ele != null) {
+					if (click(driver, ele, relatedList, action.SCROLLANDBOOLEAN)) {
+						CommonLib.log(LogStatus.INFO, "Related List found : "+relatedList, YesNo.No);
+						ThreadSleep(2000);
+						return true;
+					}
+				}
+				
+				
 			default:
 				return false;
 			}
@@ -1561,6 +1575,7 @@ public class BasePageBusinessLayer extends BasePage implements BasePageErrorMess
 	}
 	
 	public boolean verifyValuesOnTheBasisOfTag(String xpath,String label,String value,String tag){
+		ThreadSleep(2000);
 		WebElement ele ;
 		ele = FindElement(driver, xpath, xpath, action.SCROLLANDBOOLEAN, 10);
 		ThreadSleep(1000);
