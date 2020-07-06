@@ -135,11 +135,11 @@ public class NavatarSetupPageBusinessLayer extends NavatarSetupPage implements N
 		SoftAssert saa = new SoftAssert();
 		
 		String defaultSelectedValue = getSelectedOptionOfDropDown(driver, getFundRaising_CommitmentTab_DropDownList(environment, mode, 10), defaultValue, "text");
-		if(defaultSelectedValue!=null){
+		if(defaultSelectedValue!=null && defaultValue.equals(defaultSelectedValue)){
 			appLog.info("Default Selected Value verified Expected : "+defaultValue);	
 		}else{
-			appLog.error("Default Selected Value Not verified Expected : "+defaultValue);
-			saa.assertTrue(false, "Default Selected Value Not verified Expected : "+defaultValue);	
+			appLog.error("Default Selected Value Not verified Expected : "+defaultValue+"\t Actual : "+defaultSelectedValue);
+			saa.assertTrue(false, "Default Selected Value Not verified Expected : "+defaultValue+"\t Actual : "+defaultSelectedValue);	
 		}
 		
 		if(dropdDownLayout!=null){
@@ -189,11 +189,11 @@ public class NavatarSetupPageBusinessLayer extends NavatarSetupPage implements N
 		SoftAssert saa = new SoftAssert();
 		
 		String defaultSelectedValue = getSelectedOptionOfDropDown(driver, getAdditional_CommitmentTab_DropDownList(environment, mode, 10), defaultValue, "text");
-		if(defaultSelectedValue!=null){
+		if(defaultSelectedValue!=null  && defaultValue.equals(defaultSelectedValue)){
 			appLog.info("Default Selected Value verified Expected : "+defaultValue);	
 		}else{
-			appLog.error("Default Selected Value Not verified Expected : "+defaultValue);
-			saa.assertTrue(false, "Default Selected Value Not verified Expected : "+defaultValue);	
+			appLog.error("Default Selected Value Not verified Expected : "+defaultValue+"\t Actual : "+defaultSelectedValue);
+			saa.assertTrue(false, "Default Selected Value Not verified Expected : "+defaultValue+"\t Actual : "+defaultSelectedValue);	
 		}
 		
 		if(dropdDownLayout!=null){
@@ -243,11 +243,11 @@ public class NavatarSetupPageBusinessLayer extends NavatarSetupPage implements N
 		SoftAssert saa = new SoftAssert();
 		
 		String defaultSelectedValue = getSelectedOptionOfDropDown(driver, getNewLP_CommitmentTab_DropDownList(environment, mode, 10), defaultValue, "text");
-		if(defaultSelectedValue!=null){
+		if(defaultSelectedValue!=null  && defaultValue.equals(defaultSelectedValue)){
 			appLog.info("Default Selected Value verified Expected : "+defaultValue);	
 		}else{
-			appLog.error("Default Selected Value Not verified Expected : "+defaultValue);
-			saa.assertTrue(false, "Default Selected Value Not verified Expected : "+defaultValue);	
+			appLog.error("Default Selected Value Not verified Expected : "+defaultValue+"\t Actual : "+defaultSelectedValue);
+			saa.assertTrue(false, "Default Selected Value Not verified Expected : "+defaultValue+"\t Actual : "+defaultSelectedValue);	
 		}
 		
 		if(dropdDownLayout!=null){
@@ -297,11 +297,11 @@ public class NavatarSetupPageBusinessLayer extends NavatarSetupPage implements N
 		SoftAssert saa = new SoftAssert();
 		
 		String defaultSelectedValue = getSelectedOptionOfDropDown(driver, getNewPartnerShip_CommitmentTab_DropDownList(environment, mode, 10), defaultValue, "text");
-		if(defaultSelectedValue!=null){
+		if(defaultSelectedValue!=null  && defaultValue.equals(defaultSelectedValue)){
 			appLog.info("Default Selected Value verified Expected : "+defaultValue);	
 		}else{
-			appLog.error("Default Selected Value Not verified Expected : "+defaultValue);
-			saa.assertTrue(false, "Default Selected Value Not verified Expected : "+defaultValue);	
+			appLog.error("Default Selected Value Not verified Expected : "+defaultValue+"\t Actual : "+defaultSelectedValue);
+			saa.assertTrue(false, "Default Selected Value Not verified Expected : "+defaultValue+"\t Actual : "+defaultSelectedValue);	
 		}
 		
 		if(dropdDownLayout!=null){
@@ -842,6 +842,7 @@ public class NavatarSetupPageBusinessLayer extends NavatarSetupPage implements N
 						log(LogStatus.INFO, "chcek box is selected in account association ", YesNo.No);
 						flag=true;
 					}else {
+						 flag=false;
 						log(LogStatus.ERROR, "chcek box is not selected in account association ",YesNo.Yes);
 						break;
 					}
@@ -856,6 +857,7 @@ public class NavatarSetupPageBusinessLayer extends NavatarSetupPage implements N
 						log(LogStatus.INFO, "chcek box is not selected in account association ", YesNo.No);
 						flag=true;
 					}else {
+						 flag=false;
 						log(LogStatus.ERROR, "chcek box is selected in account association ",YesNo.Yes);
 						break;
 					}

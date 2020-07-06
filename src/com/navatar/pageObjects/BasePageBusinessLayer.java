@@ -2227,11 +2227,16 @@ public WebElement verifyCreatedItemOnPage(Header header,String itemName)
 	String xpath ="";
 	String head =header.toString().replace("_", " ");
 	ThreadSleep(3000);
-	xpath="//*[contains(text(),'"+head+"')]/..//*[text()='"+itemName+"']";
-	 ele = FindElement(driver, xpath, "Header : "+itemName, action.BOOLEAN, 30);
-	 ele = isDisplayed(driver, ele, "Visibility", 10, head+" : "+itemName);
+	if (header==Header.Institution)
+		xpath="(//*[contains(text(),'"+head+"')]/..//*[contains(text(),'"+itemName+"')])[2]";
+	else
+		xpath="//*[contains(text(),'"+head+"')]/..//*[contains(text(),'"+itemName+"')]";
+	ele = FindElement(driver, xpath, "Header : "+itemName, action.BOOLEAN, 30);
+	ele = isDisplayed(driver, ele, "Visibility", 10, head+" : "+itemName);
 	return ele;
 }
+
+
 
 public boolean verifyRelatedListViewAllColumnAndValue(String[][] headersWithValues){
 	String columnXpath="";
@@ -2306,4 +2311,104 @@ public boolean verifyRelatedListViewAllColumnAndValue(String[][] headersWithValu
 
 
 }
+
+
+
+public boolean verifyFundRaisingContact_Lightning(List<String> contactDetails){
+	boolean flag=true;
+		WebElement ele;
+		
+		///////////////////////////  Header Verification ////////////////////////////////////////////////////
+		String[] headerfrContactValue = {"Fundraising Contact: Fundraising Contact ID","Contact Name","Institution","Role","Primary","Email"};
+		String columnXpath = "//*[@title='"+headerfrContactValue[0]+"']";
+		String columnOrder=headerfrContactValue[0];
+		for (int j = 1; j < headerfrContactValue.length; j++) {
+			columnXpath=columnXpath+"//following-sibling::*[@title='"+headerfrContactValue[j]+"']";
+			columnOrder=columnOrder+"  <>  "+headerfrContactValue[j];
+		}
+		ele = FindElement(driver, columnXpath, "Header ", action.BOOLEAN, 30);
+		if (ele!=null) {
+			appLog.info("Header Column Matched with order : "+columnOrder);
+		}else {
+			flag=false;
+			appLog.error("Header Column Not Matched with order : "+columnOrder);
+			BaseLib.sa.assertTrue(false, "Header Column Not Matched with order : "+columnOrder);
+
+		}
+		///////////////////////////  Header Verification  Done ////////////////////////////////////////////////////
+		
+
+		///////////////////////////  Value Verification  ////////////////////////////////////////////////////
+		String valuXpath="";
+		String actual="";
+		String[] frContactValue = new String[contactDetails.size()];
+		int k=0;
+		for (String val : contactDetails) {
+			frContactValue[k]=val;
+		}
+		String val="";
+		for (int j = 1; j < frContactValue.length; j++) {
+			val=frContactValue[j];
+			if (j==4) {
+				valuXpath="//*[contains(@title,'"+frContactValue[0]+"')]/../..//following-sibling::td["+j+"]//span//*//img";
+			}else if (frContactValue[j].isEmpty() || frContactValue[j].equals("")) {
+				valuXpath="//*[contains(@title,'"+frContactValue[0]+"')]/../..//following-sibling::td["+j+"]//span//*";
+			} else {
+				valuXpath="//*[contains(@title,'"+frContactValue[0]+"')]/../..//following-sibling::td["+j+"]//*[contains(@title,'"+val+"') or contains(text(),'"+val+"')]";
+			}
+
+			ele = FindElement(driver, valuXpath, val, action.BOOLEAN, 5);
+			if (ele!=null) {
+
+				if (j==4) {
+					
+					String detail="";
+					if(val.equalsIgnoreCase("Checked")) {
+						 detail="True";
+					}else {
+						 detail="False";
+					}
+					if(detail.equalsIgnoreCase(ele.getAttribute("alt").trim())) {
+						appLog.info("Header Column "+headerfrContactValue[j]+" Matched with Value "+frContactValue[j]);
+					}else {
+						flag=false;
+						appLog.error("Header Column "+headerfrContactValue[j]+" Not Matched with Value "+frContactValue[j]);
+						BaseLib.sa.assertTrue(false, "Header Column "+headerfrContactValue[j]+" Not Matched with Value "+frContactValue[j]);
+
+					}
+					
+				}else {
+					actual=ele.getText().trim();
+					if (frContactValue[j].isEmpty() || frContactValue[j].equals("")) {
+						if (actual.isEmpty() || actual.equals("")) {
+							appLog.info("Header Column "+headerfrContactValue[j]+" Matched with Value "+frContactValue[j]);
+						}else {
+							flag=false;
+							appLog.error("Header Column "+headerfrContactValue[j]+" Not Matched with Value "+frContactValue[j]);
+							BaseLib.sa.assertTrue(false, "Header Column "+headerfrContactValue[j]+" Not Matched with Value "+frContactValue[j]);
+
+						}
+					}else {
+						appLog.info("Header Column "+headerfrContactValue[j]+" Matched with Value "+frContactValue[j]);
+					}	
+				}
+				
+
+			}else {
+				flag=false;
+				appLog.error("Header Column "+headerfrContactValue[j]+" Not Matched with Value "+frContactValue[j]);
+				BaseLib.sa.assertTrue(false, "Header Column "+headerfrContactValue[j]+" Not Matched with Value "+frContactValue[j]);
+
+			}
+
+		}
+	
+	
+
+	return flag;
+
+
+}
+
+
 }

@@ -415,12 +415,14 @@ public class DealCreationTabBusinessLayer extends DealCreationTab {
 	public SoftAssert verifyingInstitutionRequiredFieldListDealInformationLayout(String environment,String mode,String dropdDownLayout,String[][] rowValues){
 		SoftAssert saa = new SoftAssert();
 		
-		String defaultSelectedValue = getSelectedOptionOfDropDown(driver, getInstitution_DealInfo_DropDownList(environment, mode, 10), "Company", "text");
-		if(defaultSelectedValue!=null){
-			appLog.info("Default Selected Value verified Expected : "+"Company");	
+		String defaultValue="Company_VC";
+		String defaultSelectedValue = getSelectedOptionOfDropDown(driver, getInstitution_DealInfo_DropDownList(environment, mode, 10), defaultValue, "text");
+		
+		if(defaultSelectedValue!=null && defaultValue.equals(defaultSelectedValue)){
+			appLog.info("Default Selected Value verified Expected : "+defaultValue);	
 		}else{
-			appLog.error("Default Selected Value Not verified Expected : "+"Company");
-			saa.assertTrue(false, "Default Selected Value Not verified Expected : "+"Company");	
+			appLog.error("Default Selected Value Not verified Expected : "+defaultValue+"\t Actual : "+defaultSelectedValue);
+			saa.assertTrue(false, "Default Selected Value Not verified Expected : "+defaultValue+"\t Actual : "+defaultSelectedValue);	
 		}
 		
 		if(dropdDownLayout!=null){
@@ -469,13 +471,13 @@ public class DealCreationTabBusinessLayer extends DealCreationTab {
 	public SoftAssert verifyingPipeLineRequiredFieldListDealInformationLayout(String environment,String mode,String dropdDownLayout,String[][] rowValues){
 		SoftAssert saa = new SoftAssert();
 		try {
-			
-			String defaultSelectedValue = getSelectedOptionOfDropDown(driver, getPipeLine_DealInfo_DropDownList(environment, mode, 10), "Pipeline Layout", "text");
-			if(defaultSelectedValue!=null){
-				appLog.info("Default Selected Value verified for PipeLIne Layout Expected : "+"Pipeline Layout");	
+			String defaultValue="Pipeline Layout";
+			String defaultSelectedValue = getSelectedOptionOfDropDown(driver, getPipeLine_DealInfo_DropDownList(environment, mode, 10), defaultValue, "text");
+			if(defaultSelectedValue!=null && defaultValue.equals(defaultSelectedValue)){
+				appLog.info("Default Selected Value verified for PipeLIne Layout Expected : "+defaultValue);	
 			}else{
-				appLog.error("Default Selected Value Not verified for PipeLIne Layout Expected : "+"Pipeline Layout");
-				saa.assertTrue(false, "Default Selected Value Not verified for PipeLIne Layout Expected : "+"Pipeline Layout");	
+				appLog.error("Default Selected Value Not verified for PipeLIne Layout Expected : "+defaultValue+"\t Actual : "+defaultSelectedValue);
+				saa.assertTrue(false, "Default Selected Value Not verified for PipeLIne Layout Expected : "+defaultValue+"\t Actual : "+defaultSelectedValue);	
 			}
 			
 			if(dropdDownLayout!=null){
@@ -530,13 +532,13 @@ public class DealCreationTabBusinessLayer extends DealCreationTab {
 	
 	public SoftAssert verifyingInstitutionRequiredFieldListNewSourceFirmLayout(String environment,String mode,String dropdDownLayout,String[][] rowValues){
 		SoftAssert saa = new SoftAssert();
-		
-		String defaultSelectedValue = getSelectedOptionOfDropDown(driver, getInstitution_NewSourceFirm_DropDownList(environment, mode, 10), "Company", "text");
-		if(defaultSelectedValue!=null){
-			appLog.info("Default Selected Value verified for Institution Layout Expected : "+"Pipeline Layout");	
+		String defaultValue="Company_VC";
+		String defaultSelectedValue = getSelectedOptionOfDropDown(driver, getInstitution_NewSourceFirm_DropDownList(environment, mode, 10), defaultValue, "text");
+		if(defaultSelectedValue!=null && defaultValue.equals(defaultSelectedValue)){
+			appLog.info("Default Selected Value verified for Institution Layout Expected : "+defaultValue);	
 		}else{
-			appLog.error("Default Selected Value Not verified for Institution Layout Expected : "+"Pipeline Layout");
-			saa.assertTrue(false, "Default Selected Value Not verified for Institution Layout Expected : "+"Pipeline Layout");	
+			appLog.error("Default Selected Value Not verified for Institution Layout Expected : "+defaultValue+"\t Actual : "+defaultSelectedValue);
+			saa.assertTrue(false, "Default Selected Value Not verified for Institution Layout Expected : "+defaultValue+"\t Actual : "+defaultSelectedValue);	
 		}
 		
 		if(dropdDownLayout!=null){
@@ -584,13 +586,13 @@ public class DealCreationTabBusinessLayer extends DealCreationTab {
 
 	public SoftAssert verifyingContactRequiredFieldListNewSourceContactLayout(String environment,String mode,String dropdDownLayout,String[][] rowValues){
 		SoftAssert saa = new SoftAssert();
-		
-		String defaultSelectedValue = getSelectedOptionOfDropDown(driver, getContact_NewSourceContact_DropDownList(environment, mode, 10), "Contact Layout", "text");
-		if(defaultSelectedValue!=null){
-			appLog.info("Default Selected Value verified for Contact Layout Expected : "+"Pipeline Layout");	
+		String defaultValue="Contacts_VC";
+		String defaultSelectedValue = getSelectedOptionOfDropDown(driver, getContact_NewSourceContact_DropDownList(environment, mode, 10), defaultValue, "text");
+		if(defaultSelectedValue!=null && defaultValue.equals(defaultSelectedValue)){
+			appLog.info("Default Selected Value verified for Contact Layout Expected : "+defaultValue);	
 		}else{
-			appLog.error("Default Selected Value Not verified for Contact Layout Expected : "+"Pipeline Layout");
-			saa.assertTrue(false, "Default Selected Value Not verified for Contact Layout Expected : "+"Pipeline Layout");	
+			appLog.error("Default Selected Value Not verified for Contact Layout Expected : "+defaultValue+"\t Actual : "+defaultSelectedValue);
+			saa.assertTrue(false, "Default Selected Value Not verified for Contact Layout Expected : "+defaultValue+"\t Actual : "+defaultSelectedValue);	
 		}
 		
 		if(dropdDownLayout!=null){

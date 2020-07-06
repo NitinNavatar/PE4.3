@@ -1195,7 +1195,7 @@ public class ContactsPageBusinessLayer extends ContactsPage implements ContactPa
 		if (mode.equalsIgnoreCase(Mode.Classic.toString()))
 		ele = isDisplayed(driver, FindElement(driver, "//td[text()='"+partnershipName+"']/preceding-sibling::td[text()='"+LPname+"']/preceding-sibling::td[contains(@class,'dataCell')]//a", "related list of corr list", action.SCROLLANDBOOLEAN, timeOut/2), "visibility", timeOut/2, "related list of corr list");
 		else
-			ele = isDisplayed(driver, FindElement(driver,	"//span[text()='"+partnershipName+"']/../../preceding-sibling::td//span[text()='"+LPname+"']/../../preceding-sibling::td//a", "related list of corr list", action.SCROLLANDBOOLEAN, timeOut/2), "visibility", timeOut/2, "related list of corr list");
+			ele = isDisplayed(driver, FindElement(driver,	"//span[text()='"+partnershipName+"']/../../preceding-sibling::td//span[text()='"+LPname+"']/../../preceding-sibling::*//a[@title='"+commId+"' or contains(text(),'"+commId+"')]", "related list of corr list", action.SCROLLANDBOOLEAN, timeOut/2), "visibility", timeOut/2, "related list of corr list");
 		scrollDownThroughWebelement(driver, ele, "related list of correspondence list");
 		ThreadSleep(5000);
 		if (ele!=null) {

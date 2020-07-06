@@ -68,6 +68,7 @@ import com.navatar.generic.EnumConstants.Existing;
 import com.navatar.generic.EnumConstants.FolderAccess;
 import com.navatar.generic.EnumConstants.FundPageFieldLabelText;
 import com.navatar.generic.EnumConstants.FundraisingContactPageTab;
+import com.navatar.generic.EnumConstants.Header;
 import com.navatar.generic.EnumConstants.IndiviualInvestorSectionsName;
 import com.navatar.generic.EnumConstants.LookUpIcon;
 import com.navatar.generic.EnumConstants.Mode;
@@ -6746,10 +6747,7 @@ public class SmokeTestCases extends BaseLib {
 							"Edit Button on Commitment Creation Tab", action.SCROLLANDBOOLEAN)) {
 						log(LogStatus.INFO, "Clicked on commitment Creation Edit Button", YesNo.No);
 						ThreadSleep(2000);
-
-						// Deal Information 2nd
-						String expectedResult = "Company" + "," + "Fund Manager" + "," + "Fund Manager’s Fund" + ","
-								+ "Individual Investor" + "," + "Institution" + "," + "Limited Partner";
+						
 						checkBox = nspbl.getEnableCheckBoxforNavatarSetUpSideMenuTab(environment, mode,
 								NavatarSetupSideMenuTab.CommitmentCreation, EditViewMode.Edit, ClickOrCheckEnableDisableCheckBox.EnableOrDisable, 10);
 						if (isSelected(driver, checkBox, "Check Box")) {
@@ -6859,7 +6857,7 @@ public class SmokeTestCases extends BaseLib {
 									}
 									String[][] insRowValues = { { "Legal Name", "Name", "string" } };
 									ThreadSleep(5000);
-									tcsa = nspbl.verifyingNewLPLayoutRequiredFieldListInformationCommitmentTab(environment, mode, "Company", null, insRowValues);
+									tcsa = nspbl.verifyingNewLPLayoutRequiredFieldListInformationCommitmentTab(environment, mode, "Company_VC", null, insRowValues);
 									sa.combineAssertions(tcsa);
 									
 								}else {
@@ -6871,7 +6869,7 @@ public class SmokeTestCases extends BaseLib {
 									log(LogStatus.INFO, "click on Partnership required field link", YesNo.No);
 									String[][] insRowValues = { { "Partnership Legal Name", "Name", "string" },{ "Fund", "navpeII__Fund__c", "reference" } };
 									ThreadSleep(5000);
-									tcsa = nspbl.verifyingNewPartnerShipLayoutRequiredFieldListInformationCommitmentTab(environment, mode, "Partnership Layout", null, insRowValues);
+									tcsa = nspbl.verifyingNewPartnerShipLayoutRequiredFieldListInformationCommitmentTab(environment, mode, "Company_VC", null, insRowValues);
 									sa.combineAssertions(tcsa);
 									
 								}else {
@@ -11488,20 +11486,39 @@ public class SmokeTestCases extends BaseLib {
 								List<WebElement> ele=FindElements(driver, xpath, "Check box list in edit mode");
 								if(!ele.isEmpty()) {
 									for(int i1=0; i1<ele.size(); i1++) {
-										if(click(driver, ele.get(i1), "chcek box", action.SCROLLANDBOOLEAN)) {
-											log(LogStatus.INFO, "clicked on chcek box in account association ", YesNo.No);
-										}else {
-											log(LogStatus.ERROR, "not able to click on chcek box in account association ",YesNo.Yes);
-											sa.assertTrue(false, "not able to click on chcek box in account association ");
+										
+										if (isSelected(driver, ele.get(i1), "CheckBox")) {
+											
+										} else {
+											if(click(driver, ele.get(i1), "chcek box", action.SCROLLANDBOOLEAN)) {
+												log(LogStatus.INFO, "clicked on chcek box in account association : "+i1, YesNo.No);
+											}else {
+												log(LogStatus.ERROR, "not able to click on chcek box in account association ",YesNo.Yes);
+												sa.assertTrue(false, "not able to click on chcek box in account association ");
+											}
 										}
+										
 									}
 								}else {
 									log(LogStatus.ERROR, "Check Box list is not found in account association so cannot ticked all check box", YesNo.Yes);
 									sa.assertTrue(false, "Check Box list is not found in account association so cannot ticked all check box");
 								}
 								if (click(driver,nsp.getSaveButtonforNavatarSetUpSideMenuTab(environment, mode,NavatarSetupSideMenuTab.AccountAssociations, 10, TopOrBottom.TOP),"Save Button", action.BOOLEAN)) {
-									ThreadSleep(2000);
+									ThreadSleep(5000);
 									appLog.error("Clicked on Save Button");
+									
+									switchToDefaultContent(driver);
+									if (mode.equalsIgnoreCase(Mode.Lightning.toString())) {
+										switchToFrame(driver, 10, nsp.getnavatarSetUpTabFrame_Lighting(environment, 10));
+									}
+											if(nsp.verifyAccountAssociationCheckBox(environment, mode, CheckUncheck.Check, EditViewMode.View)) {
+												log(LogStatus.PASS, "All check box is checked after save", YesNo.No);
+											}else {
+												log(LogStatus.PASS, "All check box is not checked after save", YesNo.Yes);
+												sa.assertTrue(false, "All check box is not checked after save");
+											}
+									
+											
 								} else {
 									log(LogStatus.SKIP, "Not Able to Click on Save Button", YesNo.Yes);
 									sa.assertTrue(false, "Not Able to Click on Save Button");
@@ -11756,30 +11773,35 @@ public class SmokeTestCases extends BaseLib {
 								if (click(driver, fd.getSetupCapitalCalls(30), "setup capital call sbutton", action.SCROLLANDBOOLEAN)) {
 
 									// Azhar Start 
-
+										ThreadSleep(3000);
 
 									String xpath;
 
 									if (j==0) {
-										xpath = "//div[@class='individualPalette']//td/a";	
-									} else {
-										xpath = "(//div[@class='individualPalette']//td/a)[2]";
-									}
+                                        xpath = "//div[@class='individualPalette']//td/a[contains(text(),'"+Smoke_LP1+"')]";   
+                                    } else {
+                                        xpath = "//div[@class='individualPalette']//td/a[contains(text(),'CMT')]";
+                                    }
 								
 									ele = FindElement(driver, xpath, linkClick[j], action.SCROLLANDBOOLEAN, 10);
 
 									if (ele!=null) {
 										appLog.info("Clicked on : "+linkClick[j]);
 										if (click(driver, ele, linkClick[j], action.SCROLLANDBOOLEAN)) {
+											ThreadSleep(3000);
 											switchToDefaultContent(driver);
 											if (Mode.Lightning.toString().equalsIgnoreCase(mode)) {
-												xpath = "//*[contains(text(),'"+linkClick[j]+"')]";
-											}else{
-												xpath = "//h2[contains(text(),'"+linkClick[j]+"')]";	
-											}
-
-											ele = FindElement(driver, xpath, "on same window : "+linkClick[j], action.BOOLEAN, 10);
-
+                                                Header h;
+												//xpath = "//*[contains(text(),'"+linkClick[j]+"')]";
+                                                if (j==0)
+                                                    h=Header.Institution;
+                                                else
+                                                    h=Header.Commitment;
+                                                ele=bp.verifyCreatedItemOnPage(h, linkClick[j]);
+                                            }else{
+                                                xpath = "//h2[contains(text(),'"+linkClick[j]+"')]";   
+                                                ele = FindElement(driver, xpath, "on same window : "+linkClick[j], action.BOOLEAN, 10);
+                                            }
 											if (ele!=null) {
 												appLog.info("Landing Page Verified : "+linkClick[j]);
 											} else {
@@ -14505,32 +14527,37 @@ public class SmokeTestCases extends BaseLib {
 							sendKeys(driver, fdi.getDistributionDate(30),FifteenDayAfterDate , "distribution date", action.BOOLEAN);
 							if (click(driver, fdi.getSetupInvestorDist(30), "setup investor distribution sbutton", action.SCROLLANDBOOLEAN)) {
 								
-								ThreadSleep(2000);
+								ThreadSleep(3000);
 								// Azhar Start 
 
 
 								String xpath;
 
-								if (j==0) {
-									xpath = "//div[@class='individualPalette']//td/a";	
-								} else {
-									xpath = "(//div[@class='individualPalette']//td/a)[2]";
-								}
+							    if (j==0) {
+                                    xpath = "//div[@class='individualPalette']//td/a[contains(text(),'"+Smoke_LP1+"')]";   
+                                } else {
+                                    xpath = "//div[@class='individualPalette']//td/a[contains(text(),'CMT')]";
+                                }
 							
 								ele = FindElement(driver, xpath, linkClick[j], action.SCROLLANDBOOLEAN, 10);
 
 								if (ele!=null) {
 									appLog.info("Clicked on : "+linkClick[j]);
 									if (click(driver, ele, linkClick[j], action.SCROLLANDBOOLEAN)) {
+										ThreadSleep(3000);
 										switchToDefaultContent(driver);
 										if (Mode.Lightning.toString().equalsIgnoreCase(mode)) {
-											xpath = "//*[contains(text(),'"+linkClick[j]+"')]";
-										}else{
-											xpath = "//h2[contains(text(),'"+linkClick[j]+"')]";	
-										}
-
-										ele = FindElement(driver, xpath, "on same window : "+linkClick[j], action.SCROLLANDBOOLEAN, 10);
-
+                                            Header h;
+											//xpath = "//*[contains(text(),'"+linkClick[j]+"')]";
+                                            if (j==0)
+                                                h=Header.Institution;
+                                            else
+                                                h=Header.Commitment;
+                                            ele=bp.verifyCreatedItemOnPage(h, linkClick[j]);
+                                        }else{
+                                            xpath = "//h2[contains(text(),'"+linkClick[j]+"')]";   
+                                            ele = FindElement(driver, xpath, "on same window : "+linkClick[j], action.BOOLEAN, 10);
+                                        }
 										if (ele!=null) {
 											appLog.info("Landing Page Verified : "+linkClick[j]);
 										} else {

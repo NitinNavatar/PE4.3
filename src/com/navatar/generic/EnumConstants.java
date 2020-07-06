@@ -877,6 +877,6 @@ public class EnumConstants {
 		};
 	
 		public static enum Header{
-			Fund,Contact,Institution,Marketing_Initiative;	  
+			Fund,Contact,Institution,Marketing_Initiative, Commitment;	  
 			};
 }
