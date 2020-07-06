@@ -151,7 +151,7 @@ public class SmokeTestCases extends BaseLib {
 		if (home.clickOnSetUpLink(environment, Mode.Classic.toString())) {
 			List<String> layoutName = new ArrayList<String>();
 			layoutName.add("Property");
-			layoutName.add("Institution");
+			layoutName.add("Institution - Real Estate");
 			layoutName.add("Individual Investor");
 			HashMap<String, String> sourceANDDestination = new HashMap<String, String>();
 			sourceANDDestination.put("Account Record Type", "Account Name");
@@ -176,7 +176,7 @@ public class SmokeTestCases extends BaseLib {
 		if (home.clickOnSetUpLink(environment, Mode.Classic.toString())) {
 			List<String> layoutName = new ArrayList<String>();
 			layoutName.add("Property");
-			layoutName.add("Institution");
+			layoutName.add("Institution - Real Estate");
 			layoutName.add("Individual Investor");
 			HashMap<String, String> sourceANDDestination = new HashMap<String, String>();
 			sourceANDDestination.put("Related List<break>Deals Sourced", "Contacts");
@@ -414,6 +414,19 @@ public class SmokeTestCases extends BaseLib {
 				appLog.error("Not able to create Custom Report : " + reportName);
 				sa.assertTrue(false, "Not able to create Custom Report : " + reportName);
 				log(LogStatus.ERROR, "Not able to create Custom Report : " + reportName, YesNo.Yes);
+			}
+			switchToDefaultContent(driver);
+			home.clickOnSetUpLink(environment, Mode.Classic.toString());
+			if (home.clickOnTab(environment, Mode.Classic.toString(), TabName.HomeTab)) {
+				reportName="R2"+ reportName;
+				if (report.createCustomReportForFolder(environment, mode, reportFolderName,reportName, reportName,
+						reportType, null, showvalue, null, rangeValue, null, null)) {
+					appLog.info("Custom Report is created succesdfully : " + reportName);
+				} else {
+					appLog.error("Not able to create Custom Report : " + reportName);
+					sa.assertTrue(false, "Not able to create Custom Report : " + reportName);
+					log(LogStatus.ERROR, "Not able to create Custom Report : " + reportName, YesNo.Yes);
+				}
 			}
 		} else {
 			appLog.error("Not able to create Custom Report folder: " + reportFolderName);
@@ -715,7 +728,7 @@ public class SmokeTestCases extends BaseLib {
 		}
 		FieldLabels = excelLabel.Target_Commitments + "," + excelLabel.Vintage_Year + ","
 				+ FundPageFieldLabelText.Frist_Closing_Date;
-		String date = getDateAccToTimeZone("America/New_York", "M/dd/YYYY");
+		String date = getDateAccToTimeZone("America/New_York", "M/d/YYYY");
 		String Values1 = SmokeFund1Target_Commitments + "," + SmokeFund1_VintageYear + "," + date;
 		String Values2 = SmokeFund2Target_Commitments + "," + SmokeFund2_VintageYear + "," + date;
 		String Value3 = SmokeFund2Target_Commitments + "," + SmokeFund3_VintageYear + "," + date;
@@ -3280,7 +3293,7 @@ public class SmokeTestCases extends BaseLib {
 							switchToFrame(driver, 30, home.getCreateFundraisingsFrame_Lighting(20));
 						}
 						if(i==0) {
-							if(click(driver,fund.getSelectFundPopUpCrossIcon(10),"fund pop up cross icon", action.BOOLEAN)) {
+							if(clickUsingJavaScript(driver,fund.getSelectFundPopUpCrossIcon(10),"fund pop up cross icon", action.BOOLEAN)) {
 								log(LogStatus.INFO, "Clicked on Cross icon ", YesNo.No);
 							}else {
 								log(LogStatus.ERROR, "Not able to click on Cross icon", YesNo.Yes);
@@ -6851,7 +6864,7 @@ public class SmokeTestCases extends BaseLib {
 									log(LogStatus.INFO, "click on Limited Partner required field link", YesNo.No);
 									ThreadSleep(5000);
 									List<WebElement> options = allOptionsInDropDrop(driver, nspbl.getNewLP_CommitmentTab_DropDownList(environment, mode, 10), "limited partner drop down list");
-									if(compareMultipleList(driver, "Property,Fund Manager,Fund Manager’s Fund,Individual Investor,Institution,Limited Partner", options).isEmpty()) {
+									if(compareMultipleList(driver, "Property,Fund Manager,Fund Manager’s Fund,Individual Investor,Institution - Real Estate,Limited Partner", options).isEmpty()) {
 										log(LogStatus.INFO, "Limited partner drop down list is verified ", YesNo.No);
 									}else {
 										log(LogStatus.FAIL, "Limited partner drop down list is not verified ", YesNo.No);
@@ -8606,11 +8619,11 @@ public class SmokeTestCases extends BaseLib {
 						// Company
 						appLog.info("Going on Company Tab");
 						if (bp.clickOnTab(environment, mode, TabName.InstituitonsTab)) {
-							if (ip.clickOnCreatedProperty(environment, mode, Smoke_PL1CompanyName)) {
+							if (ip.clickOnCreatedInstitution(environment, mode, Smoke_PL1CompanyName)) {
 								appLog.info("Click on Created Company : " + Smoke_PL1CompanyName);
 								
 								String[][] labelsAndValuesforComp = { { excelLabel.Legal_Name.toString(), Smoke_PL1CompanyName },
-										{ excelLabel.Record_Type.toString(), "Property" } };
+										{ excelLabel.Record_Type.toString(), "Institution" } };
 								
 								for (String[] labelAndValue : labelsAndValuesforComp) {
 									if (ip.fieldValueVerificationOnInstitutionPage(environment, mode, TabName.PropertiesTab,
@@ -8779,7 +8792,7 @@ public class SmokeTestCases extends BaseLib {
 							log(LogStatus.FAIL, "Check Box not Verified", YesNo.Yes);
 						}
 
-						String dealInfo_assignedRecordTypeDefaultValue = "Property";
+						String dealInfo_assignedRecordTypeDefaultValue = "Institution";
 						String defaultvalue = getSelectedOptionOfDropDown(driver,
 								dctb.getDealInformationLayout_RecordType(environment, 10), "Property", "Text");
 						if (defaultvalue.equalsIgnoreCase(dealInfo_assignedRecordTypeDefaultValue)) {
@@ -9362,7 +9375,7 @@ public class SmokeTestCases extends BaseLib {
 
 						appLog.info("Going on Company Tab");
 						if (ip.clickOnTab(environment, mode, TabName.InstituitonsTab)) {
-						if (ip.clickOnCreatedProperty(environment, mode, Smoke_PL2CompanyName)) {
+						if (ip.clickOnCreatedInstitution(environment, mode, Smoke_PL2CompanyName)) {
 							appLog.info("Click on Created Contact : " + Smoke_PL2CompanyName);
 
 							String[][] labelsAndValuesforComp = {
@@ -9490,11 +9503,11 @@ public class SmokeTestCases extends BaseLib {
 			// Company
 			appLog.info("Going on Company Tab");
 			if (bp.clickOnTab(environment, mode, TabName.InstituitonsTab)) {
-				if (ip.clickOnCreatedProperty(environment, mode, Smoke_PL3CompanyName)) {
+				if (ip.clickOnCreatedInstitution(environment, mode, Smoke_PL3CompanyName)) {
 					appLog.info("Click on Created Company : " + Smoke_PL3CompanyName);
 
 					String[][] labelsAndValuesforComp = { { excelLabel.Legal_Name.toString(), Smoke_PL3CompanyName },
-							{ excelLabel.Record_Type.toString(), "Property" } };
+							{ excelLabel.Record_Type.toString(), "Institution" } };
 
 					for (String[] labelAndValue : labelsAndValuesforComp) {
 						if (ip.fieldValueVerificationOnInstitutionPage(environment, mode, TabName.PropertiesTab,
@@ -9547,7 +9560,7 @@ public class SmokeTestCases extends BaseLib {
 
 					String[][] dealSourceFieldsAndValues = {
 							{ excelLabel.Pipeline_Name.toString(), expectedPipeLineName },
-							{ excelLabel.Company_Name.toString(), Smoke_PL3CompanyName },
+							{ excelLabel.Property_Name.toString(), Smoke_PL3CompanyName },
 							{ excelLabel.Deal_Type.toString(), "" }, { excelLabel.Stage.toString(), Smoke_PL3Stage } };
 
 					if (ip.clickOnRelatedList(environment, mode, RecordType.IndividualInvestor, RelatedList.Deals_Sourced)) {
@@ -9601,7 +9614,7 @@ public class SmokeTestCases extends BaseLib {
 
 					String[][] dealSourceFieldsAndValues = {
 							{ excelLabel.Pipeline_Name.toString(), expectedPipeLineName },
-							{ excelLabel.Company_Name.toString(), Smoke_PL3CompanyName },
+							{ excelLabel.Property_Name.toString(), Smoke_PL3CompanyName },
 							{ excelLabel.Deal_Type.toString(), "" }, { excelLabel.Stage.toString(), Smoke_PL3Stage },
 							{ excelLabel.Source_Firm.toString(), Smoke_PL3SourceFirm },
 							{ excelLabel.Log_In_Date.toString(), "" }, { excelLabel.Investment_Size.toString(), "" } };
@@ -19767,6 +19780,10 @@ public class SmokeTestCases extends BaseLib {
 		WebElement ele;
 		String msg;
 		lp.CRMLogin(crmUser1EmailID, adminPassword);
+		String reportName = "R2"+ExcelUtils.readData(smokeFilePath, "Report", excelLabel.Variable_Name, "SmokeReport1",
+				excelLabel.Report_Name);
+		String reportFName = ExcelUtils.readData(smokeFilePath, "Report", excelLabel.Variable_Name, "SmokeReport1",
+				excelLabel.Report_Folder_Name);
 	//	lp.CRMLogin(superAdminUserName, adminPassword);
 		appLog.info("Login with User");
 			if (hp.clickOnLinkFromNavatarQuickLink(environment, mode, NavatarQuickLink.BulkEmail)) {
@@ -19792,8 +19809,8 @@ public class SmokeTestCases extends BaseLib {
 					log(LogStatus.FAIL, "Message Not Verified Actual : "+msg+" \t Expected :"+HomePageErrorMessage.step1_BuildYourOwn, YesNo.Yes);
 				}
 				
-				if (hp.clickOnTemplateForReportOnBulkEmail(environment, mode, "Deal Reports", "Deal Pipeline")) {
-					log(LogStatus.INFO, "Clicked On Deal Report : Deal Pipeline", YesNo.No);	
+				if (hp.clickOnTemplateForReportOnBulkEmail(environment, mode, reportFName, reportName)) {
+					log(LogStatus.INFO, "Clicked On Report : "+reportName, YesNo.No);	
 					
 					msg = hp.getBulkEmailErrorPopUp(environment, mode, 10).getText().trim();
 					if (HomePageErrorMessage.bulkEmailErrorPopUpMsg.equals(msg)) {

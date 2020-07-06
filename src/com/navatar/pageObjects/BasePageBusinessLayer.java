@@ -963,7 +963,7 @@ public class BasePageBusinessLayer extends BasePage implements BasePageErrorMess
 		String xpath2 = "//*[text()='Related']";
 		String xpath="";
 		if (recordType == RecordType.Partnerships) {
-			log(LogStatus.INFO, "related tab is not present on partnership page", YesNo.No);
+			log(LogStatus.INFO, "related tab is never present on partnership page", YesNo.No);
 			return true;
 		}
 		else if ( (recordType == RecordType.Fund)|| (recordType == RecordType.Fundraising)||(recordType == RecordType.Company) || (recordType == RecordType.IndividualInvestor) ||(recordType == RecordType.Institution)|| (recordType == RecordType.Contact))
@@ -1050,15 +1050,15 @@ public class BasePageBusinessLayer extends BasePage implements BasePageErrorMess
 		return false;
 	}
 	
-	public boolean clickOnViewAllRelatedList(String environment,String mode, RelatedList RelatedList, PageName pageName) {
+	public boolean clickOnViewAllRelatedList(String environment,String mode, RelatedList rl, PageName pageName) {
 		if (mode.equalsIgnoreCase(Mode.Classic.toString())) {
-			if (clickOnRelatedList_Classic(environment, RelatedList)) {
+			if (clickOnRelatedList_Classic(environment, rl)) {
 				return true;
 			}
 		} else {
 			String relatedList = null;
 			WebElement ele;
-			switch (RelatedList) {
+			switch (rl) {
 			case Fundraising_Contacts:
 				relatedList = "Fundraising Contacts";
 				break;
@@ -1107,8 +1107,11 @@ public class BasePageBusinessLayer extends BasePage implements BasePageErrorMess
 			ThreadSleep(2000);
 			System.err.println("Passed switch statement");
 			String xpath="";
-			if ((pageName == PageName.PartnershipsPage) &&( RelatedList == RelatedList.Commitments)) {
+			if ((pageName == PageName.PartnershipsPage) &&( rl == RelatedList.Commitments)) {
 				xpath="//span[text()='"+relatedList+"']/ancestor::div//span[text()='View All']";
+				refresh(driver);
+				ThreadSleep(3000);
+				
 			}
 			else
 				xpath="//span[text()='"+relatedList+"']/ancestor::article//span[text()='View All']";
@@ -1116,11 +1119,17 @@ public class BasePageBusinessLayer extends BasePage implements BasePageErrorMess
 			ele = isDisplayed(driver, FindElement(driver, xpath, relatedList,
 						action.SCROLLANDBOOLEAN, 10), "visibility", 10, relatedList);
 				if (ele != null) {
+					scrollDownThroughWebelement(driver, ele, "view all");
 					if (click(driver, ele, relatedList, action.SCROLLANDBOOLEAN)) {
 						CommonLib.log(LogStatus.INFO, "Related List found : "+relatedList, YesNo.No);
 						ThreadSleep(2000);
 						return true;
+					}else {
+						log(LogStatus.ERROR, "could not click view all link on commitments", YesNo.Yes);
 					}
+				}
+				else {
+					log(LogStatus.ERROR, "could not find view all link on commitments", YesNo.Yes);
 				}
 			
 		}

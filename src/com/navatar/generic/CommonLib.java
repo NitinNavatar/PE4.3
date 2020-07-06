@@ -2061,7 +2061,7 @@ public class CommonLib extends EnumConstants implements Comparator<String>  {
 				extentLog.log(logStatus, message, extentLog.addScreenCapture(CommonLib.screenshot(currentlyExecutingTC)));
 			}
 		}
-		if (logStatus.toString().equalsIgnoreCase(LogStatus.PASS.toString())) {
+		if (logStatus==LogStatus.PASS || logStatus==LogStatus.INFO) {
 			appLog.info(message + " " + logLineNumber(new Throwable()));
 		} else {
 			appLog.error(message + " " + logLineNumber(new Throwable()));

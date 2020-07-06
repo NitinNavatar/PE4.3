@@ -496,7 +496,7 @@ public class HomePageBusineesLayer extends HomePage {
 				log(LogStatus.INFO, "mouse over on contact name "+contactName, YesNo.No);
 				ele=isDisplayed(driver, FindElement(driver,xpathOfSelectInvestorsInfoIcon(contactName, accountName), "", action.BOOLEAN,10), "visibility",10,contactName+" info icon");
 				if(ele!=null) {
-					if(click(driver, ele, contactName+" info icon", action.SCROLLANDBOOLEAN)) {
+					if(clickUsingJavaScript(driver, ele, contactName+" info icon", action.SCROLLANDBOOLEAN)) {
 						log(LogStatus.INFO, "clicked on contact name "+contactName, YesNo.No);
 						return true;
 					}else {
