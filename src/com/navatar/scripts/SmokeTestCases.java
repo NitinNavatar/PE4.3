@@ -6872,7 +6872,7 @@ public class SmokeTestCases extends BaseLib {
 									}
 									String[][] insRowValues = { { "Legal Name", "Name", "string" } };
 									ThreadSleep(5000);
-									tcsa = nspbl.verifyingNewLPLayoutRequiredFieldListInformationCommitmentTab(environment, mode, "Company", null, insRowValues);
+									tcsa = nspbl.verifyingNewLPLayoutRequiredFieldListInformationCommitmentTab(environment, mode, "Fund Manager", null, insRowValues);
 									sa.combineAssertions(tcsa);
 									
 								}else {
@@ -6884,7 +6884,7 @@ public class SmokeTestCases extends BaseLib {
 									log(LogStatus.INFO, "click on Partnership required field link", YesNo.No);
 									String[][] insRowValues = { { "Partnership Legal Name", "Name", "string" },{ "Fund", "navpeII__Fund__c", "reference" } };
 									ThreadSleep(5000);
-									tcsa = nspbl.verifyingNewPartnerShipLayoutRequiredFieldListInformationCommitmentTab(environment, mode, "Partnership Layout", null, insRowValues);
+									tcsa = nspbl.verifyingNewPartnerShipLayoutRequiredFieldListInformationCommitmentTab(environment, mode, "Fund Manager", null, insRowValues);
 									sa.combineAssertions(tcsa);
 									
 								}else {
@@ -8744,7 +8744,6 @@ public class SmokeTestCases extends BaseLib {
 
 		lp.CRMlogout(environment, mode);
 		sa.assertAll();
-		System.err.println("SONOKEuRL : " + smokeFilePath);
 	}
 
 	@Parameters({ "environment", "mode" })
@@ -11495,10 +11494,20 @@ public class SmokeTestCases extends BaseLib {
 									log(LogStatus.ERROR, "Check Box list is not found in account association so cannot ticked all check box", YesNo.Yes);
 									sa.assertTrue(false, "Check Box list is not found in account association so cannot ticked all check box");
 								}
-								if (click(driver,nsp.getSaveButtonforNavatarSetUpSideMenuTab(environment, mode,NavatarSetupSideMenuTab.AccountAssociations, 10, TopOrBottom.TOP),"Save Button", action.BOOLEAN)) {
-									ThreadSleep(2000);
-									appLog.error("Clicked on Save Button");
-								} else {
+								if (click(driver,nsp.getSaveButtonforNavatarSetUpSideMenuTab(environment, mode,NavatarSetupSideMenuTab.AccountAssociations, 10, TopOrBottom.TOP),"Save Button", action.BOOLEAN)) { ThreadSleep(5000);
+                                appLog.error("Clicked on Save Button");
+                                
+                                switchToDefaultContent(driver);
+                                if (mode.equalsIgnoreCase(Mode.Lightning.toString())) {
+                                    switchToFrame(driver, 10, nsp.getnavatarSetUpTabFrame_Lighting(environment, 10));
+                                }
+                                        if(nsp.verifyAccountAssociationCheckBox(environment, mode, CheckUncheck.Check, EditViewMode.View)) {
+                                            log(LogStatus.PASS, "All check box is checked after save", YesNo.No);
+                                        }else {
+                                            log(LogStatus.PASS, "All check box is not checked after save", YesNo.Yes);
+                                            sa.assertTrue(false, "All check box is not checked after save");
+                                        }
+                               } else {
 									log(LogStatus.SKIP, "Not Able to Click on Save Button", YesNo.Yes);
 									sa.assertTrue(false, "Not Able to Click on Save Button");
 								}
