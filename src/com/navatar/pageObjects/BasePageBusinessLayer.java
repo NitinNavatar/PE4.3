@@ -2230,11 +2230,15 @@ public WebElement verifyCreatedItemOnPage(Header header,String itemName)
 	String xpath ="";
 	String head =header.toString().replace("_", " ");
 	ThreadSleep(3000);
-	xpath="//*[contains(text(),'"+head+"')]/..//*[text()='"+itemName+"']";
+	if (header==Header.Institution)
+		xpath="(//*[contains(text(),'"+head+"')]/..//*[contains(text(),'"+itemName+"')])[2]";
+	else
+	xpath="//*[contains(text(),'"+head+"')]/..//*[contains(text(),'"+itemName+"')]";
 	 ele = FindElement(driver, xpath, "Header : "+itemName, action.BOOLEAN, 30);
 	 ele = isDisplayed(driver, ele, "Visibility", 10, head+" : "+itemName);
 	return ele;
 }
+
 
 public boolean verifyRelatedListViewAllColumnAndValue(String[][] headersWithValues){
 	String columnXpath="";

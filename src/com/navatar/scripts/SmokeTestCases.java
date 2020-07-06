@@ -11740,24 +11740,29 @@ public class SmokeTestCases extends BaseLib {
 									String xpath;
 
 									if (j==0) {
-										xpath = "//div[@class='individualPalette']//td/a";	
+										xpath = "//div[@class='individualPalette']//td/a[contains(text(),'"+Smoke_LP1+"')]";	
 									} else {
-										xpath = "(//div[@class='individualPalette']//td/a)[2]";
+										xpath = "//div[@class='individualPalette']//td/a[contains(text(),'CMT')]";
 									}
 								
 									ele = FindElement(driver, xpath, linkClick[j], action.SCROLLANDBOOLEAN, 10);
-
+									Header h;
 									if (ele!=null) {
 										appLog.info("Clicked on : "+linkClick[j]);
 										if (click(driver, ele, linkClick[j], action.SCROLLANDBOOLEAN)) {
 											switchToDefaultContent(driver);
 											if (Mode.Lightning.toString().equalsIgnoreCase(mode)) {
-												xpath = "//*[contains(text(),'"+linkClick[j]+"')]";
+												//xpath = "//*[contains(text(),'"+linkClick[j]+"')]";
+												if (j==0)
+													h=Header.Institution;
+												else
+													h=Header.Commitment;
+												ele=bp.verifyCreatedItemOnPage(h, linkClick[j]);
 											}else{
 												xpath = "//h2[contains(text(),'"+linkClick[j]+"')]";	
+												ele = FindElement(driver, xpath, "on same window : "+linkClick[j], action.BOOLEAN, 10);
 											}
-
-											ele = FindElement(driver, xpath, "on same window : "+linkClick[j], action.BOOLEAN, 10);
+											
 
 											if (ele!=null) {
 												appLog.info("Landing Page Verified : "+linkClick[j]);
@@ -14491,9 +14496,9 @@ public class SmokeTestCases extends BaseLib {
 								String xpath;
 
 								if (j==0) {
-									xpath = "//div[@class='individualPalette']//td/a";	
+									xpath = "//div[@class='individualPalette']//td/a[contains(text(),'"+Smoke_LP1+"')]";	
 								} else {
-									xpath = "(//div[@class='individualPalette']//td/a)[2]";
+									xpath = "//div[@class='individualPalette']//td/a[contains(text(),'CMT')]";
 								}
 							
 								ele = FindElement(driver, xpath, linkClick[j], action.SCROLLANDBOOLEAN, 10);
@@ -14503,12 +14508,17 @@ public class SmokeTestCases extends BaseLib {
 									if (click(driver, ele, linkClick[j], action.SCROLLANDBOOLEAN)) {
 										switchToDefaultContent(driver);
 										if (Mode.Lightning.toString().equalsIgnoreCase(mode)) {
-											xpath = "//*[contains(text(),'"+linkClick[j]+"')]";
+											Header h;
+											if (j==0)
+												h=Header.Institution;
+											else
+												h=Header.Commitment;
+											ele=bp.verifyCreatedItemOnPage(h, linkClick[j]);
 										}else{
 											xpath = "//h2[contains(text(),'"+linkClick[j]+"')]";	
+											ele = FindElement(driver, xpath, "on same window : "+linkClick[j], action.SCROLLANDBOOLEAN, 10);
 										}
 
-										ele = FindElement(driver, xpath, "on same window : "+linkClick[j], action.SCROLLANDBOOLEAN, 10);
 
 										if (ele!=null) {
 											appLog.info("Landing Page Verified : "+linkClick[j]);
