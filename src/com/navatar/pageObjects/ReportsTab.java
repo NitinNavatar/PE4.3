@@ -6,6 +6,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import static com.navatar.generic.CommonLib.*;
+import com.navatar.generic.EnumConstants.ReportFormatName;
 
 public class ReportsTab extends BasePageBusinessLayer {
 
@@ -94,6 +96,27 @@ public class ReportsTab extends BasePageBusinessLayer {
 		return isDisplayed(driver, saveBtn_Classic, "Visibility", timeOut, "Save Btn Classic");
 	}
 	
+	
+	@FindBy(xpath = "//table[@id='reportFormatMink']//tr/td/em")
+	private WebElement reportFormatDropDown;
+	
+	public WebElement getReportFormatName(int timeOut) {
+		return isDisplayed(driver, reportFormatDropDown, "Visibility", timeOut, "report format drop down");
+	}
+	
+	
+	public WebElement getreportFormatName(ReportFormatName reportFormatName) {
+		String xpath="//span[text()='"+reportFormatName.toString()+"']/../..";
+		return isDisplayed(driver, FindElement(driver, xpath, "report Format Name "+reportFormatName.toString(), action.SCROLLANDBOOLEAN,10),"visibility",10,"report format name "+reportFormatName.toString());
+	}
+	
+	@FindBy(xpath = "//table[@id='displayMink']//tr/td/em")
+	private WebElement displayDropDown;
+
+	public WebElement getDisplayDropDown(int timeOut) {
+		return isDisplayed(driver, displayDropDown, "Visibility", timeOut, "display drop down");
+	}
+
 	@FindBy(xpath="//label[text()='Report Name']/following-sibling::div//input")
 	private WebElement reportNameTextBox_Classic;
 

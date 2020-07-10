@@ -482,14 +482,17 @@ public class MarketingInitiativesPageBusinesslayer extends MarketingInitiativesP
 					}
 				}
 			}
-			XpathelementTOSearch = "//span[@id='Select_from_Search_ResultsArep-view-box-middle']//a[text()='"+splitedContactName[0]+"']/../../following-sibling::span//a[text()='"+splitedContactName[1]+"']/../../../span[2]/span/span[1]";
+			XpathelementTOSearch = "//span[@id='Select_from_Search_ResultsArep-view-box-middle']//a[contains(text(),'"+splitedContactName[0]+"')]/../../following-sibling::span//a[text()='"+splitedContactName[1]+"']/../../../span[2]/span/span[1]";
+//			XpathelementTOSearch = "//span[@id='Select_from_Search_ResultsArep-view-box-middle']//a[contains(text(),'"+splitedContactName[0]+"')]/following-sibling::span//a[text()='"+splitedContactName[1]+"']/../../../span[2]/span/span[1]";
 		}
 		
 		By byelementToSearch = By.xpath(XpathelementTOSearch);
+		((JavascriptExecutor) driver).executeScript("arguments[0].scrollTo(0,0)", getSelectProspectsGridScrollBox(addProspectsTab,10));
 		int widgetTotalScrollingHeight = Integer.parseInt(String.valueOf(((JavascriptExecutor) driver)
 				.executeScript("return arguments[0].scrollHeight", getSelectProspectsGridScrollBox(addProspectsTab,10))));
-		((JavascriptExecutor) driver).executeScript("arguments[0].scrollTo(0,0)", getSelectProspectsGridScrollBox(addProspectsTab,10));
 		for (int i = 0; i <= widgetTotalScrollingHeight / 25; i++) {
+			((JavascriptExecutor) driver).executeScript("arguments[0].scrollLeft=0", getSelectProspectsGridScrollBox(addProspectsTab,2));
+			ThreadSleep(500);
 			if (!driver.findElements(byelementToSearch).isEmpty()
 					&& driver.findElement(byelementToSearch).isDisplayed()) {
 				appLog.info("Element Successfully Found and displayed");

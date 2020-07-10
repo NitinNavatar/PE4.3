@@ -843,11 +843,13 @@ public class NavatarSetupPageBusinessLayer extends NavatarSetupPage implements N
 						flag=true;
 					}else {
 						log(LogStatus.ERROR, "chcek box is not selected in account association ",YesNo.Yes);
+						flag=false;
 						break;
 					}
 				}
 			}else {
 				log(LogStatus.ERROR, "Check Box list is not found in account association so cannot verify all check boxes are ticked", YesNo.Yes);
+				flag=false;
 			}
 		}else {
 			if(!ele.isEmpty()) {
@@ -857,11 +859,13 @@ public class NavatarSetupPageBusinessLayer extends NavatarSetupPage implements N
 						flag=true;
 					}else {
 						log(LogStatus.ERROR, "chcek box is selected in account association ",YesNo.Yes);
+						flag=false;
 						break;
 					}
 				}
 			}else {
 				log(LogStatus.ERROR,"Check Box list is not found in account association so cannot verify all check boxes are not ticked", YesNo.Yes);
+				flag = false;
 			}
 		}
 		return flag;

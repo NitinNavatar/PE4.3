@@ -486,7 +486,7 @@ public class BasePageBusinessLayer extends BasePage implements BasePageErrorMess
 			tabName = "Contacts";
 			break;
 		case InstituitonsTab:
-			tabName = "Institutions";
+			tabName = "Companies";
 			break;
 		case FundraisingsTab:
 			tabName = "Fundraisings";
@@ -962,6 +962,9 @@ public class BasePageBusinessLayer extends BasePage implements BasePageErrorMess
 		String xpath1 = "//*[text()='Related']";
 		String xpath2 = "//*[text()='Related']";
 		String xpath="";
+		
+		if (recordType == RecordType.PipeLine) 
+			return true;
 		if ((recordType == RecordType.Partnerships) || (recordType == RecordType.Fund)|| (recordType == RecordType.Fundraising)||(recordType == RecordType.Company) || (recordType == RecordType.IndividualInvestor) ||(recordType == RecordType.Institution)|| (recordType == RecordType.Contact))
 		xpath = xpath1;
 		else
@@ -1090,7 +1093,18 @@ public class BasePageBusinessLayer extends BasePage implements BasePageErrorMess
 				break;	
 			case Pipeline_Stage_Logs:
 				relatedList = "Pipeline Stage Logs";
-				break;
+				
+				ele = isDisplayed(driver, FindElement(driver, "//span[text()='"+relatedList+"']/../..//span[text()='View All']", relatedList,
+				action.SCROLLANDBOOLEAN, 10), "visibility", 10, relatedList);
+		if (ele != null) {
+			if (click(driver, ele, relatedList, action.SCROLLANDBOOLEAN)) {
+				CommonLib.log(LogStatus.INFO, "Related List found : "+relatedList, YesNo.No);
+				ThreadSleep(2000);
+				return true;
+			}
+		}
+		break;
+				
 			case Correspondence_Lists:
 				relatedList = "Correspondence Lists";
 				break;
@@ -1238,23 +1252,23 @@ public class BasePageBusinessLayer extends BasePage implements BasePageErrorMess
 
 	}
 	
-	public boolean verifyActivityHistoryRelatedList(String environment,String mode,TabName tabName,String subject,String relatedTo, String contactName){
+	public boolean verifyActivityHistoryRelatedList(String environment,String mode,TabName tabName,String subject, String contactName){
 		WebElement ele=null;
 		String xpath;
 		if (tabName.toString().equalsIgnoreCase(TabName.ContactTab.toString())) {
 			if (mode.equalsIgnoreCase(Mode.Classic.toString())) {
-				xpath = "//h3[text()='Activity History']/ancestor::div[@class='bRelatedList']//div[@class='pbBody']//tr//th/a[contains(text(),'"+subject+"')]/../following-sibling::td/a[text()='"+relatedTo+"']";
+				xpath = "//h3[text()='Activity History']/ancestor::div[@class='bRelatedList']//div[@class='pbBody']//tr//th/a[contains(text(),'"+subject+"')]";
 				ele = FindElement(driver, xpath, "", action.SCROLLANDBOOLEAN, 10);
 			} else {
-				xpath = "//div[contains(@class,'slds-section__content')]//a[contains(text(),'"+subject+"')]/ancestor::div[@class='slds-media']//a[text()='"+relatedTo+"']";
+				xpath = "//div[contains(@class,'slds-section__content')]//a[contains(text(),'"+subject+"')]";
 				ele = FindElement(driver, xpath, "", action.SCROLLANDBOOLEAN, 10);
 			}
 		}else if (tabName.toString().equalsIgnoreCase(TabName.InstituitonsTab.toString())) {
 			if (mode.equalsIgnoreCase(Mode.Classic.toString())) {
-				xpath = "//h3[text()='Activity History']/ancestor::div[@class='bRelatedList']//div[@class='pbBody']//tr//th/a[text()='"+subject+"']/../following-sibling::td/a[text()='"+contactName+"']/../following-sibling::td/a[text()='"+relatedTo+"']";
+				xpath = "//h3[text()='Activity History']/ancestor::div[@class='bRelatedList']//div[@class='pbBody']//tr//th/a[text()='"+subject+"']/../following-sibling::td/a[text()='"+contactName+"']";
 				ele = FindElement(driver, xpath, "", action.SCROLLANDBOOLEAN, 10);
 			} else {
-				xpath = "//div[contains(@class,'activityHistories')]//a[contains(text(),'"+subject+"')]/../../../../../../following-sibling::div[contains(@class,'secondRow')]//a[text()='"+contactName+"']/../..//a[text()='"+relatedTo+"']";
+				xpath = "//div[contains(@class,'activityHistories')]//a[contains(text(),'"+subject+"')]/../../../../../../following-sibling::div[contains(@class,'secondRow')]";
 				ele = FindElement(driver, xpath, "", action.SCROLLANDBOOLEAN, 10);
 			}
 		}else{
@@ -1805,7 +1819,7 @@ public class BasePageBusinessLayer extends BasePage implements BasePageErrorMess
 		if (mode.toString().equalsIgnoreCase(Mode.Lightning.toString())) {
 			String xpath = "";
 			if (viewAllOrNew)
-				xpath = "/ancestor::article//span[text()='View All']";
+				xpath = "/ancestor::*//span[text()='View All']";
 			else
 				xpath = "/ancestor::header/following-sibling::div//a[@title='New']";
 			((JavascriptExecutor) driver)

@@ -14,6 +14,7 @@ import org.openqa.selenium.WebElement;
 
 import com.navatar.generic.EnumConstants.Mode;
 import com.navatar.generic.EnumConstants.ReportDashboardFolderType;
+import com.navatar.generic.EnumConstants.ReportFormatName;
 import com.navatar.generic.EnumConstants.action;
 import com.navatar.generic.EnumConstants.object;
 import com.navatar.generic.EnumConstants.objectFeatureName;
@@ -95,9 +96,9 @@ public class ReportsTabBusinessLayer extends ReportsTab{
 		return flag;
 	}
 	
-	public boolean createCustomReportForFolder(String environment, String mode, String folderName, String reportName,
-			String reportDescription, String reportType, ReportField reportField, String showValue, String dateField,
-			String rangeValue, String fromDate, String toDate) {
+	public boolean createCustomReportForFolder(String environment, String mode, String folderName,ReportFormatName reportFormatName,
+			String reportName, String reportDescription, String reportType, ReportField reportField, String showValue,
+			String dateField, String rangeValue, String fromDate, String toDate) {
 		boolean flag=true;
 		if (switchToClassic()) {
 			appLog.info("Switch To Classic");
@@ -161,110 +162,132 @@ public class ReportsTabBusinessLayer extends ReportsTab{
 										appLog.error("Not Able to Click on Show Value Icon");
 									}
 								}
+								if (reportField!=null) {
+									if (sendKeys(driver, getSearchBox_Classic(environment, 30), reportField.toString(),
+											"search : " + reportField.toString(), action.SCROLLANDBOOLEAN)) {
+										appLog.info("Entered value on Search Box for report Field : " + reportField);
+										ThreadSleep(2000);
+										WebElement dragEle = FindElement(driver,
+												"//div[@id='fieldsTree']//span[text()='" + reportField + "']",
+												"Drag Field : " + reportField.toString(), action.SCROLLANDBOOLEAN, 10);
+										WebElement dropLocation = FindElement(driver,
+												"//div[@id='previewPanelGrid']//tr//td//div[text()='Salutation']",
+												"Drop Location Salutation", action.SCROLLANDBOOLEAN, 10);
 
-								if (sendKeys(driver, getSearchBox_Classic(environment, 30), reportField.toString(),
-										"search : " + reportField.toString(), action.SCROLLANDBOOLEAN)) {
-									appLog.info("Entered value on Search Box for report Field : " + reportField);
-									ThreadSleep(2000);
-									WebElement dragEle = FindElement(driver,
-											"//div[@id='fieldsTree']//span[text()='" + reportField + "']",
-											"Drag Field : " + reportField.toString(), action.SCROLLANDBOOLEAN, 10);
-									WebElement dropLocation = FindElement(driver,
-											"//div[@id='previewPanelGrid']//tr//td//div[text()='Salutation']",
-											"Drop Location Salutation", action.SCROLLANDBOOLEAN, 10);
+										if (dragNDropOperation(driver, dragEle, dropLocation)) {
 
-									if (dragNDropOperation(driver, dragEle, dropLocation)) {
-										
-										appLog.info("Drag & Drop Successfully");
-										if (click(driver, getSaveBtn_Classic(environment, 10), "Save Button",
+											appLog.info("Drag & Drop Successfully");
+										} else {
+											appLog.error("Not Able to Drag and Drop Element ");
+										}
+
+									} else {
+										appLog.error("Not Able to enter value on search box for field : " + reportField);
+									}
+								}
+								else {
+									appLog.info("creating report without contact id");
+								}
+								if(!reportFormatName.toString().equalsIgnoreCase(ReportFormatName.Null.toString())) {
+									if(click(driver, getReportFormatName(20), "report format drop down", action.SCROLLANDBOOLEAN)) {
+										appLog.info("clicked on report format drop down");
+										ThreadSleep(500);
+										if(click(driver, getreportFormatName(reportFormatName), "report format name ", action.SCROLLANDBOOLEAN)) {
+											appLog.info("clicked on report format name : "+reportFormatName.toString());
+										}else {
+											appLog.error("Not able to select report format name "+reportFormatName.toString()+" so cannot create report");
+											return false;
+										}
+									}else {
+										appLog.error("Not able to click on report format drop down so cannot create report");
+										return false;
+									}
+								}
+								if (click(driver, getSaveBtn_Classic(environment, 10), "Save Button",
+										action.SCROLLANDBOOLEAN)) {
+
+									appLog.info("Clicked on Save Button");
+									if (sendKeys(driver, getReportNameTextBox_Classic(environment, 10),
+											reportName, "Report Name Text Box : " + reportName,
+											action.SCROLLANDBOOLEAN)) {
+
+										appLog.info("Entered value for Report Name : " + reportName);
+
+										if (sendKeys(driver,
+												getReportDescriptionTextBox_Classic(environment, 10),
+												reportDescription, "Report Description : " + reportDescription,
 												action.SCROLLANDBOOLEAN)) {
-											
-											appLog.info("Clicked on Save Button");
-											if (sendKeys(driver, getReportNameTextBox_Classic(environment, 10),
-													reportName, "Report Name Text Box : " + reportName,
-													action.SCROLLANDBOOLEAN)) {
-												
-												appLog.info("Entered value for Report Name : " + reportName);
-												
-												if (sendKeys(driver,
-														getReportDescriptionTextBox_Classic(environment, 10),
-														reportDescription, "Report Description : " + reportDescription,
+
+											appLog.info("Entered value for Report Description : " + reportName);
+											if (click(driver,
+													getReportFolderIconOnSaveReport_Classic(environment, 10),
+													"Report Folder Icon", action.SCROLLANDBOOLEAN)) {
+
+												ThreadSleep(3000);
+												appLog.info("Clicked on Report Folder Icon on Save Report");
+
+												WebElement reportFolderValueEle = FindElement(driver,
+														"//div[text()='" + folderName + "']",
+														"Folder value : " + folderName, action.SCROLLANDBOOLEAN,
+														10);
+
+												if (click(driver, reportFolderValueEle,
+														"Folder value : " + folderName,
 														action.SCROLLANDBOOLEAN)) {
-													
-													appLog.info("Entered value for Report Description : " + reportName);
+
+													appLog.info("Selected Report Folder Value : "+folderName);
+
 													if (click(driver,
-															getReportFolderIconOnSaveReport_Classic(environment, 10),
-															"Report Folder Icon", action.SCROLLANDBOOLEAN)) {
-														
-														ThreadSleep(3000);
-														appLog.info("Clicked on Report Folder Icon on Save Report");
-														
-														WebElement reportFolderValueEle = FindElement(driver,
-																"//div[text()='" + folderName + "']",
-																"Folder value : " + folderName, action.SCROLLANDBOOLEAN,
-																10);
-														
-														if (click(driver, reportFolderValueEle,
-																"Folder value : " + folderName,
-																action.SCROLLANDBOOLEAN)) {
-															
-															appLog.info("Selected Report Folder Value : "+folderName);
-															
-															if (click(driver,
-																	getSaveBtnOnSaveReport_Classic(environment, 10),
-																	"Save Button on Save Report",
-																	action.SCROLLANDBOOLEAN)) {
-																
-																appLog.info("Clicked on Save Button on Save Report");
-																
-																WebElement reportNameHeaderEle = FindElement(driver,
-																		"//h2[contains(text(),'" + reportName + "')]",
-																		"Heading : " + reportName,
-																		action.SCROLLANDBOOLEAN, 30);
-																
-																if (reportNameHeaderEle != null) {
-																	appLog.info("Report Created and Matched: "
-																			+ reportName);
-																	return flag;
-																} else {
-																	appLog.error("Report Created but not Matched: "
-																			+ reportName);
-																}
+															getSaveBtnOnSaveReport_Classic(environment, 10),
+															"Save Button on Save Report",
+															action.SCROLLANDBOOLEAN)) {
 
-															} else {
-																appLog.error(
-																		"Not Able to click on Save Button on Svae Report ");
-															}
+														appLog.info("Clicked on Save Button on Save Report");
 
+														WebElement reportNameHeaderEle = FindElement(driver,
+																"//h2[contains(text(),'" + reportName + "')]",
+																"Heading : " + reportName,
+																action.SCROLLANDBOOLEAN, 30);
+
+														if (reportNameHeaderEle != null) {
+															appLog.info("Report Created and Matched: "
+																	+ reportName);
+															return flag;
 														} else {
-															appLog.error(
-																	"Not Able to Select on Report Folder Value of Show drop down : "
-																			+ folderName);
+															appLog.error("Report Created but not Matched: "
+																	+ reportName);
 														}
+
 													} else {
 														appLog.error(
-																"Not Able to click on Report Folder Icon on Save Report ");
+																"Not Able to click on Save Button on Svae Report ");
 													}
+
 												} else {
 													appLog.error(
-															"Not Able to Enter value on Report Description Text Aread :  "
-																	+ reportDescription);
+															"Not Able to Select on Report Folder Value of Show drop down : "
+																	+ folderName);
 												}
-
 											} else {
-												appLog.error("Not Able to Enter value on Report Name Text Box :  "
-														+ reportName);
+												appLog.error(
+														"Not Able to click on Report Folder Icon on Save Report ");
 											}
-
 										} else {
-											appLog.error("Not Able to click ON Save Btn ");
+											appLog.error(
+													"Not Able to Enter value on Report Description Text Aread :  "
+															+ reportDescription);
 										}
+
 									} else {
-										appLog.error("Not Able to Drag and Drop Element ");
+										appLog.error("Not Able to Enter value on Report Name Text Box :  "
+												+ reportName);
 									}
+
 								} else {
-									appLog.error("Not Able to enter value on search box for field : " + reportField);
+									appLog.error("Not Able to click ON Save Btn ");
 								}
+
+
 
 							} else {
 								appLog.error("Not Able to Click on Create Button");

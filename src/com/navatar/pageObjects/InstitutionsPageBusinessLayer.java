@@ -115,10 +115,10 @@ public class InstitutionsPageBusinessLayer extends InstitutionsPage {
 						}
 						if (click(driver, getSaveButton(environment,mode,30), "save button", action.SCROLLANDBOOLEAN)) {
 							appLog.info("clicked on save button");
-							ThreadSleep(2000);
+							ThreadSleep(5000);
 //							String	xpath="//span[@class='custom-truncate uiOutputText'][text()='"+institutionName+"']";
 //							WebElement ele = FindElement(driver, xpath, "Header : "+institutionName, action.BOOLEAN, 30);
-							WebElement ele = verifyCreatedItemOnPage(Header.Institution, institutionName);
+							WebElement ele = verifyCreatedItemOnPage(Header.Company, institutionName);
 							if (ele != null) {
 									appLog.info("created institution " + institutionName + " is verified successfully.");
 									appLog.info(institutionName + " is created successfully.");

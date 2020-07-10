@@ -13,7 +13,6 @@ import com.navatar.generic.EnumConstants.action;
 import com.navatar.generic.EnumConstants.excelLabel;
 
 import static com.navatar.generic.CommonLib.*;
-import static com.navatar.generic.SmokeCommonVariables.SmokeCOMM4_CommitmentAmount;
 import static com.navatar.generic.AppListeners.appLog;
 
 public class CommitmentsPageBusinessLayer extends CommitmentsPage{

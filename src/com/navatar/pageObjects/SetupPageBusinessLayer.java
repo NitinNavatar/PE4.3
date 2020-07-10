@@ -1,5 +1,6 @@
 package com.navatar.pageObjects;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -167,28 +168,31 @@ public class SetupPageBusinessLayer extends SetupPage {
 									ThreadSleep(2000);
 									targetElement = FindElement(driver, "//span[@class='labelText'][text()='"+trgt+"']", "", action.BOOLEAN,20);
 								}
-								ThreadSleep(2000);
-							
-								ThreadSleep(4000);
-								ele = isDisplayed(driver, FindElement(driver, " //span[text()='"+src+"']", "", action.BOOLEAN,20), "visibility",20,src+" field");
-								if(ele!=null) {
-									WebElement ele1 = isDisplayed(driver, targetElement, "visibility",20,trgt+" field");
-									if(ele1!=null) {
-										if(dragNDropOperation(driver, ele, ele1)) {
-											appLog.info("Successfully dragNDrop "+src+" at "+trgt+" location");
+								ThreadSleep(5000);
+								ele = isDisplayed(driver, FindElement(driver, "//div[contains(@class,'item used')]/span[text()="+src+"]", "", action.BOOLEAN,20), "visibility",5,src+" field");
+								if(ele==null) {
+									ele = isDisplayed(driver, FindElement(driver, " //span[text()='"+src+"']", "", action.BOOLEAN,20), "visibility",20,src+" field");
+									if(ele!=null) {
+										scrollDownThroughWebelement(driver, ele, "");
+										WebElement ele1 = isDisplayed(driver, targetElement, "visibility",20,trgt+" field");
+										if(ele1!=null) {
+											if(dragNDropOperation(driver, ele, ele1)) {
+												appLog.info("Successfully dragNDrop "+src+" at "+trgt+" location");
+											}else {
+												appLog.error("Not able to dragNDrop "+src+" at "+trgt+" location");
+												result.add("Not able to dragNDrop "+src+" at "+trgt+" location");
+											}
 										}else {
-											appLog.error("Not able to dragNDrop "+src+" at "+trgt+" location");
-											result.add("Not able to dragNDrop "+src+" at "+trgt+" location");
+											appLog.error(trgt+" location is not visible so cannot dragNDrop "+src+" at location "+trgt);
+											result.add(trgt+" location is not visible so cannot dragNDrop "+src+" at location "+trgt);
 										}
 									}else {
-										appLog.error(trgt+" location is not visible so cannot dragNDrop "+src+" at location "+trgt);
-										result.add(trgt+" location is not visible so cannot dragNDrop "+src+" at location "+trgt);
+										appLog.error(src+" is not visible so cannot dragNdrop "+src);
+										result.add(src+" is not visible so cannot dragNdrop "+src);
 									}
 								}else {
-									appLog.error(src+" is not visible so cannot dragNdrop "+src);
-									result.add(src+" is not visible so cannot dragNdrop "+src);
+									appLog.error("Target Field "+trgt+" is already present on the page "+layoutName.get(i)+". No need to drop on this page");
 								}
-								
 							}
 							if(click(driver, getPageLayoutSaveBtn(30), "page layouts save button", action.SCROLLANDBOOLEAN)) {
 								appLog.info("clicked on save button");

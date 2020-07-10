@@ -234,11 +234,16 @@ public class AppListeners extends By implements ITestListener, IInvokedMethodLis
 	public void afterNavigateRefresh(WebDriver driver) {
 		// TODO Auto-generated method stub
 		CommonLib.waitForPageLoad(driver);
+		
+		CommonLib.checkForLoaderImage(driver, "//div[contains(@style,':block')]/div[@class='slds-spinner_container']/*[@role='status']", 120);
+		CommonLib.checkForLoaderImage(driver, "//div[@role='alert']//span[text()='Loading...']", 120);
+		CommonLib.checkForLoaderImage(driver, "//div[@role='status']//span[text()='Loading...']", 120);
+		
 		CommonLib.checkForLoaderImage(driver, "//img[@src='/resource/1499340792000/DR_CRMFinal/DR_CRMFinal/images/processing-image.gif']", 120);
 		CommonLib.checkForLoaderImage(driver, "//div[@id='loadprogress']/div", 120);
-		CommonLib.checkForLoaderImage(driver, "//div[@id='blurred']/div", 120);
+		CommonLib.checkForLoaderImage(driver, "//div[@id='blurred' and contains(@style,'block')]/div", 120);
 		CommonLib.checkForLoaderImage(driver, "//div[@id='processingImg']/div", 120);
-		
+		CommonLib.checkForLoaderImage(driver, "//div[@id='loadingDiv']/div", 120);
 		
 		
 		
@@ -247,54 +252,82 @@ public class AppListeners extends By implements ITestListener, IInvokedMethodLis
 	@Override
 	public void beforeFindBy(By by, WebElement element, WebDriver driver) {
 			CommonLib.waitForPageLoad(driver);
+			CommonLib.checkForLoaderImage(driver, "//div[contains(@style,':block')]/div[@class='slds-spinner_container']/*[@role='status']", 120);
+			CommonLib.checkForLoaderImage(driver, "//div[@role='alert']//span[text()='Loading...']", 120);
+			CommonLib.checkForLoaderImage(driver, "//div[@role='status']//span[text()='Loading...']", 120);
+			
 			CommonLib.checkForLoaderImage(driver, "//img[@src='/resource/1499340792000/DR_CRMFinal/DR_CRMFinal/images/processing-image.gif']", 120);
 			CommonLib.checkForLoaderImage(driver, "//div[@id='loadprogress']/div", 120);
-			CommonLib.checkForLoaderImage(driver, "//div[@id='blurred']/div", 120);
+			CommonLib.checkForLoaderImage(driver, "//div[@id='blurred' and contains(@style,'block')]/div", 120);
 			CommonLib.checkForLoaderImage(driver, "//div[@id='processingImg']/div", 120);
+			CommonLib.checkForLoaderImage(driver, "//div[@id='loadingDiv']/div", 120);
 	}
 
 	@Override
 	public void afterFindBy(By by, WebElement element, WebDriver driver) {
 		// TODO Auto-generated method stub
-			CommonLib.checkForLoaderImage(driver, "//img[@src='/resource/1499340792000/DR_CRMFinal/DR_CRMFinal/images/processing-image.gif']", 120);
-			CommonLib.checkForLoaderImage(driver, "//div[@id='loadprogress']/div", 120);
-			CommonLib.checkForLoaderImage(driver, "//div[@id='blurred']/div", 120);
-			CommonLib.checkForLoaderImage(driver, "//div[@id='processingImg']/div", 120);
-			CommonLib.waitForPageLoad(driver);
+		CommonLib.waitForPageLoad(driver);
+		CommonLib.checkForLoaderImage(driver, "//div[contains(@style,':block')]/div[@class='slds-spinner_container']/*[@role='status']", 120);
+		CommonLib.checkForLoaderImage(driver, "//div[@role='alert']//span[text()='Loading...']", 120);
+		CommonLib.checkForLoaderImage(driver, "//div[@role='status']//span[text()='Loading...']", 120);
+		CommonLib.checkForLoaderImage(driver, "//img[@src='/resource/1499340792000/DR_CRMFinal/DR_CRMFinal/images/processing-image.gif']", 120);
+		CommonLib.checkForLoaderImage(driver, "//div[@id='loadprogress']/div", 120);
+		CommonLib.checkForLoaderImage(driver, "//div[@id='blurred' and contains(@style,'block')]/div", 120);
+		CommonLib.checkForLoaderImage(driver, "//div[@id='processingImg']/div", 120);
+		CommonLib.checkForLoaderImage(driver, "//div[@id='loadingDiv']/div", 120);
+		
 	} 
 
 	@Override
 	public void beforeClickOn(WebElement element, WebDriver driver) {
 		// TODO Auto-generated method stub
 			CommonLib.waitForPageLoad(driver);
+			CommonLib.checkForLoaderImage(driver, "//div[contains(@style,':block')]/div[@class='slds-spinner_container']/*[@role='status']", 120);
+			CommonLib.checkForLoaderImage(driver, "//div[@role='alert']//span[text()='Loading...']", 120);
+			CommonLib.checkForLoaderImage(driver, "//div[@role='status']//span[text()='Loading...']", 120);
+			CommonLib.checkForLoaderImage(driver, "//div[@id='loadingDiv']/div", 120);
 	} 
 
 	@Override
 	public void afterClickOn(WebElement element, WebDriver driver) {
 		// TODO Auto-generated method stub
+		CommonLib.waitForPageLoad(driver);
+		CommonLib.checkForLoaderImage(driver, "//div[contains(@style,':block')]/div[@class='slds-spinner_container']/*[@role='status']", 120);
+		CommonLib.checkForLoaderImage(driver, "//div[@role='alert']//span[text()='Loading...']", 120);
+		CommonLib.checkForLoaderImage(driver, "//div[@role='status']//span[text()='Loading...']", 120);
 		CommonLib.checkForLoaderImage(driver, "//img[@src='/resource/1499340792000/DR_CRMFinal/DR_CRMFinal/images/processing-image.gif']", 120);
 		CommonLib.checkForLoaderImage(driver, "//div[@id='loadprogress']/div", 120);
-		CommonLib.checkForLoaderImage(driver, "//div[@id='blurred']/div", 120);
+		CommonLib.checkForLoaderImage(driver, "//div[@id='blurred' and contains(@style,'block')]/div", 120);
 		CommonLib.checkForLoaderImage(driver, "//div[@id='processingImg']/div", 120);
-		CommonLib.waitForPageLoad(driver);
+		CommonLib.checkForLoaderImage(driver, "//div[@id='loadingDiv']/div", 120);
 	}
 
 	@Override
 	public void beforeChangeValueOf(WebElement element, WebDriver driver, CharSequence[] keysToSend) {
 		// TODO Auto-generated method stub
+		CommonLib.waitForPageLoad(driver);
+		CommonLib.checkForLoaderImage(driver, "//div[contains(@style,':block')]/div[@class='slds-spinner_container']/*[@role='status']", 120);
+		CommonLib.checkForLoaderImage(driver, "//div[@role='alert']//span[text()='Loading...']", 120);
+		CommonLib.checkForLoaderImage(driver, "//div[@role='status']//span[text()='Loading...']", 120);
 		CommonLib.checkForLoaderImage(driver, "//img[contains(@src,'processing-image.gif')]", 120);
 		CommonLib.checkForLoaderImage(driver, "//div[@id='loadprogress']/div", 120);
-		CommonLib.checkForLoaderImage(driver, "//div[@id='blurred']/div", 120);
+		CommonLib.checkForLoaderImage(driver, "//div[@id='blurred' and contains(@style,'block')]/div", 120);
 		CommonLib.checkForLoaderImage(driver, "//div[@id='processingImg']/div", 120);
+		CommonLib.checkForLoaderImage(driver, "//div[@id='loadingDiv']/div", 120);
 	}
 
 	@Override
 	public void afterChangeValueOf(WebElement element, WebDriver driver, CharSequence[] keysToSend) {
 		// TODO Auto-generated method stub
+		CommonLib.waitForPageLoad(driver);
+		CommonLib.checkForLoaderImage(driver, "//div[contains(@style,':block')]/div[@class='slds-spinner_container']/*[@role='status']", 120);
+		CommonLib.checkForLoaderImage(driver, "//div[@role='alert']//span[text()='Loading...']", 120);
+		CommonLib.checkForLoaderImage(driver, "//div[@role='status']//span[text()='Loading...']", 120);
 		CommonLib.checkForLoaderImage(driver, "//img[contains(@src,'processing-image.gif')]", 120);
 		CommonLib.checkForLoaderImage(driver, "//div[@id='loadprogress']/div", 120);
-		CommonLib.checkForLoaderImage(driver, "//div[@id='blurred']/div", 120);
+		CommonLib.checkForLoaderImage(driver, "//div[@id='blurred' and contains(@style,'block')]/div", 120);
 		CommonLib.checkForLoaderImage(driver, "//div[@id='processingImg']/div", 120);
+		CommonLib.checkForLoaderImage(driver, "//div[@id='loadingDiv']/div", 120);
 		
 		
 	}

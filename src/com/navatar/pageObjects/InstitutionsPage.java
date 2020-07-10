@@ -157,7 +157,7 @@ public class InstitutionsPage extends BasePageBusinessLayer {
 			inputXpath="/..//following-sibling::input";
 			textAreaXpath="/..//following-sibling::textarea";
 			if(labelName.toString().equalsIgnoreCase(InstitutionPageFieldLabelText.Parent_Institution.toString())) {
-				inputXpath="/..//following-sibling::div//input[@title='Search Institutions']";
+				inputXpath="/..//following-sibling::div//input[@title='Search Companies']";
 			}
 			
 		}
@@ -235,7 +235,7 @@ public class InstitutionsPage extends BasePageBusinessLayer {
 	
 	}
 	
-	@FindBy(xpath="//span[text()='Office Locations']")
+	@FindBy(xpath="//img[@title='Office Locations']/./../../../following-sibling::*//span[text()='Office Locations']")
 	private WebElement officeLocation;
 	 
 	public WebElement getOfficeLocation(String environment,String mode,RecordType recordType,int timeOut){

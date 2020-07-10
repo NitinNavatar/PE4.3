@@ -62,9 +62,6 @@ public class SmokeCommonVariables {
 	public static String Smoke_MI2;
 	public static String Smoke_MI3;
 	
-	public static String Smoke_Fund1,SmokeFund1_Type,SmokeFund1_InvestmentCategory,SmokeFund1Target_Commitments,SmokeFund1_1st_ClosingDate,SmokeFund1_VintageYear,SmokeFund1_TotalCommitment;
-	public static String Smoke_Fund2,SmokeFund2_Type,SmokeFund2_InvestmentCategory,SmokeFund2Target_Commitments,SmokeFund1_2st_ClosingDate,SmokeFund2_VintageYear,SmokeFund2_TotalCommitment;
-	public static String Smoke_Fund3,SmokeFund3_Type,SmokeFund3_InvestmentCategory,SmokeFund3Target_Commitments,SmokeFund1_3st_ClosingDate,SmokeFund3_VintageYear,SmokeFund3_TotalCommitment;
 	
 	public static String Smoke_PL1Name,Smoke_PL1CompanyName,Smoke_PL1LastStageChangeDate,Smoke_PL1HighestStageReached,Smoke_PL1AgeOfCurrentStage,Smoke_PL1Stage,Smoke_PL1Source,Smoke_PL1SourceFirm,Smoke_PL1SourceContact_Name,Smoke_PL1FirstStageChanged,Smoke_PL1SecondStageChanged;
 
@@ -84,75 +81,17 @@ public class SmokeCommonVariables {
 	public static String Smoke_NewEvent1Subject,Smoke_NewEvent1StartDate,Smoke_NewEvent1RelatedTo;
 	public static String Smoke_NewEvent2Subject,Smoke_NewEvent2StartDate,Smoke_NewEvent2RelatedTo;
 	
-	public static String Smoke_CallLog1Subject,Smoke_CallLog1DueDate,Smoke_CallLog1RelatedTo;
-	public static String Smoke_CallLog2Subject,Smoke_CallLog2DueDate,Smoke_CallLog2RelatedTo;
+	public static String Smoke_CallLog1Subject,Smoke_CallLog1DueDate;
+	public static String Smoke_CallLog2Subject,Smoke_CallLog2DueDate;
 	
-	public static String Smoke_FR1,SmokeFR1_Investment_Likely_Amount;
-	public static String Smoke_FR2,SmokeFR2_Investment_Likely_Amount;
-	public static String Smoke_FR3,SmokeFR3_Investment_Likely_Amount;
-	public static String Smoke_FR4,SmokeFR4_Investment_Likely_Amount;
-	public static String Smoke_FR5,SmokeFR5_Investment_Likely_Amount;
-	public static String Smoke_FR6,SmokeFR6_Investment_Likely_Amount;
 	
-	public static String SmokeFRC1_ID,SmokeFRC1_FRName,SmokeFRC1_Role,SmokeFRC1_Primary,SmokeFRC1_INS1;
-	public static String SmokeFRC3_ID,SmokeFRC3_FRName,SmokeFRC3_Role,SmokeFRC3_Primary,SmokeFRC3_INDINV1;
-	public static String SmokeFRC4_ID,SmokeFRC4_FRName,SmokeFRC4_Role,SmokeFRC4_Primary,SmokeFRC4_INDINV1;
-	public static String SmokeFRC5_ID,SmokeFRC5_FRName,SmokeFRC5_Role,SmokeFRC5_Primary,SmokeFRC5_INDINV1;
-	public static String SmokeFRC6_ID,SmokeFRC6_FRName,SmokeFRC6_Role,SmokeFRC6_Primary,SmokeFRC6_INDINV1;
-	public static String SmokeFRC7_ID,SmokeFRC7_FRName,SmokeFRC7_Role,SmokeFRC7_Primary,SmokeFRC7_INDINV1;
-	public static String SmokeFRC8_ID,SmokeFRC8_FRName,SmokeFRC8_Role,SmokeFRC8_Primary,SmokeFRC8_INDINV1;
-	public static String SmokeFRC9_ID,SmokeFRC9_FRName,SmokeFRC9_Role,SmokeFRC9_Primary,SmokeFRC9_INDINV1;
-	
+
 	public static String SmokeReportFolderName,SmokeReportName,SmokeReportType,SmokeReportShow,SmokeReportRange;
 	
-	public static String EmailTemplate1_Subject,EmailTemplate1_Body,EmailTemplate1_FolderName,EmailTemplate1_TemplateName;
+	public static String EmailTemplate1_Subject,EmailTemplate1_Body,EmailTemplate1_FolderName,EmailTemplate1_TemplateName,EmailTemplate1_TemplateDescription;
 
 	
-	public static String Smoke_COMM1,SmokeCOMM1_CommitmentAmount,SmokeCOMM1_partnerType,SmokeCOMM1_TaxForms,SmokeCOMM1_FinalCommitmentDate,SmokeCOMM1_ID;
-	public static String Smoke_COMM2,SmokeCOMM2_CommitmentAmount,SmokeCOMM2_partnerType,SmokeCOMM2_TaxForms,SmokeCOMM2_FinalCommitmentDate,SmokeCOMM2_ID;
-	public static String Smoke_COMM3,SmokeCOMM3_CommitmentAmount,SmokeCOMM3_partnerType,SmokeCOMM3_TaxForms,SmokeCOMM3_FinalCommitmentDate,SmokeCOMM3_ID,SmokeCoMM3_PlacementFee;
-	public static String Smoke_COMM4,SmokeCOMM4_CommitmentAmount,SmokeCOMM4_partnerType,SmokeCOMM4_TaxForms,SmokeCOMM4_FinalCommitmentDate,SmokeCOMM4_ID,SmokeCOMM4_PlacementFee;
-	public static String Smoke_COMM5,SmokeCOMM5_CommitmentAmount,SmokeCOMM5_partnerType,SmokeCOMM5_TaxForms,SmokeCOMM5_FinalCommitmentDate,SmokeCOMM5_ID;
-	public static String Smoke_COMM6,SmokeCOMM6_CommitmentAmount,SmokeCOMM6_partnerType,SmokeCOMM6_TaxForms,SmokeCOMM6_FinalCommitmentDate,SmokeCOMM6_ID;
-	public static String Smoke_COMM7,SmokeCOMM7_CommitmentAmount,SmokeCOMM7_partnerType,SmokeCOMM7_TaxForms,SmokeCOMM7_FinalCommitmentDate,SmokeCOMM7_ID;
-	public static String Smoke_COMM8,SmokeCOMM8_CommitmentAmount,SmokeCOMM8_partnerType,SmokeCOMM8_TaxForms,SmokeCOMM8_FinalCommitmentDate,SmokeCOMM8_ID,SmokeCOMM8_TotalAmountCalled, SmokeCOMM8_TotalAmountReceived,SmokeCOMM8_TotalUncalledAmount,SmokeCOMM8_TotalCommitmentDue,SmokeCOMM8_CommitmentCalled,SmokeCOMM8_CalledDue,SmokeCOMM8_TotalDist,SmokeCOMM8_CapitalReturnedRecallable,SmokeCOMM8_CapitalReturnedNonRecallable;
 	
-	public static String Smoke_LP1,SmokeLP1_Total_CoInvesment_Commitments,SmokeLP1_Total_Fund_Commitments;
-	public static String Smoke_LP2,SmokeLP2_Total_CoInvesment_Commitments,SmokeLP2_Total_Fund_Commitments;
-	public static String Smoke_LP3,SmokeLP3_BankName;
-	public static String Smoke_LP4,SmokeLP4_Total_Fund_Commitments,SmokeLP4_Total_CoInvesment_Commitments;
-	public static String Smoke_LP5;
-	
-	public static String Smoke_P1;
-	public static String Smoke_P2,SmokeP2_Fund_Investment_Category;
-	public static String Smoke_P3;
-	public static String Smoke_P4;
-	public static String SmokeDD1_ID;
-	public static String SmokeCC1_ID;
-	public static String SmokeCC2_ID;
-	public static String SmokeCC3_ID;
-	public static String SmokeCC4_ID,SmokeCC5_ID;
-	public static String SmokeDD1_FundName;
-	public static String SmokeDD1_CallAmount;
-	public static String SmokeDD1_CallDate;
-	public static String SmokeDD1_DueDate;
-	public static String SmokeDD1_AmountDue;
-	public static String SmokeDD1_TotalCallAmountReceived;
-	public static String SmokeDD1_CapitalAmount;
-	public static String SmokeDD1_ManagementFee;
-	public static String SmokeDD1_OtherFee;
-	public static String SmokeFD1ID;
-	public static String SmokeID1ID;
-	public static String SmokeID2ID;
-	public static String SmokeID3ID;
-	public static String SmokeID4ID;
-	public static String SmokeID5ID;
-	public static String SmokeCC1Data[] = new String[11];
-	public static String SmokeCC2Data[] = new String[11];
-	public static String SmokeCC3Data[] = new String[11];
-	public static String SmokeCC4Data[] = new String[11];
-	public static String SmokeCC5Data[] = new String[11];
-	public static String SmokeFund1_CommitmentID;
 	public SmokeCommonVariables(Object obj) {
 		// TODO Auto-generated constructor stub
 		long StartTime = System.currentTimeMillis();
@@ -438,25 +377,6 @@ public class SmokeCommonVariables {
 		Smoke_MI2=ExcelUtils.readData(smokeFilePath,"MI",excelLabel.Variable_Name, "SmokeMI2", excelLabel.Marketing_InitiativeName);
 		Smoke_MI3=ExcelUtils.readData(smokeFilePath,"MI",excelLabel.Variable_Name, "SmokeMI3", excelLabel.Marketing_InitiativeName);
 		
-		//***************************************** Fund *************************************************//
-		Smoke_Fund1=ExcelUtils.readData(smokeFilePath,"Funds",excelLabel.Variable_Name, "SmokeFund1", excelLabel.Fund_Name);
-		SmokeFund1_Type=ExcelUtils.readData(smokeFilePath,"Funds",excelLabel.Variable_Name, "SmokeFund1", excelLabel.Fund_Type);
-		SmokeFund1_InvestmentCategory=ExcelUtils.readData(smokeFilePath,"Funds",excelLabel.Variable_Name, "SmokeFund1", excelLabel.Investment_Category);
-		SmokeFund1Target_Commitments= ExcelUtils.readData(smokeFilePath,"Funds",excelLabel.Variable_Name, "SmokeFund1", excelLabel.Target_Commitments);
-		//SmokeFund1_1st_ClosingDate=ExcelUtils.readData(smokeFilePath,"Funds",excelLabel.Variable_Name, "SmokeFund1",excelLabel.Frist_Closing_Date);
-		SmokeFund1_VintageYear=ExcelUtils.readData(smokeFilePath,"Funds",excelLabel.Variable_Name, "SmokeFund1",excelLabel.Vintage_Year);
-		
-		Smoke_Fund2=ExcelUtils.readData(smokeFilePath,"Funds",excelLabel.Variable_Name, "SmokeFund2", excelLabel.Fund_Name);
-		SmokeFund2_Type=ExcelUtils.readData(smokeFilePath,"Funds",excelLabel.Variable_Name, "SmokeFund2", excelLabel.Fund_Type);
-		SmokeFund2_InvestmentCategory=ExcelUtils.readData(smokeFilePath,"Funds",excelLabel.Variable_Name, "SmokeFund2", excelLabel.Investment_Category);
-		SmokeFund2Target_Commitments= ExcelUtils.readData(smokeFilePath,"Funds",excelLabel.Variable_Name, "SmokeFund2", excelLabel.Target_Commitments);
-		SmokeFund2_VintageYear=ExcelUtils.readData(smokeFilePath,"Funds",excelLabel.Variable_Name, "SmokeFund2",excelLabel.Vintage_Year);
-		
-		Smoke_Fund3=ExcelUtils.readData(smokeFilePath,"Funds",excelLabel.Variable_Name, "SmokeFund3", excelLabel.Fund_Name);
-		SmokeFund3_Type=ExcelUtils.readData(smokeFilePath,"Funds",excelLabel.Variable_Name, "SmokeFund3", excelLabel.Fund_Type);
-		SmokeFund3_InvestmentCategory=ExcelUtils.readData(smokeFilePath,"Funds",excelLabel.Variable_Name, "SmokeFund3", excelLabel.Investment_Category);
-		SmokeFund3Target_Commitments= ExcelUtils.readData(smokeFilePath,"Funds",excelLabel.Variable_Name, "SmokeFund3", excelLabel.Target_Commitments);
-		SmokeFund3_VintageYear=ExcelUtils.readData(smokeFilePath,"Funds",excelLabel.Variable_Name, "SmokeFund3",excelLabel.Vintage_Year);
 		
 		//***************************************** PipeLine *************************************************//
 		
@@ -543,145 +463,12 @@ public class SmokeCommonVariables {
 		
 		Smoke_CallLog1Subject = ExcelUtils.readData(smokeFilePath,"Activities",excelLabel.Variable_Name, "SmokeCallLogl1", excelLabel.Subject);
 		Smoke_CallLog1DueDate = ExcelUtils.readData(smokeFilePath,"Activities",excelLabel.Variable_Name, "SmokeCallLogl1", excelLabel.Due_Date);
-		Smoke_CallLog1RelatedTo = ExcelUtils.readData(smokeFilePath,"Activities",excelLabel.Variable_Name, "SmokeCallLogl1", excelLabel.Related_To);
 		
 		Smoke_CallLog2Subject = ExcelUtils.readData(smokeFilePath,"Activities",excelLabel.Variable_Name, "SmokeCallLog2", excelLabel.Subject);
 		Smoke_CallLog2DueDate = ExcelUtils.readData(smokeFilePath,"Activities",excelLabel.Variable_Name, "SmokeCallLog2", excelLabel.Due_Date);
-		Smoke_CallLog2RelatedTo = Smoke_Fund2;
 		
 		
 		
-		//**********************************************************FundRaising***************************/
-		Smoke_FR1 = ExcelUtils.readData(smokeFilePath,"Fundraisings",excelLabel.Variable_Name, "SmokeFR1", excelLabel.FundRaising_Name);
-		Smoke_FR2 = ExcelUtils.readData(smokeFilePath,"Fundraisings",excelLabel.Variable_Name, "SmokeFR2", excelLabel.FundRaising_Name);
-		SmokeFR1_Investment_Likely_Amount=ExcelUtils.readData(smokeFilePath,"Fundraisings",excelLabel.Variable_Name, "SmokeFR2", excelLabel.Investment_Likely_Amount);
-		Smoke_FR3 = ExcelUtils.readData(smokeFilePath,"Fundraisings",excelLabel.Variable_Name, "SmokeFR3", excelLabel.FundRaising_Name);
-		SmokeFR3_Investment_Likely_Amount=ExcelUtils.readData(smokeFilePath,"Fundraisings",excelLabel.Variable_Name, "SmokeFR3", excelLabel.Investment_Likely_Amount);
-		Smoke_FR4 = ExcelUtils.readData(smokeFilePath,"Fundraisings",excelLabel.Variable_Name, "SmokeFR4", excelLabel.FundRaising_Name);
-		SmokeFR4_Investment_Likely_Amount=ExcelUtils.readData(smokeFilePath,"Fundraisings",excelLabel.Variable_Name, "SmokeFR4", excelLabel.Investment_Likely_Amount);
-		Smoke_FR5 = ExcelUtils.readData(smokeFilePath,"Fundraisings",excelLabel.Variable_Name, "SmokeFR5", excelLabel.FundRaising_Name);
-		SmokeFR5_Investment_Likely_Amount=ExcelUtils.readData(smokeFilePath,"Fundraisings",excelLabel.Variable_Name, "SmokeFR5", excelLabel.Investment_Likely_Amount);
-		Smoke_FR6 = ExcelUtils.readData(smokeFilePath,"Fundraisings",excelLabel.Variable_Name, "SmokeFR6", excelLabel.FundRaising_Name);
-		SmokeFR6_Investment_Likely_Amount=ExcelUtils.readData(smokeFilePath,"Fundraisings",excelLabel.Variable_Name, "SmokeFR6", excelLabel.Investment_Likely_Amount);
-		
-		
-		//****************************************FundRaising Contact**************************************************/
-		SmokeFRC1_ID=ExcelUtils.readData(smokeFilePath,"Fundraising Contacts",excelLabel.Variable_Name, "SmokeFRC1", excelLabel.Fundraising_Contact_ID);
-		SmokeFRC1_Role=ExcelUtils.readData(smokeFilePath,"Fundraising Contacts",excelLabel.Variable_Name, "SmokeFRC1", excelLabel.Role);
-		SmokeFRC1_Primary=ExcelUtils.readData(smokeFilePath,"Fundraising Contacts",excelLabel.Variable_Name, "SmokeFRC1", excelLabel.Primary);
-		
-		SmokeFRC3_ID=ExcelUtils.readData(smokeFilePath,"Fundraising Contacts",excelLabel.Variable_Name, "SmokeFRC3", excelLabel.Fundraising_Contact_ID);
-		SmokeFRC3_Role=ExcelUtils.readData(smokeFilePath,"Fundraising Contacts",excelLabel.Variable_Name, "SmokeFRC3", excelLabel.Role);
-		SmokeFRC3_Primary=ExcelUtils.readData(smokeFilePath,"Fundraising Contacts",excelLabel.Variable_Name, "SmokeFRC3", excelLabel.Primary);
-		
-		SmokeFRC4_ID=ExcelUtils.readData(smokeFilePath,"Fundraising Contacts",excelLabel.Variable_Name, "SmokeFRC4", excelLabel.Fundraising_Contact_ID);
-		SmokeFRC4_Role=ExcelUtils.readData(smokeFilePath,"Fundraising Contacts",excelLabel.Variable_Name, "SmokeFRC4", excelLabel.Role);
-		SmokeFRC4_Primary=ExcelUtils.readData(smokeFilePath,"Fundraising Contacts",excelLabel.Variable_Name, "SmokeFRC4", excelLabel.Primary);
-		
-		SmokeFRC5_ID=ExcelUtils.readData(smokeFilePath,"Fundraising Contacts",excelLabel.Variable_Name, "SmokeFRC5", excelLabel.Fundraising_Contact_ID);
-		SmokeFRC5_Role=ExcelUtils.readData(smokeFilePath,"Fundraising Contacts",excelLabel.Variable_Name, "SmokeFRC5", excelLabel.Role);
-		SmokeFRC5_Primary=ExcelUtils.readData(smokeFilePath,"Fundraising Contacts",excelLabel.Variable_Name, "SmokeFRC5", excelLabel.Primary);
-		
-		SmokeFRC6_ID=ExcelUtils.readData(smokeFilePath,"Fundraising Contacts",excelLabel.Variable_Name, "SmokeFRC6", excelLabel.Fundraising_Contact_ID);
-		SmokeFRC6_Role=ExcelUtils.readData(smokeFilePath,"Fundraising Contacts",excelLabel.Variable_Name, "SmokeFRC6", excelLabel.Role);
-		SmokeFRC6_Primary=ExcelUtils.readData(smokeFilePath,"Fundraising Contacts",excelLabel.Variable_Name, "SmokeFRC6", excelLabel.Primary);
-		
-		SmokeFRC7_ID=ExcelUtils.readData(smokeFilePath,"Fundraising Contacts",excelLabel.Variable_Name, "SmokeFRC7", excelLabel.Fundraising_Contact_ID);
-		SmokeFRC7_Role=ExcelUtils.readData(smokeFilePath,"Fundraising Contacts",excelLabel.Variable_Name, "SmokeFRC7", excelLabel.Role);
-		SmokeFRC7_Primary=ExcelUtils.readData(smokeFilePath,"Fundraising Contacts",excelLabel.Variable_Name, "SmokeFRC7", excelLabel.Primary);
-		
-		SmokeFRC8_ID=ExcelUtils.readData(smokeFilePath,"Fundraising Contacts",excelLabel.Variable_Name, "SmokeFRC8", excelLabel.Fundraising_Contact_ID);
-		SmokeFRC8_Role=ExcelUtils.readData(smokeFilePath,"Fundraising Contacts",excelLabel.Variable_Name, "SmokeFRC8", excelLabel.Role);
-		SmokeFRC8_Primary=ExcelUtils.readData(smokeFilePath,"Fundraising Contacts",excelLabel.Variable_Name, "SmokeFRC8", excelLabel.Primary);
-		
-		SmokeFRC9_ID=ExcelUtils.readData(smokeFilePath,"Fundraising Contacts",excelLabel.Variable_Name, "SmokeFRC9", excelLabel.Fundraising_Contact_ID);
-		SmokeFRC9_Role=ExcelUtils.readData(smokeFilePath,"Fundraising Contacts",excelLabel.Variable_Name, "SmokeFRC9", excelLabel.Role);
-		SmokeFRC9_Primary=ExcelUtils.readData(smokeFilePath,"Fundraising Contacts",excelLabel.Variable_Name, "SmokeFRC9", excelLabel.Primary);
-		
-		//****************************************Drawdown and Capital Call**************************************************/
-		SmokeDD1_ID=ExcelUtils.readData(smokeFilePath,"FundDrawdown",excelLabel.Variable_Name, "DD1", excelLabel.DrawdownID);
-		SmokeDD1_CallAmount=ExcelUtils.readData(smokeFilePath,"FundDrawdown",excelLabel.Variable_Name, "DD1", excelLabel.CallAmount);
-		SmokeDD1_FundName=ExcelUtils.readData(smokeFilePath,"FundDrawdown",excelLabel.Variable_Name, "DD1", excelLabel.Fund_Name);
-		SmokeDD1_CallDate=ExcelUtils.readData(smokeFilePath,"FundDrawdown",excelLabel.Variable_Name, "DD1", excelLabel.CallDate);
-		SmokeDD1_DueDate=ExcelUtils.readData(smokeFilePath,"FundDrawdown",excelLabel.Variable_Name, "DD1", excelLabel.DueDate);
-		SmokeDD1_AmountDue=ExcelUtils.readData(smokeFilePath,"FundDrawdown",excelLabel.Variable_Name, "DD1", excelLabel.AmountDue);
-		SmokeDD1_TotalCallAmountReceived=ExcelUtils.readData(smokeFilePath,"FundDrawdown",excelLabel.Variable_Name, "DD1", excelLabel.Total_Call_Amount_Received);
-		SmokeDD1_CapitalAmount=ExcelUtils.readData(smokeFilePath,"FundDrawdown",excelLabel.Variable_Name, "DD1", excelLabel.CapitalAmount);
-		SmokeDD1_ManagementFee=ExcelUtils.readData(smokeFilePath,"FundDrawdown",excelLabel.Variable_Name, "DD1", excelLabel.ManagementFee);
-		SmokeDD1_OtherFee=ExcelUtils.readData(smokeFilePath,"FundDrawdown",excelLabel.Variable_Name, "DD1", excelLabel.OtherFee);
-		SmokeCC1_ID=ExcelUtils.readData(smokeFilePath,"CapitalCall",excelLabel.Variable_Name, "CC1", excelLabel.CapitalCalllID);
-		SmokeCC2_ID=ExcelUtils.readData(smokeFilePath,"CapitalCall",excelLabel.Variable_Name, "CC2", excelLabel.CapitalCalllID);
-		SmokeCC3_ID=ExcelUtils.readData(smokeFilePath,"CapitalCall",excelLabel.Variable_Name, "CC3", excelLabel.CapitalCalllID);
-		SmokeCC4_ID=ExcelUtils.readData(smokeFilePath,"CapitalCall",excelLabel.Variable_Name, "CC4", excelLabel.CapitalCalllID);
-		SmokeCC5_ID=ExcelUtils.readData(smokeFilePath,"CapitalCall",excelLabel.Variable_Name, "CC5", excelLabel.CapitalCalllID);
-		
-		SmokeFD1ID = ExcelUtils.readData(smokeFilePath,"FundDistribution",excelLabel.Variable_Name, "FD1", excelLabel.FundDistributionID);
-		
-		SmokeID1ID = ExcelUtils.readData(smokeFilePath,"InvestorDistribution",excelLabel.Variable_Name, "ID1", excelLabel.InvestorDistributionID);
-		SmokeID2ID = ExcelUtils.readData(smokeFilePath,"InvestorDistribution",excelLabel.Variable_Name, "ID2", excelLabel.InvestorDistributionID);
-		SmokeID3ID = ExcelUtils.readData(smokeFilePath,"InvestorDistribution",excelLabel.Variable_Name, "ID3", excelLabel.InvestorDistributionID);
-		SmokeID4ID = ExcelUtils.readData(smokeFilePath,"InvestorDistribution",excelLabel.Variable_Name, "ID4", excelLabel.InvestorDistributionID);
-		SmokeID5ID = ExcelUtils.readData(smokeFilePath,"InvestorDistribution",excelLabel.Variable_Name, "ID5", excelLabel.InvestorDistributionID);
-		
-		SmokeCC1Data[0] = ExcelUtils.readData(smokeFilePath,"CapitalCall",excelLabel.Variable_Name, "CC1", excelLabel.DrawdownID);
-		SmokeCC1Data[1] = ExcelUtils.readData(smokeFilePath,"CapitalCall",excelLabel.Variable_Name, "CC1", excelLabel.CapitalAmount);
-		SmokeCC1Data[2] = ExcelUtils.readData(smokeFilePath,"CapitalCall",excelLabel.Variable_Name, "CC1", excelLabel.ManagementFee);
-		SmokeCC1Data[3] = ExcelUtils.readData(smokeFilePath,"CapitalCall",excelLabel.Variable_Name, "CC1", excelLabel.OtherFee);
-		SmokeCC1Data[4] = ExcelUtils.readData(smokeFilePath,"CapitalCall",excelLabel.Variable_Name, "CC1", excelLabel.CallAmount);
-		SmokeCC1Data[5] = ExcelUtils.readData(smokeFilePath,"CapitalCall",excelLabel.Variable_Name, "CC1", excelLabel.CallDate);
-		SmokeCC1Data[6] = ExcelUtils.readData(smokeFilePath,"CapitalCall",excelLabel.Variable_Name, "CC1", excelLabel.DueDate);
-		SmokeCC1Data[7] = ExcelUtils.readData(smokeFilePath,"CapitalCall",excelLabel.Variable_Name, "CC1", excelLabel.CallAmountReceived);
-		SmokeCC1Data[8] = ExcelUtils.readData(smokeFilePath,"CapitalCall",excelLabel.Variable_Name, "CC1", excelLabel.ReceivedDate);
-		SmokeCC1Data[9] = ExcelUtils.readData(smokeFilePath,"CapitalCall",excelLabel.Variable_Name, "CC1", excelLabel.AmountDue);
-		SmokeCC1Data[10] = ExcelUtils.readData(smokeFilePath,"CapitalCall",excelLabel.Variable_Name, "CC1", excelLabel.Commitment_ID);
-		
-		SmokeCC2Data[0] = ExcelUtils.readData(smokeFilePath,"CapitalCall",excelLabel.Variable_Name, "CC2", excelLabel.DrawdownID);
-		SmokeCC2Data[1] = ExcelUtils.readData(smokeFilePath,"CapitalCall",excelLabel.Variable_Name, "CC2", excelLabel.CapitalAmount);
-		SmokeCC2Data[2] = ExcelUtils.readData(smokeFilePath,"CapitalCall",excelLabel.Variable_Name, "CC2", excelLabel.ManagementFee);
-		SmokeCC2Data[3] = ExcelUtils.readData(smokeFilePath,"CapitalCall",excelLabel.Variable_Name, "CC2", excelLabel.OtherFee);
-		SmokeCC2Data[4] = ExcelUtils.readData(smokeFilePath,"CapitalCall",excelLabel.Variable_Name, "CC2", excelLabel.CallAmount);
-		SmokeCC2Data[5] = ExcelUtils.readData(smokeFilePath,"CapitalCall",excelLabel.Variable_Name, "CC2", excelLabel.CallDate);
-		SmokeCC2Data[6] = ExcelUtils.readData(smokeFilePath,"CapitalCall",excelLabel.Variable_Name, "CC2", excelLabel.DueDate);
-		SmokeCC2Data[7] = ExcelUtils.readData(smokeFilePath,"CapitalCall",excelLabel.Variable_Name, "CC2", excelLabel.CallAmountReceived);
-		SmokeCC2Data[8] = ExcelUtils.readData(smokeFilePath,"CapitalCall",excelLabel.Variable_Name, "CC2", excelLabel.ReceivedDate);
-		SmokeCC2Data[9] = ExcelUtils.readData(smokeFilePath,"CapitalCall",excelLabel.Variable_Name, "CC2", excelLabel.AmountDue);
-		SmokeCC2Data[10] = ExcelUtils.readData(smokeFilePath,"CapitalCall",excelLabel.Variable_Name, "CC2", excelLabel.Commitment_ID);
-		
-		SmokeCC3Data[0] = ExcelUtils.readData(smokeFilePath,"CapitalCall",excelLabel.Variable_Name, "CC3", excelLabel.DrawdownID);
-		SmokeCC3Data[1] = ExcelUtils.readData(smokeFilePath,"CapitalCall",excelLabel.Variable_Name, "CC3", excelLabel.CapitalAmount);
-		SmokeCC3Data[2] = ExcelUtils.readData(smokeFilePath,"CapitalCall",excelLabel.Variable_Name, "CC3", excelLabel.ManagementFee);
-		SmokeCC3Data[3] = ExcelUtils.readData(smokeFilePath,"CapitalCall",excelLabel.Variable_Name, "CC3", excelLabel.OtherFee);
-		SmokeCC3Data[4] = ExcelUtils.readData(smokeFilePath,"CapitalCall",excelLabel.Variable_Name, "CC3", excelLabel.CallAmount);
-		SmokeCC3Data[5] = ExcelUtils.readData(smokeFilePath,"CapitalCall",excelLabel.Variable_Name, "CC3", excelLabel.CallDate);
-		SmokeCC3Data[6] = ExcelUtils.readData(smokeFilePath,"CapitalCall",excelLabel.Variable_Name, "CC3", excelLabel.DueDate);
-		SmokeCC3Data[7] = ExcelUtils.readData(smokeFilePath,"CapitalCall",excelLabel.Variable_Name, "CC3", excelLabel.CallAmountReceived);
-		SmokeCC3Data[8] = ExcelUtils.readData(smokeFilePath,"CapitalCall",excelLabel.Variable_Name, "CC3", excelLabel.ReceivedDate);
-		SmokeCC3Data[9] = ExcelUtils.readData(smokeFilePath,"CapitalCall",excelLabel.Variable_Name, "CC3", excelLabel.AmountDue);
-		SmokeCC3Data[10] = ExcelUtils.readData(smokeFilePath,"CapitalCall",excelLabel.Variable_Name, "CC3", excelLabel.Commitment_ID);
-		
-		SmokeCC4Data[0] = ExcelUtils.readData(smokeFilePath,"CapitalCall",excelLabel.Variable_Name, "CC4", excelLabel.DrawdownID);
-		SmokeCC4Data[1] = ExcelUtils.readData(smokeFilePath,"CapitalCall",excelLabel.Variable_Name, "CC4", excelLabel.CapitalAmount);
-		SmokeCC4Data[2] = ExcelUtils.readData(smokeFilePath,"CapitalCall",excelLabel.Variable_Name, "CC4", excelLabel.ManagementFee);
-		SmokeCC4Data[3] = ExcelUtils.readData(smokeFilePath,"CapitalCall",excelLabel.Variable_Name, "CC4", excelLabel.OtherFee);
-		SmokeCC4Data[4] = ExcelUtils.readData(smokeFilePath,"CapitalCall",excelLabel.Variable_Name, "CC4", excelLabel.CallAmount);
-		SmokeCC4Data[5] = ExcelUtils.readData(smokeFilePath,"CapitalCall",excelLabel.Variable_Name, "CC4", excelLabel.CallDate);
-		SmokeCC4Data[6] = ExcelUtils.readData(smokeFilePath,"CapitalCall",excelLabel.Variable_Name, "CC4", excelLabel.DueDate);
-		SmokeCC4Data[7] = ExcelUtils.readData(smokeFilePath,"CapitalCall",excelLabel.Variable_Name, "CC4", excelLabel.CallAmountReceived);
-		SmokeCC4Data[8] = ExcelUtils.readData(smokeFilePath,"CapitalCall",excelLabel.Variable_Name, "CC4", excelLabel.ReceivedDate);
-		SmokeCC4Data[9] = ExcelUtils.readData(smokeFilePath,"CapitalCall",excelLabel.Variable_Name, "CC4", excelLabel.AmountDue);
-		SmokeCC4Data[10] = ExcelUtils.readData(smokeFilePath,"CapitalCall",excelLabel.Variable_Name, "CC4", excelLabel.Commitment_ID);
-		
-		SmokeCC5Data[0] = ExcelUtils.readData(smokeFilePath,"CapitalCall",excelLabel.Variable_Name, "CC5", excelLabel.DrawdownID);
-		SmokeCC5Data[1] = ExcelUtils.readData(smokeFilePath,"CapitalCall",excelLabel.Variable_Name, "CC5", excelLabel.CapitalAmount);
-		SmokeCC5Data[2] = ExcelUtils.readData(smokeFilePath,"CapitalCall",excelLabel.Variable_Name, "CC5", excelLabel.ManagementFee);
-		SmokeCC5Data[3] = ExcelUtils.readData(smokeFilePath,"CapitalCall",excelLabel.Variable_Name, "CC5", excelLabel.OtherFee);
-		SmokeCC5Data[4] = ExcelUtils.readData(smokeFilePath,"CapitalCall",excelLabel.Variable_Name, "CC5", excelLabel.CallAmount);
-		SmokeCC5Data[5] = ExcelUtils.readData(smokeFilePath,"CapitalCall",excelLabel.Variable_Name, "CC5", excelLabel.CallDate);
-		SmokeCC5Data[6] = ExcelUtils.readData(smokeFilePath,"CapitalCall",excelLabel.Variable_Name, "CC5", excelLabel.DueDate);
-		SmokeCC5Data[7] = ExcelUtils.readData(smokeFilePath,"CapitalCall",excelLabel.Variable_Name, "CC5", excelLabel.CallAmountReceived);
-		SmokeCC5Data[8] = ExcelUtils.readData(smokeFilePath,"CapitalCall",excelLabel.Variable_Name, "CC5", excelLabel.ReceivedDate);
-		SmokeCC5Data[9] = ExcelUtils.readData(smokeFilePath,"CapitalCall",excelLabel.Variable_Name, "CC5", excelLabel.AmountDue);
-		SmokeCC5Data[10] = ExcelUtils.readData(smokeFilePath,"CapitalCall",excelLabel.Variable_Name, "CC5", excelLabel.Commitment_ID);
 		//****************************************************************************************************************/
 		
 		SmokeReportFolderName=ExcelUtils.readData(smokeFilePath,"Report",excelLabel.Variable_Name, "SmokeReport1", excelLabel.Report_Folder_Name);
@@ -696,99 +483,8 @@ public class SmokeCommonVariables {
 		EmailTemplate1_Body = ExcelUtils.readData(smokeFilePath, "CustomEmailFolder", excelLabel.Variable_Name,"EmailTemplate1", excelLabel.Email_Body);
 		EmailTemplate1_FolderName = ExcelUtils.readData(smokeFilePath, "CustomEmailFolder", excelLabel.Variable_Name,"EmailTemplate1", excelLabel.Email_Template_Folder_Label);
 		EmailTemplate1_TemplateName = ExcelUtils.readData(smokeFilePath, "CustomEmailFolder", excelLabel.Variable_Name,"EmailTemplate1", excelLabel.Email_Template_Name);
-
+		EmailTemplate1_TemplateDescription = ExcelUtils.readData(smokeFilePath, "CustomEmailFolder", excelLabel.Variable_Name,"EmailTemplate1", excelLabel.Description);
 		
-		//******************************************* Commitment ***************************************
-		SmokeCOMM1_ID=ExcelUtils.readData(smokeFilePath, "Commitments", excelLabel.Variable_Name,"SmokeCOMM1", excelLabel.Commitment_ID);
-		SmokeCOMM1_CommitmentAmount=ExcelUtils.readData(smokeFilePath, "Commitments", excelLabel.Variable_Name,"SmokeCOMM1", excelLabel.Commitment_Amount);
-		SmokeCOMM1_partnerType=ExcelUtils.readData(smokeFilePath, "Commitments", excelLabel.Variable_Name,"SmokeCOMM1", excelLabel.Partner_Type);
-		SmokeCOMM1_TaxForms=ExcelUtils.readData(smokeFilePath, "Commitments", excelLabel.Variable_Name,"SmokeCOMM1", excelLabel.Tax_Forms);
-		SmokeCOMM1_FinalCommitmentDate=ExcelUtils.readData(smokeFilePath, "Commitments", excelLabel.Variable_Name,"SmokeCOMM1", excelLabel.Final_Commitment_Date);
-		
-		
-		
-		SmokeCOMM2_ID=ExcelUtils.readData(smokeFilePath, "Commitments", excelLabel.Variable_Name,"SmokeCOMM2", excelLabel.Commitment_ID);
-		SmokeCOMM2_CommitmentAmount=ExcelUtils.readData(smokeFilePath, "Commitments", excelLabel.Variable_Name,"SmokeCOMM2", excelLabel.Commitment_Amount);
-		SmokeCOMM2_partnerType=ExcelUtils.readData(smokeFilePath, "Commitments", excelLabel.Variable_Name,"SmokeCOMM2", excelLabel.Partner_Type);
-		SmokeCOMM2_TaxForms=ExcelUtils.readData(smokeFilePath, "Commitments", excelLabel.Variable_Name,"SmokeCOMM2", excelLabel.Tax_Forms);
-		SmokeCOMM2_FinalCommitmentDate=ExcelUtils.readData(smokeFilePath, "Commitments", excelLabel.Variable_Name,"SmokeCOMM2", excelLabel.Final_Commitment_Date);
-		
-		
-		SmokeCOMM3_ID=ExcelUtils.readData(smokeFilePath, "Commitments", excelLabel.Variable_Name,"SmokeCOMM3", excelLabel.Commitment_ID);
-		SmokeCOMM3_CommitmentAmount=ExcelUtils.readData(smokeFilePath, "Commitments", excelLabel.Variable_Name,"SmokeCOMM3", excelLabel.Commitment_Amount);
-		SmokeCOMM3_partnerType=ExcelUtils.readData(smokeFilePath, "Commitments", excelLabel.Variable_Name,"SmokeCOMM3", excelLabel.Partner_Type);
-		SmokeCOMM3_TaxForms=ExcelUtils.readData(smokeFilePath, "Commitments", excelLabel.Variable_Name,"SmokeCOMM3", excelLabel.Tax_Forms);
-		SmokeCOMM3_FinalCommitmentDate=ExcelUtils.readData(smokeFilePath, "Commitments", excelLabel.Variable_Name,"SmokeCOMM3", excelLabel.Final_Commitment_Date);
-		SmokeCoMM3_PlacementFee=ExcelUtils.readData(smokeFilePath, "Commitments", excelLabel.Variable_Name,"SmokeCOMM3", excelLabel.Placement_Fee);
-		
-		SmokeCOMM4_ID=ExcelUtils.readData(smokeFilePath, "Commitments", excelLabel.Variable_Name,"SmokeCOMM4", excelLabel.Commitment_ID);
-		SmokeCOMM4_CommitmentAmount=ExcelUtils.readData(smokeFilePath, "Commitments", excelLabel.Variable_Name,"SmokeCOMM4", excelLabel.Commitment_Amount);
-		SmokeCOMM4_partnerType=ExcelUtils.readData(smokeFilePath, "Commitments", excelLabel.Variable_Name,"SmokeCOMM4", excelLabel.Partner_Type);
-		SmokeCOMM4_TaxForms=ExcelUtils.readData(smokeFilePath, "Commitments", excelLabel.Variable_Name,"SmokeCOMM4", excelLabel.Tax_Forms);
-		SmokeCOMM4_FinalCommitmentDate=ExcelUtils.readData(smokeFilePath, "Commitments", excelLabel.Variable_Name,"SmokeCOMM4", excelLabel.Final_Commitment_Date);
-		SmokeCOMM4_PlacementFee=ExcelUtils.readData(smokeFilePath, "Commitments", excelLabel.Variable_Name,"SmokeCOMM4", excelLabel.Placement_Fee);
-		
-		SmokeCOMM5_ID=ExcelUtils.readData(smokeFilePath, "Commitments", excelLabel.Variable_Name,"SmokeCOMM5", excelLabel.Commitment_ID);
-		SmokeCOMM5_CommitmentAmount=ExcelUtils.readData(smokeFilePath, "Commitments", excelLabel.Variable_Name,"SmokeCOMM5", excelLabel.Commitment_Amount);
-		SmokeCOMM5_partnerType=ExcelUtils.readData(smokeFilePath, "Commitments", excelLabel.Variable_Name,"SmokeCOMM5", excelLabel.Partner_Type);
-		SmokeCOMM5_TaxForms=ExcelUtils.readData(smokeFilePath, "Commitments", excelLabel.Variable_Name,"SmokeCOMM5", excelLabel.Tax_Forms);
-		SmokeCOMM5_FinalCommitmentDate=ExcelUtils.readData(smokeFilePath, "Commitments", excelLabel.Variable_Name,"SmokeCOMM5", excelLabel.Final_Commitment_Date);
-		
-		SmokeCOMM6_ID=ExcelUtils.readData(smokeFilePath, "Commitments", excelLabel.Variable_Name,"SmokeCOMM6", excelLabel.Commitment_ID);
-		SmokeCOMM6_CommitmentAmount=ExcelUtils.readData(smokeFilePath, "Commitments", excelLabel.Variable_Name,"SmokeCOMM6", excelLabel.Commitment_Amount);
-		SmokeCOMM6_partnerType=ExcelUtils.readData(smokeFilePath, "Commitments", excelLabel.Variable_Name,"SmokeCOMM6", excelLabel.Partner_Type);
-		SmokeCOMM6_TaxForms=ExcelUtils.readData(smokeFilePath, "Commitments", excelLabel.Variable_Name,"SmokeCOMM6", excelLabel.Tax_Forms);
-		SmokeCOMM6_FinalCommitmentDate=ExcelUtils.readData(smokeFilePath, "Commitments", excelLabel.Variable_Name,"SmokeCOMM6", excelLabel.Final_Commitment_Date);
-		
-		SmokeCOMM7_ID=ExcelUtils.readData(smokeFilePath, "Commitments", excelLabel.Variable_Name,"SmokeCOMM7", excelLabel.Commitment_ID);
-		SmokeCOMM7_CommitmentAmount=ExcelUtils.readData(smokeFilePath, "Commitments", excelLabel.Variable_Name,"SmokeCOMM7", excelLabel.Commitment_Amount);
-		SmokeCOMM7_partnerType=ExcelUtils.readData(smokeFilePath, "Commitments", excelLabel.Variable_Name,"SmokeCOMM7", excelLabel.Partner_Type);
-		SmokeCOMM7_TaxForms=ExcelUtils.readData(smokeFilePath, "Commitments", excelLabel.Variable_Name,"SmokeCOMM7", excelLabel.Tax_Forms);
-		SmokeCOMM7_FinalCommitmentDate=ExcelUtils.readData(smokeFilePath, "Commitments", excelLabel.Variable_Name,"SmokeCOMM7", excelLabel.Final_Commitment_Date);
-		
-		SmokeCOMM8_ID=ExcelUtils.readData(smokeFilePath, "Commitments", excelLabel.Variable_Name,"SmokeCOMM1", excelLabel.Commitment_ID);
-		SmokeCOMM8_CommitmentAmount=ExcelUtils.readData(smokeFilePath, "Commitments", excelLabel.Variable_Name,"SmokeCOMM8", excelLabel.Commitment_Amount);
-		SmokeCOMM8_partnerType=ExcelUtils.readData(smokeFilePath, "Commitments", excelLabel.Variable_Name,"SmokeCOMM8", excelLabel.Partner_Type);
-		SmokeCOMM8_TaxForms=ExcelUtils.readData(smokeFilePath, "Commitments", excelLabel.Variable_Name,"SmokeCOMM8", excelLabel.Tax_Forms);
-		SmokeCOMM8_FinalCommitmentDate=ExcelUtils.readData(smokeFilePath, "Commitments", excelLabel.Variable_Name,"SmokeCOMM1", excelLabel.Final_Commitment_Date);
-		SmokeCOMM8_TotalAmountCalled=ExcelUtils.readData(smokeFilePath, "Commitments", excelLabel.Variable_Name,"SmokeCOMM8", excelLabel.Total_Amount_Called);
-		SmokeCOMM8_TotalAmountReceived=ExcelUtils.readData(smokeFilePath, "Commitments", excelLabel.Variable_Name,"SmokeCOMM8", excelLabel.Total_Amount_Received);
-		SmokeCOMM8_TotalUncalledAmount=ExcelUtils.readData(smokeFilePath, "Commitments", excelLabel.Variable_Name,"SmokeCOMM8", excelLabel.Total_Uncalled_Amount);
-		SmokeCOMM8_TotalCommitmentDue=ExcelUtils.readData(smokeFilePath, "Commitments", excelLabel.Variable_Name,"SmokeCOMM8", excelLabel.Total_Commitment_Due);
-		SmokeCOMM8_CommitmentCalled=ExcelUtils.readData(smokeFilePath, "Commitments", excelLabel.Variable_Name,"SmokeCOMM8", excelLabel.Commitment_Called);
-		SmokeCOMM8_CalledDue=ExcelUtils.readData(smokeFilePath, "Commitments", excelLabel.Variable_Name,"SmokeCOMM8", excelLabel.Called_Due);
-		SmokeCOMM8_TotalDist=ExcelUtils.readData(smokeFilePath, "Commitments", excelLabel.Variable_Name,"SmokeCOMM8", excelLabel.TotalDistributions);
-		SmokeCOMM8_CapitalReturnedRecallable=ExcelUtils.readData(smokeFilePath, "Commitments", excelLabel.Variable_Name,"SmokeCOMM8", excelLabel.Capital_Returned_Recallable);
-		SmokeCOMM8_CapitalReturnedNonRecallable=ExcelUtils.readData(smokeFilePath, "Commitments", excelLabel.Variable_Name,"SmokeCOMM8", excelLabel.Capital_Returned_NonRecallable);
-		
-		//******************************PartnerShip*******************************//
-		Smoke_P1=ExcelUtils.readData(smokeFilePath, "Partnerships", excelLabel.Variable_Name,"SmokeP1", excelLabel.PartnerShip_Name);
-		
-		Smoke_P2=ExcelUtils.readData(smokeFilePath, "Partnerships", excelLabel.Variable_Name,"SmokeP2", excelLabel.PartnerShip_Name);
-		SmokeP2_Fund_Investment_Category=ExcelUtils.readData(smokeFilePath, "Partnerships", excelLabel.Variable_Name,"SmokeP2", excelLabel.Fund_Investment_Category);
-		Smoke_P3=ExcelUtils.readData(smokeFilePath, "Partnerships", excelLabel.Variable_Name,"SmokeP3", excelLabel.PartnerShip_Name);
-		Smoke_P4=ExcelUtils.readData(smokeFilePath, "Partnerships", excelLabel.Variable_Name,"SmokeP4", excelLabel.PartnerShip_Name);
-		
-		
-		//****************************LP***********************************//
-		
-		Smoke_LP1=ExcelUtils.readData(smokeFilePath, "Limited Partner", excelLabel.Variable_Name,"SmokeLP1", excelLabel.Limited_Partner);
-		
-		Smoke_LP2=ExcelUtils.readData(smokeFilePath, "Limited Partner", excelLabel.Variable_Name,"SmokeLP2", excelLabel.Limited_Partner);
-		Smoke_LP3=ExcelUtils.readData(smokeFilePath, "Limited Partner", excelLabel.Variable_Name,"SmokeLP3", excelLabel.Limited_Partner);
-		SmokeLP3_BankName=ExcelUtils.readData(smokeFilePath, "Limited Partner", excelLabel.Variable_Name,"SmokeLP3", excelLabel.Bank_Name);
-		
-		Smoke_LP4=ExcelUtils.readData(smokeFilePath, "Limited Partner", excelLabel.Variable_Name,"SmokeLP4", excelLabel.Limited_Partner);
-		SmokeLP4_Total_Fund_Commitments=ExcelUtils.readData(smokeFilePath, "Limited Partner", excelLabel.Variable_Name,"SmokeLP4", excelLabel.Total_Fund_Commitments);
-		SmokeLP4_Total_CoInvesment_Commitments=ExcelUtils.readData(smokeFilePath, "Limited Partner", excelLabel.Variable_Name,"SmokeLP4", excelLabel.Total_CoInvestment_Commitments);
-		
-		
-		Smoke_LP5=ExcelUtils.readData(smokeFilePath, "Limited Partner", excelLabel.Variable_Name,"SmokeLP5", excelLabel.Limited_Partner);
-		
-		SmokeLP1_Total_Fund_Commitments=ExcelUtils.readData(smokeFilePath, "Limited Partner", excelLabel.Variable_Name,"SmokeLP1", excelLabel.Total_Fund_Commitments);
-		SmokeLP1_Total_CoInvesment_Commitments=ExcelUtils.readData(smokeFilePath, "Limited Partner", excelLabel.Variable_Name,"SmokeLP1", excelLabel.Total_CoInvestment_Commitments);
-		SmokeLP2_Total_Fund_Commitments=ExcelUtils.readData(smokeFilePath, "Limited Partner", excelLabel.Variable_Name,"SmokeLP2", excelLabel.Total_Fund_Commitments);
-		SmokeLP2_Total_CoInvesment_Commitments=ExcelUtils.readData(smokeFilePath, "Limited Partner", excelLabel.Variable_Name,"SmokeLP2", excelLabel.Total_CoInvestment_Commitments);
 		
 		AppListeners.appLog.info("Done with intialization in Smoke Test Variable. Enjoy the show.\nTotal Time Taken: "+((System.currentTimeMillis()-StartTime)/1000)+" seconds.");
 		}

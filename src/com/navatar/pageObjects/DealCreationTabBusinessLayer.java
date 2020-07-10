@@ -414,13 +414,14 @@ public class DealCreationTabBusinessLayer extends DealCreationTab {
 
 	public SoftAssert verifyingInstitutionRequiredFieldListDealInformationLayout(String environment,String mode,String dropdDownLayout,String[][] rowValues){
 		SoftAssert saa = new SoftAssert();
-		
-		String defaultSelectedValue = getSelectedOptionOfDropDown(driver, getInstitution_DealInfo_DropDownList(environment, mode, 10), "Company", "text");
-		if(defaultSelectedValue!=null){
-			appLog.info("Default Selected Value verified Expected : "+"Company");	
+		String defaultVale="Company";
+		String defaultSelectedValue = getSelectedOptionOfDropDown(driver, getInstitution_DealInfo_DropDownList(environment, mode, 10), defaultVale, "text");
+	
+		if(defaultSelectedValue!=null && defaultSelectedValue.equals(defaultVale)){
+			appLog.info("Default Selected Value verified Expected : "+defaultVale);	
 		}else{
-			appLog.error("Default Selected Value Not verified Expected : "+"Company");
-			saa.assertTrue(false, "Default Selected Value Not verified Expected : "+"Company");	
+			appLog.error("Default Selected Value Not verified Expected : "+defaultVale);
+			saa.assertTrue(false, "Default Selected Value Not verified Expected : "+defaultVale);	
 		}
 		
 		if(dropdDownLayout!=null){
@@ -468,52 +469,62 @@ public class DealCreationTabBusinessLayer extends DealCreationTab {
 	
 	public SoftAssert verifyingPipeLineRequiredFieldListDealInformationLayout(String environment,String mode,String dropdDownLayout,String[][] rowValues){
 		SoftAssert saa = new SoftAssert();
-		
-		String defaultSelectedValue = getSelectedOptionOfDropDown(driver, getPipeLine_DealInfo_DropDownList(environment, mode, 10), "Pipeline Layout", "text");
-		if(defaultSelectedValue!=null){
-			appLog.info("Default Selected Value verified for PipeLIne Layout Expected : "+"Pipeline Layout");	
-		}else{
-			appLog.error("Default Selected Value Not verified for PipeLIne Layout Expected : "+"Pipeline Layout");
-			saa.assertTrue(false, "Default Selected Value Not verified for PipeLIne Layout Expected : "+"Pipeline Layout");	
-		}
-		
-		if(dropdDownLayout!=null){
-		if(selectVisibleTextFromDropDown(driver, getPipeLine_DealInfo_DropDownList(environment, mode, 10), "LAYOUT : "+dropdDownLayout, dropdDownLayout)){
-			appLog.error("Able to Select Layout: "+dropdDownLayout);
-		}else{
-			appLog.error("Not Able to Select Layout: "+dropdDownLayout);
-			saa.assertTrue(false, "Not Able to Select Layout: "+dropdDownLayout);		
-		}
-		}
-		
-		String[] columnHeadingforRequiredFieldList ={"Field Label","Field Name/API Name","Data Type"};
-		for (String headingValue : columnHeadingforRequiredFieldList) {
-		WebElement eleHeader =	FindElement(driver, "//div[@id='RightMenuContentSectionPipelineRequireCompId']//th/div[contains(text(),'"+headingValue+"')]", headingValue, action.SCROLLANDBOOLEAN, 10);
-		
-		if (eleHeader!=null) {
-			appLog.info("Deal Information PipeLine Heading Verified : "+headingValue);
-		}
-		else {
-			appLog.error("Deal Information PipeLine Heading Not Verified : "+headingValue);
-			saa.assertTrue(false, "Deal Information PipeLine Heading Not Verified : "+headingValue);
-		}
-		}
-		
-		String fullXpath ;
-		WebElement eleRowValue;
-		for (String[] rowArray : rowValues) {
-			String fieldLabelvalueXpath = "//div[@id='RightMenuContentSectionPipelineRequireCompId']//tr[@class='slds-hint-parent']/td[text()='"+rowArray[0]+"']";
-			String apiNameValueXpath ="/following-sibling::td[text()='"+rowArray[1]+"']";
-			String dataTypeValueXpath ="/following-sibling::td[text()='"+rowArray[2]+"']";
-			fullXpath = fieldLabelvalueXpath+apiNameValueXpath+dataTypeValueXpath;
-			 eleRowValue =	FindElement(driver, fullXpath, rowArray[0]+" : "+rowArray[1]+" : "+rowArray[2], action.SCROLLANDBOOLEAN, 10);
-			 if(eleRowValue!=null){
-					appLog.info("Row with Data *** "+rowArray[0]+" : "+rowArray[1]+" : "+rowArray[2]+" ***  Verified"); 
-			 }else{
-					appLog.error("Row with Data <<  "+rowArray[0]+" : "+rowArray[1]+" : "+rowArray[2]+" >> not verified");
-					saa.assertTrue(false, "Row with Data <<  "+rowArray[0]+" : "+rowArray[1]+" : "+rowArray[2]+" >> not verified"); 
-			 }
+		try {
+			String defaultValue="Pipeline Layout";
+			String defaultSelectedValue = getSelectedOptionOfDropDown(driver, getPipeLine_DealInfo_DropDownList(environment, mode, 10), defaultValue, "text");
+			if(defaultSelectedValue!=null && defaultSelectedValue.equals(defaultValue)){
+				appLog.info("Default Selected Value verified for PipeLIne Layout Expected : "+defaultValue);	
+			}else{
+				appLog.error("Default Selected Value Not verified for PipeLIne Layout Expected : "+defaultValue);
+				saa.assertTrue(false, "Default Selected Value Not verified for PipeLIne Layout Expected : "+defaultValue);	
+			}
 			
+			if(dropdDownLayout!=null){
+			if(selectVisibleTextFromDropDown(driver, getPipeLine_DealInfo_DropDownList(environment, mode, 10), "LAYOUT : "+dropdDownLayout, dropdDownLayout)){
+				appLog.error("Able to Select Layout: "+dropdDownLayout);
+			}else{
+				appLog.error("Not Able to Select Layout: "+dropdDownLayout);
+				saa.assertTrue(false, "Not Able to Select Layout: "+dropdDownLayout);		
+			}
+			}
+			
+			String[] columnHeadingforRequiredFieldList ={"Field Label","Field Name/API Name","Data Type"};
+			for (String headingValue : columnHeadingforRequiredFieldList) {
+			WebElement eleHeader =	FindElement(driver, "//div[@id='RightMenuContentSectionPipelineRequireCompId']//th/div[contains(text(),'"+headingValue+"')]", headingValue, action.SCROLLANDBOOLEAN, 10);
+			
+			if (eleHeader!=null) {
+				appLog.info("Deal Information PipeLine Heading Verified : "+headingValue);
+			}
+			else {
+				appLog.error("Deal Information PipeLine Heading Not Verified : "+headingValue);
+				saa.assertTrue(false, "Deal Information PipeLine Heading Not Verified : "+headingValue);
+			}
+			}
+			
+			String fullXpath ;
+			WebElement eleRowValue;
+			for (String[] rowArray : rowValues) {
+				String fieldLabelvalueXpath = "//div[@id='RightMenuContentSectionPipelineRequireCompId']//tr[@class='slds-hint-parent']/td[text()='"+rowArray[0]+"']";
+				String apiNameValueXpath ="/following-sibling::td[text()='"+rowArray[1]+"']";
+				String dataTypeValueXpath ="/following-sibling::td[text()='"+rowArray[2]+"']";
+				fullXpath = fieldLabelvalueXpath+apiNameValueXpath+dataTypeValueXpath;
+				 eleRowValue =	FindElement(driver, fullXpath, rowArray[0]+" : "+rowArray[1]+" : "+rowArray[2], action.SCROLLANDBOOLEAN, 10);
+				 if(eleRowValue!=null){
+						appLog.info("Row with Data *** "+rowArray[0]+" : "+rowArray[1]+" : "+rowArray[2]+" ***  Verified"); 
+				 }else{
+						appLog.error("Row with Data <<  "+rowArray[0]+" : "+rowArray[1]+" : "+rowArray[2]+" >> not verified");
+						saa.assertTrue(false, "Row with Data <<  "+rowArray[0]+" : "+rowArray[1]+" : "+rowArray[2]+" >> not verified"); 
+				 }
+				
+			}
+			
+			return saa;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			appLog.error("Exception on verifyingPipeLineRequiredFieldListDealInformationLayout");
+			saa.assertTrue(false, "Exception on verifyingPipeLineRequiredFieldListDealInformationLayout"); 
+
 		}
 		
 		return saa;
@@ -522,13 +533,13 @@ public class DealCreationTabBusinessLayer extends DealCreationTab {
 	
 	public SoftAssert verifyingInstitutionRequiredFieldListNewSourceFirmLayout(String environment,String mode,String dropdDownLayout,String[][] rowValues){
 		SoftAssert saa = new SoftAssert();
-		
-		String defaultSelectedValue = getSelectedOptionOfDropDown(driver, getInstitution_NewSourceFirm_DropDownList(environment, mode, 10), "Company", "text");
-		if(defaultSelectedValue!=null){
-			appLog.info("Default Selected Value verified for Institution Layout Expected : "+"Pipeline Layout");	
+		String defaultValue="Company";
+		String defaultSelectedValue = getSelectedOptionOfDropDown(driver, getInstitution_NewSourceFirm_DropDownList(environment, mode, 10),defaultValue, "text");
+		if(defaultSelectedValue!=null && defaultSelectedValue.equals(defaultValue)){
+			appLog.info("Default Selected Value verified for Institution Layout Expected : "+defaultValue);	
 		}else{
-			appLog.error("Default Selected Value Not verified for Institution Layout Expected : "+"Pipeline Layout");
-			saa.assertTrue(false, "Default Selected Value Not verified for Institution Layout Expected : "+"Pipeline Layout");	
+			appLog.error("Default Selected Value Not verified for Institution Layout Expected : "+defaultValue);
+			saa.assertTrue(false, "Default Selected Value Not verified for Institution Layout Expected : "+defaultValue);	
 		}
 		
 		if(dropdDownLayout!=null){
@@ -576,13 +587,13 @@ public class DealCreationTabBusinessLayer extends DealCreationTab {
 
 	public SoftAssert verifyingContactRequiredFieldListNewSourceContactLayout(String environment,String mode,String dropdDownLayout,String[][] rowValues){
 		SoftAssert saa = new SoftAssert();
-		
-		String defaultSelectedValue = getSelectedOptionOfDropDown(driver, getContact_NewSourceContact_DropDownList(environment, mode, 10), "Contact Layout", "text");
-		if(defaultSelectedValue!=null){
-			appLog.info("Default Selected Value verified for Contact Layout Expected : "+"Pipeline Layout");	
+		String defaultValue="Contact Layout";
+		String defaultSelectedValue = getSelectedOptionOfDropDown(driver, getContact_NewSourceContact_DropDownList(environment, mode, 10),defaultValue, "text");
+		if(defaultSelectedValue!=null && defaultSelectedValue.equals(defaultValue)){
+			appLog.info("Default Selected Value verified for Contact Layout Expected : "+defaultValue);	
 		}else{
-			appLog.error("Default Selected Value Not verified for Contact Layout Expected : "+"Pipeline Layout");
-			saa.assertTrue(false, "Default Selected Value Not verified for Contact Layout Expected : "+"Pipeline Layout");	
+			appLog.error("Default Selected Value Not verified for Contact Layout Expected : "+defaultValue);
+			saa.assertTrue(false, "Default Selected Value Not verified for Contact Layout Expected : "+defaultValue);	
 		}
 		
 		if(dropdDownLayout!=null){
