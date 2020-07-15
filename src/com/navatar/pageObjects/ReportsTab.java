@@ -6,6 +6,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import static com.navatar.generic.CommonLib.*;
+import com.navatar.generic.EnumConstants.ReportFormatName;
+import com.navatar.generic.EnumConstants.action;
 
 public class ReportsTab extends BasePageBusinessLayer {
 
@@ -83,6 +86,21 @@ public class ReportsTab extends BasePageBusinessLayer {
 	public WebElement getRangeIcon_Classic(String environment,int timeOut) {
 		return isDisplayed(driver, rangeIcon_Classic, "Visibility", timeOut, "Range Icon Classic");
 	}
+	
+	
+	
+	@FindBy(xpath = "//table[@id='reportFormatMink']//tr/td/em")
+		private WebElement reportFormatDropDown;
+		
+		public WebElement getReportFormatName(int timeOut) {
+			return isDisplayed(driver, reportFormatDropDown, "Visibility", timeOut, "report format drop down");
+		}
+		
+		
+		public WebElement getreportFormatName(ReportFormatName reportFormatName) {
+			String xpath="//span[text()='"+reportFormatName.toString()+"']/../..";
+			return isDisplayed(driver, FindElement(driver, xpath, "report Format Name "+reportFormatName.toString(), action.SCROLLANDBOOLEAN,10),"visibility",10,"report format name "+reportFormatName.toString());
+		}
 	
 	@FindBy(xpath="//button[text()='Save']")
 	private WebElement saveBtn_Classic;

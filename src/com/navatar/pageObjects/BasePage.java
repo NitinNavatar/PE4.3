@@ -3562,5 +3562,90 @@ public abstract class BasePage {
 	}
 	
 	
+	@FindBy(xpath = "//button[@title='List View Controls']")
+    private WebElement listViewControls;
+
+ 
+
+    public WebElement getlistViewControlsButton(String projectName,int timeOut) {
+        return isDisplayed(driver, listViewControls, "Visibility", timeOut, "listViewControlsButton");
+    }
+    
+    @FindBy(xpath = "//li//a//span[text()='New']")
+    private WebElement newButtonListView;
+    
+    /**
+     * @return the addFilterLogicLink
+     */
+    public WebElement getnewButtonListView(String projectName,int timeOut) {
+        return isDisplayed(driver, newButtonListView, "Visibility", timeOut, "newButtonListView");
+    }
+    
+    public WebElement getlistNameTextBox(String projectName,String listNameOrListAPIName,int timeOut) {
+        
+        String xpath = "//label[text()='"+listNameOrListAPIName+"']//following-sibling::div//input";
+        
+        return isDisplayed(driver, FindElement(driver, xpath,"listNameTextBox" , action.SCROLLANDBOOLEAN, 
+                timeOut), "Visibility", timeOut, "listNameTextBox");
+    }
+    
+    @FindBy(xpath = "//span[contains(text(),'All users')]/../preceding-sibling::input")
+    private WebElement allUsersCheckbox;
+    
+    /**
+     * @return the addFilterLogicLink
+     */
+    public WebElement getallUsersRB(String projectName,int timeOut) {
+        return isDisplayed(driver, allUsersCheckbox, "Visibility", timeOut, "allUsersCheckbox");
+    }
+    
+    @FindBy(xpath = "//h2[text()='New List View']/../..//span[text()='Save']/..")
+    private WebElement listViewSaveButton;
+    
+    public WebElement getlistViewSaveButton(String projectName,int timeOut) {
+        return isDisplayed(driver, listViewSaveButton, "Visibility", timeOut, "listViewSaveButton");
+    }
+    
+    public WebElement getListFilterSection(String projectName,String tab, int timeOut) {
+        tab=tab.toLowerCase();
+        String xpath="//div[contains(text(),'Filter')]/following-sibling::span[contains(text(),'"+tab+"')]/ancestor::a";
+        return isDisplayed(driver, FindElement(driver, xpath,"ListFilterSection" , action.SCROLLANDBOOLEAN, 
+                timeOut), "Visibility", timeOut, "ListFilterSection");
+    
+    }
+    
+    @FindBy(xpath = "//span[contains(text(),'All ')]/../..//input")
+    private WebElement allCheckboxForFilter;
+    
+    public WebElement getallCheckboxForFilter(String projectName,int timeOut) {
+        return isDisplayed(driver, allCheckboxForFilter, "Visibility", timeOut, "allCheckboxForFilter");
+    }
+    
+    @FindBy(xpath = "//span[text()='Done']/..")
+    private WebElement doneButtonListView;
+    
+    public WebElement getdoneButtonListView(String projectName,int timeOut) {
+        return isDisplayed(driver, doneButtonListView, "Visibility", timeOut, "doneButtonListView");
+    }
+    
+    @FindBy(xpath = "//div[contains(@class,'SecondaryDisplayManager')]//button[text()='Save']")
+    private WebElement filterSave;
+    
+    public WebElement getfilterSave(String projectName,int timeOut) {
+        return isDisplayed(driver, filterSave, "Visibility", timeOut, "filterSave");
+    }
+    
+    @FindBy(xpath = "//div[@id='completeDiv' and @class='cActivityTimeline']/..//img")
+    private WebElement activityLineItemsDropdown;
+    
+    public WebElement getactivityLineItemsDropdown(String projectName,int timeOut) {
+        return isDisplayed(driver, activityLineItemsDropdown, "Visibility", timeOut, "activityLineItemsDropdown");
+    }
 	
+    @FindBy(xpath = "//span[contains(@class,'toastMessage')]")
+    private WebElement createdConfirmationMsg;
+    
+    public WebElement getCreatedConfirmationMsg(String projectName,int timeOut) {
+        return isDisplayed(driver, createdConfirmationMsg, "Visibility", timeOut, "Created Confirmation Msg");
+    }
 }

@@ -635,13 +635,13 @@ public class BasePageBusinessLayer extends BasePage implements BasePageErrorMess
 			viewList = "All Contacts";
 			break;
 		case InstituitonsTab:
-			viewList = "All Institutions";
+			viewList = "Automation All";
 			break;
 		case PropertiesTab:
-			viewList = "All Properties";
+			viewList = "Automation All";
 			break;
 		case LimitedPartner:
-			viewList = "All Limited Partners";
+			viewList = "Automation All";
 			break;
 		case FundraisingsTab:
 			viewList = "All";
@@ -2235,7 +2235,7 @@ public WebElement verifyCreatedItemOnPage(Header header,String itemName)
 	else
 	xpath="//*[contains(text(),'"+head+"')]/..//*[contains(text(),'"+itemName+"')]";
 	 ele = FindElement(driver, xpath, "Header : "+itemName, action.BOOLEAN, 30);
-	 ele = isDisplayed(driver, ele, "Visibility", 10, head+" : "+itemName);
+	 ele = isDisplayed(driver, ele, "Visibility", 60, head+" : "+itemName);
 	return ele;
 }
 
@@ -2313,4 +2313,129 @@ public boolean verifyRelatedListViewAllColumnAndValue(String[][] headersWithValu
 
 
 }
+
+
+public boolean addAutomationAllListView(String projectName,  String tabObj, int timeOut) {
+	String viewList="Automation All",xpath="";
+	if (click(driver, getSelectListIcon(60), "Select List Icon", action.SCROLLANDBOOLEAN)) {
+		ThreadSleep(3000);
+		xpath="//div[@class='listContent']//li/a/span[text()='" + viewList + "']";
+		WebElement selectListView = FindElement(driver, xpath,"Select List View : "+viewList, action.SCROLLANDBOOLEAN, 5);
+		ThreadSleep(3000);
+		if ( selectListView!=null) {
+			log(LogStatus.INFO, "automation all is already present", YesNo.No);
+			return true;
+		}
+		else {
+			log(LogStatus.ERROR, "not found automation all.. now creating", YesNo.No);
+			
+		}
+	}else {
+		log(LogStatus.ERROR, "list dropdown is not clickable, so cannot check presence of Automation All", YesNo.Yes);
+		
+	}
+
+	if (createListView(projectName, tabObj, timeOut)) {
+		if (changeFilterInListView(projectName, tabObj, timeOut)) {
+			return true;
+		}
+		else {
+			log(LogStatus.ERROR, "could not change filter to all", YesNo.Yes);
+		}
+	}
+	else {
+		log(LogStatus.ERROR, "could not create new list", YesNo.Yes);
+	}
+	return false;
+}
+
+/**@author Akul Bhutani
+ * @param projectName
+ * @param obj
+ * @param timeOut
+ * @return true/false
+ * @description this method is used to only create new view names Automation All
+ */
+public boolean createListView(String projectName,  String obj, int timeOut) {
+	refresh(driver);ThreadSleep(2000);
+	if (click(driver, getlistViewControlsButton(projectName, timeOut), "list view", action.BOOLEAN)) {
+		log(LogStatus.INFO, "successfully click on list view", YesNo.No);
+		if (click(driver, getnewButtonListView(projectName, timeOut), "new ", action.BOOLEAN)) {
+			log(LogStatus.INFO, "successfully click on new buton", YesNo.No);
+			if (sendKeys(driver, getlistNameTextBox(projectName,"List Name", timeOut), "Automation All", "list name", action.SCROLLANDBOOLEAN)) {
+				if (sendKeysWithoutClearingTextBox(driver, getlistNameTextBox(projectName,"List API Name", timeOut), "", "list name", action.SCROLLANDBOOLEAN)) {
+					if (click(driver, getallUsersRB(projectName, timeOut), "all users", action.BOOLEAN)) {
+						log(LogStatus.INFO, "successfully click on all users", YesNo.No);
+						if (click(driver, getlistViewSaveButton(projectName, timeOut), "save", action.BOOLEAN)) {
+							log(LogStatus.INFO, "successfully click on save buton", YesNo.No);
+							return true;
+						}else {
+							log(LogStatus.ERROR, "list view save button is not clickable", YesNo.No);
+						}
+					}else {
+						log(LogStatus.ERROR, "all users radio button is not clickable", YesNo.No);
+					}
+				}else {
+					log(LogStatus.ERROR, "list api textbox is not visible", YesNo.No);
+				}
+			}else {
+				log(LogStatus.ERROR, "list name textbox is not visible", YesNo.No);
+			}
+		}else {
+			log(LogStatus.ERROR, "new button is not clickable", YesNo.No);
+		}
+	}else {
+		log(LogStatus.ERROR, "list view controls button is not clickable", YesNo.No);
+	}
+	return false;
+}
+
+/**@author Akul Bhutani
+ * @param projectName
+ * @param tabObj
+ * @param timeOut
+ * @return true/false
+ * @description this method is used to change value in filter to all users
+ */
+public boolean changeFilterInListView(String projectName,String tabObj, int timeOut) {
+	if (click(driver, getListFilterSection(projectName,tabObj, timeOut), "filter section", action.BOOLEAN)) {
+		log(LogStatus.INFO, "successfully click on filter section", YesNo.No);
+		if (click(driver, getallCheckboxForFilter(projectName, timeOut), "all filters", action.BOOLEAN)) {
+			log(LogStatus.INFO, "successfully click on all radio button", YesNo.No);
+			if (click(driver, getdoneButtonListView(projectName, timeOut),"done", action.BOOLEAN)) {
+				log(LogStatus.INFO, "successfully click on done buton", YesNo.No);
+				if (click(driver, getfilterSave(projectName, timeOut), "save", action.BOOLEAN)) {
+					log(LogStatus.INFO, "successfully click on save buton", YesNo.No);
+					WebElement ele = getCreatedConfirmationMsg(projectName, 15);
+					if (ele!=null) {
+						String actualValue = ele.getText().trim();
+						String expectedValue=BasePageErrorMessage.listViewUpdated;
+						if (actualValue.contains(expectedValue)) {
+							log(LogStatus.INFO,expectedValue+" matched FOR Confirmation Msg", YesNo.No);
+							return true;
+						} else {
+							log(LogStatus.ERROR,"Actual : "+actualValue+" Expected : "+expectedValue+" not matched FOR Confirmation Msg", YesNo.Yes);
+							BaseLib.sa.assertTrue(false, "Actual : "+actualValue+" Expected : "+expectedValue+" not matched FOR Confirmation Msg");
+						}
+					} else {
+						sa.assertTrue(false,"Created Task Msg Ele not Found");
+						log(LogStatus.SKIP,"Created Task Msg Ele not Found",YesNo.Yes);
+
+					}
+				}
+				else {
+					log(LogStatus.ERROR, "save button is not clickable", YesNo.No);
+				}
+			}else {
+				log(LogStatus.ERROR, "done button is not clickable", YesNo.No);
+			}
+		}else {
+			log(LogStatus.ERROR, "all checkbox is not clickable", YesNo.No);
+		}
+	}else {
+		log(LogStatus.ERROR, "list filter section is not clickable", YesNo.No);
+	}
+	return false;
+}
+
 }

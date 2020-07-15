@@ -95,9 +95,9 @@ public class ReportsTabBusinessLayer extends ReportsTab{
 		return flag;
 	}
 	
-	public boolean createCustomReportForFolder(String environment, String mode, String folderName, String reportName,
-			String reportDescription, String reportType, ReportField reportField, String showValue, String dateField,
-			String rangeValue, String fromDate, String toDate) {
+	public boolean createCustomReportForFolder(String environment, String mode, String folderName,ReportFormatName reportFormatName,
+			String reportName, String reportDescription, String reportType, ReportField reportField, String showValue,
+			String dateField, String rangeValue, String fromDate, String toDate) {
 		boolean flag=true;
 		if (switchToClassic()) {
 			appLog.info("Switch To Classic");
@@ -186,6 +186,21 @@ public class ReportsTabBusinessLayer extends ReportsTab{
 								}
 								else {
 									appLog.info("creating report without contact id");
+								}
+								if(!reportFormatName.toString().equalsIgnoreCase(ReportFormatName.Null.toString())) {
+									if(click(driver, getReportFormatName(20), "report format drop down", action.SCROLLANDBOOLEAN)) {
+										appLog.info("clicked on report format drop down");
+										ThreadSleep(500);
+										if(click(driver, getreportFormatName(reportFormatName), "report format name ", action.SCROLLANDBOOLEAN)) {
+											appLog.info("clicked on report format name : "+reportFormatName.toString());
+										}else {
+											appLog.error("Not able to select report format name "+reportFormatName.toString()+" so cannot create report");
+											return false;
+										}
+									}else {
+										appLog.error("Not able to click on report format drop down so cannot create report");
+										return false;
+									}
 								}
 								if (click(driver, getSaveBtn_Classic(environment, 10), "Save Button",
 										action.SCROLLANDBOOLEAN)) {
@@ -297,4 +312,5 @@ public class ReportsTabBusinessLayer extends ReportsTab{
 		return flag;
 
 	}
+
 }

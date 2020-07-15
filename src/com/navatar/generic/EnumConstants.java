@@ -874,9 +874,13 @@ public class EnumConstants {
 	
 	public static enum CancelOrCross{
 		Cancel,Cross;	  
-		};
-	
-		public static enum Header{
-			Fund,Contact,Institution,Marketing_Initiative,Commitment;	  
-			};
+	};
+
+	public static enum Header{
+		Fund,Contact,Institution,Marketing_Initiative,Commitment;	  
+	};
+
+	public static enum ReportFormatName{
+		Matrix,Joined,Summary,Tabular,Null;
+	}
 }

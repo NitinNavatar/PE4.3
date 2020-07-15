@@ -147,6 +147,24 @@ public class SmokeTestCases extends BaseLib {
 		HomePageBusineesLayer home = new HomePageBusineesLayer(driver);
 		List<String> abc = null;
 		lp.CRMLogin(superAdminUserName, adminPassword);
+		 String[] tabs= {"institutions"};
+	        TabName[] tab= {TabName.InstituitonsTab};
+	        int i=0;
+	        for (TabName t:tab) {
+	            if (lp.clickOnTab(environment,mode,t)) {    
+	                if (lp.addAutomationAllListView("PE", tabs[i], 10)) {
+	                    log(LogStatus.INFO,"list view added on "+tabs[i],YesNo.No);
+	                } else {
+	                    log(LogStatus.FAIL,"list view could not added on "+tabs[i],YesNo.Yes);
+	                    sa.assertTrue(false, "list view could not added on "+tabs[i]);
+	                }
+	            } else {
+	                log(LogStatus.FAIL,"could not click on "+tabs[i],YesNo.Yes);
+	                sa.assertTrue(false, "could not click on "+tabs[i]);
+	            }
+	            i++;
+	            ThreadSleep(5000);
+	        }
 		lp.switchToClassic();	
 		if (home.clickOnSetUpLink(environment, Mode.Classic.toString())) {
 			List<String> layoutName = new ArrayList<String>();
@@ -320,7 +338,7 @@ public class SmokeTestCases extends BaseLib {
 		
 		
 		String addRemoveTabName="Pipelines"+","+"Partnerships"+","+"Commitments"+","+"Fundraising Contacts"+","+"Marketing Initiatives"+","
-				+"Marketing Prospects"+","+"Reports"+","+"Office Locations"+","+"Navatar Setup"+","+"Fund Distributions"+","+"Fund Drawdowns"
+				+","+"Reports"+","+"Office Locations"+","+"Navatar Setup"+","+"Fund Distributions"+","+"Fund Drawdowns"
 				+","+"Investor Distributions"+","+"Capital Calls";
 
 		String[] addRemoveTabs = addRemoveTabName.split(",");
@@ -381,92 +399,86 @@ public class SmokeTestCases extends BaseLib {
 	
 	@Parameters({ "environment", "mode" })
 	@Test
-	public void PESmokeTc001_3_createCustomEmailAndTemplate(String environment, String mode) {
-		ReportsTabBusinessLayer report = new ReportsTabBusinessLayer(driver);
-		EmailMyTemplatesPageBusinessLayer emailtemplate = new EmailMyTemplatesPageBusinessLayer(driver);
-		LoginPageBusinessLayer lp = new LoginPageBusinessLayer(driver);
-		SetupPageBusinessLayer setup = new SetupPageBusinessLayer(driver);
-		HomePageBusineesLayer home = new HomePageBusineesLayer(driver);
-		String reportFolderName = ExcelUtils.readData(smokeFilePath, "Report", excelLabel.Variable_Name, "SmokeReport1",
-				excelLabel.Report_Folder_Name) + lp.generateRandomNumber();
-		String emailFolderName = ExcelUtils.readData(smokeFilePath, "CustomEmailFolder", excelLabel.Variable_Name,
-				"EmailTemplate1", excelLabel.Email_Template_Folder_Label);
-		lp.CRMLogin(superAdminUserName, adminPassword);
-
-		if (report.createCustomReportOrDashboardFolder(environment, reportFolderName,
-				ReportDashboardFolderType.ReportFolder, FolderAccess.ReadOnly)) {
-			String reportName = ExcelUtils.readData(smokeFilePath, "Report", excelLabel.Variable_Name, "SmokeReport1",
-					excelLabel.Report_Name) + lp.generateRandomNumber();
-			String reportType = ExcelUtils.readData(smokeFilePath, "Report", excelLabel.Variable_Name, "SmokeReport1",
-					excelLabel.Select_Report_Type);
-			String showvalue = ExcelUtils.readData(smokeFilePath, "Report", excelLabel.Variable_Name, "SmokeReport1",
-					excelLabel.Show);
-			String rangeValue = ExcelUtils.readData(smokeFilePath, "Report", excelLabel.Variable_Name, "SmokeReport1",
-					excelLabel.Range);
-			ExcelUtils.writeData(smokeFilePath, reportFolderName, "Report", excelLabel.Variable_Name, "SmokeReport1",
-					excelLabel.Report_Folder_Name);
-			if (report.createCustomReportForFolder(environment, mode, reportFolderName, reportName, reportName,
-					reportType, ReportField.ContactID, showvalue, null, rangeValue, null, null)) {
-				appLog.info("Custom Report is created succesdfully : " + reportName);
-				ExcelUtils.writeData(smokeFilePath, reportName, "Report", excelLabel.Variable_Name, "SmokeReport1",
-						excelLabel.Report_Name);
-			} else {
-				appLog.error("Not able to create Custom Report : " + reportName);
-				sa.assertTrue(false, "Not able to create Custom Report : " + reportName);
-				log(LogStatus.ERROR, "Not able to create Custom Report : " + reportName, YesNo.Yes);
-			}
-			switchToDefaultContent(driver);
-			home.clickOnSetUpLink(environment, Mode.Classic.toString());
-			if (home.clickOnTab(environment, Mode.Classic.toString(), TabName.HomeTab)) {
-				reportName="R2"+ reportName;
-				if (report.createCustomReportForFolder(environment, mode, reportFolderName,reportName, reportName,
-						reportType, null, showvalue, null, rangeValue, null, null)) {
-					appLog.info("Custom Report is created succesdfully : " + reportName);
-				} else {
-					appLog.error("Not able to create Custom Report : " + reportName);
-					sa.assertTrue(false, "Not able to create Custom Report : " + reportName);
-					log(LogStatus.ERROR, "Not able to create Custom Report : " + reportName, YesNo.Yes);
-				}
-			}
+	public void PESmokeTc001_3_createCustomEmailAndTemplate(String environment, String mode) {ReportsTabBusinessLayer report = new ReportsTabBusinessLayer(driver);
+	EmailMyTemplatesPageBusinessLayer emailtemplate = new EmailMyTemplatesPageBusinessLayer(driver);
+	LoginPageBusinessLayer lp = new LoginPageBusinessLayer(driver);
+	HomePageBusineesLayer home = new HomePageBusineesLayer(driver);
+	lp.CRMLogin(superAdminUserName, adminPassword);
+	String[] splitedReportFolderName = removeNumbersFromString(SmokeReportFolderName);
+	SmokeReportFolderName = splitedReportFolderName[0] + lp.generateRandomNumber();
+	if (report.createCustomReportOrDashboardFolder(environment, SmokeReportFolderName,
+			ReportDashboardFolderType.ReportFolder, FolderAccess.ReadOnly)) {
+		
+		String[] splitedReportName = removeNumbersFromString(SmokeReportName);
+		SmokeReportName = splitedReportName[0] + lp.generateRandomNumber();
+		
+		ExcelUtils.writeData(smokeFilePath, SmokeReportFolderName, "Report", excelLabel.Variable_Name, "SmokeReport1",
+				excelLabel.Report_Folder_Name);
+		if (report.createCustomReportForFolder(environment, mode, SmokeReportFolderName,ReportFormatName.Null,SmokeReportName,
+				SmokeReportName, SmokeReportType, ReportField.ContactID, SmokeReportShow, null, SmokeReportRange, null, null)) {
+			appLog.info("Custom Report is created succesdfully : " + SmokeReportName);
+			ExcelUtils.writeData(smokeFilePath, SmokeReportName, "Report", excelLabel.Variable_Name, "SmokeReport1",
+					excelLabel.Report_Name);
 		} else {
-			appLog.error("Not able to create Custom Report folder: " + reportFolderName);
-			sa.assertTrue(false, "Not able to create Custom Report folder: " + reportFolderName);
-			log(LogStatus.ERROR, "Not able to create Custom Report folder: " + reportFolderName, YesNo.Yes);
+			appLog.error("Not able to create Custom Report : " + SmokeReportName);
+			sa.assertTrue(false, "Not able to create Custom Report : " + SmokeReportName);
+			log(LogStatus.ERROR, "Not able to create Custom Report : " + SmokeReportName, YesNo.Yes);
 		}
-		home.switchToClassic();
-		if (home.clickOnSetUpLink(environment, Mode.Classic.toString())) {
-			
-			if (emailtemplate.createCustomEmailFolder(environment, Mode.Classic.toString(), emailFolderName, FolderAccess.ReadWrite)) {
-				String emailTemplateName = ExcelUtils.readData(smokeFilePath, "CustomEmailFolder",
-						excelLabel.Variable_Name, "EmailTemplate1", excelLabel.Email_Template_Name);
-				String description = ExcelUtils.readData(smokeFilePath, "CustomEmailFolder", excelLabel.Variable_Name,
-						"EmailTemplate1", excelLabel.Description);
-				String subject = ExcelUtils.readData(smokeFilePath, "CustomEmailFolder", excelLabel.Variable_Name,
-						"EmailTemplate1", excelLabel.Subject);
-				String body = ExcelUtils.readData(smokeFilePath, "CustomEmailFolder", excelLabel.Variable_Name,
-						"EmailTemplate1", excelLabel.Email_Body);
-				if (emailtemplate.createCustomEmailTemplate(environment, Mode.Classic.toString(), emailFolderName, EmailTemplateType.Text,
-						emailTemplateName, description, subject, body)) {
-					appLog.info("EMail Template is created :" + emailTemplateName);
-				} else {
-					appLog.error("EMail Template is not created :" + emailTemplateName);
-					sa.assertTrue(false, "EMail Template is not created :" + emailTemplateName);
-					log(LogStatus.ERROR, "EMail Template is not created :" + emailTemplateName, YesNo.Yes);
-				}
+		switchToDefaultContent(driver);
+		home.clickOnSetUpLink(environment, Mode.Classic.toString());
+		if (home.clickOnTab(environment, Mode.Classic.toString(), TabName.HomeTab)) {
+			SmokeReportName="R2"+SmokeReportName;
+			if (report.createCustomReportForFolder(environment, mode, SmokeReportFolderName,ReportFormatName.Null,SmokeReportName,
+					SmokeReportName, SmokeReportType, null, SmokeReportShow, null, SmokeReportRange, null, null)) {
+				appLog.info("Custom Report is created succesdfully : R2"+SmokeReportName);
 			} else {
-				appLog.error("Not able to create Custom Email folder: " + emailFolderName);
-				sa.assertTrue(false, "Not able to create Custom Email folder: " + emailFolderName);
-				log(LogStatus.ERROR, "Not able to create Custom Email folder: " + emailFolderName, YesNo.Yes);
+				appLog.error("Not able to create Custom Report : R2"+ SmokeReportName);
+				sa.assertTrue(false, "Not able to create Custom Report : R2"+SmokeReportName);
+				log(LogStatus.ERROR, "Not able to create Custom Report : R2"+SmokeReportName, YesNo.Yes);
 			}
-		} else {
-			appLog.error("Not able to clicked on setup link so cannot create Email Folder And Template");
-			sa.assertTrue(false, "Not able to clicked on setup link so cannot create Email Folder And Template");
-			log(LogStatus.ERROR, "Not able to clicked on setup link so cannot create Email Folder And Template",
-					YesNo.Yes);
 		}
-		lp.CRMlogout(environment, mode);
-		sa.assertAll();
+	} else {
+		appLog.error("Not able to create Custom Report folder: " + SmokeReportFolderName);
+		sa.assertTrue(false, "Not able to create Custom Report folder: " + SmokeReportFolderName);
+		log(LogStatus.ERROR, "Not able to create Custom Report folder: " + SmokeReportFolderName, YesNo.Yes);
 	}
+	home.switchToClassic();
+	if (home.clickOnSetUpLink(environment, Mode.Classic.toString())) {
+		String[] splitedEmailTemplateFolderName = removeNumbersFromString(EmailTemplate1_FolderName);
+		EmailTemplate1_FolderName = splitedEmailTemplateFolderName[0] + lp.generateRandomNumber();
+		if (emailtemplate.createCustomEmailFolder(environment, Mode.Classic.toString(), EmailTemplate1_FolderName, FolderAccess.ReadWrite)) {
+			log(LogStatus.PASS, "Email Template Folder is created : "+EmailTemplate1_FolderName, YesNo.No);
+			ExcelUtils.writeData(smokeFilePath, EmailTemplate1_FolderName, "CustomEmailFolder", excelLabel.Variable_Name, "EmailTemplate1",
+					excelLabel.Email_Template_Folder_Label);
+			ThreadSleep(2000);
+			String[] splitedEmailTemplateName = removeNumbersFromString(EmailTemplate1_TemplateName);
+			EmailTemplate1_TemplateName = splitedEmailTemplateName[0] + lp.generateRandomNumber();
+			if (emailtemplate.createCustomEmailTemplate(environment, Mode.Classic.toString(), EmailTemplate1_FolderName, EmailTemplateType.Text,
+					EmailTemplate1_TemplateName, EmailTemplate1_TemplateDescription, EmailTemplate1_Subject, EmailTemplate1_Body)) {
+				appLog.info("EMail Template is created :" + EmailTemplate1_TemplateName);
+				
+				ExcelUtils.writeData(smokeFilePath, EmailTemplate1_TemplateName, "CustomEmailFolder", excelLabel.Variable_Name, "EmailTemplate1",
+						excelLabel.Email_Template_Name);
+				
+			} else {
+				appLog.error("EMail Template is not created :" + EmailTemplate1_TemplateName);
+				sa.assertTrue(false, "EMail Template is not created :" + EmailTemplate1_TemplateName);
+				log(LogStatus.ERROR, "EMail Template is not created :" + EmailTemplate1_TemplateName, YesNo.Yes);
+			}
+		} else {
+			appLog.error("Not able to create Custom Email folder: " + EmailTemplate1_FolderName);
+			sa.assertTrue(false, "Not able to create Custom Email folder: " + EmailTemplate1_FolderName);
+			log(LogStatus.ERROR, "Not able to create Custom Email folder: " + EmailTemplate1_FolderName, YesNo.Yes);
+		}
+	} else {
+		appLog.error("Not able to clicked on setup link so cannot create Email Folder And Template");
+		sa.assertTrue(false, "Not able to clicked on setup link so cannot create Email Folder And Template");
+		log(LogStatus.ERROR, "Not able to clicked on setup link so cannot create Email Folder And Template",
+				YesNo.Yes);
+	}
+	lp.CRMlogout(environment, mode);
+	sa.assertAll();
+}
 
 	@Parameters({ "environment", "mode" })
 	@Test
@@ -2128,7 +2140,7 @@ public class SmokeTestCases extends BaseLib {
 						if (click(driver, market.getEmailProspectStep1NextBtn(20), "step 1 next button",
 								action.SCROLLANDBOOLEAN)) {
 							log(LogStatus.INFO, "clicked on Steps 1 Next button", YesNo.No);
-							String expectedResult = "All,Capital Call Notice,Investor Distribution Notice,PE Test Email Folder";
+							String expectedResult = "All,Capital Call Notice,Investor Distribution Notice,"+EmailTemplate1_FolderName;
 							List<WebElement> lst = allOptionsInDropDrop(driver,
 									market.getEmailProspectFolderDropDownList(20), "folder drop down list");
 							if (compareMultipleList(driver, expectedResult, lst).isEmpty()) {
@@ -9506,7 +9518,7 @@ public class SmokeTestCases extends BaseLib {
 					appLog.info("Click on Created Company : " + Smoke_PL3CompanyName);
 
 					String[][] labelsAndValuesforComp = { { excelLabel.Legal_Name.toString(), Smoke_PL3CompanyName },
-							{ excelLabel.Record_Type.toString(), "Institution" } };
+							{ excelLabel.Record_Type.toString(), "Property" } };
 
 					for (String[] labelAndValue : labelsAndValuesforComp) {
 						if (ip.fieldValueVerificationOnInstitutionPage(environment, mode, TabName.PropertiesTab,
@@ -9525,10 +9537,9 @@ public class SmokeTestCases extends BaseLib {
 
 					String[][] pipeLineFieldsAndValues = {
 							{ excelLabel.Pipeline_Name.toString(), expectedPipeLineName },
-							{ excelLabel.Stage.toString(), Smoke_PL3Stage }, { excelLabel.Log_In_Date.toString(), "" },
+							{ excelLabel.Stage.toString(), Smoke_PL3Stage }, { excelLabel.Log_In_Date.toString(), "" },{ excelLabel.Our_Role.toString(), "" },
 							{ excelLabel.Investment_Size.toString(), "" },
-							{ excelLabel.Source_Firm.toString(), Smoke_PL3SourceFirm },
-							{ excelLabel.Deal_Type.toString(), "" }, { excelLabel.Our_Role.toString(), "" } };
+							{ excelLabel.Source_Firm.toString(), Smoke_PL3SourceFirm }};
 
 					if (ip.verifyPipeLineRelatedList(environment, mode, RecordType.Company, pipeLineFieldsAndValues)) {
 						appLog.info("PipeLine Related List verified for : " + Smoke_PL3CompanyName);
@@ -9614,7 +9625,7 @@ public class SmokeTestCases extends BaseLib {
 					String[][] dealSourceFieldsAndValues = {
 							{ excelLabel.Pipeline_Name.toString(), expectedPipeLineName },
 							{ excelLabel.Property_Name.toString(), Smoke_PL3CompanyName },
-							{ excelLabel.Deal_Type.toString(), "" }, { excelLabel.Stage.toString(), Smoke_PL3Stage },
+							{ excelLabel.Stage.toString(), Smoke_PL3Stage },
 							{ excelLabel.Source_Firm.toString(), Smoke_PL3SourceFirm },
 							{ excelLabel.Log_In_Date.toString(), "" }, { excelLabel.Investment_Size.toString(), "" } };
 
@@ -11534,121 +11545,7 @@ public class SmokeTestCases extends BaseLib {
 	}
 	
 	
-	@Parameters({ "environment", "mode" })
-	@Test
-	public void PESmokeTc044_3_verifyAccountAssociationImpact(String environment, String mode) {
-		SetupPageBusinessLayer setup = new SetupPageBusinessLayer(driver);
-		LoginPageBusinessLayer lp = new LoginPageBusinessLayer(driver);
-		HomePageBusineesLayer home = new HomePageBusineesLayer(driver);
-		InstitutionsPageBusinessLayer ins = new InstitutionsPageBusinessLayer(driver);
-		ContactsPageBusinessLayer contact = new ContactsPageBusinessLayer(driver);
-		MarketingInitiativesPageBusinesslayer market = new MarketingInitiativesPageBusinesslayer(driver);
-		FundsPageBusinessLayer fund = new FundsPageBusinessLayer(driver);
-		FundraisingsPageBusinessLayer fundraising = new FundraisingsPageBusinessLayer(driver);
-		lp.CRMLogin(superAdminUserName, adminPassword);
-		String FieldLabels = excelLabel.Street.toString() + "," + excelLabel.City.toString() + ","
-				+ excelLabel.State.toString() + "," + excelLabel.Postal_Code.toString() + ","
-				+ excelLabel.Country.toString() + "," + excelLabel.Phone.toString() + "," + excelLabel.Fax.toString();
-		for (int j = 0; j <4; j++) {
-			if (lp.clickOnTab(environment, mode, TabName.InstituitonsTab)) {
-				ThreadSleep(2000);
-				if (j == 0) {
-					if (ins.createInstitution(environment, mode, "Test FM", "Fund Manager",null, null)) {
-						appLog.info("Fund Manager is created Fund Manager : " + "Test FM");
-					} else {
-						appLog.error("Not able to click on create Fund Manager : Test FM");
-						sa.assertTrue(false, "Not able to click on Fund Manager : Test FM");
-						log(LogStatus.ERROR, "Not able to click on create Fund Manager : Test FM", YesNo.Yes);
-					}
-				}
-				if (j == 1) {
-					refresh(driver);
-					if (ins.createInstitution(environment, mode, "Test FMF", "Fund Manager’s Fund", InstitutionPageFieldLabelText.Parent_Institution.toString(), "Test FM")) {
-						appLog.info("Fund Manager’s Fund is created Fund Manage's Fund : " + "Test FMF");
-					} else {
-						appLog.error("Not able to click on create Fund Manager’s Fund : Test FMF");
-						sa.assertTrue(false, "Not able to click on Fund Manager’s Fund : Test FMF");
-						log(LogStatus.ERROR, "Not able to click on create Fund Manager’s Fund : Test FMF", YesNo.Yes);
-					}
-				}
-				if (j == 2) {
-					if (ins.createInstitution(environment, mode, "Test INS 1", "Institution", InstitutionPageFieldLabelText.Parent_Institution.toString(), "Test FM")) {
-						appLog.info("Institution created  : Test INS 1");
-					} else {
-						appLog.error("Not able to click on create institution : Test INS 1");
-						sa.assertTrue(false, "Not able to click on institution : Test INS 1");
-						log(LogStatus.ERROR, "Not able to click on create institution :Test INS 1", YesNo.Yes);
-					}
-				}
-				if (j == 3) {
-					if (ins.createInstitution(environment, mode, "Test INS 2", "Institution", InstitutionPageFieldLabelText.Parent_Institution.toString(), "Test FMF")) {
-						appLog.info("Institution created  :  Test INS 2");
-					} else {
-						appLog.error("Not able to click on create institution : Test INS 2");
-						sa.assertTrue(false, "Not able to click on institution : Test INS 2");
-						log(LogStatus.ERROR, "Not able to click on create institution :Test INS 2", YesNo.Yes);
-					}
-				}
-				
-			} else {
-				appLog.error(
-						"Not able to click on Institute Tab so cannot Create institute, indiviual insvestor and company");
-				sa.assertTrue(false,
-						"Not able to click on Institute Tab so cannot Create institute, indiviual insvestor and company");
-				log(LogStatus.SKIP,
-						"Not able to click on Institute Tab so cannot Create institute, indiviual insvestor and company",
-						YesNo.Yes);
-			}
-		}
-			if (fund.clickOnTab(environment, mode, TabName.FundsTab)) {
-				if (fund.createFund(environment, mode, "Test Fund 1", SmokeFund1_Type, SmokeFund1_InvestmentCategory,null, null)) {
-					appLog.info("Fund is created Successfully:  Test Fund 1");
-					
-				} else {
-					appLog.error("Not able to click on fund:  Test Fund 1");
-					sa.assertTrue(false, "Not able to click on fund:  Test Fund 1");
-					log(LogStatus.SKIP, "Not able to click on fund:  Test Fund 1", YesNo.Yes);
-				}
-			} else {
-				appLog.error("Not able to click on fund Tab so cannot Fund");
-				sa.assertTrue(false, "Not able to click on fund Tab so cannot Fund");
-				log(LogStatus.SKIP, "Not able to click on fund Tab so cannot Fund", YesNo.Yes);
-			}
-			
-			if (fund.clickOnTab(environment, mode, TabName.FundraisingsTab)) {
-				if (fundraising.createFundRaising(environment, mode, "Test FRD 1", "Test Fund 1", "Test FM")) {
-					appLog.info("Fundraising is created Successfully:  Test FRD 1");
-					
-				} else {
-					appLog.error("Fundraising not created Successfully:  Test FRD 1");
-					sa.assertTrue(false, "Fundraising not created Successfully:  Test FRD 1");
-					log(LogStatus.SKIP, "Fundraising not created Successfully:  Test FRD 1", YesNo.Yes);
-				}
-			} else {
-				appLog.error("Not able to click on FundRaising Tab so cannot FundRaising");
-				sa.assertTrue(false, "Not able to click on FundRaising Tab so cannot FundRaising");
-				log(LogStatus.SKIP, "Not able to click on FundRaising Tab so cannot FundRaising", YesNo.Yes);
-			}
-			if (fund.clickOnTab(environment, mode, TabName.FundraisingsTab)) {
-				if (fundraising.createFundRaising(environment, mode, "Test FRD 2", "Test Fund 1", "Test FMF")) {
-					appLog.info("Fundraising is created Successfully:  Test FRD 2");
-					
-				} else {
-					appLog.error("Fundraising not created Successfully:  Test FRD 2");
-					sa.assertTrue(false, "Fundraising not created Successfully:  Test FRD 2");
-					log(LogStatus.SKIP, "Fundraising not created Successfully:  Test FRD 2", YesNo.Yes);
-				}
-			} else {
-				appLog.error("Not able to click on FundRaising Tab so cannot FundRaising");
-				sa.assertTrue(false, "Not able to click on FundRaising Tab so cannot FundRaising");
-				log(LogStatus.SKIP, "Not able to click on FundRaising Tab so cannot FundRaising", YesNo.Yes);
-			}
-		
-		lp.CRMlogout(environment, mode);
-		sa.assertAll();
-
-		
-	}
+	
 	
 	
 	@Parameters({ "environment", "mode" })
@@ -13647,7 +13544,7 @@ public class SmokeTestCases extends BaseLib {
 						if (fd.getStep2TextEmailing(30)!=null) {
 							appLog.info("successfully found step 2 page");
 						}
-						String expectedResult = "All,Capital Call Notice,Investor Distribution Notice,PE Test Email Folder";
+						String expectedResult = "All,Capital Call Notice,Investor Distribution Notice,"+EmailTemplate1_FolderName;
 						List<WebElement> lst = allOptionsInDropDrop(driver,
 								fd.getFundDrawdownFolderDropDownList(20), "folder drop down list");
 						if (compareMultipleList(driver, expectedResult, lst).isEmpty()) {
@@ -15912,7 +15809,7 @@ public class SmokeTestCases extends BaseLib {
 								sa.assertTrue(false, "Step 2 Msg Not Verified");
 								log(LogStatus.ERROR, "Step 2 Msg Not Verified", YesNo.Yes);	
 							}
-							String expectedResult = "All,Capital Call Notice,Investor Distribution Notice,PE Test Email Folder";
+							String expectedResult = "All,Capital Call Notice,Investor Distribution Notice,"+EmailTemplate1_FolderName;
 							List<WebElement> lst = allOptionsInDropDrop(driver,
 									fd.getFundDrawdownFolderDropDownList(20), "folder drop down list");
 							if (compareMultipleList(driver, expectedResult, lst).isEmpty()) {
@@ -19799,10 +19696,8 @@ public class SmokeTestCases extends BaseLib {
 		WebElement ele;
 		String msg;
 		lp.CRMLogin(crmUser1EmailID, adminPassword);
-		String reportName = "R2"+ExcelUtils.readData(smokeFilePath, "Report", excelLabel.Variable_Name, "SmokeReport1",
-				excelLabel.Report_Name);
-		String reportFName = ExcelUtils.readData(smokeFilePath, "Report", excelLabel.Variable_Name, "SmokeReport1",
-				excelLabel.Report_Folder_Name);
+		String reportName = "R2"+SmokeReportName;
+		String reportFName = SmokeReportFolderName;
 	//	lp.CRMLogin(superAdminUserName, adminPassword);
 		appLog.info("Login with User");
 			if (hp.clickOnLinkFromNavatarQuickLink(environment, mode, NavatarQuickLink.BulkEmail)) {

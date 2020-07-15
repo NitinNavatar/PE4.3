@@ -25,7 +25,7 @@ public class IndividualInvestorCreationTab extends NavatarSetupPageBusinessLayer
 	public List<WebElement> getIndiviualInvestorFieldLabelInEditViewMode(String environment, String mode,IndiviualInvestorSectionsName indiviualInvestorSectionsName){
 		List<WebElement> webElements = new ArrayList<WebElement>();
 		if(indiviualInvestorSectionsName.toString().equalsIgnoreCase(IndiviualInvestorSectionsName.Additional_Information.toString())) {
-			webElements = FindElements(driver, "//h2[text()='"+indiviualInvestorSectionsName.toString().replace("_", " ")+"']/../..//td[@class='td1']/label", "additional information section label list");
+			webElements = FindElements(driver, "//h2[text()='"+indiviualInvestorSectionsName.toString().replace("_", " ")+"']/../..//td/ancestor::h2/following-sibling::table//td/label", "additional information section label list");
 		}else {
 			webElements = FindElements(driver, "//h2[text()='"+indiviualInvestorSectionsName.toString().replace("_", " ")+"']/../..//label", indiviualInvestorSectionsName.toString()+" section label list");
 		}

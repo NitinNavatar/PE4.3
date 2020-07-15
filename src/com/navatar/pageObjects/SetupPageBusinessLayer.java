@@ -242,13 +242,13 @@ public class SetupPageBusinessLayer extends SetupPage {
 					if(mode.equalsIgnoreCase(Mode.Lightning.toString())) {
 						switchToFrame(driver, 20, getSetUpPageIframe(20));
 					}
-					ThreadSleep(2000);
+					ThreadSleep(5000);
 					if (click(driver, getNewUserLink(20), "New User Button", action.SCROLLANDBOOLEAN)) {
 						appLog.info("clicked on new users button");
-						ThreadSleep(2000);
+						ThreadSleep(5000);
 						if(mode.equalsIgnoreCase(Mode.Lightning.toString())) {
 							switchToDefaultContent(driver);
-							switchToFrame(driver, 20, getSetUpPageIframe(20));
+							switchToFrame(driver, 60, getSetUpPageIframe(60));
 							System.err.println(">>><<<<<<<<<<<<");
 						}else{
 							System.err.println(">>>11111111111111<<<<<<<<<<<<");	

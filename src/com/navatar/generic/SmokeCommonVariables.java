@@ -105,7 +105,7 @@ public class SmokeCommonVariables {
 	
 	public static String SmokeReportFolderName,SmokeReportName,SmokeReportType,SmokeReportShow,SmokeReportRange;
 	
-	public static String EmailTemplate1_Subject,EmailTemplate1_Body,EmailTemplate1_FolderName,EmailTemplate1_TemplateName;
+	public static String EmailTemplate1_Subject,EmailTemplate1_Body,EmailTemplate1_FolderName,EmailTemplate1_TemplateName,EmailTemplate1_TemplateDescription;
 
 	
 	public static String Smoke_COMM1,SmokeCOMM1_CommitmentAmount,SmokeCOMM1_partnerType,SmokeCOMM1_TaxForms,SmokeCOMM1_FinalCommitmentDate,SmokeCOMM1_ID;
@@ -696,7 +696,7 @@ public class SmokeCommonVariables {
 		EmailTemplate1_Body = ExcelUtils.readData(smokeFilePath, "CustomEmailFolder", excelLabel.Variable_Name,"EmailTemplate1", excelLabel.Email_Body);
 		EmailTemplate1_FolderName = ExcelUtils.readData(smokeFilePath, "CustomEmailFolder", excelLabel.Variable_Name,"EmailTemplate1", excelLabel.Email_Template_Folder_Label);
 		EmailTemplate1_TemplateName = ExcelUtils.readData(smokeFilePath, "CustomEmailFolder", excelLabel.Variable_Name,"EmailTemplate1", excelLabel.Email_Template_Name);
-
+		EmailTemplate1_TemplateDescription = ExcelUtils.readData(smokeFilePath, "CustomEmailFolder", excelLabel.Variable_Name,"EmailTemplate1", excelLabel.Description);
 		
 		//******************************************* Commitment ***************************************
 		SmokeCOMM1_ID=ExcelUtils.readData(smokeFilePath, "Commitments", excelLabel.Variable_Name,"SmokeCOMM1", excelLabel.Commitment_ID);
