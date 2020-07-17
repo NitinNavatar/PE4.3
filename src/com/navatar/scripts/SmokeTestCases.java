@@ -138,8 +138,9 @@ public class SmokeTestCases extends BaseLib {
 //	Office Location-->Uncheck.
 //	CoInvestment-->Uncheck.
 //	Pipeline Stage Log-->Checked.
-	
-	
+// deal source relate list header column on institution page (Pipeline Name<>Company Name<>Deal Type<>Stage<>Source Contact)
+// deal source relate list header column on contact page (Pipeline Name<>Property Name<>Deal Type<>Stage<>Source Firm<>Log In Date<>Investment Size)
+// pipeline related list on company page (Pipeline Name<>Stage<>Log In Date<>Investment Size<>Source Firm<>Deal Type<>Our Role)	
 	@Parameters({ "environment", "mode" })
 	@Test
 	public void PESmokeTc000_1_addField(String environment, String mode) {
@@ -11553,138 +11554,7 @@ public class SmokeTestCases extends BaseLib {
 	}
 	
 	
-	@Parameters({ "environment", "mode" })
-	@Test
-	public void PESmokeTc044_3_verifyAccountAssociationImpact(String environment, String mode) {
-		SetupPageBusinessLayer setup = new SetupPageBusinessLayer(driver);
-		LoginPageBusinessLayer lp = new LoginPageBusinessLayer(driver);
-		HomePageBusineesLayer home = new HomePageBusineesLayer(driver);
-		InstitutionsPageBusinessLayer ins = new InstitutionsPageBusinessLayer(driver);
-		ContactsPageBusinessLayer contact = new ContactsPageBusinessLayer(driver);
-		MarketingInitiativesPageBusinesslayer market = new MarketingInitiativesPageBusinesslayer(driver);
-		FundsPageBusinessLayer fund = new FundsPageBusinessLayer(driver);
-		FundraisingsPageBusinessLayer fundraising = new FundraisingsPageBusinessLayer(driver);
-		lp.CRMLogin(superAdminUserName, adminPassword);
-		String FieldLabels = excelLabel.Street.toString() + "," + excelLabel.City.toString() + ","
-				+ excelLabel.State.toString() + "," + excelLabel.Postal_Code.toString() + ","
-				+ excelLabel.Country.toString() + "," + excelLabel.Phone.toString() + "," + excelLabel.Fax.toString();
-		for (int j = 0; j <6; j++) {
-			if (lp.clickOnTab(environment, mode, TabName.InstituitonsTab)) {
-				ThreadSleep(2000);
-				if (j == 0) {
-					if (ins.createInstitution(environment, mode, "ADTest FM", "Fund Manager",null, null)) {
-						appLog.info("Fund Manager is created Fund Manager : " + "ADTest FM");
-					} else {
-						appLog.error("Not able to click on create Fund Manager : ADTest FM");
-						sa.assertTrue(false, "Not able to click on Fund Manager : ADTest FM");
-						log(LogStatus.ERROR, "Not able to click on create Fund Manager : ADTest FM", YesNo.Yes);
-					}
-				}
-				if (j == 1) {
-					refresh(driver);
-					if (ins.createInstitution(environment, mode, "ADTest FMF", "Fund Manager’s Fund", InstitutionPageFieldLabelText.Parent_Institution.toString(), "ADTest FM")) {
-						appLog.info("Fund Manager’s Fund is created Fund Manage's Fund : " + "ADTest FMF");
-					} else {
-						appLog.error("Not able to click on create Fund Manager’s Fund : ADTest FMF");
-						sa.assertTrue(false, "Not able to click on Fund Manager’s Fund : ADTest FMF");
-						log(LogStatus.ERROR, "Not able to click on create Fund Manager’s Fund : ADTest FMF", YesNo.Yes);
-					}
-				}
-				if (j == 2) {
-					if (ins.createInstitution(environment, mode, "ADTest INS 1", "Institution", InstitutionPageFieldLabelText.Parent_Institution.toString(), "ADTest FM")) {
-						appLog.info("Institution created  : ADTest INS 1");
-					} else {
-						appLog.error("Not able to click on create institution : ADTest INS 1");
-						sa.assertTrue(false, "Not able to click on institution : ADTest INS 1");
-						log(LogStatus.ERROR, "Not able to click on create institution :ADTest INS 1", YesNo.Yes);
-					}
-				}
-				if (j == 3) {
-					if (ins.createInstitution(environment, mode, "ADTest INS 2", "Institution", InstitutionPageFieldLabelText.Parent_Institution.toString(), "ADTest FMF")) {
-						appLog.info("Institution created  :  ADTest INS 2");
-					} else {
-						appLog.error("Not able to click on create institution : ADTest INS 2");
-						sa.assertTrue(false, "Not able to click on institution : ADTest INS 2");
-						log(LogStatus.ERROR, "Not able to click on create institution :ADTest INS 2", YesNo.Yes);
-					}
-				}
-				if (j == 4) {
-					if (ins.createInstitution(environment, mode, "ADTest COM 1", SmokeCOM1_RecordType, InstitutionPageFieldLabelText.Parent_Institution.toString(), "ADTest FM")) {
-						appLog.info("Company is created :  ADTest COM 1");
-					} else {
-						appLog.error("Not able to click on create Company :  ADTest COM 1");
-						sa.assertTrue(false, "Not able to click on create Company :  ADTest COM 1");
-						log(LogStatus.ERROR, "Not able to click on create Company :  ADTest COM 1", YesNo.Yes);
-					}
-				}
-				if (j == 5) {
-					if (ins.createInstitution(environment, mode, "ADTest COM 2", SmokeCOM1_RecordType, InstitutionPageFieldLabelText.Parent_Institution.toString(), "ADTest FMF")) {
-						appLog.info("Company is created :  ADTest COM 2");
-					} else {
-						appLog.error("Not able to click on create Company :  ADTest COM 2");
-						sa.assertTrue(false, "Not able to click on create Company :  ADTest COM 2");
-						log(LogStatus.ERROR, "Not able to click on create Company :  ADTest COM 2", YesNo.Yes);
-					}
-				}
-			} else {
-				appLog.error(
-						"Not able to click on Institute Tab so cannot Create institute, indiviual insvestor and company");
-				sa.assertTrue(false,
-						"Not able to click on Institute Tab so cannot Create institute, indiviual insvestor and company");
-				log(LogStatus.SKIP,
-						"Not able to click on Institute Tab so cannot Create institute, indiviual insvestor and company",
-						YesNo.Yes);
-			}
-		}
-			if (fund.clickOnTab(environment, mode, TabName.FundsTab)) {
-				if (fund.createFund(environment, mode, "ADTest Fund 1", SmokeFund1_Type, SmokeFund1_InvestmentCategory,null, null)) {
-					appLog.info("Fund is created Successfully:  ADTest Fund 1");
-					
-				} else {
-					appLog.error("Not able to click on fund:  ADTest Fund 1");
-					sa.assertTrue(false, "Not able to click on fund:  ADTest Fund 1");
-					log(LogStatus.SKIP, "Not able to click on fund:  ADTest Fund 1", YesNo.Yes);
-				}
-			} else {
-				appLog.error("Not able to click on fund Tab so cannot Fund");
-				sa.assertTrue(false, "Not able to click on fund Tab so cannot Fund");
-				log(LogStatus.SKIP, "Not able to click on fund Tab so cannot Fund", YesNo.Yes);
-			}
-			
-			if (fund.clickOnTab(environment, mode, TabName.FundraisingsTab)) {
-				if (fundraising.createFundRaising(environment, mode, "ADTest FRD 1", "ADTest Fund 1", "ADTest FM")) {
-					appLog.info("Fundraising is created Successfully:  ADTest FRD 1");
-					
-				} else {
-					appLog.error("Fundraising not created Successfully:  ADTest FRD 1");
-					sa.assertTrue(false, "Fundraising not created Successfully:  ADTest FRD 1");
-					log(LogStatus.SKIP, "Fundraising not created Successfully:  ADTest FRD 1", YesNo.Yes);
-				}
-			} else {
-				appLog.error("Not able to click on FundRaising Tab so cannot FundRaising");
-				sa.assertTrue(false, "Not able to click on FundRaising Tab so cannot FundRaising");
-				log(LogStatus.SKIP, "Not able to click on FundRaising Tab so cannot FundRaising", YesNo.Yes);
-			}
-			if (fund.clickOnTab(environment, mode, TabName.FundraisingsTab)) {
-				if (fundraising.createFundRaising(environment, mode, "ADTest FRD 2", "ADTest Fund 1", "ADTest FMF")) {
-					appLog.info("Fundraising is created Successfully:  ADTest FRD 2");
-					
-				} else {
-					appLog.error("Fundraising not created Successfully:  ADTest FRD 2");
-					sa.assertTrue(false, "Fundraising not created Successfully:  ADTest FRD 2");
-					log(LogStatus.SKIP, "Fundraising not created Successfully:  ADTest FRD 2", YesNo.Yes);
-				}
-			} else {
-				appLog.error("Not able to click on FundRaising Tab so cannot FundRaising");
-				sa.assertTrue(false, "Not able to click on FundRaising Tab so cannot FundRaising");
-				log(LogStatus.SKIP, "Not able to click on FundRaising Tab so cannot FundRaising", YesNo.Yes);
-			}
-		
-		lp.CRMlogout(environment, mode);
-		sa.assertAll();
-
-		
-	}
+	
 	
 	
 	@Parameters({ "environment", "mode" })

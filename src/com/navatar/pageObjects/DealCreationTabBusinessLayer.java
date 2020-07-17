@@ -471,23 +471,23 @@ public class DealCreationTabBusinessLayer extends DealCreationTab {
 	public SoftAssert verifyingPipeLineRequiredFieldListDealInformationLayout(String environment,String mode,String dropdDownLayout,String[][] rowValues){
 		SoftAssert saa = new SoftAssert();
 		try {
-			String defaultValue="Pipeline Layout";
-			String defaultSelectedValue = getSelectedOptionOfDropDown(driver, getPipeLine_DealInfo_DropDownList(environment, mode, 10), defaultValue, "text");
-			if(defaultSelectedValue!=null && defaultValue.equals(defaultSelectedValue)){
-				appLog.info("Default Selected Value verified for PipeLIne Layout Expected : "+defaultValue);	
-			}else{
-				appLog.error("Default Selected Value Not verified for PipeLIne Layout Expected : "+defaultValue+"\t Actual : "+defaultSelectedValue);
-				saa.assertTrue(false, "Default Selected Value Not verified for PipeLIne Layout Expected : "+defaultValue+"\t Actual : "+defaultSelectedValue);	
-			}
-			
-			if(dropdDownLayout!=null){
-			if(selectVisibleTextFromDropDown(driver, getPipeLine_DealInfo_DropDownList(environment, mode, 10), "LAYOUT : "+dropdDownLayout, dropdDownLayout)){
-				appLog.error("Able to Select Layout: "+dropdDownLayout);
-			}else{
-				appLog.error("Not Able to Select Layout: "+dropdDownLayout);
-				saa.assertTrue(false, "Not Able to Select Layout: "+dropdDownLayout);		
-			}
-			}
+//			String defaultValue="Pipeline Layout";
+//			String defaultSelectedValue = getSelectedOptionOfDropDown(driver, getPipeLine_DealInfo_DropDownList(environment, mode, 10), defaultValue, "text");
+//			if(defaultSelectedValue!=null && defaultValue.equals(defaultSelectedValue)){
+//				appLog.info("Default Selected Value verified for PipeLIne Layout Expected : "+defaultValue);	
+//			}else{
+//				appLog.error("Default Selected Value Not verified for PipeLIne Layout Expected : "+defaultValue+"\t Actual : "+defaultSelectedValue);
+//				saa.assertTrue(false, "Default Selected Value Not verified for PipeLIne Layout Expected : "+defaultValue+"\t Actual : "+defaultSelectedValue);	
+//			}
+//			
+//			if(dropdDownLayout!=null){
+//			if(selectVisibleTextFromDropDown(driver, getPipeLine_DealInfo_DropDownList(environment, mode, 10), "LAYOUT : "+dropdDownLayout, dropdDownLayout)){
+//				appLog.error("Able to Select Layout: "+dropdDownLayout);
+//			}else{
+//				appLog.error("Not Able to Select Layout: "+dropdDownLayout);
+//				saa.assertTrue(false, "Not Able to Select Layout: "+dropdDownLayout);		
+//			}
+//			}
 			
 			String[] columnHeadingforRequiredFieldList ={"Field Label","Field Name/API Name","Data Type"};
 			for (String headingValue : columnHeadingforRequiredFieldList) {
@@ -502,22 +502,22 @@ public class DealCreationTabBusinessLayer extends DealCreationTab {
 			}
 			}
 			
-			String fullXpath ;
-			WebElement eleRowValue;
-			for (String[] rowArray : rowValues) {
-				String fieldLabelvalueXpath = "//div[@id='RightMenuContentSectionPipelineRequireCompId']//tr[@class='slds-hint-parent']/td[text()='"+rowArray[0]+"']";
-				String apiNameValueXpath ="/following-sibling::td[text()='"+rowArray[1]+"']";
-				String dataTypeValueXpath ="/following-sibling::td[text()='"+rowArray[2]+"']";
-				fullXpath = fieldLabelvalueXpath+apiNameValueXpath+dataTypeValueXpath;
-				 eleRowValue =	FindElement(driver, fullXpath, rowArray[0]+" : "+rowArray[1]+" : "+rowArray[2], action.SCROLLANDBOOLEAN, 10);
-				 if(eleRowValue!=null){
-						appLog.info("Row with Data *** "+rowArray[0]+" : "+rowArray[1]+" : "+rowArray[2]+" ***  Verified"); 
-				 }else{
-						appLog.error("Row with Data <<  "+rowArray[0]+" : "+rowArray[1]+" : "+rowArray[2]+" >> not verified");
-						saa.assertTrue(false, "Row with Data <<  "+rowArray[0]+" : "+rowArray[1]+" : "+rowArray[2]+" >> not verified"); 
-				 }
-				
-			}
+//			String fullXpath ;
+//			WebElement eleRowValue;
+//			for (String[] rowArray : rowValues) {
+//				String fieldLabelvalueXpath = "//div[@id='RightMenuContentSectionPipelineRequireCompId']//tr[@class='slds-hint-parent']/td[text()='"+rowArray[0]+"']";
+//				String apiNameValueXpath ="/following-sibling::td[text()='"+rowArray[1]+"']";
+//				String dataTypeValueXpath ="/following-sibling::td[text()='"+rowArray[2]+"']";
+//				fullXpath = fieldLabelvalueXpath+apiNameValueXpath+dataTypeValueXpath;
+//				 eleRowValue =	FindElement(driver, fullXpath, rowArray[0]+" : "+rowArray[1]+" : "+rowArray[2], action.SCROLLANDBOOLEAN, 10);
+//				 if(eleRowValue!=null){
+//						appLog.info("Row with Data *** "+rowArray[0]+" : "+rowArray[1]+" : "+rowArray[2]+" ***  Verified"); 
+//				 }else{
+//						appLog.error("Row with Data <<  "+rowArray[0]+" : "+rowArray[1]+" : "+rowArray[2]+" >> not verified");
+//						saa.assertTrue(false, "Row with Data <<  "+rowArray[0]+" : "+rowArray[1]+" : "+rowArray[2]+" >> not verified"); 
+//				 }
+//				
+//			}
 			
 			return saa;
 		} catch (Exception e) {

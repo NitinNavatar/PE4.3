@@ -668,7 +668,7 @@ public class BasePageBusinessLayer extends BasePage implements BasePageErrorMess
 			viewList = "Marketing Prospects";
 			break;
 		case Pipelines:
-			viewList = "All";
+			viewList = "All Pipelines";
 			break;
 		case CapitalCalls:
 			viewList = "All";
