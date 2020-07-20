@@ -869,14 +869,18 @@ public class EnumConstants {
 	
 
 	public static enum TopOrBottom{
-	TOP,BOTTOM;	  
+		TOP,BOTTOM;	  
 	};
-	
+
 	public static enum CancelOrCross{
 		Cancel,Cross;	  
-		};
-	
-		public static enum Header{
-			Fund,Contact,Institution,Marketing_Initiative;	  
-			};
+	};
+
+	public static enum Header{
+		Fund,Contact,Institution,Marketing_Initiative;	  
+	};
+
+	public static enum ReportFormatName{
+		Matrix,Joined,Summary,Tabular,Null;
+	}
 }

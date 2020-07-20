@@ -1617,7 +1617,7 @@ public class BasePageBusinessLayer extends BasePage implements BasePageErrorMess
 	}
 	
 	public boolean clickOnShowMoreDropdownOnly(String environment,String mode,PageName pageName) {
-			ThreadSleep(5000);
+			ThreadSleep(10000);
 			String xpath = "";int i =1;
 			WebElement ele=null;
 			boolean flag = true;
@@ -1647,16 +1647,29 @@ public class BasePageBusinessLayer extends BasePage implements BasePageErrorMess
 	
 	public WebElement actionDropdownElement(String environment, String mode,PageName pageName, ShowMoreActionDropDownList showMoreActionDropDownList, int timeOut) {
 		String actionDropDown = showMoreActionDropDownList.toString().replace("_", " ");
-		
 		if(mode.toString().equalsIgnoreCase(Mode.Lightning.toString())) {
-			return isDisplayed(driver, FindElement(driver, "//*[@title='"+actionDropDown+"' or text()='"+actionDropDown+"']", "show more action down arrow : "+actionDropDown, action.SCROLLANDBOOLEAN, 10), "visibility", timeOut, actionDropDown);
-			
+			List<WebElement> lst = FindElements(driver, "//*[@title='"+actionDropDown+"' or text()='"+actionDropDown+"']", "show more action down arrow : "+actionDropDown);
+			//			return isDisplayed(driver, FindElement(driver, "//span[@title='"+actionDropDown+"' or text()='"+actionDropDown+"']", "show more action down arrow : "+actionDropDown, action.SCROLLANDBOOLEAN, 10), "visibility", timeOut, actionDropDown);
+			if(!lst.isEmpty()) {
+				for(int i=0; i<lst.size(); i++) {
+					if(isDisplayed(driver, lst.get(i), "visibility", 1, "show more action down arrow : "+actionDropDown)!=null) {
+						return lst.get(i);
+					}else {
+						if(i==lst.size()-1) {
+							return null;
+						}
+					}
+				}
+			}else {
+				return null;
+			}
 		} else {
-			
+
 			return isDisplayed(driver, FindElement(driver, "//input[@value='"+actionDropDown+"']", "show more action down arrow : "+actionDropDown, action.SCROLLANDBOOLEAN, 10), "visibility", timeOut, actionDropDown);
-			
+
 		}
-		}
+		return null;
+	}
 	
 	public static String convertNumberAccordingToFormatWithCurrencySymbol(String number,String format){
 

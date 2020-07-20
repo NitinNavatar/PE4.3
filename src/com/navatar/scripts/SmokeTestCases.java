@@ -137,6 +137,9 @@ public class SmokeTestCases extends BaseLib {
 //	Office Location-->Uncheck.
 //	CoInvestment-->Uncheck.
 //	Pipeline Stage Log-->Checked.
+// deal source relate list header column on institution page (Pipeline Name<>Company Name<>Deal Type<>Stage<>Source Contact)
+// deal source relate list header column on contact page (Pipeline Name<>Property Name<>Deal Type<>Stage<>Source Firm<>Log In Date<>Investment Size)
+// pipeline related list on company page (Pipeline Name<>Stage<>Log In Date<>Investment Size<>Source Firm<>Deal Type<>Our Role)	
 	
 	
 	@Parameters({ "environment", "mode" })
@@ -381,79 +384,86 @@ public class SmokeTestCases extends BaseLib {
 	
 	@Parameters({ "environment", "mode" })
 	@Test
-	public void PESmokeTc001_3_createCustomEmailAndTemplate(String environment, String mode) {
-		ReportsTabBusinessLayer report = new ReportsTabBusinessLayer(driver);
-		EmailMyTemplatesPageBusinessLayer emailtemplate = new EmailMyTemplatesPageBusinessLayer(driver);
-		LoginPageBusinessLayer lp = new LoginPageBusinessLayer(driver);
-		SetupPageBusinessLayer setup = new SetupPageBusinessLayer(driver);
-		HomePageBusineesLayer home = new HomePageBusineesLayer(driver);
-		String reportFolderName = ExcelUtils.readData(smokeFilePath, "Report", excelLabel.Variable_Name, "SmokeReport1",
-				excelLabel.Report_Folder_Name) + lp.generateRandomNumber();
-		String emailFolderName = ExcelUtils.readData(smokeFilePath, "CustomEmailFolder", excelLabel.Variable_Name,
-				"EmailTemplate1", excelLabel.Email_Template_Folder_Label);
-		lp.CRMLogin(superAdminUserName, adminPassword);
-
-		if (report.createCustomReportOrDashboardFolder(environment, reportFolderName,
-				ReportDashboardFolderType.ReportFolder, FolderAccess.ReadOnly)) {
-			String reportName = ExcelUtils.readData(smokeFilePath, "Report", excelLabel.Variable_Name, "SmokeReport1",
-					excelLabel.Report_Name) + lp.generateRandomNumber();
-			String reportType = ExcelUtils.readData(smokeFilePath, "Report", excelLabel.Variable_Name, "SmokeReport1",
-					excelLabel.Select_Report_Type);
-			String showvalue = ExcelUtils.readData(smokeFilePath, "Report", excelLabel.Variable_Name, "SmokeReport1",
-					excelLabel.Show);
-			String rangeValue = ExcelUtils.readData(smokeFilePath, "Report", excelLabel.Variable_Name, "SmokeReport1",
-					excelLabel.Range);
-			ExcelUtils.writeData(smokeFilePath, reportFolderName, "Report", excelLabel.Variable_Name, "SmokeReport1",
-					excelLabel.Report_Folder_Name);
-			if (report.createCustomReportForFolder(environment, mode, reportFolderName, reportName, reportName,
-					reportType, ReportField.ContactID, showvalue, null, rangeValue, null, null)) {
-				appLog.info("Custom Report is created succesdfully : " + reportName);
-				ExcelUtils.writeData(smokeFilePath, reportName, "Report", excelLabel.Variable_Name, "SmokeReport1",
-						excelLabel.Report_Name);
-			} else {
-				appLog.error("Not able to create Custom Report : " + reportName);
-				sa.assertTrue(false, "Not able to create Custom Report : " + reportName);
-				log(LogStatus.ERROR, "Not able to create Custom Report : " + reportName, YesNo.Yes);
-			}
+	public void PESmokeTc001_3_createCustomEmailAndTemplate(String environment, String mode) {ReportsTabBusinessLayer report = new ReportsTabBusinessLayer(driver);
+	EmailMyTemplatesPageBusinessLayer emailtemplate = new EmailMyTemplatesPageBusinessLayer(driver);
+	LoginPageBusinessLayer lp = new LoginPageBusinessLayer(driver);
+	HomePageBusineesLayer home = new HomePageBusineesLayer(driver);
+	lp.CRMLogin(superAdminUserName, adminPassword);
+	String[] splitedReportFolderName = removeNumbersFromString(SmokeReportFolderName);
+	SmokeReportFolderName = splitedReportFolderName[0] + lp.generateRandomNumber();
+	if (report.createCustomReportOrDashboardFolder(environment, SmokeReportFolderName,
+			ReportDashboardFolderType.ReportFolder, FolderAccess.ReadOnly)) {
+		
+		String[] splitedReportName = removeNumbersFromString(SmokeReportName);
+		SmokeReportName = splitedReportName[0] + lp.generateRandomNumber();
+		
+		ExcelUtils.writeData(smokeFilePath, SmokeReportFolderName, "Report", excelLabel.Variable_Name, "SmokeReport1",
+				excelLabel.Report_Folder_Name);
+		if (report.createCustomReportForFolder(environment, mode, SmokeReportFolderName,ReportFormatName.Null,SmokeReportName,
+				SmokeReportName, SmokeReportType, ReportField.ContactID, SmokeReportShow, null, SmokeReportRange, null, null)) {
+			appLog.info("Custom Report is created succesdfully : " + SmokeReportName);
+			ExcelUtils.writeData(smokeFilePath, SmokeReportName, "Report", excelLabel.Variable_Name, "SmokeReport1",
+					excelLabel.Report_Name);
 		} else {
-			appLog.error("Not able to create Custom Report folder: " + reportFolderName);
-			sa.assertTrue(false, "Not able to create Custom Report folder: " + reportFolderName);
-			log(LogStatus.ERROR, "Not able to create Custom Report folder: " + reportFolderName, YesNo.Yes);
+			appLog.error("Not able to create Custom Report : " + SmokeReportName);
+			sa.assertTrue(false, "Not able to create Custom Report : " + SmokeReportName);
+			log(LogStatus.ERROR, "Not able to create Custom Report : " + SmokeReportName, YesNo.Yes);
 		}
-		home.switchToClassic();
-		if (home.clickOnSetUpLink(environment, Mode.Classic.toString())) {
-			
-			if (emailtemplate.createCustomEmailFolder(environment, Mode.Classic.toString(), emailFolderName, FolderAccess.ReadWrite)) {
-				String emailTemplateName = ExcelUtils.readData(smokeFilePath, "CustomEmailFolder",
-						excelLabel.Variable_Name, "EmailTemplate1", excelLabel.Email_Template_Name);
-				String description = ExcelUtils.readData(smokeFilePath, "CustomEmailFolder", excelLabel.Variable_Name,
-						"EmailTemplate1", excelLabel.Description);
-				String subject = ExcelUtils.readData(smokeFilePath, "CustomEmailFolder", excelLabel.Variable_Name,
-						"EmailTemplate1", excelLabel.Subject);
-				String body = ExcelUtils.readData(smokeFilePath, "CustomEmailFolder", excelLabel.Variable_Name,
-						"EmailTemplate1", excelLabel.Email_Body);
-				if (emailtemplate.createCustomEmailTemplate(environment, Mode.Classic.toString(), emailFolderName, EmailTemplateType.Text,
-						emailTemplateName, description, subject, body)) {
-					appLog.info("EMail Template is created :" + emailTemplateName);
-				} else {
-					appLog.error("EMail Template is not created :" + emailTemplateName);
-					sa.assertTrue(false, "EMail Template is not created :" + emailTemplateName);
-					log(LogStatus.ERROR, "EMail Template is not created :" + emailTemplateName, YesNo.Yes);
-				}
+		switchToDefaultContent(driver);
+		home.clickOnSetUpLink(environment, Mode.Classic.toString());
+		if (home.clickOnTab(environment, Mode.Classic.toString(), TabName.HomeTab)) {
+			SmokeReportName="R2"+SmokeReportName;
+			if (report.createCustomReportForFolder(environment, mode, SmokeReportFolderName,ReportFormatName.Null,SmokeReportName,
+					SmokeReportName, SmokeReportType, null, SmokeReportShow, null, SmokeReportRange, null, null)) {
+				appLog.info("Custom Report is created succesdfully : R2"+SmokeReportName);
 			} else {
-				appLog.error("Not able to create Custom Email folder: " + emailFolderName);
-				sa.assertTrue(false, "Not able to create Custom Email folder: " + emailFolderName);
-				log(LogStatus.ERROR, "Not able to create Custom Email folder: " + emailFolderName, YesNo.Yes);
+				appLog.error("Not able to create Custom Report : R2"+ SmokeReportName);
+				sa.assertTrue(false, "Not able to create Custom Report : R2"+SmokeReportName);
+				log(LogStatus.ERROR, "Not able to create Custom Report : R2"+SmokeReportName, YesNo.Yes);
 			}
-		} else {
-			appLog.error("Not able to clicked on setup link so cannot create Email Folder And Template");
-			sa.assertTrue(false, "Not able to clicked on setup link so cannot create Email Folder And Template");
-			log(LogStatus.ERROR, "Not able to clicked on setup link so cannot create Email Folder And Template",
-					YesNo.Yes);
 		}
-		lp.CRMlogout(environment, mode);
-		sa.assertAll();
+	} else {
+		appLog.error("Not able to create Custom Report folder: " + SmokeReportFolderName);
+		sa.assertTrue(false, "Not able to create Custom Report folder: " + SmokeReportFolderName);
+		log(LogStatus.ERROR, "Not able to create Custom Report folder: " + SmokeReportFolderName, YesNo.Yes);
 	}
+	home.switchToClassic();
+	if (home.clickOnSetUpLink(environment, Mode.Classic.toString())) {
+		String[] splitedEmailTemplateFolderName = removeNumbersFromString(EmailTemplate1_FolderName);
+		EmailTemplate1_FolderName = splitedEmailTemplateFolderName[0] + lp.generateRandomNumber();
+		if (emailtemplate.createCustomEmailFolder(environment, Mode.Classic.toString(), EmailTemplate1_FolderName, FolderAccess.ReadWrite)) {
+			log(LogStatus.PASS, "Email Template Folder is created : "+EmailTemplate1_FolderName, YesNo.No);
+			ExcelUtils.writeData(smokeFilePath, EmailTemplate1_FolderName, "CustomEmailFolder", excelLabel.Variable_Name, "EmailTemplate1",
+					excelLabel.Email_Template_Folder_Label);
+			ThreadSleep(2000);
+			String[] splitedEmailTemplateName = removeNumbersFromString(EmailTemplate1_TemplateName);
+			EmailTemplate1_TemplateName = splitedEmailTemplateName[0] + lp.generateRandomNumber();
+			if (emailtemplate.createCustomEmailTemplate(environment, Mode.Classic.toString(), EmailTemplate1_FolderName, EmailTemplateType.Text,
+					EmailTemplate1_TemplateName, EmailTemplate1_TemplateDescription, EmailTemplate1_Subject, EmailTemplate1_Body)) {
+				appLog.info("EMail Template is created :" + EmailTemplate1_TemplateName);
+				
+				ExcelUtils.writeData(smokeFilePath, EmailTemplate1_TemplateName, "CustomEmailFolder", excelLabel.Variable_Name, "EmailTemplate1",
+						excelLabel.Email_Template_Name);
+				
+			} else {
+				appLog.error("EMail Template is not created :" + EmailTemplate1_TemplateName);
+				sa.assertTrue(false, "EMail Template is not created :" + EmailTemplate1_TemplateName);
+				log(LogStatus.ERROR, "EMail Template is not created :" + EmailTemplate1_TemplateName, YesNo.Yes);
+			}
+		} else {
+			appLog.error("Not able to create Custom Email folder: " + EmailTemplate1_FolderName);
+			sa.assertTrue(false, "Not able to create Custom Email folder: " + EmailTemplate1_FolderName);
+			log(LogStatus.ERROR, "Not able to create Custom Email folder: " + EmailTemplate1_FolderName, YesNo.Yes);
+		}
+	} else {
+		appLog.error("Not able to clicked on setup link so cannot create Email Folder And Template");
+		sa.assertTrue(false, "Not able to clicked on setup link so cannot create Email Folder And Template");
+		log(LogStatus.ERROR, "Not able to clicked on setup link so cannot create Email Folder And Template",
+				YesNo.Yes);
+	}
+	lp.CRMlogout(environment, mode);
+	sa.assertAll();
+}
 
 	@Parameters({ "environment", "mode" })
 	@Test
@@ -2115,7 +2125,7 @@ public class SmokeTestCases extends BaseLib {
 						if (click(driver, market.getEmailProspectStep1NextBtn(20), "step 1 next button",
 								action.SCROLLANDBOOLEAN)) {
 							log(LogStatus.INFO, "clicked on Steps 1 Next button", YesNo.No);
-							String expectedResult = "All,Capital Call Notice,Investor Distribution Notice,PE Test Email Folder";
+							String expectedResult = "All,Capital Call Notice,Investor Distribution Notice,"+EmailTemplate1_FolderName;
 							List<WebElement> lst = allOptionsInDropDrop(driver,
 									market.getEmailProspectFolderDropDownList(20), "folder drop down list");
 							if (compareMultipleList(driver, expectedResult, lst).isEmpty()) {
@@ -13637,7 +13647,7 @@ public class SmokeTestCases extends BaseLib {
 						if (fd.getStep2TextEmailing(30)!=null) {
 							appLog.info("successfully found step 2 page");
 						}
-						String expectedResult = "All,Capital Call Notice,Investor Distribution Notice,PE Test Email Folder";
+						String expectedResult = "All,Capital Call Notice,Investor Distribution Notice,"+EmailTemplate1_FolderName;
 						List<WebElement> lst = allOptionsInDropDrop(driver,
 								fd.getFundDrawdownFolderDropDownList(20), "folder drop down list");
 						if (compareMultipleList(driver, expectedResult, lst).isEmpty()) {
@@ -15897,7 +15907,7 @@ public class SmokeTestCases extends BaseLib {
 								sa.assertTrue(false, "Step 2 Msg Not Verified");
 								log(LogStatus.ERROR, "Step 2 Msg Not Verified", YesNo.Yes);	
 							}
-							String expectedResult = "All,Capital Call Notice,Investor Distribution Notice,PE Test Email Folder";
+							String expectedResult = "All,Capital Call Notice,Investor Distribution Notice,"+EmailTemplate1_FolderName;
 							List<WebElement> lst = allOptionsInDropDrop(driver,
 									fd.getFundDrawdownFolderDropDownList(20), "folder drop down list");
 							if (compareMultipleList(driver, expectedResult, lst).isEmpty()) {
@@ -19809,7 +19819,7 @@ public class SmokeTestCases extends BaseLib {
 					log(LogStatus.FAIL, "Message Not Verified Actual : "+msg+" \t Expected :"+HomePageErrorMessage.step1_BuildYourOwn, YesNo.Yes);
 				}
 				
-				if (hp.clickOnTemplateForReportOnBulkEmail(environment, mode, "Deal Reports", "Deal Pipeline")) {
+				if (hp.clickOnTemplateForReportOnBulkEmail(environment, mode,SmokeReportFolderName,"R2"+SmokeReportName)) {
 					log(LogStatus.INFO, "Clicked On Deal Report : Deal Pipeline", YesNo.No);	
 					
 					msg = hp.getBulkEmailErrorPopUp(environment, mode, 10).getText().trim();

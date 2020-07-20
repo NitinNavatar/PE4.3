@@ -1,7 +1,7 @@
 package com.navatar.pageObjects;
 
-import static com.navatar.generic.CommonLib.isDisplayed;
-
+import static com.navatar.generic.CommonLib.*;
+import static com.navatar.generic.EnumConstants.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -132,6 +132,19 @@ public class ReportsTab extends BasePageBusinessLayer {
 	 */
 	public WebElement getSaveBtnOnSaveReport_Classic(String environment,int timeOut) {
 		return isDisplayed(driver, saveBtnOnSaveReport_Classic, "Visibility", timeOut, "Save Btn on Save Report Classic");
+	}
+	
+	@FindBy(xpath = "//table[@id='reportFormatMink']//tr/td/em")
+	private WebElement reportFormatDropDown;
+	
+	public WebElement getReportFormatName(int timeOut) {
+		return isDisplayed(driver, reportFormatDropDown, "Visibility", timeOut, "report format drop down");
+	}
+	
+	
+	public WebElement getreportFormatName(ReportFormatName reportFormatName) {
+		String xpath="//span[text()='"+reportFormatName.toString()+"']/../..";
+		return isDisplayed(driver, FindElement(driver, xpath, "report Format Name "+reportFormatName.toString(), action.SCROLLANDBOOLEAN,10),"visibility",10,"report format name "+reportFormatName.toString());
 	}
 
 }
