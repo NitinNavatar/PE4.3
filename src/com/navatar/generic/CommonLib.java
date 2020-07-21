@@ -921,6 +921,25 @@ public class CommonLib extends EnumConstants implements Comparator<String>  {
 							AppListeners.appLog.info("*******Cannot recover from overlay problem**********");
 						}
 					}
+				}else if (e.getMessage().contains("element not interactable: element has zero size")) {
+					String xpath = getXpath(element);
+					if(xpath!=null){
+						List<WebElement> lst = FindElements(driver, xpath, elementName);
+//						WebElement ele = FindElement(driver, xpath, elementName, action, 10);
+						for(int i=0; i<lst.size(); i++) {
+							try{
+//								((JavascriptExecutor) driver).executeScript("arguments[0].click();", ele);
+								lst.get(i).click();
+								AppListeners.appLog.info("************Recovered interactable element problem*************");
+								return true;
+							} catch(Exception e1){
+								if(i==lst.size()-1) {
+									System.out.println("*******Cannot recover interactable element problem**********");
+								}
+							}
+						}
+						
+					}
 				}
 			if(elementName!=null && !elementName.isEmpty()){
 				AppListeners.appLog.info("Not able to click on: " + elementName + "\nReason: " + e.getMessage());
