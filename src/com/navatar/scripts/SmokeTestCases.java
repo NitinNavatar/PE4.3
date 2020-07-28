@@ -3363,7 +3363,7 @@ public class SmokeTestCases extends BaseLib {
 						List<WebElement> newSourceFirm_RecordType = allOptionsInDropDrop(driver,
 								dctb.getNewSourceFirmLayout_RecordType(environment, 10),
 								"New Source Firm Record Type Drop Down");
-//						expectedResult = "Company" + "," + "Fund Manager" + "," + "Fund Manager’s Fund" + ","
+//						expectedResult = "Company" + "," + "Fund Manager" + "," + "Fund Manager's Fund" + ","
 //								+ "Individual Investor" + "," + "Institution" + "," + "Limited Partner";
 						returnlist = compareMultipleList(driver, expectedResult, newSourceFirm_RecordType);
 						if (returnlist.isEmpty()) {
@@ -5319,11 +5319,12 @@ public class SmokeTestCases extends BaseLib {
 						{excelLabel.Shipping_City.toString(),SmokeINDINV5_ShippingCity},
 						{excelLabel.Shipping_State.toString(),SmokeINDINV5_ShippingState},
 						{excelLabel.Shipping_Zip.toString(),SmokeINDINV5_ShippingZip},
+						{excelLabel.Shipping_Country.toString(),SmokeINDINV5_ShippingCountry},
 						{excelLabel.Shipping_Country.toString(),SmokeINDINV5_ShippingCountry}};
 				
 				for (String[] strings : labelAndValue) {
 					WebElement ele = ins.getInstitutionPageTextBoxOrRichTextBoxWebElement(environment, mode,strings[0].trim(), 30);
-					if(sendKeys(driver, ele, strings[1], strings[0]+" text box", action.SCROLLANDBOOLEAN)) {
+					if(sendKeysAndPressEnter(driver, ele, strings[1], strings[0]+" text box", action.SCROLLANDBOOLEAN)) {
 						appLog.info("passed value "+strings[1]+" in "+strings[0]+" field");
 					}else {
 						appLog.error("Not able to pass value "+strings[1]+" in "+strings[0]+" field");
@@ -5411,12 +5412,12 @@ public class SmokeTestCases extends BaseLib {
 						{excelLabel.Other_State.toString(),SmokeC9_OtherState},
 						{excelLabel.Other_Zip.toString(),SmokeC9_OtherZip},
 						{excelLabel.Other_Country.toString(),SmokeC9_OtherCountry},
-						{excelLabel.Phone.toString(),SmokeC9_Phone},
-						{excelLabel.Description.toString(),SmokeC9_Description}};
+						{excelLabel.Description.toString(),SmokeC9_Description},
+						{excelLabel.Phone.toString(),SmokeC9_Phone}};
 				
 				for (String[] strings : labelAndValue) {
 					WebElement ele = contact.getContactPageTextBoxOrRichTextBoxWebElement(environment, mode,strings[0].trim(), 30);
-					if(sendKeys(driver, ele, strings[1], strings[0]+" text box", action.SCROLLANDBOOLEAN)) {
+					if(sendKeysAndPressEnter(driver, ele, strings[1], strings[0]+" text box", action.SCROLLANDBOOLEAN)) {
 						appLog.info("passed value "+strings[1]+" in "+strings[0]+" field");
 					}else {
 						appLog.error("Not able to pass value "+strings[1]+" in "+strings[0]+" field");
