@@ -6773,7 +6773,7 @@ public class SmokeTestCases extends BaseLib {
 						ThreadSleep(2000);
 
 						// Deal Information 2nd
-						String expectedResult = "Property" + "," + "Fund Manager" + "," + "Fund Manager’s Fund" + ","
+						String expectedResult = "Property" + "," + "Fund Manager" + "," + "Fund Manager's Fund" + ","
 								+ "Individual Investor" + "," + "Institution" + "," + "Limited Partner";
 						checkBox = nspbl.getEnableCheckBoxforNavatarSetUpSideMenuTab(environment, mode,
 								NavatarSetupSideMenuTab.CommitmentCreation, EditViewMode.Edit, ClickOrCheckEnableDisableCheckBox.EnableOrDisable, 10);
@@ -6876,7 +6876,7 @@ public class SmokeTestCases extends BaseLib {
 									log(LogStatus.INFO, "click on Limited Partner required field link", YesNo.No);
 									ThreadSleep(5000);
 									List<WebElement> options = allOptionsInDropDrop(driver, nspbl.getNewLP_CommitmentTab_DropDownList(environment, mode, 10), "limited partner drop down list");
-									if(compareMultipleList(driver, "Property,Fund Manager,Fund Manager’s Fund,Individual Investor,Institution - Real Estate,Limited Partner", options).isEmpty()) {
+									if(compareMultipleList(driver, "Property,Fund Manager,Fund Manager's Fund,Individual Investor,Institution - Real Estate,Limited Partner", options).isEmpty()) {
 										log(LogStatus.INFO, "Limited partner drop down list is verified ", YesNo.No);
 									}else {
 										log(LogStatus.FAIL, "Limited partner drop down list is not verified ", YesNo.No);
@@ -8790,7 +8790,7 @@ public class SmokeTestCases extends BaseLib {
 						ThreadSleep(2000);
 
 						// Deal Information 2nd
-						String expectedResult = "Property" + "," + "Fund Manager" + "," + "Fund Manager’s Fund" + ","
+						String expectedResult = "Property" + "," + "Fund Manager" + "," + "Fund Manager's Fund" + ","
 								+ "Individual Investor" + "," + "Institution" + "," + "Limited Partner";
 
 						checkBox = nspbl.getEnableCheckBoxforNavatarSetUpSideMenuTab(environment, mode,
@@ -8867,7 +8867,7 @@ public class SmokeTestCases extends BaseLib {
 						List<WebElement> newSourceFirm_RecordType = allOptionsInDropDrop(driver,
 								dctb.getNewSourceFirmLayout_RecordType(environment, 10),
 								"New Source Firm Record Type Drop Down");
-						expectedResult = "Property" + "," + "Fund Manager" + "," + "Fund Manager’s Fund" + ","
+						expectedResult = "Property" + "," + "Fund Manager" + "," + "Fund Manager's Fund" + ","
 								+ "Individual Investor" + "," + "Institution" + "," + "Limited Partner";
 						returnlist = compareMultipleList(driver, expectedResult, newSourceFirm_RecordType);
 						if (returnlist.isEmpty()) {
@@ -9518,7 +9518,7 @@ public class SmokeTestCases extends BaseLib {
 					appLog.info("Click on Created Company : " + Smoke_PL3CompanyName);
 
 					String[][] labelsAndValuesforComp = { { excelLabel.Legal_Name.toString(), Smoke_PL3CompanyName },
-							{ excelLabel.Record_Type.toString(), "Property" } };
+							{ excelLabel.Record_Type.toString(), "Institution" } };
 
 					for (String[] labelAndValue : labelsAndValuesforComp) {
 						if (ip.fieldValueVerificationOnInstitutionPage(environment, mode, TabName.PropertiesTab,
