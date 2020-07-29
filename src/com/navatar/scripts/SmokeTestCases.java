@@ -7756,6 +7756,8 @@ public class SmokeTestCases extends BaseLib {
 	
 		switchToDefaultContent(driver);
 		lp.CRMlogout(environment, mode);
+		closeBrowser();
+		config(ExcelUtils.readDataFromPropertyFile("Browser"));
 		sa.assertAll();
 		appLog.info("Pass");
 	}
@@ -7912,6 +7914,8 @@ public class SmokeTestCases extends BaseLib {
 		ThreadSleep(10000);
 		switchToDefaultContent(driver);
 		lp.CRMlogout(environment, mode);
+		closeBrowser();
+		config(ExcelUtils.readDataFromPropertyFile("Browser"));
 		sa.assertAll();
 		appLog.info("Pass");
 	}
@@ -8003,6 +8007,8 @@ public class SmokeTestCases extends BaseLib {
 	
 		switchToDefaultContent(driver);
 		lp.CRMlogout(environment, mode);
+		closeBrowser();
+		config(ExcelUtils.readDataFromPropertyFile("Browser"));
 		sa.assertAll();
 		appLog.info("Pass");
 	}
@@ -8069,6 +8075,8 @@ public class SmokeTestCases extends BaseLib {
 	
 		switchToDefaultContent(driver);
 		lp.CRMlogout(environment, mode);
+		closeBrowser();
+		config(ExcelUtils.readDataFromPropertyFile("Browser"));
 		sa.assertAll();
 		appLog.info("Pass");
 	}
@@ -8134,6 +8142,8 @@ public class SmokeTestCases extends BaseLib {
 	
 		switchToDefaultContent(driver);
 		lp.CRMlogout(environment, mode);
+		closeBrowser();
+		config(ExcelUtils.readDataFromPropertyFile("Browser"));
 		sa.assertAll();
 		appLog.info("Pass");
 	}
@@ -9935,6 +9945,8 @@ public class SmokeTestCases extends BaseLib {
 		lp.CRMlogout(environment, mode);
 		sa.assertAll();
 	}
-
+	
+	
+	
 	
 }
