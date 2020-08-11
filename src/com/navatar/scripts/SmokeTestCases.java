@@ -2217,7 +2217,7 @@ public class SmokeTestCases extends BaseLib {
 													if (labellist.get(j).getText().trim().contains(expctRsult[i])) {
 														if (j != 2) {
 															if (checkBoxList.get(j).getAttribute("checked") == null) {
-																log(LogStatus.INFO,
+																log(LogStatus.PASS,
 																		expctRsult[i] + "check box is not selected",
 																		YesNo.No);
 															} else {
@@ -2232,7 +2232,7 @@ public class SmokeTestCases extends BaseLib {
 																	+ checkBoxList.get(j).getAttribute("checked"));
 															if (checkBoxList.get(j).getAttribute("checked")
 																	.contains("true")) {
-																log(LogStatus.INFO,
+																log(LogStatus.PASS,
 																		expctRsult[i] + "check box is selected",
 																		YesNo.No);
 															} else {
@@ -2252,7 +2252,7 @@ public class SmokeTestCases extends BaseLib {
 													}
 												}
 											}
-											if (click(driver,
+											if (clickUsingJavaScript(driver,
 													market.getEmailProspectProcessingOptionsCheckBoxList().get(1),
 													"Use my signature check box", action.BOOLEAN)) {
 												log(LogStatus.INFO, "clicked on Use my signature check box", YesNo.No);
