@@ -2268,7 +2268,7 @@ public class SmokeTestCases extends BaseLib {
 													}
 												}
 											}
-											if (click(driver,
+											if (clickUsingJavaScript(driver,
 													market.getEmailProspectProcessingOptionsCheckBoxList().get(1),
 													"Use my signature check box", action.BOOLEAN)) {
 												log(LogStatus.INFO, "clicked on Use my signature check box", YesNo.No);
