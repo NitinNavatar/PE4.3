@@ -908,7 +908,7 @@ public class ContactsPageBusinessLayer extends ContactsPage implements ContactPa
 					
 					for (int i = 1; i <=3; i++) {
 						ele = FindElement(driver, "(//label"+xpath + "//input)["+i+"]", finalLabelName , action.SCROLLANDBOOLEAN, timeOut);
-					
+							ele.sendKeys(" ");
 							if (sendKeys(driver, ele, value, value, action.SCROLLANDBOOLEAN)) {
 								CommonLib.log(LogStatus.INFO, value+" : for Label Entered : "+finalLabelName,YesNo.No);
 								break;

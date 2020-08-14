@@ -2122,7 +2122,7 @@ public class SmokeTestCases extends BaseLib {
 													}
 												}
 											}
-											if (click(driver,
+											if (clickUsingJavaScript(driver,
 													market.getEmailProspectProcessingOptionsCheckBoxList().get(1),
 													"Use my signature check box", action.BOOLEAN)) {
 												log(LogStatus.INFO, "clicked on Use my signature check box", YesNo.No);
@@ -3092,7 +3092,9 @@ public class SmokeTestCases extends BaseLib {
 						String labelValue = expectedPipeLineName + "," + Smoke_PL1CompanyName + "," + getSystemDate("M/d/yyyy") + ","
 								+ Smoke_PL1Stage + "," + Smoke_PL1AgeOfCurrentStage+ "," + Smoke_PL1SourceContact_Name+","+Smoke_PL1SourceFirm;
 						String[] labelValues =  labelValue.split(",");
-						
+						ExcelUtils.writeData(smokeFilePath, expectedPipeLineName, "PipeLine", excelLabel.Company_Name,
+								Smoke_PL1CompanyName, excelLabel.Pipeline_Name);
+
 						for (int i = 0; i < labelName.length; i++) {
 							if (pl.fieldValueVerificationOnPipelinePage(environment, mode, TabName.Pipelines, labelName[i],
 									labelValues[i])) {
@@ -7310,8 +7312,7 @@ public class SmokeTestCases extends BaseLib {
 												{ActivityRelatedLabel.Start.toString(),startDate},
 												{ActivityRelatedLabel.End.toString(),endDate}};
 			
-			String[][] CallLogLabelsWithValues= {{ActivityRelatedLabel.Subject.toString(),Smoke_CallLog1Subject},
-												{ActivityRelatedLabel.Due_Date.toString(),startDate}};
+			String[][] CallLogLabelsWithValues= {{ActivityRelatedLabel.Due_Date.toString(),startDate},{ActivityRelatedLabel.Subject.toString(),Smoke_CallLog1Subject}};
 	
 			
 		
