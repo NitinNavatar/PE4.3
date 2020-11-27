@@ -1427,6 +1427,13 @@ public class BasePageBusinessLayer extends BasePage implements BasePageErrorMess
 					ThreadSleep(2000);
 					return true;
 				}
+				else {
+					if (clickUsingJavaScript(driver, ele, relatedList, action.SCROLLANDBOOLEAN)) {
+						CommonLib.log(LogStatus.INFO, "Related List found : "+relatedList, YesNo.No);
+						ThreadSleep(2000);
+						return true;
+					}
+				}
 			}
 			
 		}else {

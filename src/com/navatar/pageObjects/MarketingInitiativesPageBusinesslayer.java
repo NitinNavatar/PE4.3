@@ -66,7 +66,7 @@ public class MarketingInitiativesPageBusinesslayer extends MarketingInitiativesP
 //			appLog.info("clicked on new button");
 			if(sendKeys(driver, getMarketInitiativeNameTextBox(environment, mode, 60), marketInitiativeName, "market initiative name text box", action.SCROLLANDBOOLEAN)) {
 				appLog.info("passed value in Name text box: "+marketInitiativeName);
-				if(click(driver, getSaveButton(environment, mode, 30), "save button", action.SCROLLANDBOOLEAN)) {
+				if(click(driver, getCustomTabSaveBtn(environment, mode, 30), "save button", action.SCROLLANDBOOLEAN)) {
 					appLog.info("clicked on Save Button For market Initiative: "+marketInitiativeName);
 
 					if (Mode.Lightning.toString().equalsIgnoreCase(mode)) {

@@ -42,7 +42,7 @@ public class MarketingInitiativesPage extends BasePageBusinessLayer {
 	@FindBy(xpath="//input[@name='Name']")
 	private WebElement marketInitiativeNameTextBox_Classic;
 	
-	@FindBy(xpath="//input[@name='Name']")
+	@FindBy(xpath="//label[text()='Name']/following-sibling::div//input")
 	private WebElement marketInitiativeNameTextBox_Lighting;
 	
 	public WebElement getMarketInitiativeNameTextBox(String environment, String mode, int timeOut) {
