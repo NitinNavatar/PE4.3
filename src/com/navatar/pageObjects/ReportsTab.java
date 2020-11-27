@@ -184,7 +184,7 @@ public class ReportsTab extends BasePageBusinessLayer {
 	}
 	
 	public WebElement getReportFolderAccessDownArrow() {
-		String xpath="//div[text()='"+SmokeCommonVariables.crmUser1FirstName+" "+SmokeCommonVariables.crmUser1LastName+"']/../following-sibling::td/img";
+		String xpath="(//div[text()='"+SmokeCommonVariables.crmUser1FirstName+" "+SmokeCommonVariables.crmUser1LastName+"']/../following-sibling::td/a)[1]";
 		return isDisplayed(driver, FindElement(driver, xpath,"Report Folder Access Down Arrow", action.SCROLLANDBOOLEAN,10),"visibility",10,"Report Folder Access Down Arrow");
 	}
 	

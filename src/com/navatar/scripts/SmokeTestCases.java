@@ -461,6 +461,7 @@ public class SmokeTestCases extends BaseLib {
 		log(LogStatus.ERROR, "Not able to clicked on setup link so cannot create Email Folder And Template",
 				YesNo.Yes);
 	}
+	home.switchToLighting();
 	lp.CRMlogout(environment, mode);
 	sa.assertAll();
 }
