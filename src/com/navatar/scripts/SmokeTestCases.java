@@ -4046,8 +4046,10 @@ public class SmokeTestCases extends BaseLib {
 																sa.assertTrue(false, "fundraising contact record contact is not matched");
 															}
 //														home.getFundraisingContactPopUpApplyBtn(20);
-														System.err.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>.");
-														ThreadSleep(10000);
+														//System.err.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>.");
+														ThreadSleep(5000);
+//														Scanner scn = new Scanner(System.in);
+//														scn.next();
 														if(clickUsingJavaScript(driver, home.getFundraisingContactPopUpApplyBtn(20), "apply button", action.SCROLLANDBOOLEAN)) {
 															log(LogStatus.INFO, "clicked on apply button", YesNo.No);
 															ThreadSleep(5000);
@@ -4117,11 +4119,13 @@ public class SmokeTestCases extends BaseLib {
 																								if(frpg.clickOnCreatedFundRaising(environment, mode,FR[i])) {
 																									if(frpg.clickOnRelatedList(environment, mode, RecordType.Fundraising, RelatedList.Fundraising_Contacts)) {
 																										if(i==0)
-																											if(home.verifyGridErrorMessage(environment, mode, RelatedList.Fundraising_Contacts,HomePageErrorMessage.NoRecordToDisplayOnFR, 10)) {
+																											try{if(home.verifyGridErrorMessage(environment, mode, RelatedList.Fundraising_Contacts,HomePageErrorMessage.NoRecordToDisplayOnFR, 10)) {
 																												log(LogStatus.INFO, HomePageErrorMessage.NoRecordToDisplayOnFR+" Verify Error Message on "+FR[i], YesNo.No);
 																											}else {
 																												log(LogStatus.ERROR, HomePageErrorMessage.NoRecordToDisplayOnFR+" Error Message is not verified on "+FR[i], YesNo.Yes);
 																												sa.assertTrue(false, HomePageErrorMessage.NoRecordToDisplayOnFR+" Error Message is not verified on "+FR[i]);
+																											}} catch(Exception e) {
+																												appLog.error("exception in checking error");
 																											}
 																										if(i==1)
 																											if(frpg.clickOnViewAllRelatedList_Lighting(environment, mode, RelatedList.Fundraising_Contacts)) {
@@ -8570,12 +8574,11 @@ public class SmokeTestCases extends BaseLib {
 						switchToDefaultContent(driver);
 						tsa =dctb.createPipeLine(environment, mode, Smoke_PL1CompanyName, Smoke_PL1Stage, Smoke_PL1Source, Existing.Yes, Smoke_PL1SourceFirm, null, null, Existing.No, Smoke_PL1SourceContact_Name, null, null, null, null);
 						tsa.combineAssertions(tsa);
-						
 						log(LogStatus.INFO, "Able to Create New Deal", YesNo.No);
 						switchToDefaultContent(driver);
 						String monthAndYear = getSystemDate("MMM") + " " + getSystemDate("yyyy");
 						String expectedPipeLineName = Smoke_PL1CompanyName + " " + "-" + " " + monthAndYear;
-						String[] labelName = "Pipeline Name,Company Name,Last Stage Change Date,Highest Stage Reached,Age of Current Stage,Source Contact,Source Firm".split(",");
+						String[] labelName = "Pipeline Name,Company,Last Stage Change Date,Highest Stage Reached,Age of Current Stage,Source Contact,Source Firm".split(",");
 						String labelValue = expectedPipeLineName + "," + Smoke_PL1CompanyName + "," + getSystemDate("M/d/yyyy") + ","
 								+ Smoke_PL1Stage + "," + Smoke_PL1AgeOfCurrentStage+ "," + Smoke_PL1SourceContact_Name+","+Smoke_PL1SourceFirm;
 						String[] labelValues =  labelValue.split(",");
@@ -8653,7 +8656,7 @@ public class SmokeTestCases extends BaseLib {
 								
 								String[][] dealSourceFieldsAndValues = {
 										{ excelLabel.Pipeline_Name.toString(), expectedPipeLineName },
-										{ excelLabel.Company_Name.toString(), Smoke_PL1CompanyName },
+										{ "Company", Smoke_PL1CompanyName },
 										{ excelLabel.Deal_Type.toString(), "" },
 										{ excelLabel.Stage.toString(), Smoke_PL1Stage },
 										{ excelLabel.Source_Contact.toString(), Smoke_PL1SourceContact_Name }};
@@ -8662,7 +8665,7 @@ public class SmokeTestCases extends BaseLib {
 								if (ip.clickOnRelatedList(environment, mode, RecordType.IndividualInvestor, RelatedList.Deals_Sourced)) {
 									log(LogStatus.INFO, "Click on Deal Sourced", YesNo.No);
 									
-									
+									ip.scrollToRelatedListViewAll_Lightning(environment, mode, RelatedList.Deals_Sourced, true);
 									if (ip.clickOnViewAllRelatedList(environment, mode,RelatedList.Deals_Sourced)) {
 										log(LogStatus.INFO, "Click on View All Deal Sourced", YesNo.No);
 										
@@ -8812,7 +8815,7 @@ public class SmokeTestCases extends BaseLib {
 							log(LogStatus.FAIL, "Deal Information Assigned Record type not matched", YesNo.Yes);
 						}
 
-						String[] OtherDropDown = { "Company Name", "Pipeline Name", "Stage", "Source Firm",
+						String[] OtherDropDown = { "Company", "Pipeline Name", "Stage", "Source Firm",
 								"Source Contact", "Source", "Legal Name", "Last Name" };
 
 						for (String selectvalue : OtherDropDown) {
@@ -8883,7 +8886,7 @@ public class SmokeTestCases extends BaseLib {
 							// PipeLine
 							appLog.info("Going to Verify Deal Room Information Required Field for PipeLine Layout");
 							String[][] pipeLineRowValues = { { "Pipeline Name", "Name", "string" },
-									{ "Company Name", "navpeII__Company_Name__c", "reference" },
+									{ "Company", "navpeII__Company_Name__c", "reference" },
 									{ "Stage", "navpeII__Stage__c", "picklist" } };
 							tcsa = dctb.verifyingPipeLineRequiredFieldListDealInformationLayout(environment, mode, null,
 									pipeLineRowValues);
@@ -9272,7 +9275,7 @@ public class SmokeTestCases extends BaseLib {
 								Smoke_PL2CompanyName, excelLabel.Pipeline_Name);
 
 						String[][] labelsAndValues = { { excelLabel.Pipeline_Name.toString(), expectedPipeLineName },
-								{ excelLabel.Company_Name.toString(), Smoke_PL2CompanyName },
+								{ "Company", Smoke_PL2CompanyName },
 								{ excelLabel.Stage.toString(), Smoke_PL2Stage },
 								{ excelLabel.Source.toString(), Smoke_PL2Source },
 								{ excelLabel.Source_Firm.toString(), Smoke_PL2SourceFirm },
@@ -9463,7 +9466,7 @@ public class SmokeTestCases extends BaseLib {
 							Smoke_PL3CompanyName, excelLabel.Pipeline_Name);
 
 					String[][] labelsAndValues = { { excelLabel.Pipeline_Name.toString(), expectedPipeLineName },
-							{ excelLabel.Company_Name.toString(), Smoke_PL3CompanyName },
+							{ "Company", Smoke_PL3CompanyName },
 							{ excelLabel.Stage.toString(), Smoke_PL3Stage },
 							{ excelLabel.Source.toString(), Smoke_PL3Source },
 							{ excelLabel.Source_Firm.toString(), Smoke_PL3SourceFirm },
@@ -9557,12 +9560,12 @@ public class SmokeTestCases extends BaseLib {
 
 					String[][] dealSourceFieldsAndValues = {
 							{ excelLabel.Pipeline_Name.toString(), expectedPipeLineName },
-							{ excelLabel.Company_Name.toString(), Smoke_PL3CompanyName },
+							{ "Company", Smoke_PL3CompanyName },
 							{ excelLabel.Deal_Type.toString(), "" }, { excelLabel.Stage.toString(), Smoke_PL3Stage } };
 
 					if (ip.clickOnRelatedList(environment, mode, RecordType.IndividualInvestor, RelatedList.Deals_Sourced)) {
 						log(LogStatus.INFO, "Click on Deal Sourced", YesNo.No);
-						
+						ip.scrollToRelatedListViewAll_Lightning(environment, mode, RelatedList.Deals_Sourced, true);
 						if (ip.clickOnViewAllRelatedList(environment, mode,RelatedList.Deals_Sourced)) {
 							log(LogStatus.INFO, "Click on View All Deal Sourced", YesNo.No);
 							
@@ -9611,7 +9614,7 @@ public class SmokeTestCases extends BaseLib {
 
 					String[][] dealSourceFieldsAndValues = {
 							{ excelLabel.Pipeline_Name.toString(), expectedPipeLineName },
-							{ excelLabel.Company_Name.toString(), Smoke_PL3CompanyName },
+							{ "Company", Smoke_PL3CompanyName },
 							{ excelLabel.Deal_Type.toString(), "" }, { excelLabel.Stage.toString(), Smoke_PL3Stage },
 							{ excelLabel.Source_Firm.toString(), Smoke_PL3SourceFirm },
 							{ excelLabel.Log_In_Date.toString(), "" }, { excelLabel.Investment_Size.toString(), "" } };
@@ -9620,7 +9623,7 @@ public class SmokeTestCases extends BaseLib {
 					if (ip.clickOnRelatedList(environment, mode, RecordType.IndividualInvestor, RelatedList.Deals_Sourced)) {
 						log(LogStatus.INFO, "Click on Deal Sourced", YesNo.No);
 
-
+						ip.scrollToRelatedListViewAll_Lightning(environment, mode, RelatedList.Deals_Sourced, true);
 						if (ip.clickOnViewAllRelatedList(environment, mode,RelatedList.Deals_Sourced)) {
 							log(LogStatus.INFO, "Click on View All Deal Sourced", YesNo.No);
 
@@ -9885,7 +9888,7 @@ public class SmokeTestCases extends BaseLib {
 									switchToFrame(driver, 10, nsp.getnavatarSetUpTabFrame_Lighting(environment, 10));
 								}
 								List<String> result = new ArrayList<String>();
-								String[] labels = { excelLabel.Company_Name.toString(),
+								String[] labels = { "Company",
 										excelLabel.Pipeline_Name.toString(), excelLabel.Stage.toString(),
 										excelLabel.Source_Firm.toString(), excelLabel.Source_Contact.toString(),
 										excelLabel.Source.toString(), excelLabel.Source_Contact.toString(),
@@ -10076,7 +10079,7 @@ public class SmokeTestCases extends BaseLib {
 					appLog.info("Click on Created PipeLine : " + Smoke_PL1Name);
 
 					String[][] labelsAndValuesforComp = { { excelLabel.Pipeline_Name.toString(), Smoke_PL1Name },
-							{ excelLabel.Company_Name.toString(), Smoke_PL1CompanyName },
+							{ "Company", Smoke_PL1CompanyName },
 							{ excelLabel.Stage.toString(), Smoke_PL1Stage },
 							{ excelLabel.Last_Stage_Change_Date.toString(), getSystemDate("M/d/yyyy") },
 							{ excelLabel.Highest_Stage_Reached.toString(), Smoke_PL1HighestStageReached },
@@ -11780,6 +11783,7 @@ public class SmokeTestCases extends BaseLib {
 												appLog.error("Landing Page Not Verified : "+linkClick[j]);
 												sa.assertTrue(false, "Landing Page Not Verified : "+linkClick[j]);
 											}
+											
 											driver.navigate().back();
 
 										} else {

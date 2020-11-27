@@ -972,7 +972,7 @@ public class BasePageBusinessLayer extends BasePage implements BasePageErrorMess
 			
 			List<WebElement> eleList = FindElements(driver, xpath, "Related Tab");
 			for (WebElement ele : eleList) {
-				if(click(driver, ele, recordType+" related tab", action.BOOLEAN)) {
+				if(clickUsingJavaScript(driver, ele, recordType+" related tab", action.BOOLEAN)) {
 					log(LogStatus.INFO, "clicked on "+recordType+" related tab", YesNo.No);
 					return true;
 				}
@@ -1112,6 +1112,12 @@ public class BasePageBusinessLayer extends BasePage implements BasePageErrorMess
 						ThreadSleep(2000);
 						return true;
 					}
+					else
+						if (clickUsingJavaScript(driver, ele, relatedList)) {
+							CommonLib.log(LogStatus.INFO, "Related List found : "+relatedList, YesNo.No);
+							ThreadSleep(2000);
+							return true;
+						}
 				}
 			
 		}
