@@ -62,7 +62,7 @@ public class FundsPage extends BasePageBusinessLayer {
 	@FindBy(xpath="//input[@name='Name']")
 	private WebElement fundName_Classic;
 	
-	@FindBy(xpath="//span[text()='Fund Name']/../following-sibling::input")
+	@FindBy(xpath="//input[@name='Name']")
 	private WebElement fundName_Lighting;
 
 	/**
@@ -152,9 +152,9 @@ public class FundsPage extends BasePageBusinessLayer {
 			dateXpath="/../following-sibling::td[1]/span/input";
 		}else {
 			//span[text()='Description']/..//following-sibling::textarea
-			xpath="//span[contains(text(),'"+finalLabelName+"')]";
-			inputXpath="/..//following-sibling::input";
-			dateXpath="/../following-sibling::div/input";
+			xpath="//label[contains(text(),'"+finalLabelName+"')]";
+			inputXpath="/..//following-sibling::div/input";
+			dateXpath="/..//following-sibling::div/input";
 		}
 		if(labelName.contains("Date")) {
 			finalXpath=xpath+dateXpath;

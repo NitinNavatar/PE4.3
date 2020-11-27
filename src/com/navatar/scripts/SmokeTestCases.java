@@ -262,28 +262,28 @@ public class SmokeTestCases extends BaseLib {
 			}
 			
 		}
-		if (flag) {
-			
-			if (setup.installedPackages(environment, mode, crmUser1FirstName, UserLastName)) {
-				appLog.info("PE Package is installed Successfully in CRM User: " + crmUser1FirstName + " "
-						+ UserLastName);
-				
-			} else {
-				appLog.error(
-						"Not able to install PE package in CRM User1: " + crmUser1FirstName + " " + UserLastName);
-				sa.assertTrue(false,
-						"Not able to install PE package in CRM User1: " + crmUser1FirstName + " " + UserLastName);
-				log(LogStatus.ERROR,
-						"Not able to install PE package in CRM User1: " + crmUser1FirstName + " " + UserLastName,
-						YesNo.Yes);
-			}
-			
-		}else{
-			
-			log(LogStatus.ERROR, "could not click on setup link, test case fail", YesNo.Yes);
-			sa.assertTrue(false, "could not click on setup link, test case fail");
-			
-		}
+//		if (flag) {
+//			
+//			if (setup.installedPackages(environment, mode, crmUser1FirstName, UserLastName)) {
+//				appLog.info("PE Package is installed Successfully in CRM User: " + crmUser1FirstName + " "
+//						+ UserLastName);
+//				
+//			} else {
+//				appLog.error(
+//						"Not able to install PE package in CRM User1: " + crmUser1FirstName + " " + UserLastName);
+//				sa.assertTrue(false,
+//						"Not able to install PE package in CRM User1: " + crmUser1FirstName + " " + UserLastName);
+//				log(LogStatus.ERROR,
+//						"Not able to install PE package in CRM User1: " + crmUser1FirstName + " " + UserLastName,
+//						YesNo.Yes);
+//			}
+//			
+//		}else{
+//			
+//			log(LogStatus.ERROR, "could not click on setup link, test case fail", YesNo.Yes);
+//			sa.assertTrue(false, "could not click on setup link, test case fail");
+//			
+//		}
 		
 		
 		
