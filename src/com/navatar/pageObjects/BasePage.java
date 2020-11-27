@@ -2951,7 +2951,7 @@ public abstract class BasePage {
 	@FindBy(xpath="//input[@name='save']")
 	private WebElement saveButtonClassic;
 	
-	@FindBy(xpath="//button[@title='Save']")
+	@FindBy(xpath="//button[@title='Save']/span[text()='Save']")
 	private WebElement saveButtonLighting;
 
 	/**
@@ -3049,6 +3049,11 @@ public abstract class BasePage {
 		return isDisplayed(driver, lookUpResultFrame, "Visibility", timeOut, "look up result frame");
 	}
 	
+	@FindBy(xpath = "//a[@title='Show one more action']")
+	private WebElement relatedDrop;
+	public WebElement getrelatedDrop(int timeOut) {
+		return isDisplayed(driver, relatedDrop, "Visibility", timeOut, "relatedDrop");
+	}
 	public WebElement getCreateFundRaisingBtn(String environment,String mode, PageName pageName, int timeOut) {
 		WebElement ele=null;
 		String xpath="";
@@ -3057,6 +3062,7 @@ public abstract class BasePage {
 		}else {
 			xpath="input";
 		}
+		click(driver, getrelatedDrop(7), "related dropdown", action.SCROLLANDBOOLEAN);
 		return isDisplayed(driver, FindElement(driver, "//"+xpath+"[@title='Create Fundraisings']", "Create Fundraising button on "+pageName, action.SCROLLANDBOOLEAN,timeOut), "Visibility",timeOut, "Create Fundraising button on "+pageName);
 	}
 	
