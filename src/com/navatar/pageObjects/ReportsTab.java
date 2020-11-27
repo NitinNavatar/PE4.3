@@ -7,6 +7,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import com.navatar.generic.SmokeCommonVariables;
+
 public class ReportsTab extends BasePageBusinessLayer {
 
 	public ReportsTab(WebDriver driver) {
@@ -146,5 +148,58 @@ public class ReportsTab extends BasePageBusinessLayer {
 		String xpath="//span[text()='"+reportFormatName.toString()+"']/../..";
 		return isDisplayed(driver, FindElement(driver, xpath, "report Format Name "+reportFormatName.toString(), action.SCROLLANDBOOLEAN,10),"visibility",10,"report format name "+reportFormatName.toString());
 	}
+	
+	
+	//div[@class='x-tree-root-node']//div[text()='aa']
+	
+	public WebElement getCreateReportFolderNameInSideTree(String folderName, int timeOut) {
+		String xpath="//div[@class='x-tree-root-node']//div[text()='"+folderName+"']";
+		return isDisplayed(driver, FindElement(driver, xpath, "report folder Name "+folderName, action.SCROLLANDBOOLEAN,10),"visibility",10,"report folder name "+folderName);
+		
+	}
+	
+	public WebElement getCreateReportFolderNamePinIconInSideTree(String folderName, int timeOut) {
+		String xpath="//div[@class='x-tree-root-node']//div[text()='"+folderName+"']/following-sibling::table";
+		return isDisplayed(driver, FindElement(driver, xpath, "report folder Name "+folderName, action.SCROLLANDBOOLEAN,10),"visibility",10,"report folder name "+folderName);
+		
+	}
+	
+	@FindBy(xpath = "//span[text()='Share']")
+	private WebElement ReportFolderShareText;
 
+	public WebElement getReportFolderShareText(int timeOut) {
+		return isDisplayed(driver, ReportFolderShareText, "Visibility", timeOut, "Report Folder Share Text");
+	}
+	
+	@FindBy(xpath = "//a[text()='Users, ']")
+	private WebElement userLinkInSharePopUp;
+
+	public WebElement getUserLinkInSharePopUp(int timeOut) {
+		return isDisplayed(driver, userLinkInSharePopUp, "Visibility", timeOut, "user Link In Share PopUp");
+	}
+	
+	public WebElement getUserShareButton() {
+		String xpath="//div[text()='"+SmokeCommonVariables.crmUser1FirstName+" "+SmokeCommonVariables.crmUser1LastName+"']/../following-sibling::td/button[text()='Share']";
+		return isDisplayed(driver, FindElement(driver, xpath,"CRM User Share Icon", action.SCROLLANDBOOLEAN,10),"visibility",10,"CRM User Share Icon");
+	}
+	
+	public WebElement getReportFolderAccessDownArrow() {
+		String xpath="//div[text()='"+SmokeCommonVariables.crmUser1FirstName+" "+SmokeCommonVariables.crmUser1LastName+"']/../following-sibling::td/img";
+		return isDisplayed(driver, FindElement(driver, xpath,"Report Folder Access Down Arrow", action.SCROLLANDBOOLEAN,10),"visibility",10,"Report Folder Access Down Arrow");
+	}
+	
+	@FindBy(xpath = "//span[text()='Manager']")
+	private WebElement ReportFolderNameManagerText;
+
+	public WebElement getReportFolderNameManagerText(int timeOut) {
+		return isDisplayed(driver, ReportFolderNameManagerText, "Visibility", timeOut, "Report Folder Name Manager Text");
+	}
+	
+	@FindBy(xpath = "//tr[@class='x-toolbar-left-row']//button")
+	private WebElement  ReportFolderSharePopUpDoneAndCloseButton;
+
+	public WebElement getReportFolderSharePopUpDoneAndCloseButton(int timeOut) {
+		return isDisplayed(driver, ReportFolderSharePopUpDoneAndCloseButton, "Visibility", timeOut, "Report Folder Share Pop Up Done And Close Button");
+	}
+	
 }
