@@ -1259,7 +1259,7 @@ public class SmokeTestCases extends BaseLib {
 									}
 
 
-									if (click(driver, market.getSelectAReportPopUpCrossIcon(10), "Select A rEPORT Cross Icon", action.SCROLLANDBOOLEAN)) {
+									if (clickUsingJavaScript(driver, market.getSelectAReportPopUpCrossIcon(10), "Select A rEPORT Cross Icon", action.SCROLLANDBOOLEAN)) {
 										appLog.info("Click on Select A RePORT pOPuP cROSS Icon");
 									} else {
 										appLog.error("Not Able to Click on Select A RePORT pOPuP cROSS Icon");
@@ -6759,7 +6759,7 @@ public class SmokeTestCases extends BaseLib {
 						ThreadSleep(2000);
 
 						// Deal Information 2nd
-						String expectedResult = "Company" + "," + "Fund Manager" + "," + "Fund Manager’s Fund" + ","
+						String expectedResult = "Company" + "," + "Fund Manager" + "," + "Fund Manager's Fund" + ","
 								+ "Individual Investor" + "," + "Institution" + "," + "Limited Partner";
 						checkBox = nspbl.getEnableCheckBoxforNavatarSetUpSideMenuTab(environment, mode,
 								NavatarSetupSideMenuTab.CommitmentCreation, EditViewMode.Edit, ClickOrCheckEnableDisableCheckBox.EnableOrDisable, 10);
@@ -6862,7 +6862,7 @@ public class SmokeTestCases extends BaseLib {
 									log(LogStatus.INFO, "click on Limited Partner required field link", YesNo.No);
 									ThreadSleep(5000);
 									List<WebElement> options = allOptionsInDropDrop(driver, nspbl.getNewLP_CommitmentTab_DropDownList(environment, mode, 10), "limited partner drop down list");
-									if(compareMultipleList(driver, "Company,Fund Manager,Fund Manager’s Fund,Individual Investor,Institution,Limited Partner", options).isEmpty()) {
+									if(compareMultipleList(driver, "Company,Fund Manager,Fund Manager's Fund,Individual Investor,Institution,Limited Partner", options).isEmpty()) {
 										log(LogStatus.INFO, "Limited partner drop down list is verified ", YesNo.No);
 									}else {
 										log(LogStatus.FAIL, "Limited partner drop down list is not verified ", YesNo.No);
@@ -8777,7 +8777,7 @@ public class SmokeTestCases extends BaseLib {
 						ThreadSleep(2000);
 
 						// Deal Information 2nd
-						String expectedResult = "Company" + "," + "Fund Manager" + "," + "Fund Manager’s Fund" + ","
+						String expectedResult = "Company" + "," + "Fund Manager" + "," + "Fund Manager's Fund" + ","
 								+ "Individual Investor" + "," + "Institution" + "," + "Limited Partner";
 
 						checkBox = nspbl.getEnableCheckBoxforNavatarSetUpSideMenuTab(environment, mode,
@@ -8854,7 +8854,7 @@ public class SmokeTestCases extends BaseLib {
 						List<WebElement> newSourceFirm_RecordType = allOptionsInDropDrop(driver,
 								dctb.getNewSourceFirmLayout_RecordType(environment, 10),
 								"New Source Firm Record Type Drop Down");
-						expectedResult = "Company" + "," + "Fund Manager" + "," + "Fund Manager’s Fund" + ","
+						expectedResult = "Company" + "," + "Fund Manager" + "," + "Fund Manager's Fund" + ","
 								+ "Individual Investor" + "," + "Institution" + "," + "Limited Partner";
 						returnlist = compareMultipleList(driver, expectedResult, newSourceFirm_RecordType);
 						if (returnlist.isEmpty()) {
@@ -11553,12 +11553,12 @@ public class SmokeTestCases extends BaseLib {
 				}
 				if (j == 1) {
 					refresh(driver);
-					if (ins.createInstitution(environment, mode, "ADTest FMF", "Fund Manager’s Fund", InstitutionPageFieldLabelText.Parent_Institution.toString(), "ADTest FM")) {
-						appLog.info("Fund Manager’s Fund is created Fund Manage's Fund : " + "ADTest FMF");
+					if (ins.createInstitution(environment, mode, "ADTest FMF", "Fund Manager's Fund", InstitutionPageFieldLabelText.Parent_Institution.toString(), "ADTest FM")) {
+						appLog.info("Fund Managerï¿½s Fund is created Fund Manage's Fund : " + "ADTest FMF");
 					} else {
-						appLog.error("Not able to click on create Fund Manager’s Fund : ADTest FMF");
-						sa.assertTrue(false, "Not able to click on Fund Manager’s Fund : ADTest FMF");
-						log(LogStatus.ERROR, "Not able to click on create Fund Manager’s Fund : ADTest FMF", YesNo.Yes);
+						appLog.error("Not able to click on create Fund Manager's Fund : ADTest FMF");
+						sa.assertTrue(false, "Not able to click on Fund Manager's Fund : ADTest FMF");
+						log(LogStatus.ERROR, "Not able to click on create Fund Manager's Fund : ADTest FMF", YesNo.Yes);
 					}
 				}
 				if (j == 2) {

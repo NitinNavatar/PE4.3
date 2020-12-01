@@ -1107,7 +1107,7 @@ public class BasePageBusinessLayer extends BasePage implements BasePageErrorMess
 				ele = isDisplayed(driver, FindElement(driver, "//span[text()='"+relatedList+"']/ancestor::article//span[text()='View All']", relatedList,
 						action.SCROLLANDBOOLEAN, 10), "visibility", 10, relatedList);
 				if (ele != null) {
-					if (click(driver, ele, relatedList, action.SCROLLANDBOOLEAN)) {
+					if (clickUsingJavaScript(driver, ele, relatedList, action.SCROLLANDBOOLEAN)) {
 						CommonLib.log(LogStatus.INFO, "Related List found : "+relatedList, YesNo.No);
 						ThreadSleep(2000);
 						return true;
@@ -1464,7 +1464,7 @@ public class BasePageBusinessLayer extends BasePage implements BasePageErrorMess
 		boolean flag=false;
 		if(clickOnGridSection_Lightning(environment, mode, gridSectionName, timeOut)) {
 			log(LogStatus.INFO, "clicked on "+gridSectionName.toString()+" link", YesNo.No);
-			String xpath="//h1[text()='"+gridSectionName+"']/ancestor::div[contains(@class,'test-listViewManager')]//div[@class='emptyContentInner']/p";
+			String xpath="//h1[text()='"+gridSectionName+"']/ancestor::div[contains(@class,'test-listViewManager')]//div[contains(@class,'emptyContentInner')]/p";
 			ele = isDisplayed(driver, FindElement(driver,xpath, gridSectionName.toString()+ " error message", action.SCROLLANDBOOLEAN,timeOut),"visibility", timeOut, gridSectionName.toString()+ " error message");
 			msg = ele.getText().trim();
 				CommonLib.log(LogStatus.INFO, "Grid Message : "+msg, YesNo.No);

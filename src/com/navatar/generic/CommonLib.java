@@ -266,9 +266,9 @@ public class CommonLib extends EnumConstants implements Comparator<String>  {
 					} else if(xpath.equalsIgnoreCase("//iframe[@title='AlertHomeGateway']")){
 						System.err.println("inside xpath Match");
 						System.out.println("Home page alert section code running");
-						if(CommonLib.click(driver, CommonLib.FindElement(driver, "//*[contains(@id,'grid-header-0-box-text')][text()='Date']", null, action.BOOLEAN, 10), null, action.BOOLEAN))
+						if(CommonLib.click(driver, CommonLib.FindElement(driver, "//*[contains(@id,'grid-header-0-box-text')][text()='Date']", null, action.BOOLEAN, 0), null, action.BOOLEAN))
 							CommonLib.ThreadSleep(1000);
-						if(CommonLib.click(driver, CommonLib.FindElement(driver, "//*[contains(@id,'grid-header-0-box-text')][text()='Date']", null, action.BOOLEAN, 10), null, action.BOOLEAN))
+						if(CommonLib.click(driver, CommonLib.FindElement(driver, "//*[contains(@id,'grid-header-0-box-text')][text()='Date']", null, action.BOOLEAN, 0), null, action.BOOLEAN))
 							CommonLib.ThreadSleep(1000);
 						break;
 					} else {
