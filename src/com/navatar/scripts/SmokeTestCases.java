@@ -8580,7 +8580,7 @@ public class SmokeTestCases extends BaseLib {
 						String monthAndYear = getSystemDate("MMM") + " " + getSystemDate("yyyy");
 						String expectedPipeLineName = Smoke_PL1CompanyName + " " + "-" + " " + monthAndYear;
 						String[] labelName = "Pipeline Name,Company,Last Stage Change Date,Highest Stage Reached,Age of Current Stage,Source Contact,Source Firm".split(",");
-						String labelValue = expectedPipeLineName + "," + Smoke_PL1CompanyName + "," + getSystemDate("M/d/yyyy") + ","
+						String labelValue = expectedPipeLineName + "," + Smoke_PL1CompanyName + "," + getDateAccToTimeZone(BasePageErrorMessage.AmericaLosAngelesTimeZone, "M/d/YYYY") + ","
 								+ Smoke_PL1Stage + "," + Smoke_PL1AgeOfCurrentStage+ "," + Smoke_PL1SourceContact_Name+","+Smoke_PL1SourceFirm;
 						String[] labelValues =  labelValue.split(",");
 						

@@ -1636,12 +1636,15 @@ public class BasePageBusinessLayer extends BasePage implements BasePageErrorMess
 			boolean flag = true;
 			if(mode.toString().equalsIgnoreCase(Mode.Lightning.toString())) {
 				xpath="//*[contains(@title,'more actions') or contains(text(),'more actions')]/..";
-			List<WebElement> ele1= FindElements(driver, xpath, "Show more action Icon");
+				if (pageName == PageName.ContactsPage)
+					xpath="//span[contains(@title,'more actions') or contains(text(),'more actions')]/..";
+					
+				List<WebElement> ele1= FindElements(driver, xpath, "Show more action Icon");
 			
 			for (int j = 0; j < ele1.size(); j++) {
 				log(LogStatus.INFO, "Size :  "+ele1.size()+"  >>>>>>>>  "+i, YesNo.No);
 				ele = isDisplayed(driver, ele1.get(j), "visibility", 5, "Show more action Icon");
-				if(click(driver, ele, "show more action on "+pageName.toString(), action.SCROLLANDBOOLEAN)) {
+				if(clickUsingJavaScript(driver, ele, "show more action on "+pageName.toString(), action.SCROLLANDBOOLEAN)) {
 					log(LogStatus.INFO, "clicked on show more actions icon ", YesNo.No);
 					return flag;
 				}else {
@@ -1661,10 +1664,12 @@ public class BasePageBusinessLayer extends BasePage implements BasePageErrorMess
 	public WebElement actionDropdownElement(String environment, String mode,PageName pageName, ShowMoreActionDropDownList showMoreActionDropDownList, int timeOut) {
         String actionDropDown = showMoreActionDropDownList.toString().replace("_", " ");
         WebElement ele=null;
-       
+        String xpath="//*[@title='"+actionDropDown+"' or text()='"+actionDropDown+"']";
+        if (pageName == PageName.ContactsPage)
+        	xpath="//span[@title='"+actionDropDown+"' or text()='"+actionDropDown+"']";
         if(mode.toString().equalsIgnoreCase(Mode.Lightning.toString())) {
 //            return isDisplayed(driver, FindElement(driver, "//*[@title='"+actionDropDown+"' or text()='"+actionDropDown+"']", "show more action down arrow : "+actionDropDown, action.SCROLLANDBOOLEAN, 10), "visibility", timeOut, actionDropDown);
-        	List<WebElement> lst = FindElements(driver, "//*[@title='"+actionDropDown+"' or text()='"+actionDropDown+"']", "show more action down arrow : "+actionDropDown);
+        	List<WebElement> lst = FindElements(driver, xpath, "show more action down arrow : "+actionDropDown);
 			//			return isDisplayed(driver, FindElement(driver, "//span[@title='"+actionDropDown+"' or text()='"+actionDropDown+"']", "show more action down arrow : "+actionDropDown, action.SCROLLANDBOOLEAN, 10), "visibility", timeOut, actionDropDown);
 			if(!lst.isEmpty()) {
 				for(int i=0; i<lst.size(); i++) {

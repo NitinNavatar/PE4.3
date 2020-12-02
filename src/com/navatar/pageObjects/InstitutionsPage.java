@@ -282,7 +282,7 @@ public class InstitutionsPage extends BasePageBusinessLayer {
 	 
 	public WebElement getSaveOfficeLocationButton(String environment,String mode,int timeOut){
 		if (mode.equalsIgnoreCase(Mode.Lightning.toString())) {
-			return getSaveButton(environment, Mode.Lightning.toString(), timeOut);
+			return getCustomTabSaveBtn(environment, Mode.Lightning.toString(), timeOut);
 		}else{
 			return isDisplayed(driver, saveOfficeLocationBtn_Classic, "Visibility", timeOut, "Save office Location Button : "+mode);		
 		}
