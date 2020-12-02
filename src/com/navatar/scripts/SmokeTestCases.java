@@ -726,7 +726,7 @@ public class SmokeTestCases extends BaseLib {
 		}
 		FieldLabels = excelLabel.Target_Commitments + "," + excelLabel.Vintage_Year + ","
 				+ FundPageFieldLabelText.Frist_Closing_Date;
-		String date = getDateAccToTimeZone("America/New_York", "M/dd/YYYY");
+		String date = getDateAccToTimeZone(BasePageErrorMessage.AmericaLosAngelesTimeZone, "M/dd/YYYY");
 		String Values1 = SmokeFund1Target_Commitments + "," + SmokeFund1_VintageYear + "," + date;
 		String Values2 = SmokeFund2Target_Commitments + "," + SmokeFund2_VintageYear + "," + date;
 		String Value3 = SmokeFund2Target_Commitments + "," + SmokeFund3_VintageYear + "," + date;
@@ -2398,7 +2398,7 @@ public class SmokeTestCases extends BaseLib {
 		MarketingInitiativesPageBusinesslayer market = new MarketingInitiativesPageBusinesslayer(driver);
 		FundsPageBusinessLayer fund = new FundsPageBusinessLayer(driver);
 		String text = null;
-		String date = getDateAccToTimeZone("America/New_York", "MM/dd/YYYY");
+		String date = getDateAccToTimeZone(BasePageErrorMessage.AmericaLosAngelesTimeZone, "MM/dd/YYYY");
 		lp.CRMLogin(superAdminUserName, adminPassword);
 		if (cp.clickOnTab(environment, mode, TabName.ContactTab)) {
 			log(LogStatus.INFO, "Clicked on Contact Tab",YesNo.No);
@@ -2694,7 +2694,7 @@ public class SmokeTestCases extends BaseLib {
 				"EmailTemplate1", excelLabel.Subject);
 		String emailBody = ExcelUtils.readData(smokeFilePath, "CustomEmailFolder", excelLabel.Variable_Name,
 				"EmailTemplate1", excelLabel.Email_Body);
-		String date = getDateAccToTimeZone("America/New_York", "MM/dd/YYYY");
+		String date = getDateAccToTimeZone(BasePageErrorMessage.AmericaLosAngelesTimeZone, "MM/dd/YYYY");
 		lp.CRMLogin(superAdminUserName, adminPassword);
 		if (contact.clickOnTab(environment, mode, TabName.ContactTab)) {
 			log(LogStatus.INFO, "Clicked on Contact Tab",YesNo.No);
@@ -3772,7 +3772,7 @@ public class SmokeTestCases extends BaseLib {
 		actionsList.add(SmokeC2_FName+" "+SmokeC2_LName+"<break>"+fundraisingContactActions.Remove.toString());
 		actionsList.add(SmokeC1_FName+" "+SmokeC1_LName+"<break>"+fundraisingContactActions.AddNewContactInFundraisingContact.toString());
 		actionsList.add(SmokeC1_FName+" "+SmokeC1_LName+"<break>"+fundraisingContactActions.Remove.toString());
-		String date = getDateAccToTimeZone("America/New_York", "M/d/yyyy");
+		String date = getDateAccToTimeZone(BasePageErrorMessage.AmericaLosAngelesTimeZone, "M/d/yyyy");
 		lp.CRMLogin(crmUser1EmailID, adminPassword);
 		if(fund.clickOnTab(environment, mode, TabName.FundsTab)) {
 			log(LogStatus.INFO, "clicked on fund tab", YesNo.No);
@@ -5646,7 +5646,7 @@ public class SmokeTestCases extends BaseLib {
 		MarketingInitiativesPageBusinesslayer market = new MarketingInitiativesPageBusinesslayer(driver);
 		FundsPageBusinessLayer fund = new FundsPageBusinessLayer(driver);
 		String text = null;
-		String date = getDateAccToTimeZone("America/New_York", "MM/dd/YYYY");
+		String date = getDateAccToTimeZone(BasePageErrorMessage.AmericaLosAngelesTimeZone, "MM/dd/YYYY");
 		lp.CRMLogin(superAdminUserName, adminPassword);
 		if (contact.clickOnTab(environment, mode, TabName.ContactTab)) {
 			log(LogStatus.INFO, "Clicked on Contact Tab",YesNo.No);
@@ -5854,7 +5854,7 @@ public class SmokeTestCases extends BaseLib {
 		MarketingInitiativesPageBusinesslayer market = new MarketingInitiativesPageBusinesslayer(driver);
 		FundsPageBusinessLayer fund = new FundsPageBusinessLayer(driver);
 		String text = null;
-		String date = getDateAccToTimeZone("America/New_York", "MM/dd/YYYY");
+		String date = getDateAccToTimeZone(BasePageErrorMessage.AmericaLosAngelesTimeZone, "MM/dd/YYYY");
 		lp.CRMLogin(superAdminUserName, adminPassword);
 		if (contact.clickOnTab(environment, mode, TabName.ContactTab)) {
 			log(LogStatus.INFO, "Clicked on Contact Tab",YesNo.No);
@@ -6387,7 +6387,7 @@ public class SmokeTestCases extends BaseLib {
 		PartnershipsPageBusinessLayer partnership= new PartnershipsPageBusinessLayer(driver);
 		CommitmentsPageBusinessLayer comm = new CommitmentsPageBusinessLayer(driver);
 		lp.CRMLogin(crmUser1EmailID, adminPassword);
-		String todayDate = getDateAccToTimeZone("America/New_York", "M/d/yyyy");
+		String todayDate = getDateAccToTimeZone(BasePageErrorMessage.AmericaLosAngelesTimeZone, "M/d/yyyy");
 		String OneDayeAfterDate=previousOrForwardDate(1, "M/d/yyyy");
 		String[][] commitmentInformation= {{Smoke_LP1,SmokeCOMM1_CommitmentAmount,Smoke_P1,todayDate},{Smoke_LP2,SmokeCOMM2_CommitmentAmount,Smoke_P1,OneDayeAfterDate}};
 		WebElement ele = null;
@@ -6991,7 +6991,7 @@ public class SmokeTestCases extends BaseLib {
 		FundraisingsPageBusinessLayer frsp = new FundraisingsPageBusinessLayer(driver);
 		lp.CRMLogin(crmUser1EmailID, adminPassword);
 		String ThreeDayeAfterDate=previousOrForwardDate(3, "M/d/YYYY");
-		String todayDate = getDateAccToTimeZone("America/New_York", "M/d/YYYY");
+		String todayDate = getDateAccToTimeZone(BasePageErrorMessage.AmericaLosAngelesTimeZone, "M/d/YYYY");
 		String FourDayeAfterDate=previousOrForwardDate(4, "M/d/YYYY");
 		String[][] commitmentInformation= {{Smoke_LP1,SmokeCOMM3_CommitmentAmount,Smoke_P1,ThreeDayeAfterDate},{Smoke_LP3+"<break>"+CreatedOrNot.NotCreated+"<break>"+excelLabel.Bank_Name.toString()+":"+SmokeLP3_BankName,SmokeCOMM4_CommitmentAmount,Smoke_P2+"<break>"+CreatedOrNot.NotCreated+"<break>"+excelLabel.Fund_Investment_Category.toString()+":"+SmokeP2_Fund_Investment_Category,FourDayeAfterDate}};
 		if(frsp.clickOnTab(environment, mode, TabName.FundraisingsTab)) {
@@ -7227,7 +7227,7 @@ public class SmokeTestCases extends BaseLib {
 		WebElement ele= null;
 
 		lp.CRMLogin(crmUser1EmailID, adminPassword);
-		String todayDate = getDateAccToTimeZone("America/New_York", "M/d/yyyy");
+		String todayDate = getDateAccToTimeZone(BasePageErrorMessage.AmericaLosAngelesTimeZone, "M/d/yyyy");
 		String OneDayeAfterDate=previousOrForwardDate(1, "M/d/yyyy");
 		String SevenDayeAfterDate=previousOrForwardDate(7, "M/d/yyyy");
 		String[][] commitmentInformation= {{Smoke_LP4+"<break>"+CreatedOrNot.NotCreated+"<break>"+excelLabel.Bank_Name.toString(),SmokeCOMM5_CommitmentAmount,Smoke_P2+"<break>"+CreatedOrNot.AlreadyCreated,SevenDayeAfterDate}};
@@ -7470,7 +7470,7 @@ public class SmokeTestCases extends BaseLib {
 		String msg=null;
 
 		lp.CRMLogin(crmUser1EmailID, adminPassword);
-		String todayDate = getDateAccToTimeZone("America/New_York", "M/d/yyyy");
+		String todayDate = getDateAccToTimeZone(BasePageErrorMessage.AmericaLosAngelesTimeZone, "M/d/yyyy");
 		String OneDayeAfterDate=previousOrForwardDate(1, "M/d/yyyy");
 		String SevenDayeAfterDate=previousOrForwardDate(7, "M/d/yyyy");
 		String[][] commitmentInformation= {{Smoke_LP4+"<break>"+CreatedOrNot.AlreadyCreated,SmokeCOMM5_CommitmentAmount,Smoke_P2+"<break>"+CreatedOrNot.NotCreated,SevenDayeAfterDate}};
@@ -7762,7 +7762,7 @@ public class SmokeTestCases extends BaseLib {
 		CommitmentsPageBusinessLayer comm = new CommitmentsPageBusinessLayer(driver);
 		FundraisingsPageBusinessLayer frsp = new FundraisingsPageBusinessLayer(driver);
 		lp.CRMLogin(crmUser1EmailID, adminPassword);
-		String todayDate = getDateAccToTimeZone("America/New_York", "M/d/yyyy");
+		String todayDate = getDateAccToTimeZone(BasePageErrorMessage.AmericaLosAngelesTimeZone, "M/d/yyyy");
 		String TenDayAfterDate=previousOrForwardDate(10, "M/d/yyyy");
 		String ElevnDayAfterDate=previousOrForwardDate(11, "M/d/yyyy");
 		String xpath = null;
@@ -8106,7 +8106,7 @@ public class SmokeTestCases extends BaseLib {
 		CommitmentsPageBusinessLayer comm = new CommitmentsPageBusinessLayer(driver);
 		FundraisingsPageBusinessLayer frsp = new FundraisingsPageBusinessLayer(driver);
 		lp.CRMLogin(crmUser1EmailID, adminPassword);
-//		String todayDate = getDateAccToTimeZone("America/New_York", "M/d/yyyy");
+//		String todayDate = getDateAccToTimeZone(BasePageErrorMessage.AmericaLosAngelesTimeZone, "M/d/yyyy");
 //		String TenDayAfterDate=previousOrForwardDate(10, "M/d/yyyy");
 //		String ElevnDayAfterDate=previousOrForwardDate(11, "M/d/yyyy");
 //		String[][] commitmentInformation= {{Smoke_LP4+"<break>"+CreatedOrNot.AlreadyCreated,SmokeCOMM6_CommitmentAmount,Smoke_P3+"<break>"+CreatedOrNot.NotCreated+"<break>"+excelLabel.Fund_Investment_Category.toString(),TenDayAfterDate},
@@ -11674,7 +11674,7 @@ public class SmokeTestCases extends BaseLib {
 		String percent = ExcelUtils.readData(smokeFilePath,"FundDrawdown", excelLabel.Variable_Name, "DD1", excelLabel.Percent);
 		// 75000000 Total_Commitments 10%  percent  7500000
 		String percentValues = "80,10,10";
-		String date = getDateAccToTimeZone("America/New_York", "M/d/YYYY");
+		String date = getDateAccToTimeZone(BasePageErrorMessage.AmericaLosAngelesTimeZone, "M/d/YYYY");
 		String OneDayAfterDate=previousOrForwardDate(1, "M/d/YYYY");
 
 
@@ -11707,7 +11707,7 @@ public class SmokeTestCases extends BaseLib {
 							ele = fd.getfundDrawDownCancelButton(environment,mode, 60);
 						}
 
-						if (click(driver, ele, "Back Arrow/Cancel Btn",action.BOOLEAN)) {
+						if (clickUsingJavaScript(driver, ele, "Back Arrow/Cancel Btn",action.BOOLEAN)) {
 							appLog.info("Clicked on Back Arrow/Cancel");
 						}else{
 							appLog.error("Not Able to Click on Back Arrow/Cancel Btn");
@@ -11855,7 +11855,7 @@ public class SmokeTestCases extends BaseLib {
 		String percent = ExcelUtils.readData(smokeFilePath,"FundDrawdown", excelLabel.Variable_Name, "DD1", excelLabel.Percent);
 		// 75000000 Total_Commitments 10%  percent  7500000
 		String percentValues = "80,10,10";
-		String date = getDateAccToTimeZone("America/New_York", "M/d/YYYY");
+		String date = getDateAccToTimeZone(BasePageErrorMessage.AmericaLosAngelesTimeZone, "M/d/YYYY");
 		String OneDayAfterDate=previousOrForwardDate(1, "M/d/YYYY");
 		
 		for (int i =0;i<5;i++) {
@@ -12526,7 +12526,7 @@ public class SmokeTestCases extends BaseLib {
 		SmokeCC3Data[8] = ExcelUtils.readData(smokeFilePath, "CapitalCall", excelLabel.Commitment_ID, SmokeCOMM1_ID, excelLabel.ReceivedDate);
 		SmokeCC3Data[9] = ExcelUtils.readData(smokeFilePath, "CapitalCall", excelLabel.Commitment_ID, SmokeCOMM1_ID, excelLabel.AmountDue);
 		SmokeCC3Data[10] = ExcelUtils.readData(smokeFilePath, "CapitalCall", excelLabel.Commitment_ID, SmokeCOMM1_ID, excelLabel.Commitment_ID);
-		String date = getDateAccToTimeZone("America/New_York", "MM/dd/YYYY");
+		String date = getDateAccToTimeZone(BasePageErrorMessage.AmericaLosAngelesTimeZone, "MM/dd/YYYY");
 		if (bp.clickOnTab(environment, mode, TabName.CapitalCalls)) {
 			if (ccp.clickOnCreatedCapitalCall(environment, mode, SmokeCC3_ID)) {
 				if (click(driver, bp.getEditButton(environment, mode,60), "edit button", action.BOOLEAN)) {
@@ -14435,7 +14435,7 @@ public class SmokeTestCases extends BaseLib {
 			String percent = ExcelUtils.readData(smokeFilePath,"FundDrawdown", excelLabel.Variable_Name, "DD1", excelLabel.Percent);
 			// 75000000 Total_Commitments 10%  percent  7500000
 			String percentValues = "80,10,10";
-			String date = getDateAccToTimeZone("America/New_York", "MM/dd/YYYY");
+			String date = getDateAccToTimeZone(BasePageErrorMessage.AmericaLosAngelesTimeZone, "MM/dd/YYYY");
 			String FifteenDayAfterDate=previousOrForwardDate(15, "MM/dd/YYYY");
 			String capitalReturn = ExcelUtils.readData(smokeFilePath,"FundDistribution", excelLabel.Variable_Name, "FD1", excelLabel.CapitalReturn);
 			String totalCapitalCalled = ExcelUtils.readData(smokeFilePath,"FundDrawdown", excelLabel.Variable_Name, "DD1", excelLabel.CallAmount);
@@ -14468,7 +14468,7 @@ public class SmokeTestCases extends BaseLib {
 									ele = fd.getfundDistributionCancelButton(environment,mode, 10);
 								}
 
-								if (click(driver, ele, "Back Arrow/Cancel Btn",action.BOOLEAN)) {
+								if (clickUsingJavaScript(driver, ele, "Back Arrow/Cancel Btn",action.BOOLEAN)) {
 									appLog.info("Clicked on Back Arrow/Cancel : "+i);
 								}else{
 									appLog.error("Not Able to Click on Back Arrow/Cancel Btn : "+i);
@@ -14602,7 +14602,7 @@ public class SmokeTestCases extends BaseLib {
 			String percent = ExcelUtils.readData(smokeFilePath,"FundDrawdown", excelLabel.Variable_Name, "DD1", excelLabel.Percent);
 			// 75000000 Total_Commitments 10%  percent  7500000
 			String percentValues = "80,10,10";
-			String date = getDateAccToTimeZone("America/New_York", "MM/dd/YYYY");
+			String date = getDateAccToTimeZone(BasePageErrorMessage.AmericaLosAngelesTimeZone, "MM/dd/YYYY");
 			String FifteenDayAfterDate=previousOrForwardDate(15, "MM/dd/YYYY");
 			String capitalReturn = ExcelUtils.readData(smokeFilePath,"FundDistribution", excelLabel.Variable_Name, "FD1", excelLabel.CapitalReturn);
 			String totalCapitalCalled = ExcelUtils.readData(smokeFilePath,"FundDrawdown", excelLabel.Variable_Name, "DD1", excelLabel.CallAmount);
@@ -14635,7 +14635,7 @@ public class SmokeTestCases extends BaseLib {
 									ele = fd.getfundDistributionCancelButton(environment,mode, 10);
 								}
 
-								if (click(driver, ele, "Back Arrow/Cancel Btn",action.BOOLEAN)) {
+								if (clickUsingJavaScript(driver, ele, "Back Arrow/Cancel Btn",action.BOOLEAN)) {
 									appLog.info("Clicked on Back Arrow/Cancel : "+i);
 								}else{
 									appLog.error("Not Able to Click on Back Arrow/Cancel Btn : "+i);
@@ -16075,7 +16075,7 @@ public class SmokeTestCases extends BaseLib {
 		HomePageBusineesLayer hp = new HomePageBusineesLayer(driver);
 		SoftAssert tsa;
 		String text = null;
-		String date = getDateAccToTimeZone("America/New_York", "MM/dd/YYYY");
+		String date = getDateAccToTimeZone(BasePageErrorMessage.AmericaLosAngelesTimeZone, "MM/dd/YYYY");
 		WebElement ele;
 		EmailLib email = new EmailLib();
 		String EmailTemplate1_Subject ="Investor Distribution Notice ID-";
@@ -16201,7 +16201,7 @@ public class SmokeTestCases extends BaseLib {
 			sa.assertTrue(false, "could not click on fund FundDistributions tab");
 		}
 
-
+		switchToDefaultContent(dDriver);
 		lp.CRMlogout(environment, mode);
 		sa.assertAll();
 	}
@@ -16605,7 +16605,7 @@ public class SmokeTestCases extends BaseLib {
 		ContactsPageBusinessLayer cp = new ContactsPageBusinessLayer(driver);
 		SoftAssert tsa;
 		String text = null;
-		String date = getDateAccToTimeZone("America/New_York", "MM/dd/YYYY");
+		String date = getDateAccToTimeZone(BasePageErrorMessage.AmericaLosAngelesTimeZone, "MM/dd/YYYY");
 		EmailLib email = new EmailLib();
 		try {
 			text = email.getEMailContent(gmailUserName, gmailPassword, crmUser1EmailID, SmokeC2_EmailID,EmailTemplate1_Subject);
@@ -20658,7 +20658,7 @@ public class SmokeTestCases extends BaseLib {
 		ContactsPageBusinessLayer cp = new ContactsPageBusinessLayer(driver);
 		SoftAssert tsa;
 		String text = null;
-		String date = getDateAccToTimeZone("America/New_York", "MM/dd/YYYY");
+		String date = getDateAccToTimeZone(BasePageErrorMessage.AmericaLosAngelesTimeZone, "MM/dd/YYYY");
 		EmailLib email = new EmailLib();
 		try {
 			text = email.getEMailContent(gmailUserName, gmailPassword, crmUser1EmailID, SmokeC3_EmailID,EmailTemplate1_Subject);

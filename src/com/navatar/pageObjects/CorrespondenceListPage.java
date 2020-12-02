@@ -19,7 +19,7 @@ public class CorrespondenceListPage extends BasePageBusinessLayer{
 	
 	@FindBy(xpath = "//label[text()='Commitment']/ancestor::td[contains(@class,'labelCol')]/following-sibling::td//span//input")
 	private WebElement commitmentValue_Classic;
-	@FindBy(xpath = "//input[@title='Search Commitments']")
+	@FindBy(xpath = "//input[contains(@placeholder,'Search Commitments')]")
 	private WebElement commitment_Light;
 	/**
 	 * @return the commitmentValue

@@ -1737,7 +1737,7 @@ public class BasePageBusinessLayer extends BasePage implements BasePageErrorMess
 		WebElement ele=null;
 		List<WebElement> eles=null;
 		if (mode.equalsIgnoreCase(Mode.Lightning.toString())){
-		eles	=FindElements(driver, "//span[@title='"+RLString+"']/ancestor::header/following-sibling::div//a[@title='New']", "new button");
+		eles	=FindElements(driver, "//span[text()='"+RLString+"']/../../../../../following-sibling::div//a[@title='New']", "new button");
 		for (int i = 0;i<eles.size();i++){
 			if(isDisplayed(driver, eles.get(i), "visibility", 1, "new button")!=null){
 				log(LogStatus.PASS, "trying to click "+i+" th new button", YesNo.No);
@@ -1838,7 +1838,7 @@ public class BasePageBusinessLayer extends BasePage implements BasePageErrorMess
 			if (viewAllOrNew)
 				xpath = "/ancestor::article//span[text()='View All']";
 			else
-				xpath = "/ancestor::header/following-sibling::div//a[@title='New']";
+				xpath = "/../../../../../following-sibling::div//a[@title='New']";
 			((JavascriptExecutor) driver)
 			.executeScript("window.scrollTo(0,0);");
 			int widgetTotalScrollingWidth = Integer.parseInt(String.valueOf(((JavascriptExecutor) driver)

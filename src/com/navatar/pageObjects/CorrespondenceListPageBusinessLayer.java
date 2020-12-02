@@ -33,8 +33,7 @@ public class CorrespondenceListPageBusinessLayer extends CorrespondenceListPage{
 				if (mode.equalsIgnoreCase(Mode.Lightning.toString())) {
 					ThreadSleep(1000);
 					if (click(driver,
-				FindElement(driver,	"//div[contains(@class,'uiAutocomplete')]//a//div[@title='" + commitmentID
-			+ "']",	"commitment", action.THROWEXCEPTION, 30),commitmentID + "   :   commitment", action.BOOLEAN)) {
+				FindElement(driver,	"//*[@title='"+commitmentID+"']",	"commitment", action.THROWEXCEPTION, 30),commitmentID + "   :   commitment", action.BOOLEAN)) {
 						appLog.info(commitmentID + "  is present in list.");
 					} else {
 						flag = false;
