@@ -155,6 +155,15 @@ public class BaseLib extends AppListeners {
 		sa=new SoftAssert();
 		if(result.getStatus()==2){
 			if(ExcelUtils.readData("TestCases", excelLabel.TestCases_Name, currentlyExecutingTC, excelLabel.Priority).equalsIgnoreCase("High")){
+				driver.close();
+				try {
+					Process process = Runtime.getRuntime().exec(System.getProperty("user.dir")+"/killbrowser.bat");
+					process.waitFor();
+					CommonLib.ThreadSleep(1000);
+				} catch (IOException | InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				appLog.fatal("Priority and dependency of this test case is high, So will not be able to continue with the execution.");
 				String toValue = ExcelUtils.readDataFromPropertyFile("EmailIdForStatusMail");
 				String[] attachment = {};
