@@ -6,6 +6,7 @@ import static com.navatar.generic.CommonLib.FindElements;
 import static com.navatar.generic.CommonLib.ThreadSleep;
 import static com.navatar.generic.CommonLib.changeNumberIntoUSFormat;
 import static com.navatar.generic.CommonLib.click;
+import static com.navatar.generic.CommonLib.clickUsingJavaScript;
 import static com.navatar.generic.CommonLib.getSelectedOptionOfDropDown;
 import static com.navatar.generic.CommonLib.isDisplayed;
 import static com.navatar.generic.CommonLib.scrollDownThroughWebelement;
@@ -226,24 +227,24 @@ public class PipelinesPageBusinessLayer extends PipelinesPage {
 		
 		}
 			
-		if (click(driver, getEditButton(environment, mode, 10), "Edit Button", action.BOOLEAN)) {
+		if (clickUsingJavaScript(driver, getEditButton(environment, mode, 10), "Edit Button", action.BOOLEAN)) {
 			if (mode.equalsIgnoreCase(Mode.Classic.toString())) {
 				if (selectVisibleTextFromDropDown(driver, getPipeLineStageLabel(environment, mode, 10),
 						"Stage : " + stageValue, stageValue)) {
-					if(click(driver, getSaveButton(environment, mode, 10), "Save Button", action.SCROLLANDBOOLEAN)){
+					if(click(driver, getCustomTabSaveBtn(environment, mode, 10), "Save Button", action.SCROLLANDBOOLEAN)){
 					return true;
 					}
 					
 				}
 
 			} else {
-				WebElement ele = FindElement(driver, "//span[text()='Stage']/../following-sibling::div//a",
+				WebElement ele = FindElement(driver, "//*[text()='Stage']/following-sibling::div//input",
 						"Stage Click", action.SCROLLANDBOOLEAN, 10);
 				if (click(driver, ele, "Stage Click", action.SCROLLANDBOOLEAN)) {
-					ele = FindElement(driver, "//div[@class='select-options']//li/a[@title='" + stageValue + "']",
+					ele = FindElement(driver, "//div[@role='listbox']//*[@title='" + stageValue + "']",
 							"Stage value : " + stageValue, action.SCROLLANDBOOLEAN, 10);
 					if (click(driver, ele, "Stage Click : "+stageValue, action.SCROLLANDBOOLEAN)) {
-						if(click(driver, getSaveButton(environment, mode, 10), "Save Button", action.SCROLLANDBOOLEAN)){
+						if(click(driver, getCustomTabSaveBtn(environment, mode, 10), "Save Button", action.SCROLLANDBOOLEAN)){
 							ThreadSleep(3000);
 							return true;
 							}	

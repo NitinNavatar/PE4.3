@@ -5,6 +5,7 @@ import org.openqa.selenium.WebElement;
 import com.navatar.generic.BaseLib;
 import com.navatar.generic.EnumConstants.InstitutionPageFieldLabelText;
 import com.navatar.generic.EnumConstants.Mode;
+import com.navatar.generic.EnumConstants.OfficeLocationLabel;
 import com.navatar.generic.EnumConstants.RecordType;
 import com.navatar.generic.EnumConstants.TabName;
 import com.navatar.generic.EnumConstants.YesNo;
@@ -739,16 +740,17 @@ public class InstitutionsPageBusinessLayer extends InstitutionsPage {
 				else{
 					xpath = "//form[@id='editPage']//label[text()='"+finalLabelName+"']/../following-sibling::td//input";	
 				}
-			
 					
 		} else {
 			
 			if (finalLabelName.contains("Street")) {
-				xpath = "//div[@class='modal-body scrollable slds-modal__content slds-p-around--medium']//label/span[text()='Street']/../following-sibling::textarea";
+				xpath = "//div[@class='modal-body scrollable slds-modal__content slds-p-around--medium']//label[text()='Street']/following-sibling::*//textarea";
 			}else if(finalLabelName.contains("Organization Name")) {
-				xpath = "//div[@class='modal-body scrollable slds-modal__content slds-p-around--medium']//label/span[text()='Organization Name']/../following-sibling::div";
-			}else{
-				xpath = "//div[@class='modal-body scrollable slds-modal__content slds-p-around--medium']//label/span[text()='"+finalLabelName+"']/../following-sibling::input";	
+				xpath = "//div[@class='modal-body scrollable slds-modal__content slds-p-around--medium']//label[text()='Organization Name']/following-sibling::div";
+			}else if(finalLabelName.contains("Primary"))
+				xpath="//div[@class='modal-body scrollable slds-modal__content slds-p-around--medium']//label/span[text()='Primary']/../following-sibling::*//input";
+			else{
+				xpath = "//div[@class='modal-body scrollable slds-modal__content slds-p-around--medium']//label[text()='"+finalLabelName+"']/following-sibling::*//input";
 			}
 			
 		}

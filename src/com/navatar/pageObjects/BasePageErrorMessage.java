@@ -30,5 +30,6 @@ public interface BasePageErrorMessage {
 	public String noPastActivityMsg2="Past meetings and tasks marked as done show up here.";
 	public String noNextActivityMsg1="No next steps";
 	public String noNextActivityMsg2="To get things moving, add a task or set up a meeting.";
+	public String AmericaLosAngelesTimeZone="America/Los_Angeles";
 	
 }

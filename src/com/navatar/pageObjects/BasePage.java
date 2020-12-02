@@ -1251,7 +1251,7 @@ public abstract class BasePage {
 	 @FindBy(xpath="//div[@class='pbHeader']//input[@title='Edit']")
 	 private WebElement editButton_Classic;
 	 
-	 @FindBy(xpath="//*[@title='Edit' or text()='Edit']")
+	 @FindBy(xpath="//button[@title='Edit' or text()='Edit']")
 	 private WebElement editButton_Lighting;
 	
 	 /**

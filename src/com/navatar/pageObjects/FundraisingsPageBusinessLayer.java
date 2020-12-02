@@ -45,7 +45,7 @@ public class FundraisingsPageBusinessLayer extends FundraisingsPage {
 						ThreadSleep(1000);
 						if (click(driver,
 								FindElement(driver,
-										"//div[contains(@class,'listContent')]//a//div[@title='"+fundName+"']",
+										"//div[contains(@class,'listbox')]//*[@title='"+fundName+"']",
 										"Fund Name List", action.THROWEXCEPTION, 30),
 								fundName + "   :   Fund Name", action.BOOLEAN)) {
 							appLog.info(fundName + "  is present in list.");
@@ -59,7 +59,7 @@ public class FundraisingsPageBusinessLayer extends FundraisingsPage {
 							ThreadSleep(1000);
 							if (click(driver,
 									FindElement(driver,
-											"//div[contains(@class,'uiAutocomplete')]//a//div//div[contains(@class,'primary') and @title='"+legalName+"']",
+											"//li//*[@title='"+legalName+"']",
 											"Legal Name List", action.THROWEXCEPTION, 30),
 									legalName + "   :   Legal Name", action.SCROLLANDBOOLEAN)) {
 								appLog.info(legalName + "  is present in list.");
@@ -67,7 +67,7 @@ public class FundraisingsPageBusinessLayer extends FundraisingsPage {
 								appLog.info(legalName + "  is not present in the list.");
 							}
 						}
-						if (click(driver, getSaveButton(environment,mode,60), "Save Button", action.SCROLLANDBOOLEAN)) {
+						if (click(driver, getCustomTabSaveBtn(environment,mode,60), "Save Button", action.SCROLLANDBOOLEAN)) {
 							ThreadSleep(500);
 							
 								ThreadSleep(2000);

@@ -17,7 +17,7 @@ public class FundraisingsPage extends BasePageBusinessLayer {
 	@FindBy(xpath="//input[@name='Name']")
 	private WebElement fundraisingName_Classic;
 	
-	@FindBy(xpath="//span[text()='Fundraising Name']/../following-sibling::input")
+	@FindBy(xpath="//*[text()='Fundraising Name']/following-sibling::*//input")
 	private WebElement fundraisingName_Lighting;
 
 	/**
@@ -35,7 +35,7 @@ public class FundraisingsPage extends BasePageBusinessLayer {
 	@FindBy(xpath="(//div[@class='requiredInput']//span[@class='lookupInput']//input)[1]")
 	private WebElement fundName_Classic;
 	
-	@FindBy(xpath="//span[text()='Fund Name']/../following-sibling::div//input[@title='Search Funds']")
+	@FindBy(xpath="//*[text()='Fund Name']/following-sibling::div//input")
 	private WebElement fundName_Lighting;
 
 	/**
@@ -53,7 +53,7 @@ public class FundraisingsPage extends BasePageBusinessLayer {
 	@FindBy(xpath="(//div[@class='requiredInput']//span[@class='lookupInput']//input)[2]")
 	private WebElement legalName_Classic;
 	
-	@FindBy(xpath="//span[text()='Legal Name']/../following-sibling::div//input[@title='Search Institutions']")
+	@FindBy(xpath="//*[text()='Legal Name']/following-sibling::div//input")
 	private WebElement legalName_Lighting;
 
 	/**
