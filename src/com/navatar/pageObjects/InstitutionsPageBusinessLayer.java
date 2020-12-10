@@ -744,13 +744,13 @@ public class InstitutionsPageBusinessLayer extends InstitutionsPage {
 		} else {
 			
 			if (finalLabelName.contains("Street")) {
-				xpath = "//div[@class='modal-body scrollable slds-modal__content slds-p-around--medium']//label[text()='Street']/following-sibling::*//textarea";
+				xpath = "//label//span[text()='Street']/../following-sibling::textarea";
 			}else if(finalLabelName.contains("Organization Name")) {
-				xpath = "//div[@class='modal-body scrollable slds-modal__content slds-p-around--medium']//label[text()='Organization Name']/following-sibling::div";
+				xpath = "//label//span[text()='Organization Name']/../following-sibling::div";
 			}else if(finalLabelName.contains("Primary"))
-				xpath="//div[@class='modal-body scrollable slds-modal__content slds-p-around--medium']//label/span[text()='Primary']/../following-sibling::*//input";
+				xpath="//label/span[text()='Primary']/../following-sibling::input";
 			else{
-				xpath = "//div[@class='modal-body scrollable slds-modal__content slds-p-around--medium']//label[text()='"+finalLabelName+"']/following-sibling::*//input";
+				xpath = "//*[text()='"+finalLabelName+"']/../following-sibling::input";
 			}
 			
 		}

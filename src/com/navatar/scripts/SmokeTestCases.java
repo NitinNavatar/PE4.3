@@ -8887,7 +8887,7 @@ public class SmokeTestCases extends BaseLib {
 							// PipeLine
 							appLog.info("Going to Verify Deal Room Information Required Field for PipeLine Layout");
 							String[][] pipeLineRowValues = { { "Pipeline Name", "Name", "string" },
-									{ "Company", "navpeII__Company_Name__c", "reference" },
+									{ "Company", "navpeII__Company__c", "reference" },
 									{ "Stage", "navpeII__Stage__c", "picklist" } };
 							tcsa = dctb.verifyingPipeLineRequiredFieldListDealInformationLayout(environment, mode, null,
 									pipeLineRowValues);
