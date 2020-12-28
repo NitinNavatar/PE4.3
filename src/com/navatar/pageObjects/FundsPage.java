@@ -179,7 +179,7 @@ public class FundsPage extends BasePageBusinessLayer {
 	@FindBy(xpath="//input[@title='Email Fundraising Contacts']")
 	private WebElement emailFundraisingContactsBtn_Classic;
 
-	@FindBy(xpath="//a[@title='Email Fundraising Contacts']")
+	@FindBy(xpath="//button[text()='Email Fundraising Contacts' or @title='Email Fundraising Contacts']")
 	private WebElement emailFundraisingContactsBtn_Lightning;
 	/**
 	 * @return the emailFundraisingContactsBtn

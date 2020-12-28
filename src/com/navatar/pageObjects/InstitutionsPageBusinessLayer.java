@@ -97,7 +97,7 @@ public class InstitutionsPageBusinessLayer extends InstitutionsPage {
 										ThreadSleep(1000);
 										if (click(driver,
 												FindElement(driver,
-														"//div[contains(@class,'uiAutocomplete')]//a//div//div[contains(@class,'primary') and @title='"+labelValue[i]+"']",
+														"//li//*[@title='"+labelValue[i]+"']",
 														"Legal Name List", action.SCROLLANDBOOLEAN, 30),
 												labelValue[i] + "   :   Legal Name", action.SCROLLANDBOOLEAN)) {
 											appLog.info(labelValue[i] + "  is present in list.");
@@ -114,7 +114,7 @@ public class InstitutionsPageBusinessLayer extends InstitutionsPage {
 							}
 							
 						}
-						if (click(driver, getSaveButton(environment,mode,30), "save button", action.SCROLLANDBOOLEAN)) {
+						if (click(driver, getCustomTabSaveBtn(environment,mode,30), "save button", action.SCROLLANDBOOLEAN)) {
 							appLog.info("clicked on save button");
 							ThreadSleep(2000);
 //							String	xpath="//span[@class='custom-truncate uiOutputText'][text()='"+institutionName+"']";

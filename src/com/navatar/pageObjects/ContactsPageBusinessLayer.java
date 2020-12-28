@@ -99,11 +99,10 @@ public class ContactsPageBusinessLayer extends ContactsPage implements ContactPa
 						if (sendKeys(driver, getLegalName(environment, mode, 60), legalName, "Legal Name",
 								action.SCROLLANDBOOLEAN)) {
 							if (mode.equalsIgnoreCase(Mode.Lightning.toString())) {
-								ThreadSleep(1000);
+								ThreadSleep(2000);
 								if (click(driver,
 										FindElement(driver,
-												"//div[contains(@class,'uiAutocomplete')]//a//div[@title='" + legalName
-												+ "']",
+												"//li//*[@title='"+legalName+"']",
 												"Legal Name List", action.THROWEXCEPTION, 30),
 										legalName + "   :   Legal Name", action.BOOLEAN)) {
 									appLog.info(legalName + "  is present in list.");
@@ -133,7 +132,7 @@ public class ContactsPageBusinessLayer extends ContactsPage implements ContactPa
 								}
 								
 							}
-							if (click(driver, getSaveButton(environment, mode, 60), "Save Button",
+							if (click(driver, getCustomTabSaveBtn(environment, mode, 60), "Save Button",
 									action.SCROLLANDBOOLEAN)) {
 								appLog.info("Clicked on save button");
 								if(creationPage.toString().equalsIgnoreCase(CreationPage.InstitutionPage.toString())) {

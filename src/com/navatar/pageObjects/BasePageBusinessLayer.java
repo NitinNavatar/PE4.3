@@ -1635,9 +1635,9 @@ public class BasePageBusinessLayer extends BasePage implements BasePageErrorMess
 			WebElement ele=null;
 			boolean flag = true;
 			if(mode.toString().equalsIgnoreCase(Mode.Lightning.toString())) {
-				xpath="//*[contains(@title,'more actions') or contains(text(),'more actions')]/..";
+				xpath="//li//*[contains(@title,'more actions') or contains(text(),'more actions')]/..";
 				if (pageName == PageName.ContactsPage)
-					xpath="//span[contains(@title,'more actions') or contains(text(),'more actions')]/..";
+					xpath="//li//*[contains(@title,'more actions') or contains(text(),'more actions')]/..";
 					
 				List<WebElement> ele1= FindElements(driver, xpath, "Show more action Icon");
 			
@@ -1664,7 +1664,7 @@ public class BasePageBusinessLayer extends BasePage implements BasePageErrorMess
 	public WebElement actionDropdownElement(String environment, String mode,PageName pageName, ShowMoreActionDropDownList showMoreActionDropDownList, int timeOut) {
         String actionDropDown = showMoreActionDropDownList.toString().replace("_", " ");
         WebElement ele=null;
-        String xpath="//*[@title='"+actionDropDown+"' or text()='"+actionDropDown+"']";
+        String xpath="//span[@title='"+actionDropDown+"' or text()='"+actionDropDown+"']";
         if (pageName == PageName.ContactsPage)
         	xpath="//span[@title='"+actionDropDown+"' or text()='"+actionDropDown+"']";
         if(mode.toString().equalsIgnoreCase(Mode.Lightning.toString())) {
@@ -1880,7 +1880,7 @@ public class BasePageBusinessLayer extends BasePage implements BasePageErrorMess
 			WebElement el=null;
 			while (el==null) {
 				if (rl == RelatedList.Commitments)
-					el=isDisplayed(driver,FindElement(driver, "//a[@title='Create Commitments']", rl.toString(), action.BOOLEAN, 5) , "visibility", 5, rl.toString());
+					el=isDisplayed(driver,FindElement(driver, "//button[text()='Create Commitments' or @title='Create Commitments']", rl.toString(), action.BOOLEAN, 5) , "visibility", 5, rl.toString());
 				else
 				el=isDisplayed(driver,FindElement(driver, "//span[text()='"+rl.toString()+"']", rl.toString(), action.BOOLEAN, 5) , "visibility", 5, rl.toString());
 				((JavascriptExecutor) driver).executeScript("window.scrollBy( 0 ,"+j+")");

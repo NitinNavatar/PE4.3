@@ -569,7 +569,7 @@ public abstract class BasePage {
 			return isDisplayed(driver, save_Lightning, "Visibility", timeOut, "Custom Tab Save Button lightning");
 		
 	}
-	@FindBy(xpath = "//button[@title='Save']")
+	@FindBy(xpath = "//*[@title='Save']")
 	private WebElement save_Lightning;
 	
 	@FindBy(xpath="//tr[@ class='last detailRow']//table//td[3]/select")
@@ -3058,12 +3058,12 @@ public abstract class BasePage {
 		WebElement ele=null;
 		String xpath="";
 		if(mode.toString().equalsIgnoreCase(Mode.Lightning.toString())) {
-			xpath="a";
+			xpath="button";
 		}else {
 			xpath="input";
 		}
 		click(driver, getrelatedDrop(7), "related dropdown", action.SCROLLANDBOOLEAN);
-		return isDisplayed(driver, FindElement(driver, "//"+xpath+"[@title='Create Fundraisings']", "Create Fundraising button on "+pageName, action.SCROLLANDBOOLEAN,timeOut), "Visibility",timeOut, "Create Fundraising button on "+pageName);
+		return isDisplayed(driver, FindElement(driver, "//"+xpath+"[text()='Create Fundraisings' or @title='Create Fundraisings']", "Create Fundraising button on "+pageName, action.SCROLLANDBOOLEAN,timeOut), "Visibility",timeOut, "Create Fundraising button on "+pageName);
 	}
 	
 	
@@ -3170,11 +3170,11 @@ public abstract class BasePage {
 		WebElement ele=null;
 		String xpath="";
 		if(mode.toString().equalsIgnoreCase(Mode.Lightning.toString())) {
-			xpath="a";
+			xpath="button";
 		}else {
 			xpath="input";
 		}
-		return isDisplayed(driver, FindElement(driver, "//"+xpath+"[@title='Create Commitments']", "Create Commitments button on "+pageName, action.BOOLEAN,timeOut), "Visibility",timeOut, "Create Commitments button on "+pageName);
+		return isDisplayed(driver, FindElement(driver, "//"+xpath+"[text()='Create Commitments' or @title='Create Commitments']", "Create Commitments button on "+pageName, action.BOOLEAN,timeOut), "Visibility",timeOut, "Create Commitments button on "+pageName);
 	}
 	
 	@FindBy(xpath="//h2[@class='topName']")

@@ -220,7 +220,12 @@ public class EnumConstants {
 			public String toString() {
 				return "Installed Packages";
 		}
+	},CommunicationTemplates{
+		@Override
+		public String toString() {
+			return "Communication Templates";
 	}
+}
 	};
 	
 	public static enum objectFeatureName{
@@ -234,9 +239,9 @@ public class EnumConstants {
 			@Override
 			public String toString() {
 				if(ExcelUtils.readDataFromPropertyFile("Mode").equalsIgnoreCase(Mode.Classic.toString())){
-					return "My Templates";
+					return "Classic Email Templates";
 				}else {
-					return "My Templates";
+					return "Classic Email Templates";
 				}
 		}
 	}

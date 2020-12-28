@@ -30,7 +30,7 @@ public interface MarketingInitiativesPageErrorMsg {
 	
 	// Captial Call Notice of Commitment Email Template Error Message................................
 	
-	public static String companyName="Navatar";
+	public static String companyName="Pine Labs";
 	
 	public static String salutation(String ContactFirstName) {
 		return "Dear "+ContactFirstName;
