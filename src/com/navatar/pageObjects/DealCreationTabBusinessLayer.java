@@ -885,7 +885,12 @@ public class DealCreationTabBusinessLayer extends DealCreationTab {
 
 		if(labelName.equalsIgnoreCase(ContactPageFieldLabelText.Description.toString()) || labelName.equalsIgnoreCase(ContactPageFieldLabelText.Mailing_Street.toString()) || labelName.equalsIgnoreCase(ContactPageFieldLabelText.Other_Street.toString())) {
 			finalXpath=xpath+textAreaXpath;
-		}else {
+		}else if (labelName.equalsIgnoreCase(excelLabel.Email.toString())) {
+			xpath = "//*[text()='" + finalLabelName + "']";
+			inputXpath = "/../../following-sibling::td//input";
+			finalXpath=xpath+inputXpath;
+		}
+		else {
 			finalXpath=xpath+inputXpath;
 		}
 		ele = isDisplayed(driver,
