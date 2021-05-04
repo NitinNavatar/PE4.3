@@ -92,17 +92,17 @@ public class ContactsPageBusinessLayer extends ContactsPage implements ContactPa
 					action.BOOLEAN)) {
 				if (sendKeys(driver, getContactLastName(environment, mode, 60), contactLastName, "Contact Last Name",
 						action.BOOLEAN)) {
-					
 					if(creationPage.toString().equalsIgnoreCase(CreationPage.InstitutionPage.toString())) {
 						
 					}else {
 						if (sendKeys(driver, getLegalName(environment, mode, 60), legalName, "Legal Name",
 								action.SCROLLANDBOOLEAN)) {
 							if (mode.equalsIgnoreCase(Mode.Lightning.toString())) {
-								ThreadSleep(2000);
+								ThreadSleep(1000);
 								if (click(driver,
 										FindElement(driver,
-												"//li//*[@title='"+legalName+"']",
+												"//div[contains(@class,'uiAutocomplete')]//a//div[@title='" + legalName
+												+ "']",
 												"Legal Name List", action.THROWEXCEPTION, 30),
 										legalName + "   :   Legal Name", action.BOOLEAN)) {
 									appLog.info(legalName + "  is present in list.");
@@ -132,7 +132,7 @@ public class ContactsPageBusinessLayer extends ContactsPage implements ContactPa
 								}
 								
 							}
-							if (click(driver, getCustomTabSaveBtn(environment, mode, 60), "Save Button",
+							if (click(driver, getSaveButton(environment, mode, 60), "Save Button",
 									action.SCROLLANDBOOLEAN)) {
 								appLog.info("Clicked on save button");
 								if(creationPage.toString().equalsIgnoreCase(CreationPage.InstitutionPage.toString())) {
@@ -446,13 +446,13 @@ public class ContactsPageBusinessLayer extends ContactsPage implements ContactPa
 		if (sendKeys(driver,getOfficeLocationTextBox_Lighting(environment, mode, 10), searchText, "Office Location Input Box", action.SCROLLANDBOOLEAN)) {
 			ThreadSleep(2000);
 				for(int i=0;i<values.length;i++){
-					ele=isDisplayed(driver, FindElement(driver, "//div[@title='"+values[i]+"']",values[i]+" text value", action.SCROLLANDBOOLEAN, 20),"visibility", 20,values[i]+" text value");
+					ele=isDisplayed(driver, FindElement(driver, "//*[@title='"+values[i]+"']",values[i]+" text value", action.SCROLLANDBOOLEAN, 20),"visibility", 20,values[i]+" text value");
 				
 					if(ele!=null) {
 						appLog.info(values[i]+" is visible in look up popup");	
 						
 						if(i==values.length-1){
-						ele=isDisplayed(driver, FindElement(driver, "//div[@title='"+values[0]+"']",values[0]+" text value", action.SCROLLANDBOOLEAN, 20),"visibility", 20,values[0]+" text value");
+						ele=isDisplayed(driver, FindElement(driver, "//*[@title='"+values[0]+"']",values[0]+" text value", action.SCROLLANDBOOLEAN, 20),"visibility", 20,values[0]+" text value");
 						if(click(driver, ele, values[0]+" text value", action.SCROLLANDBOOLEAN)) {
 							appLog.info("clicked on "+values[0]+" in lookup pop up");
 							return true;

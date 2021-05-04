@@ -1742,7 +1742,7 @@ public class BasePageBusinessLayer extends BasePage implements BasePageErrorMess
 		WebElement ele=null;
 		List<WebElement> eles=null;
 		if (mode.equalsIgnoreCase(Mode.Lightning.toString())){
-		eles	=FindElements(driver, "//span[text()='"+RLString+"']/../../../../../following-sibling::div//a[@title='New']", "new button");
+		eles	=FindElements(driver, "//span[text()='"+RLString+"']/../../../../following-sibling::div//a[@title='New']", "new button");
 		for (int i = 0;i<eles.size();i++){
 			if(isDisplayed(driver, eles.get(i), "visibility", 1, "new button")!=null){
 				log(LogStatus.PASS, "trying to click "+i+" th new button", YesNo.No);
@@ -1843,7 +1843,7 @@ public class BasePageBusinessLayer extends BasePage implements BasePageErrorMess
 			if (viewAllOrNew)
 				xpath = "/ancestor::article//span[text()='View All']";
 			else
-				xpath = "/../../../../../following-sibling::div//a[@title='New']";
+				xpath = "/../../../../following-sibling::div//a[@title='New']";
 			((JavascriptExecutor) driver)
 			.executeScript("window.scrollTo(0,0);");
 			int widgetTotalScrollingWidth = Integer.parseInt(String.valueOf(((JavascriptExecutor) driver)
@@ -1852,7 +1852,7 @@ public class BasePageBusinessLayer extends BasePage implements BasePageErrorMess
 			int i = 0;
 			WebElement el=null;
 			while (el==null) {
-				el=isDisplayed(driver,FindElement(driver, "//span[text()='"+rl.toString()+"']"+xpath, rl.toString(), action.BOOLEAN, 5) , "visibility", 5, rl.toString());
+				el=isDisplayed(driver,FindElement(driver, "//*[text()='"+rl.toString()+"']"+xpath, rl.toString(), action.BOOLEAN, 5) , "visibility", 5, rl.toString());
 				((JavascriptExecutor) driver).executeScript("window.scrollBy( 0 ,"+j+")");
 				i+=j;
 				if (i >= widgetTotalScrollingWidth) {
@@ -1880,7 +1880,7 @@ public class BasePageBusinessLayer extends BasePage implements BasePageErrorMess
 			WebElement el=null;
 			while (el==null) {
 				if (rl == RelatedList.Commitments)
-					el=isDisplayed(driver,FindElement(driver, "//button[text()='Create Commitments' or @title='Create Commitments']", rl.toString(), action.BOOLEAN, 5) , "visibility", 5, rl.toString());
+					el=isDisplayed(driver,FindElement(driver, "//*[text()='Create Commitments' or @title='Create Commitments']", rl.toString(), action.BOOLEAN, 5) , "visibility", 5, rl.toString());
 				else
 				el=isDisplayed(driver,FindElement(driver, "//span[text()='"+rl.toString()+"']", rl.toString(), action.BOOLEAN, 5) , "visibility", 5, rl.toString());
 				((JavascriptExecutor) driver).executeScript("window.scrollBy( 0 ,"+j+")");

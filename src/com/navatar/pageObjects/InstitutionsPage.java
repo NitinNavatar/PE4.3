@@ -94,9 +94,13 @@ public class InstitutionsPage extends BasePageBusinessLayer {
 	 * @return the radioButtonforNewInstitution
 	 */
 	public WebElement getRadioButtonforRecordType(String recordType,int timeOut) {
+		
 		String xpath="//div[@class='changeRecordTypeRow']//span[text()='"+recordType+"']/../..//input";
 		WebElement ele = null;
 		ThreadSleep(500);
+		if(recordType.equalsIgnoreCase("Fund Manager's Fund")) {
+			xpath=	"//div[@class='changeRecordTypeRow']//span[contains(text(),'Fund Manager') and contains(text(),'s Fund')]/../..//input";
+		}
 		ele=FindElement(driver, xpath, "radio button of record type "+recordType, action.SCROLLANDBOOLEAN,timeOut);
 		ThreadSleep(500);
 		return isDisplayed(driver,ele,"visibility",timeOut,"radio button of record type "+recordType);
@@ -187,7 +191,7 @@ public class InstitutionsPage extends BasePageBusinessLayer {
 	@FindBy(xpath="//td[@class='pbButton']//input[@name='newContact']")
 	private WebElement newContactBtn_Classic;
 	
-	@FindBy(xpath="//span[contains(text(),'Contacts')]/ancestor::header/following-sibling::div[@class='slds-no-flex']//a")
+	@FindBy(xpath="//span[contains(text(),'Contacts')]/../../../../..//following-sibling::div//a[@title='New']")
 	private WebElement newContactBtn_Lighting;
 	
 	
@@ -253,7 +257,7 @@ public class InstitutionsPage extends BasePageBusinessLayer {
 	@FindBy(xpath="//h3[text()='Office Locations']/../following-sibling::td/input[@title='New Office Location']")
 	private WebElement newOfficeLocationBtn_Classic;
 	
-	@FindBy(xpath="//span[text()='Office Locations']/ancestor::article//a/div[@title='New']")
+	@FindBy(xpath="//span[text()='Office Locations']/../../../../../following-sibling::div//*[text()='New']")
 	private WebElement newofficeLocationBtn_Lighting;
 	 
 	public WebElement getNewOfficeLocationButton(String environment,String mode,RecordType recordType,int timeOut){

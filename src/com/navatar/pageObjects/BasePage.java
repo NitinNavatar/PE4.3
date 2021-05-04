@@ -601,7 +601,7 @@ public abstract class BasePage {
 		return isDisplayed(driver, navatarInvestorManagerTab, "Visibility", timeOut, "Navatar Investor Manager Tab");
 	}
 
-	@FindBy(xpath="(//div[contains(@class,'uiTooltip')])[7]")
+	@FindBy(xpath="(//div[contains(@class,'uiTooltip')])[8]")
 	private WebElement salesForceLightingIcon;
 
 	/**
@@ -2977,7 +2977,7 @@ public abstract class BasePage {
 		return isDisplayed(driver, scrollBoxforPageGrid, "Visibility", timeOut, "Scroll Box for Page Grid");
 		}
 	
-	@FindBy(xpath="//a[@title='Select List View']")
+	@FindBy(xpath="//*[@title='Select List View']")
 	private WebElement selectListIcon_Lighting;
 
 	/**

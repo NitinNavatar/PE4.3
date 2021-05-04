@@ -1566,8 +1566,11 @@ public class CommonLib extends EnumConstants implements Comparator<String>  {
 	 */
 	public static String getDateAccToTimeZone(String timeZone,String format){
 		try{
+			  String[] formatDate = format.split("/");
+			  format = formatDate[0]+"/"+formatDate[1]+"/"+formatDate[2].toLowerCase();
 			  DateFormat formatter= new SimpleDateFormat(format);
 			    formatter.setTimeZone(TimeZone.getTimeZone(timeZone));
+			    System.out.println(new Date());
 			 return (formatter.format(new Date()));
 		     
 		}catch(Exception e){

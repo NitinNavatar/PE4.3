@@ -97,7 +97,7 @@ public class InstitutionsPageBusinessLayer extends InstitutionsPage {
 										ThreadSleep(1000);
 										if (click(driver,
 												FindElement(driver,
-														"//li//*[@title='"+labelValue[i]+"']",
+														"//*[contains(@class,'listbox')]//*[@title='"+labelValue[i]+"']",
 														"Legal Name List", action.SCROLLANDBOOLEAN, 30),
 												labelValue[i] + "   :   Legal Name", action.SCROLLANDBOOLEAN)) {
 											appLog.info(labelValue[i] + "  is present in list.");
@@ -744,13 +744,13 @@ public class InstitutionsPageBusinessLayer extends InstitutionsPage {
 		} else {
 			
 			if (finalLabelName.contains("Street")) {
-				xpath = "//label//span[text()='Street']/../following-sibling::textarea";
+				xpath = "//label[text()='Street']/following-sibling::*//textarea";
 			}else if(finalLabelName.contains("Organization Name")) {
-				xpath = "//label//span[text()='Organization Name']/../following-sibling::div";
+				xpath = "//label[text()='Organization Name']/following-sibling::div";
 			}else if(finalLabelName.contains("Primary"))
-				xpath="//label/span[text()='Primary']/../following-sibling::input";
+				xpath="//label/span[text()='Primary']/../following-sibling::*//input";
 			else{
-				xpath = "//*[text()='"+finalLabelName+"']/../following-sibling::input";
+				xpath = "//*[text()='"+finalLabelName+"']/following-sibling::*//input";
 			}
 			
 		}
@@ -759,8 +759,8 @@ public class InstitutionsPageBusinessLayer extends InstitutionsPage {
 			if (finalLabelName.contains("Primary")) {
 				
 				if (labelWithValue[1].toString().contains("checked")) {
-				
-					if (click(driver, ele, finalLabelName, action.BOOLEAN)) {
+					scrollDownThroughWebelement(driver, ele, "primary");
+					if (clickUsingJavaScript(driver, ele, finalLabelName, action.BOOLEAN)) {
 						log(LogStatus.INFO, "Clicked for Primary Label", YesNo.No);
 					}else{
 						saa.assertTrue(false, "Not Able to Click for Primary Label");

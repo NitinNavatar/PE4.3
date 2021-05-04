@@ -24,7 +24,7 @@ public class ContactsPage extends BasePageBusinessLayer {
 	@FindBy(xpath="//input[@name='name_firstcon2']")
 	private WebElement contactFirstName_Classic;
 	
-	@FindBy(xpath="//*[text()='First Name']/following-sibling::div/input")
+	@FindBy(xpath="//span[text()='First Name']/../following-sibling::input")
 	private WebElement contactFirstName_Lighting;
 
 	/**
@@ -42,7 +42,7 @@ public class ContactsPage extends BasePageBusinessLayer {
 	@FindBy(xpath="//input[@name='name_lastcon2']")
 	private WebElement contactLastName_Classic;
 	
-	@FindBy(xpath="//*[text()='Last Name']/following-sibling::div/input")
+	@FindBy(xpath="//span[text()='Last Name']/../following-sibling::input")
 	private WebElement contactLastName_Lighting;
 
 	/**
@@ -61,7 +61,7 @@ public class ContactsPage extends BasePageBusinessLayer {
 	@FindBy(xpath="//div[@class='requiredInput']//span//input")
 	private WebElement legalName_Classic;
 	
-	@FindBy(xpath="//*[text()='Legal Name']/following-sibling::div//input[contains(@placeholder,'Search Institutions')]")
+	@FindBy(xpath="//span[text()='Legal Name']/../following-sibling::div//input[@title='Search Institutions']")
 	private WebElement legalName_Lighting;
 
 	/**
@@ -80,7 +80,7 @@ public class ContactsPage extends BasePageBusinessLayer {
 	@FindBy(xpath="//table[@class='detailList']//input[@name='con15']")
 	private WebElement emailId_Clasic;
 	
-	@FindBy(xpath="//*[text()='Email']/following-sibling::div/input[@inputmode='email']")
+	@FindBy(xpath="//span[text()='Email']/../following-sibling::input[@inputmode='email']")
 	private WebElement emailId_Lighting;
 
 	/**
@@ -179,7 +179,7 @@ public class ContactsPage extends BasePageBusinessLayer {
 	
 	}
 	
-	@FindBy(xpath="//input[@title='Search Office Locations']")
+	@FindBy(xpath="//input[contains(@placeholder,'Search Office Locations')]")
 	private WebElement officeLocationTextBox_Lighting;
 
 	/**
