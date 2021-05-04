@@ -246,7 +246,7 @@ public class CapitalCallsPageBusinessLayer extends CapitalCallsPage {
 					}else if (finalLabelName.contains("Capital Amount")||finalLabelName.contains("Management Fee")||finalLabelName.contains("Other Fee")||finalLabelName.contains("Call Amount Received"))
 						xpath = "//*[text()='Capital Call Information']/../..//*[text()='"+finalLabelName+"']/following-sibling::div//input";
 					else if(finalLabelName.contains("Drawdown")||finalLabelName.contains("Commitment") || finalLabelName.contains("CC No") || finalLabelName.contains("Call Amount"))
-						xpath = "//*[text()='Capital Call Information']/../..//span[text()='Fund Drawdown']/../following-sibling::div//*[text()='"+labelValue+"']";
+						xpath = "//*[text()='Capital Call Information']/../..//span[text()='"+finalLabelName+"']/../following-sibling::div//*[text()='"+labelValue+"']";
 				}
 				
 			}

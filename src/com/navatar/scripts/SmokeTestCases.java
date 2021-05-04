@@ -1290,7 +1290,7 @@ public class SmokeTestCases extends BaseLib {
 						if (click(driver, market.getSelectAReportLookUpIcon(20), "select a report look up icon",
 								action.SCROLLANDBOOLEAN)) {
 							String folderName[] = { reportFolderName, "Bulk E-Mail Reports" };
-							for (int i = 0; i < folderName.length; i++) {
+							
 								 ele = market.getSelectAReportPopUpFileName(reportFolderName, reportName, 20);
 								if (ele != null) {
 									appLog.info(reportFolderName + " is visible in select a reports look up pop up");
@@ -1305,7 +1305,43 @@ public class SmokeTestCases extends BaseLib {
 											+ " folder select a reports look up pop up", YesNo.Yes);
 
 								}
-							}
+								
+								reportFolderName="Bulk E-mail";
+								reportName="Affiliated Contacts";
+								ele = market.getSelectAReportPopUpFileName(reportFolderName, reportName, 20);
+								if (ele != null) {
+									appLog.info(reportFolderName + " is visible in select a reports look up pop up");
+									appLog.info(reportName + " is visible in " + reportFolderName
+											+ " folder select a reports look up pop up");
+								} else {
+									appLog.error(reportName + " is not visible in " + reportFolderName
+											+ " folder select a reports look up pop up");
+									sa.assertTrue(false, reportName + " is not visible in " + reportFolderName
+											+ " folder select a reports look up pop up");
+									log(LogStatus.ERROR, reportName + " is not visible in " + reportFolderName
+											+ " folder select a reports look up pop up", YesNo.Yes);
+
+								}
+								
+								reportFolderName="Bulk E-mail";
+								reportName="Contacts with Contact Roles";
+								ele = market.getSelectAReportPopUpFileName(reportFolderName, reportName, 20);
+								if (ele != null) {
+									appLog.info(reportFolderName + " is visible in select a reports look up pop up");
+									appLog.info(reportName + " is visible in " + reportFolderName
+											+ " folder select a reports look up pop up");
+								} else {
+									appLog.error(reportName + " is not visible in " + reportFolderName
+											+ " folder select a reports look up pop up");
+									sa.assertTrue(false, reportName + " is not visible in " + reportFolderName
+											+ " folder select a reports look up pop up");
+									log(LogStatus.ERROR, reportName + " is not visible in " + reportFolderName
+											+ " folder select a reports look up pop up", YesNo.Yes);
+
+								}
+								
+								
+							
 							if (sendKeys(driver, market.getSelectAReportSearchTextBox(30),
 									"Sample Report: # of Contacts", "select a reports search text box",
 									action.SCROLLANDBOOLEAN)) {
@@ -3261,7 +3297,7 @@ public class SmokeTestCases extends BaseLib {
 		switchToDefaultContent(driver);
 		if (market.clickOnTab(environment, mode, TabName.InstituitonsTab)) {
 			if (ins.clickOnCreatedCompany(environment, mode, SmokeCOM1)) {
-				appLog.info("clicked on Fund : " + Smoke_Fund1);
+				appLog.info("clicked on Company : " + SmokeCOM1);
 				
 				for(int i=0; i<2; i++) {
 					if (mode.toString().equalsIgnoreCase(Mode.Lightning.toString())) {
@@ -3442,7 +3478,7 @@ public class SmokeTestCases extends BaseLib {
 						if(mode.equalsIgnoreCase(Mode.Lightning.toString())) {
 							switchToFrame(driver, 30, home.getCreateFundraisingsFrame_Lighting(20));
 						}
-						if(click(dDriver, home.getSelectFundPopUpCancelBtn(10), "cancel button", action.SCROLLANDBOOLEAN)) {
+						if(click(driver, home.getSelectFundPopUpCancelBtn(10), "cancel button", action.SCROLLANDBOOLEAN)) {
 							log(LogStatus.INFO, "clicked on cancel button in select fund popup", YesNo.No);
 						}else {
 							log(LogStatus.ERROR, "Not able to click on cancel button in select fund popup", YesNo.Yes);
@@ -4047,10 +4083,13 @@ public class SmokeTestCases extends BaseLib {
 																sa.assertTrue(false, "fundraising contact record contact is not matched");
 															}
 //														home.getFundraisingContactPopUpApplyBtn(20);
-														//System.err.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>.");
+														System.err.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>.");
 														ThreadSleep(5000);
-//														Scanner scn = new Scanner(System.in);
-//														scn.next();
+											//			Scanner scn = new Scanner(System.in);
+											//			scn.next();
+														System.err.println("222>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>.");
+														
+														ThreadSleep(10000);
 														if(clickUsingJavaScript(driver, home.getFundraisingContactPopUpApplyBtn(20), "apply button", action.SCROLLANDBOOLEAN)) {
 															log(LogStatus.INFO, "clicked on apply button", YesNo.No);
 															ThreadSleep(5000);
@@ -5925,6 +5964,8 @@ public class SmokeTestCases extends BaseLib {
 						ThreadSleep(3000);
 						windowScrollYAxis(driver, 0, 500);
 						List<WebElement> lst = market.getemailProspectContentGrid("Email Sent", 20);
+					//	scn.nextLine();
+						System.err.println(">>>>>>>>><<<<<<<<<<<<");
 						if (!lst.isEmpty()) {
 							String ActualDate = lst.get(1).getText().trim();
 							if (market.verifyDate(ActualDate, null, "Last Mass Email")) {
@@ -6465,6 +6506,7 @@ public class SmokeTestCases extends BaseLib {
 							if(click(driver, home.getCreateCommitmentBtn(20, TopOrBottom.BOTTOM), "create commitment button", action.SCROLLANDBOOLEAN)) {
 								log(LogStatus.INFO, "click on create commitment button", YesNo.No);
 								ThreadSleep(2000);
+						//		scn.nextLine();
 								if(click(driver, home.getCreateCommitmentOkBtn(30), "OK button", action.SCROLLANDBOOLEAN)) {
 									log(LogStatus.INFO, "clicked on OK button", YesNo.No);
 									ExcelUtils.writeData(smokeFilePath, todayDate, "Commitments", excelLabel.Variable_Name,"SmokeCOMM1", excelLabel.Final_Commitment_Date);
@@ -6999,6 +7041,10 @@ public class SmokeTestCases extends BaseLib {
 				log(LogStatus.INFO, "click on created FR "+Smoke_FR1, YesNo.No);
 				if(frsp.clickOnShowMoreActionDownArrow(environment, mode, PageName.FundraisingPage, ShowMoreActionDropDownList.Create_Commitments,20)) {
 					log(LogStatus.INFO, "clicked on create commitment button", YesNo.No);
+					ThreadSleep(5000);
+					//	scn.nextLine();
+					System.err.println(">>>>>>>>>>>>><<<<<<<<<<<<<<");
+					ThreadSleep(5000);
 					if(home.commitmentInfoAndAdditionalInfo(environment, mode, commitmentInformation, null,null,SmokeCoMM3_PlacementFee)) {
 						log(LogStatus.INFO, "All commitment information and additional information is passed successfully", YesNo.Yes);
 						if(mode.equalsIgnoreCase(Mode.Lightning.toString())) {
@@ -7008,7 +7054,10 @@ public class SmokeTestCases extends BaseLib {
 						if(home.writeTotalAmountInExcelSheet(smokeFilePath, "SmokeFund1", "Funds")) {
 							if(click(driver, home.getCreateCommitmentBtn(20, TopOrBottom.BOTTOM), "create commitment button", action.SCROLLANDBOOLEAN)) {
 								log(LogStatus.INFO, "click on create commitment button", YesNo.No);
+								System.err.println(">>>>>>>>>>>>>>>>>>>>>>>>>>");
 								ThreadSleep(2000);
+							//	scn.nextLine();
+								System.err.println(">>>>>>>>>>>>>>>>>>>>>>>>>>");
 								if(click(driver, home.getCreateCommitmentOkBtn(30), "OK button", action.SCROLLANDBOOLEAN)) {
 									log(LogStatus.INFO, "clicked on OK button", YesNo.No);
 									ExcelUtils.writeData(smokeFilePath, ThreeDayeAfterDate, "Commitments", excelLabel.Variable_Name,"SmokeCOMM3", excelLabel.Final_Commitment_Date);
@@ -7172,8 +7221,8 @@ public class SmokeTestCases extends BaseLib {
 										}
 
 									}else {
-										log(LogStatus.ERROR, "clicked on created institution "+SmokeINS1, YesNo.Yes);
-										sa.assertTrue(false, "clicked on created institution "+SmokeINS1);
+										log(LogStatus.ERROR, "not able to clicked on created institution "+SmokeINS1, YesNo.Yes);
+										sa.assertTrue(false, "not able to clicked on created institution "+SmokeINS1);
 									}
 								}else {
 									log(LogStatus.ERROR, "Not able to click on tab so cannot verify commitment details", YesNo.No);
@@ -7307,6 +7356,10 @@ public class SmokeTestCases extends BaseLib {
 						if(click(driver, home.getCreateCommitmentBtn(20, TopOrBottom.BOTTOM), "create commitment button", action.SCROLLANDBOOLEAN)) {
 							log(LogStatus.INFO, "click on create commitment button", YesNo.No);
 							ThreadSleep(2000);
+							System.err.println(">>>>>>>>>>>>>>>>>>>>>>>>>>");
+							ThreadSleep(2000);
+					//		scn.nextLine();
+							System.err.println(">>>>>>>>>>>>>>>>>>>>>>>>>>");
 							if(click(driver, home.getCreateCommitmentOkBtn(30), "OK button", action.SCROLLANDBOOLEAN)) {
 								log(LogStatus.INFO, "clicked on OK button", YesNo.No);
 								ExcelUtils.writeData(smokeFilePath, SevenDayeAfterDate, "Commitments", excelLabel.Variable_Name,"SmokeCOMM5", excelLabel.Final_Commitment_Date);
@@ -7852,6 +7905,10 @@ public class SmokeTestCases extends BaseLib {
 								if(click(driver, home.getCreateCommitmentBtn(20, TopOrBottom.BOTTOM), "create commitment button", action.SCROLLANDBOOLEAN)) {
 									log(LogStatus.INFO, "click on create commitment button", YesNo.No);
 									ThreadSleep(2000);
+									System.err.println(">>>>>>>>>>>>>>>>>>>>>>>>>>");
+									ThreadSleep(2000);
+								//	scn.nextLine();
+									System.err.println(">>>>>>>>>>>>>>>>>>>>>>>>>>");
 									if(click(driver, home.getCreateCommitmentOkBtn(30), "OK button", action.SCROLLANDBOOLEAN)) {
 										log(LogStatus.INFO, "clicked on OK button", YesNo.No);
 										ExcelUtils.writeData(smokeFilePath, TenDayAfterDate, "Commitments", excelLabel.Variable_Name,"SmokeCOMM6", excelLabel.Final_Commitment_Date);
@@ -8212,6 +8269,10 @@ public class SmokeTestCases extends BaseLib {
 								if(click(driver, home.getCreateCommitmentBtn(20, TopOrBottom.BOTTOM), "create commitment button", action.SCROLLANDBOOLEAN)) {
 									log(LogStatus.INFO, "click on create commitment button", YesNo.No);
 									ThreadSleep(2000);
+									System.err.println(">>>>>>>>>>>>>>>>>>>>>>>>>>");
+									ThreadSleep(2000);
+								//	scn.nextLine();
+									System.err.println(">>>>>>>>>>>>>>>>>>>>>>>>>>");
 									if(click(driver, home.getCreateCommitmentOkBtn(30), "OK button", action.SCROLLANDBOOLEAN)) {
 										log(LogStatus.INFO, "clicked on OK button", YesNo.No);
 										ExcelUtils.writeData(smokeFilePath, FifteenDayAfterDate, "Commitments", excelLabel.Variable_Name,"SmokeCOMM7", excelLabel.Final_Commitment_Date);
@@ -11700,13 +11761,14 @@ public class SmokeTestCases extends BaseLib {
 						if (mode.equalsIgnoreCase(Mode.Lightning.toString())){
 							switchToFrame(driver, 30, fd.getEmailingFrame_Lighting(30));
 						}
-
+						ThreadSleep(5000);
 						if (i==1) {
 							ele = fd.getFundDrawDownBackArrowLink(environment,mode, 60);
 						} else {
 							ele = fd.getfundDrawDownCancelButton(environment,mode, 60);
 						}
-
+						scrollDownThroughWebelement(driver, ele, "Back Arrow/Cancel Btn");
+						ThreadSleep(5000);
 						if (clickUsingJavaScript(driver, ele, "Back Arrow/Cancel Btn",action.BOOLEAN)) {
 							appLog.info("Clicked on Back Arrow/Cancel");
 						}else{
@@ -11720,11 +11782,16 @@ public class SmokeTestCases extends BaseLib {
 						sa.assertTrue(false, "could not click on show more dropdown : "+ShowMoreActionDropDownList.Create_Drawdown);
 
 					}
-					switchToDefaultContent(driver);
+//					scn.nextLine();
+//					System.err.println(">>>>>>><<<<<<<<<<<<<<<<<<<<<<<");
 					ThreadSleep(5000);
+					switchToDefaultContent(driver);
+					refresh(driver);
+					ThreadSleep(10000);
 				}
 
-
+//				scn.nextLine();
+//				System.err.println(">>>>>>><<<<<<<<<<<<<<<<<<<<<<<");
 				switchToDefaultContent(driver);
 				// Azhar End
 
@@ -11999,9 +12066,15 @@ public class SmokeTestCases extends BaseLib {
 								log(LogStatus.ERROR,"call amount value could not be verified"+getText(driver,fd.getCapitalCallValueCreateDrawdown(30), "capital call value", action.BOOLEAN)+ " and "+callAmount, YesNo.Yes);
 								sa.assertTrue(false, "call amount value could not be verified");
 							}
-							
+							System.err.println(">>><<<");
+					//		scn.nextLine();
+							System.err.println(">>><<<");
+							ThreadSleep(5000);
 							click(driver, fd.getSetupCapitalCalls(30), "setup capital call sbutton", action.SCROLLANDBOOLEAN);
-							
+							System.err.println(">>><<<");
+					//		scn.nextLine();
+							System.err.println(">>><<<");
+							ThreadSleep(5000);
 							String[][] capitalCallGrids = {
 									{Smoke_LP1,SmokeCOMM1_ID,SmokeCOMM1_CommitmentAmount,fd.CapitalAmountAndManagementFeeAndOtherFee(SmokeCOMM1_ID, SmokeCOMM1_CommitmentAmount, totalCommitments, capitalAmount),
 										fd.CapitalAmountAndManagementFeeAndOtherFee(SmokeCOMM1_ID, SmokeCOMM1_CommitmentAmount, totalCommitments, ManagementFee),fd.CapitalAmountAndManagementFeeAndOtherFee(SmokeCOMM1_ID, SmokeCOMM1_CommitmentAmount, totalCommitments, OtherFee)
@@ -12019,7 +12092,10 @@ public class SmokeTestCases extends BaseLib {
 								fd.CapitalAmountAndManagementFeeAndOtherFee(SmokeCOMM5_ID, SmokeCOMM5_CommitmentAmount, totalCommitments, ManagementFee),fd.CapitalAmountAndManagementFeeAndOtherFee(SmokeCOMM5_ID, SmokeCOMM5_CommitmentAmount, totalCommitments, OtherFee)
 							}
 							};
-							
+							System.err.println(">>><<<");
+					//		scn.nextLine();
+							System.err.println(">>><<<");
+							ThreadSleep(5000);
 							for (int i =0;i<capitalCallGrids.length;i++) {
 								if (fd.verifyOneRowCreateDrawdownPage(capitalCallGrids[i])) {
 									log(LogStatus.INFO, "data for row "+i+" was successfully verified", YesNo.No);
@@ -14467,7 +14543,8 @@ public class SmokeTestCases extends BaseLib {
 								} else {
 									ele = fd.getfundDistributionCancelButton(environment,mode, 10);
 								}
-
+								scrollDownThroughWebelement(driver, ele, "Back Arrow/Cancel Btn");
+								ThreadSleep(2000);
 								if (clickUsingJavaScript(driver, ele, "Back Arrow/Cancel Btn",action.BOOLEAN)) {
 									appLog.info("Clicked on Back Arrow/Cancel : "+i);
 								}else{
@@ -14475,7 +14552,9 @@ public class SmokeTestCases extends BaseLib {
 									sa.assertTrue(false, "Not Able to Click on Back Arrow/Cancel Btn : "+i);
 									log(LogStatus.SKIP, "Not Able to Click on Back Arrow/Cancel Btn : "+i, YesNo.Yes);
 								}
-
+								ThreadSleep(5000);
+								refresh(driver);
+								ThreadSleep(10000);
 							}
 						else {
 							log(LogStatus.ERROR, "could not click on show more dropdown : "+i, YesNo.Yes);
@@ -14628,13 +14707,14 @@ public class SmokeTestCases extends BaseLib {
 								if (mode.equalsIgnoreCase(Mode.Lightning.toString())){
 								switchToFrame(driver, 30, fd.getEmailingFrame_Lighting(30));
 								}
-								
+								ThreadSleep(2000);
 								if (i==1) {
 									ele = fd.getFundDistributionBackArrowLink(environment,mode, 10);
 								} else {
 									ele = fd.getfundDistributionCancelButton(environment,mode, 10);
 								}
-
+								scrollDownThroughWebelement(driver, ele, "Back Arrow/Cancel Btn");
+								ThreadSleep(2000);
 								if (clickUsingJavaScript(driver, ele, "Back Arrow/Cancel Btn",action.BOOLEAN)) {
 									appLog.info("Clicked on Back Arrow/Cancel : "+i);
 								}else{
@@ -14642,6 +14722,9 @@ public class SmokeTestCases extends BaseLib {
 									sa.assertTrue(false, "Not Able to Click on Back Arrow/Cancel Btn : "+i);
 									log(LogStatus.SKIP, "Not Able to Click on Back Arrow/Cancel Btn : "+i, YesNo.Yes);
 								}
+								ThreadSleep(5000);
+								refresh(driver);
+								ThreadSleep(10000);
 
 							}
 						else {
@@ -15993,7 +16076,7 @@ public class SmokeTestCases extends BaseLib {
 										}
 									String xpath = "(//h3[text()='PROCESSING OPTIONS']/following-sibling::table)[1]//td[text()='Use my signature']/following-sibling::td/label/span";
 									 ele = FindElement(driver, xpath, "Use My Signature", action.SCROLLANDBOOLEAN, 10);
-									if (click(dDriver, ele, "Use My Signature ", action.BOOLEAN)) {
+									if (click(driver, ele, "Use My Signature ", action.BOOLEAN)) {
 										log(LogStatus.INFO, "Clicked on Use My Signature CheckBox",YesNo.No);	
 									} else {
 										sa.assertTrue(false, "Not ABle to Click on Use My Signature CheckBox");
@@ -16201,7 +16284,7 @@ public class SmokeTestCases extends BaseLib {
 			sa.assertTrue(false, "could not click on fund FundDistributions tab");
 		}
 
-		switchToDefaultContent(dDriver);
+		switchToDefaultContent(driver);
 		lp.CRMlogout(environment, mode);
 		sa.assertAll();
 	}

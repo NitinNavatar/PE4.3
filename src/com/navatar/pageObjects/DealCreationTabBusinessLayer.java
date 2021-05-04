@@ -951,6 +951,7 @@ public class DealCreationTabBusinessLayer extends DealCreationTab {
 		
 			if (selectVisibleTextFromDropDown(driver, ele,label+" Drop Down List", value)) {
 				appLog.info("Selected value from "+ label +" Drop down List : " + value);
+				ThreadSleep(2000);
 				return true;
 			}else{
 				BaseLib.sa.assertTrue(false, "Not Able to Select value from "+ label +" Drop down List : " + value);
@@ -961,6 +962,7 @@ public class DealCreationTabBusinessLayer extends DealCreationTab {
 		
 			if (sendKeys(driver, ele, value,label+" : " + value, action.BOOLEAN)) {
 				appLog.info("Entered Value on "+label+" Text Box : " + value);
+				ThreadSleep(2000);
 				return true;
 			}else{
 				BaseLib.sa.assertTrue(false, "Not Able to entered value on "+label+" Text Box : " + value);
