@@ -3049,7 +3049,7 @@ public abstract class BasePage {
 		return isDisplayed(driver, lookUpResultFrame, "Visibility", timeOut, "look up result frame");
 	}
 	
-	@FindBy(xpath = "//a[@title='Show one more action']")
+	@FindBy(xpath = "//*[text()='Related']/../../../..//*[contains(@class,'menu-button-item')]//*[@title='Show one more action' or text()='Show more actions']")
 	private WebElement relatedDrop;
 	public WebElement getrelatedDrop(int timeOut) {
 		return isDisplayed(driver, relatedDrop, "Visibility", timeOut, "relatedDrop");
@@ -3058,7 +3058,12 @@ public abstract class BasePage {
 		WebElement ele=null;
 		String xpath="";
 		if(mode.toString().equalsIgnoreCase(Mode.Lightning.toString())) {
-			xpath="button";
+			if(pageName.toString().equalsIgnoreCase(PageName.CompanyPage.toString())) {
+				xpath="a//*";
+			}else {
+				xpath="button";
+			}
+			
 		}else {
 			xpath="input";
 		}

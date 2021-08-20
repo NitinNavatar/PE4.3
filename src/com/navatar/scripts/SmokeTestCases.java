@@ -2938,7 +2938,6 @@ public class SmokeTestCases extends BaseLib {
 						
 						
 						
-						
 						if (click(driver, market.getEmailProspectStep1CancelBtn(10), "Cancel Button", action.BOOLEAN)) {
 							log(LogStatus.INFO, "clicked on top Cancel Button",YesNo.No);
 							switchToDefaultContent(driver);
@@ -4087,6 +4086,7 @@ public class SmokeTestCases extends BaseLib {
 														ThreadSleep(5000);
 											//			Scanner scn = new Scanner(System.in);
 											//			scn.next();
+														
 														System.err.println("222>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>.");
 														ThreadSleep(10000);
 														if(clickUsingJavaScript(driver, home.getFundraisingContactPopUpApplyBtn(20), "apply button", action.SCROLLANDBOOLEAN)) {
@@ -4614,7 +4614,7 @@ public class SmokeTestCases extends BaseLib {
 					}
 				}
 				windowScrollYAxis(driver, 0, 500);
-				if(click(driver, ins.getCreateFundRaisingBtn(environment, mode, PageName.InstitutionsPage, 30), "create fundraising button", action.SCROLLANDBOOLEAN)) {
+				if(click(driver, ins.getCreateFundRaisingBtn(environment, mode, PageName.CompanyPage, 30), "create fundraising button", action.SCROLLANDBOOLEAN)) {
 					if(mode.equalsIgnoreCase(Mode.Lightning.toString())) {
 						switchToFrame(driver, 30, home.getCreateFundraisingsFrame_Lighting(20));
 					}
@@ -4866,7 +4866,7 @@ public class SmokeTestCases extends BaseLib {
 					}
 				}
 				
-				if(click(driver, fund.getCreateFundRaisingBtn(environment, mode, PageName.FundsPage,30),"create fundraising button", action.SCROLLANDBOOLEAN)) {
+				if(click(driver, fund.getCreateFundRaisingBtn(environment, mode, PageName.CompanyPage,30),"create fundraising button", action.SCROLLANDBOOLEAN)) {
 					if(mode.equalsIgnoreCase(Mode.Lightning.toString())) {
 						switchToFrame(driver, 30, home.getCreateFundraisingsFrame_Lighting(20));
 					}
@@ -5089,7 +5089,7 @@ public class SmokeTestCases extends BaseLib {
 					}
 				}
 				
-				if(click(driver, fund.getCreateFundRaisingBtn(environment, mode, PageName.FundsPage,30),"create fundraising button", action.SCROLLANDBOOLEAN)) {
+				if(click(driver, fund.getCreateFundRaisingBtn(environment, mode, PageName.CompanyPage,30),"create fundraising button", action.SCROLLANDBOOLEAN)) {
 					if(mode.equalsIgnoreCase(Mode.Lightning.toString())) {
 						switchToFrame(driver, 30, home.getCreateFundraisingsFrame_Lighting(20));
 					}
@@ -5320,7 +5320,7 @@ public class SmokeTestCases extends BaseLib {
 						log(LogStatus.INFO, j+" : clicked on Fundraisings", YesNo.No);
 						ThreadSleep(2000);
 						windowScrollYAxis(driver, 0, 500);
-						if(click(driver,fund.getEmailFundraisingContactsBtn(environment, mode, 30), "email fundraising contact button", action.SCROLLANDBOOLEAN)) {
+						if(click(driver,fund.getEmailFundraisingContactsBtn(environment, mode,PageName.FundsPage, 30), "email fundraising contact button", action.SCROLLANDBOOLEAN)) {
 							if(mode.equalsIgnoreCase(Mode.Lightning.toString())) {
 								switchToFrame(driver, 20, market.getEmailFundRaisingContact_Lightning(20));
 							}
@@ -5644,7 +5644,7 @@ public class SmokeTestCases extends BaseLib {
 				if(fund.clickOnRelatedList(environment, mode, RecordType.Fund, RelatedList.Fundraisings)) {
 					ThreadSleep(2000);
 					windowScrollYAxis(driver, 0, 500);
-					if(click(driver,fund.getEmailFundraisingContactsBtn(environment, mode, 30), "email fundraising contact button", action.SCROLLANDBOOLEAN)) {
+					if(click(driver,fund.getEmailFundraisingContactsBtn(environment, mode,PageName.FundsPage, 30), "email fundraising contact button", action.SCROLLANDBOOLEAN)) {
 						if(market.EmailProspects(environment, mode,PageName.emailFundraisingContact, null, null,null,
 								ContactAndAccountName, searchContactInEmailProspectGrid.Yes, "Capital Call Notice",
 								"Capital Call Notice", "Use my signature", false)) {
@@ -5797,7 +5797,7 @@ public class SmokeTestCases extends BaseLib {
 			if(fund.clickOnCreatedFund(environment, mode, Smoke_Fund1)) {
 				appLog.info("clicked on Fund : " + Smoke_Fund1);
 				if(fund.clickOnRelatedList(environment, mode, RecordType.Fund, RelatedList.Fundraisings)) {
-					if(click(driver,fund.getEmailFundraisingContactsBtn(environment, mode, 30), "email fundraising contact button", action.SCROLLANDBOOLEAN)) {
+					if(click(driver,fund.getEmailFundraisingContactsBtn(environment, mode,PageName.FundsPage, 30), "email fundraising contact button", action.SCROLLANDBOOLEAN)) {
 						if(mode.toString().equalsIgnoreCase(Mode.Lightning.toString())) {
 							switchToFrame(driver, 20, fund.getEmailFundraisingContactFrame_Lightning(20));
 						}
@@ -5852,7 +5852,7 @@ public class SmokeTestCases extends BaseLib {
 		if(fund.clickOnTab(environment, mode, TabName.FundsTab)) {
 			if(fund.clickOnCreatedFund(environment, mode, Smoke_Fund3)) {
 				if(fund.clickOnRelatedList(environment, mode, RecordType.Fund, RelatedList.Fundraisings)) {
-					if(click(driver,fund.getEmailFundraisingContactsBtn(environment, mode, 30), "email fundraising contact button", action.SCROLLANDBOOLEAN)) {
+					if(click(driver,fund.getEmailFundraisingContactsBtn(environment, mode,PageName.FundsPage, 30), "email fundraising contact button", action.SCROLLANDBOOLEAN)) {
 						if(market.EmailProspects(environment, mode,PageName.emailFundraisingContact, "Contact:Last Name", "equals",SmokeC3_LName,
 								ContactAndAccountName, searchContactInEmailProspectGrid.No,EmailTemplate1_FolderName,
 								EmailTemplate1_TemplateName, null, false)) {
@@ -5956,7 +5956,7 @@ public class SmokeTestCases extends BaseLib {
 			if(fund.clickOnCreatedFund(environment, mode, Smoke_Fund3)) {
 				appLog.info("clicked on Fund : " + Smoke_Fund3);
 				if(fund.clickOnRelatedList(environment, mode, RecordType.Fund, RelatedList.Fundraisings)) {
-					if(click(driver,fund.getEmailFundraisingContactsBtn(environment, mode, 30), "email fundraising contact button", action.SCROLLANDBOOLEAN)) {
+					if(click(driver,fund.getEmailFundraisingContactsBtn(environment, mode,PageName.FundsPage, 30), "email fundraising contact button", action.SCROLLANDBOOLEAN)) {
 						if(mode.toString().equalsIgnoreCase(Mode.Lightning.toString())) {
 							switchToFrame(driver, 20, fund.getEmailFundraisingContactFrame_Lightning(20));
 						}
@@ -6023,7 +6023,7 @@ public class SmokeTestCases extends BaseLib {
 					if(fund.clickOnRelatedList(environment, mode, RecordType.Fund, RelatedList.Fundraisings)) {
 						ThreadSleep(2000);
 						windowScrollYAxis(driver, 0, 500);
-						if(click(driver,fund.getEmailFundraisingContactsBtn(environment, mode, 30), "email fundraising contact button", action.SCROLLANDBOOLEAN)) {
+						if(click(driver,fund.getEmailFundraisingContactsBtn(environment, mode,PageName.FundsPage, 30), "email fundraising contact button", action.SCROLLANDBOOLEAN)) {
 							if(mode.equalsIgnoreCase(Mode.Lightning.toString())) {
 								switchToFrame(driver, 20, market.getEmailFundRaisingContact_Lightning(20));
 							}
@@ -6255,6 +6255,7 @@ public class SmokeTestCases extends BaseLib {
 			log(LogStatus.ERROR, "Not able to click on fund tab so cannot send email to contact "+SmokeC1_FName+" "+SmokeC1_LName,YesNo.Yes);
 			sa.assertTrue(false, "Not able to click on fund tab so cannot send email to contact "+SmokeC1_FName+" "+SmokeC1_LName);
 		}
+		switchToDefaultContent(driver);
 		lp.CRMlogout(environment, mode);
 		sa.assertAll();
 	}
