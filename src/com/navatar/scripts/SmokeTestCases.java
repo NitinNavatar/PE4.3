@@ -8639,7 +8639,7 @@ public class SmokeTestCases extends BaseLib {
 						switchToDefaultContent(driver);
 						String monthAndYear = getSystemDate("MMM") + " " + getSystemDate("yyyy");
 						String expectedPipeLineName = Smoke_PL1CompanyName + " " + "-" + " " + monthAndYear;
-						String[] labelName = "Pipeline Name,Company,Last Stage Change Date,Highest Stage Reached,Age of Current Stage,Source Contact,Source Firm".split(",");
+						String[] labelName = "Pipeline Name,Company Name,Last Stage Change Date,Highest Stage Reached,Age of Current Stage,Source Contact,Source Firm".split(",");
 						String labelValue = expectedPipeLineName + "," + Smoke_PL1CompanyName + "," + getDateAccToTimeZone(BasePageErrorMessage.AmericaLosAngelesTimeZone, "M/d/YYYY") + ","
 								+ Smoke_PL1Stage + "," + Smoke_PL1AgeOfCurrentStage+ "," + Smoke_PL1SourceContact_Name+","+Smoke_PL1SourceFirm;
 						String[] labelValues =  labelValue.split(",");
@@ -8717,7 +8717,7 @@ public class SmokeTestCases extends BaseLib {
 								
 								String[][] dealSourceFieldsAndValues = {
 										{ excelLabel.Pipeline_Name.toString(), expectedPipeLineName },
-										{ "Company", Smoke_PL1CompanyName },
+										{ "Company Name", Smoke_PL1CompanyName },
 										{ excelLabel.Deal_Type.toString(), "" },
 										{ excelLabel.Stage.toString(), Smoke_PL1Stage },
 										{ excelLabel.Source_Contact.toString(), Smoke_PL1SourceContact_Name }};
@@ -8947,7 +8947,7 @@ public class SmokeTestCases extends BaseLib {
 							// PipeLine
 							appLog.info("Going to Verify Deal Room Information Required Field for PipeLine Layout");
 							String[][] pipeLineRowValues = { { "Pipeline Name", "Name", "string" },
-									{ "Company", "navpeII__Company__c", "reference" },
+									{ "Company Name", "navpeII__Company_Name__c", "reference" },
 									{ "Stage", "navpeII__Stage__c", "picklist" } };
 							tcsa = dctb.verifyingPipeLineRequiredFieldListDealInformationLayout(environment, mode, null,
 									pipeLineRowValues);
@@ -9336,7 +9336,7 @@ public class SmokeTestCases extends BaseLib {
 								Smoke_PL2CompanyName, excelLabel.Pipeline_Name);
 
 						String[][] labelsAndValues = { { excelLabel.Pipeline_Name.toString(), expectedPipeLineName },
-								{ "Company", Smoke_PL2CompanyName },
+								{ "Company Name", Smoke_PL2CompanyName },
 								{ excelLabel.Stage.toString(), Smoke_PL2Stage },
 								{ excelLabel.Source.toString(), Smoke_PL2Source },
 								{ excelLabel.Source_Firm.toString(), Smoke_PL2SourceFirm },
@@ -9527,7 +9527,7 @@ public class SmokeTestCases extends BaseLib {
 							Smoke_PL3CompanyName, excelLabel.Pipeline_Name);
 
 					String[][] labelsAndValues = { { excelLabel.Pipeline_Name.toString(), expectedPipeLineName },
-							{ "Company", Smoke_PL3CompanyName },
+							{ "Company Name", Smoke_PL3CompanyName },
 							{ excelLabel.Stage.toString(), Smoke_PL3Stage },
 							{ excelLabel.Source.toString(), Smoke_PL3Source },
 							{ excelLabel.Source_Firm.toString(), Smoke_PL3SourceFirm },
@@ -9621,7 +9621,7 @@ public class SmokeTestCases extends BaseLib {
 
 					String[][] dealSourceFieldsAndValues = {
 							{ excelLabel.Pipeline_Name.toString(), expectedPipeLineName },
-							{ "Company", Smoke_PL3CompanyName },
+							{ "Company Name", Smoke_PL3CompanyName },
 							{ excelLabel.Deal_Type.toString(), "" }, { excelLabel.Stage.toString(), Smoke_PL3Stage } };
 
 					if (ip.clickOnRelatedList(environment, mode, RecordType.IndividualInvestor, RelatedList.Deals_Sourced)) {
@@ -9675,7 +9675,7 @@ public class SmokeTestCases extends BaseLib {
 
 					String[][] dealSourceFieldsAndValues = {
 							{ excelLabel.Pipeline_Name.toString(), expectedPipeLineName },
-							{ "Company", Smoke_PL3CompanyName },
+							{ "Company Name", Smoke_PL3CompanyName },
 							{ excelLabel.Deal_Type.toString(), "" }, { excelLabel.Stage.toString(), Smoke_PL3Stage },
 							{ excelLabel.Source_Firm.toString(), Smoke_PL3SourceFirm },
 							{ excelLabel.Log_In_Date.toString(), "" }, { excelLabel.Investment_Size.toString(), "" } };
@@ -10140,7 +10140,7 @@ public class SmokeTestCases extends BaseLib {
 					appLog.info("Click on Created PipeLine : " + Smoke_PL1Name);
 
 					String[][] labelsAndValuesforComp = { { excelLabel.Pipeline_Name.toString(), Smoke_PL1Name },
-							{ "Company", Smoke_PL1CompanyName },
+							{ "Company Name", Smoke_PL1CompanyName },
 							{ excelLabel.Stage.toString(), Smoke_PL1Stage },
 							{ excelLabel.Last_Stage_Change_Date.toString(), getSystemDate("M/d/yyyy") },
 							{ excelLabel.Highest_Stage_Reached.toString(), Smoke_PL1HighestStageReached },
