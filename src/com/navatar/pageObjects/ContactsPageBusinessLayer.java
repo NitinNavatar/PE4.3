@@ -101,8 +101,7 @@ public class ContactsPageBusinessLayer extends ContactsPage implements ContactPa
 								ThreadSleep(1000);
 								if (click(driver,
 										FindElement(driver,
-												"//div[contains(@class,'uiAutocomplete')]//a//div[@title='" + legalName
-												+ "']",
+												"//li//*[@title='"+legalName+"']",
 												"Legal Name List", action.THROWEXCEPTION, 30),
 										legalName + "   :   Legal Name", action.BOOLEAN)) {
 									appLog.info(legalName + "  is present in list.");
@@ -132,7 +131,7 @@ public class ContactsPageBusinessLayer extends ContactsPage implements ContactPa
 								}
 								
 							}
-							if (click(driver, getSaveButton(environment, mode, 60), "Save Button",
+							if (click(driver, getCustomTabSaveBtn(environment, mode, 60), "Save Button",
 									action.SCROLLANDBOOLEAN)) {
 								appLog.info("Clicked on save button");
 								if(creationPage.toString().equalsIgnoreCase(CreationPage.InstitutionPage.toString())) {
