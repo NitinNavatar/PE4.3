@@ -6993,18 +6993,18 @@ public class SmokeTestCases extends BaseLib {
 							sa.assertTrue(false,"Not able to click on Commitment Creation cancel button");
 						}
 					} else {
-						sa.assertFalse(false,"Not Able to Click on Deal Creation Edit Button");
+						sa.assertTrue(false,"Not Able to Click on Deal Creation Edit Button");
 						appLog.error("Not Able to Click on Deal Creation Edit Button");
 						log(LogStatus.SKIP, "Not Able to Click on Deal Creation Edit Button", YesNo.Yes);
 					}
 				} else {
-					sa.assertFalse(false,"Not Able to Click on Navatar Set up Side Menu Deal Creation");
+					sa.assertTrue(false,"Not Able to Click on Navatar Set up Side Menu Deal Creation");
 					appLog.error("Not Able to Click on Navatar Set up Side Menu Deal Creation");
 					log(LogStatus.SKIP, "Not Able to Click on Navatar Set up Side Menu Deal Creation", YesNo.Yes);
 				}
 
 			} else {
-				sa.assertFalse(false,"Not Able to Click on Navatar Set up Page");
+				sa.assertTrue(false,"Not Able to Click on Navatar Set up Page");
 				appLog.error("Not Able to Click on Navatar Set up Page");
 				log(LogStatus.SKIP, "Not Able to Click on Navatar Set up Page", YesNo.Yes);
 			}
@@ -9140,14 +9140,14 @@ public class SmokeTestCases extends BaseLib {
 						}
 
 					} else {
-						sa.assertFalse(false,"Not Able to Click on Deal Creation Edit Button");
+						sa.assertTrue(false,"Not Able to Click on Deal Creation Edit Button");
 						appLog.error("Not Able to Click on Deal Creation Edit Button");
 						log(LogStatus.SKIP, "Not Able to Click on Deal Creation Edit Button", YesNo.Yes);
 					}
 				
 
 			} else {
-				sa.assertFalse(false,"Not Able to Click on Navatar Set up Page");
+				sa.assertTrue(false,"Not Able to Click on Navatar Set up Page");
 				appLog.error("Not Able to Click on Navatar Set up Page");
 				log(LogStatus.SKIP, "Not Able to Click on Navatar Set up Page", YesNo.Yes);
 			}

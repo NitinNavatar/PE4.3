@@ -179,7 +179,7 @@ public class ContactsPage extends BasePageBusinessLayer {
 	
 	}
 	
-	@FindBy(xpath="//input[@title='Search Office Locations']")
+	@FindBy(xpath="//input[@placeholder='Search Office Locations...']")
 	private WebElement officeLocationTextBox_Lighting;
 
 	/**

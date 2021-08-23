@@ -87,6 +87,15 @@ public class IndividualInvestorCreationTab extends NavatarSetupPageBusinessLayer
 	 * @return the createCommitmentFrame_Lighting
 	 */
 	public WebElement getCreateCommitmentFrame_Lighting(int timeOut) {
+		ThreadSleep(10000);
+		String xpath ="//iframe";
+		List<WebElement> elelist = FindElements(driver, xpath, "frame");
+		for (WebElement webElement : elelist) {
+			webElement = isDisplayed(driver, webElement, "Visibility", timeOut, "create commitment frame in lighting");;
+			if (webElement!=null) {
+				return webElement;
+			}
+		}
 		return isDisplayed(driver, createCommitmentFrame_Lighting, "Visibility", timeOut, "create commitment frame in lighting");
 	}
 	

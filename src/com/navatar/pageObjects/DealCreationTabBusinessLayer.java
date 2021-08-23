@@ -17,6 +17,7 @@ import java.util.List;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.seleniumhq.jetty9.util.thread.ThreadClassLoaderScope;
 
 import static com.navatar.generic.CommonLib.*;
 import static com.navatar.generic.AppListeners.*;
@@ -839,6 +840,7 @@ public class DealCreationTabBusinessLayer extends DealCreationTab {
 							WebElement ele = getSourceContactPopUpTextBoxOrRichTextBoxWebElement(environment, mode, labelNames[i].trim(), 30);
 							if(sendKeys(driver, ele, labelValue[i], labelNames[i]+" text box", action.SCROLLANDBOOLEAN)) {
 								appLog.info("passed value "+labelValue[i]+" in "+labelNames[i]+" field");
+								ThreadSleep(2000);
 							}else {
 								appLog.error("Not able to pass value "+labelValue[i]+" in "+labelNames[i]+" field");
 								BaseLib.sa.assertTrue(false, "Not able to pass value "+labelValue[i]+" in "+labelNames[i]+" field");
@@ -887,7 +889,7 @@ public class DealCreationTabBusinessLayer extends DealCreationTab {
 			finalXpath=xpath+textAreaXpath;
 		}else if (labelName.equalsIgnoreCase(excelLabel.Email.toString())) {
 			xpath = "//*[text()='" + finalLabelName + "']";
-			inputXpath = "/../../following-sibling::td//input";
+			inputXpath = "/..//following-sibling::td//input";
 			finalXpath=xpath+inputXpath;
 		}
 		else {
