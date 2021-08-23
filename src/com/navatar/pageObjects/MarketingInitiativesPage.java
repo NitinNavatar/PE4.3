@@ -1353,6 +1353,15 @@ private WebElement emailFundRaisingContact_Lightning;
  * @return the marketInitiativeFrame_Lightning
  */
 public WebElement getEmailFundRaisingContact_Lightning(int timeOut) {
+	ThreadSleep(10000);
+    String xpath ="//iframe";
+    List<WebElement> elelist = FindElements(driver, xpath, "frame");
+    for (WebElement webElement : elelist) {
+        webElement = isDisplayed(driver, webElement, "Visibility", timeOut, "create commitment frame in lighting");;
+        if (webElement!=null) {
+            return webElement;
+        }
+    }
 	return isDisplayed(driver, emailFundRaisingContact_Lightning, "Visibility", timeOut, "Email FundRaising Frame Lightning");
 }
 

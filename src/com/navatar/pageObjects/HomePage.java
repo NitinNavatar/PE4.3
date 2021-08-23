@@ -605,6 +605,15 @@ public class HomePage extends BasePageBusinessLayer {
 	 * @return the createCommitmentFrame_Lightning
 	 */
 	public WebElement getCreateCommitmentFrame_Lightning(int timeOut) {
+		ThreadSleep(10000);
+        String xpath ="//iframe";
+        List<WebElement> elelist = FindElements(driver, xpath, "frame");
+        for (WebElement webElement : elelist) {
+            webElement = isDisplayed(driver, webElement, "Visibility", 5, "create commitment frame in lighting");;
+            if (webElement!=null) {
+                return webElement;
+            }
+        }
 		return isDisplayed(driver, createCommitmentFrame_Lightning, "Visibility", timeOut, "create Commitment Frame Lightning");
 	}
 	

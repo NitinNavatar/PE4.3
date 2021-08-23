@@ -6,9 +6,12 @@ import org.openqa.selenium.support.FindBy;
 
 import com.navatar.generic.EnumConstants.ContactPageFieldLabelText;
 import com.navatar.generic.EnumConstants.Mode;
+import com.navatar.generic.EnumConstants.PageName;
 import com.navatar.generic.EnumConstants.action;
 
 import static com.navatar.generic.CommonLib.*;
+
+import java.util.List;
 
 public class FundsPage extends BasePageBusinessLayer {
 
@@ -173,6 +176,15 @@ public class FundsPage extends BasePageBusinessLayer {
 	 * @return the emailFundraisingContactFrame_Lightning
 	 */
 	public WebElement getEmailFundraisingContactFrame_Lightning(int timeOut) {
+		ThreadSleep(10000);
+        String xpath ="//iframe";
+        List<WebElement> elelist = FindElements(driver, xpath, "frame");
+        for (WebElement webElement : elelist) {
+            webElement = isDisplayed(driver, webElement, "Visibility", timeOut, "create commitment frame in lighting");;
+            if (webElement!=null) {
+                return webElement;
+            }
+        }
 		return isDisplayed(driver, emailFundraisingContactFrame_Lightning, "Visibility", timeOut, "email Fundraising Contact Frame Lightning");
 	}
 
@@ -191,4 +203,23 @@ public class FundsPage extends BasePageBusinessLayer {
 			return isDisplayed(driver, emailFundraisingContactsBtn_Classic, "Visibility", timeOut, "email fundraising contact button in "+mode);
 		}
 	}
+	
+	
+	public WebElement getEmailFundraisingContactsBtn(String environment,String mode, PageName pageName, int timeOut) {
+		WebElement ele=null;
+		String xpath="";
+		if(mode.toString().equalsIgnoreCase(Mode.Lightning.toString())) {
+			if(pageName.toString().equalsIgnoreCase(PageName.FundsPage.toString())) {
+				xpath="a//*";
+			}else {
+				xpath="button";
+			}
+			
+		}else {
+			xpath="input";
+		}
+		click(driver, getrelatedDrop(7), "related dropdown", action.SCROLLANDBOOLEAN);
+		return isDisplayed(driver, FindElement(driver, "//"+xpath+"[text()='Email Fundraising Contacts' or @title='Email Fundraising Contacts']", "Email Fundraising Contacts button on "+pageName, action.SCROLLANDBOOLEAN,timeOut), "Visibility",timeOut, "Email Fundraising Contacts button on "+pageName);
+	}
+	
 }
