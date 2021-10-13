@@ -3055,11 +3055,10 @@ public abstract class BasePage {
 		return isDisplayed(driver, relatedDrop, "Visibility", timeOut, "relatedDrop");
 	}
 	public WebElement getCreateFundRaisingBtn(String environment,String mode, PageName pageName, int timeOut) {
-		WebElement ele=null;
 		String xpath="";
 		if(mode.toString().equalsIgnoreCase(Mode.Lightning.toString())) {
 			if(pageName.toString().equalsIgnoreCase(PageName.CompanyPage.toString())) {
-				xpath="a//*";
+				xpath="button";
 			}else {
 				xpath="button";
 			}

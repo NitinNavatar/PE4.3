@@ -304,7 +304,7 @@ public class HomePage extends BasePageBusinessLayer {
 	 * @return the fundraisingContactPopUpApplyBtn
 	 */
 	public WebElement getFundraisingContactPopUpApplyBtn(int timeOut) {
-		return isDisplayed(driver, fundraisingContactPopUpApplyBtn, "Visibility", timeOut, "Fundraising Contact PopUp Apply Btn");
+		return FindElement(driver, "//div[contains(@class,'ContactAccess_fancybox')]//*[text()='Apply']", "Fundraising Contact PopUp Apply Btn",action.BOOLEAN, timeOut);
 	}
 	
 	@FindBy(xpath="//a[@title='Create Fundraisings']")

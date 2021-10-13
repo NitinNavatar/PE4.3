@@ -760,6 +760,7 @@ public class InstitutionsPageBusinessLayer extends InstitutionsPage {
 				
 				if (labelWithValue[1].toString().contains("checked")) {
 					scrollDownThroughWebelement(driver, ele, "primary");
+					ThreadSleep(2000);
 					if (clickUsingJavaScript(driver, ele, finalLabelName, action.BOOLEAN)) {
 						log(LogStatus.INFO, "Clicked for Primary Label", YesNo.No);
 					}else{

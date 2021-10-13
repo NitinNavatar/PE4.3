@@ -6795,7 +6795,7 @@ public class SmokeTestCases extends BaseLib {
 			if (bp.clickOnTab(environment, mode, TabName.NavatarSetup)) {
 				appLog.info("Able to Click on Navatar Set up Page");
 				if (nspbl.clickOnNavatarSetupSideMenusTab(environment, mode, NavatarSetupSideMenuTab.CommitmentCreation)) {
-				log(LogStatus.INFO, "Clicked on Navatar Set up Side Menu Deal Creation", YesNo.No);
+				log(LogStatus.INFO, "Clicked on Navatar Set up Side Menu commitment Creation", YesNo.No);
 					WebElement checkBox;
 					if (click(driver,
 							nspbl.getEditButtonforNavatarSetUpSideMenuTab(environment, mode,
@@ -6816,7 +6816,7 @@ public class SmokeTestCases extends BaseLib {
 							log(LogStatus.FAIL, "Check Box not Verified", YesNo.Yes);
 						}
 						
-						String[] labels= {"Fundraising Name","Legal Name","Fund Name","Company","None","None"};
+						String[] labels= {"Fundraising Name","Legal Name","Fund Name","Company","None"};
 						////////////////
 						if(nspbl.verifyLabelInEditModeforNavatarSetUpSideMenuTab(environment, mode, NavatarSetupSideMenuTab.CommitmentCreation, NavatarSetupSideMenuTabLayoutSection.CommitmentCreation_FundRaisingInformation, labels).isEmpty()) {
 							log(LogStatus.PASS, "Commitment Creation FundRaising Information labels are verified ", YesNo.No);
@@ -6908,7 +6908,7 @@ public class SmokeTestCases extends BaseLib {
 									log(LogStatus.INFO, "click on Limited Partner required field link", YesNo.No);
 									ThreadSleep(5000);
 									List<WebElement> options = allOptionsInDropDrop(driver, nspbl.getNewLP_CommitmentTab_DropDownList(environment, mode, 10), "limited partner drop down list");
-									if(compareMultipleList(driver, "Company,Fund Manager,Fund Manager's Fund,Individual Investor,Institution,Limited Partner", options).isEmpty()) {
+									if(compareMultipleList(driver, "Company,Fund Manager,Fund Manager’s Fund,Individual Investor,Institution,Limited Partner", options).isEmpty()) {
 										log(LogStatus.INFO, "Limited partner drop down list is verified ", YesNo.No);
 									}else {
 										log(LogStatus.FAIL, "Limited partner drop down list is not verified ", YesNo.No);
@@ -7330,7 +7330,7 @@ public class SmokeTestCases extends BaseLib {
 						
 					}
 
-					if (click(driver, home.getNewLimitedPartnerCrossIconInCreateCommitment(10), "", action.BOOLEAN)) {
+					if (clickUsingJavaScript(driver, home.getNewLimitedPartnerCrossIconInCreateCommitment(10), "", action.BOOLEAN)) {
 						log(LogStatus.INFO, "click on Cross Icon on New Limited PopUp", YesNo.Yes);	
 					} else {
 						log(LogStatus.ERROR, "Not able to click on Cross Icon on New Limited PopUp", YesNo.Yes);
@@ -7731,7 +7731,7 @@ public class SmokeTestCases extends BaseLib {
 														xpath = "(//a[contains(@onclick,'CancelCompnayPopup()')])["+i+"]";
 														ele = FindElement(driver, xpath, "Cross/Cancel : "+i, action.BOOLEAN, 10);
 
-														if (click(driver, ele, "Cross/Cancel : "+i, action.BOOLEAN)) {
+														if (clickUsingJavaScript(driver, ele, "Cross/Cancel : "+i, action.BOOLEAN)) {
 															log(LogStatus.INFO, "clicked on Cross/Cancel : "+i, YesNo.Yes);
 														} else {
 															log(LogStatus.ERROR, "Not able to click on Cross/Cancel : "+i, YesNo.Yes);
@@ -8841,7 +8841,7 @@ public class SmokeTestCases extends BaseLib {
 						ThreadSleep(2000);
 
 						// Deal Information 2nd
-						String expectedResult = "Company" + "," + "Fund Manager" + "," + "Fund Manager's Fund" + ","
+						String expectedResult = "Company" + "," + "Fund Manager" + "," + "Fund Manager’s Fund" + ","
 								+ "Individual Investor" + "," + "Institution" + "," + "Limited Partner";
 
 						checkBox = nspbl.getEnableCheckBoxforNavatarSetUpSideMenuTab(environment, mode,
@@ -8918,7 +8918,7 @@ public class SmokeTestCases extends BaseLib {
 						List<WebElement> newSourceFirm_RecordType = allOptionsInDropDrop(driver,
 								dctb.getNewSourceFirmLayout_RecordType(environment, 10),
 								"New Source Firm Record Type Drop Down");
-						expectedResult = "Company" + "," + "Fund Manager" + "," + "Fund Manager's Fund" + ","
+						expectedResult = "Company" + "," + "Fund Manager" + "," + "Fund Manager’s Fund" + ","
 								+ "Individual Investor" + "," + "Institution" + "," + "Limited Partner";
 						returnlist = compareMultipleList(driver, expectedResult, newSourceFirm_RecordType);
 						if (returnlist.isEmpty()) {
@@ -12610,6 +12610,7 @@ public class SmokeTestCases extends BaseLib {
 		if (bp.clickOnTab(environment, mode, TabName.CapitalCalls)) {
 			if (ccp.clickOnCreatedCapitalCall(environment, mode, SmokeCC3_ID)) {
 				if (click(driver, bp.getEditButton(environment, mode,60), "edit button", action.BOOLEAN)) {
+					
 					for (int i = 0;i<=3;i++) {
 						if (ccp.fieldValueVerificationOnCapitalCalls(environment, mode, TabName.CapitalCalls,labels[i] , SmokeCC3Data[i], EditViewMode.Edit)) {
 							log(LogStatus.PASS, "successfully verified "+labels[i], YesNo.No);
