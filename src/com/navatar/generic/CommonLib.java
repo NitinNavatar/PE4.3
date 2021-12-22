@@ -2406,7 +2406,7 @@ public class CommonLib extends EnumConstants implements Comparator<String>  {
 	 * @return Text/null
 	 */
 	public static boolean clickUsingJavaScript(WebDriver driver, WebElement element,String elementName,action action) {
-		String text =null;
+		
 		try {
 		//text=(String) ((JavascriptExecutor) driver).executeScript("return $('"+Jquery+"')[0].value");
 			((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
@@ -2418,6 +2418,21 @@ public class CommonLib extends EnumConstants implements Comparator<String>  {
 			System.err.println("Cannot Click Element: "+elementName);
 		}
 		appLog.info("Not Able to Click using JavaScript");
+		return false;
+	}
+	public static boolean clickUsingActionClass(WebDriver driver, WebElement element,String elementName,action action) {
+		
+		try {
+			Actions act=new Actions(driver);
+			act.moveToElement(element).click().build().perform();
+			appLog.info("Able to Clicked using action class");
+			return true;
+		}catch (Exception e) {
+			// TODO: handle exception
+			appLog.error("Exception in Clicked using action class");
+			System.err.println("Cannot Click Element: "+elementName);
+		}
+		appLog.info("Not Able to Click using action class");
 		return false;
 	}
 

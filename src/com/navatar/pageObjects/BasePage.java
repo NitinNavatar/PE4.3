@@ -601,7 +601,7 @@ public abstract class BasePage {
 		return isDisplayed(driver, navatarInvestorManagerTab, "Visibility", timeOut, "Navatar Investor Manager Tab");
 	}
 
-	@FindBy(xpath="(//div[contains(@class,'uiTooltip')])[8]")
+	@FindBy(xpath="//*[@class='userProfileCardTriggerRoot oneUserProfileCardTrigger']//button")
 	private WebElement salesForceLightingIcon;
 
 	/**
@@ -3059,16 +3059,17 @@ public abstract class BasePage {
 		String xpath="";
 		if(mode.toString().equalsIgnoreCase(Mode.Lightning.toString())) {
 			if(pageName.toString().equalsIgnoreCase(PageName.CompanyPage.toString())) {
-				xpath="a//*";
+				xpath="//button[text()='Create Fundraisings' or @title='Create Fundraisings']";
 			}else {
-				xpath="button";
+		
+				xpath="//button[text()='Create Fundraisings' or @title='Create Fundraisings']";
 			}
 			
 		}else {
-			xpath="input";
+			xpath="//input[text()='Create Fundraisings' or @title='Create Fundraisings']";
 		}
-		click(driver, getrelatedDrop(7), "related dropdown", action.SCROLLANDBOOLEAN);
-		return isDisplayed(driver, FindElement(driver, "//"+xpath+"[text()='Create Fundraisings' or @title='Create Fundraisings']", "Create Fundraising button on "+pageName, action.SCROLLANDBOOLEAN,timeOut), "Visibility",timeOut, "Create Fundraising button on "+pageName);
+		scrollDownThroughWebelement(driver, FindElement(driver, "//span[@title='Fundraisings']", "Fundraising section", action.SCROLLANDBOOLEAN, timeOut), "Fundraising tab");
+		return isDisplayed(driver, FindElement(driver,xpath , "Create Fundraising button on "+pageName, action.SCROLLANDBOOLEAN,timeOut), "Visibility",timeOut, "Create Fundraising button on "+pageName);
 	}
 	
 	

@@ -210,7 +210,7 @@ public class FundsPage extends BasePageBusinessLayer {
 		String xpath="";
 		if(mode.toString().equalsIgnoreCase(Mode.Lightning.toString())) {
 			if(pageName.toString().equalsIgnoreCase(PageName.FundsPage.toString())) {
-				xpath="a//*";
+				xpath="button";
 			}else {
 				xpath="button";
 			}
