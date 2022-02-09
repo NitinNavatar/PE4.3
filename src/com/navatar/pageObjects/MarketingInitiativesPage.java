@@ -755,7 +755,9 @@ public class MarketingInitiativesPage extends BasePageBusinessLayer {
 	 * @return the selectAReportErrorMsgOKBtn
 	 */
 	public WebElement getSelectAReportPopUpCrossIcon(int timeOut) {
-		return isDisplayed(driver, selectAReportPopUpCrossIcon, "Visibility", timeOut, "Select A Report PopUp Cross Icon");
+		//return isDisplayed(driver, selectAReportPopUpCrossIcon, "Visibility", timeOut, "Select A Report PopUp Cross Icon");
+		return FindElement(driver, "//a[@id='submitButtonId']", "Select A Report PopUp Cross Icon", action.BOOLEAN, timeOut);
+
 	}
 	
 
@@ -859,7 +861,8 @@ public class MarketingInitiativesPage extends BasePageBusinessLayer {
 	 * @return the infoLink
 	 */
 	public WebElement getWrenchIconCancelBtn(int timeOut) {
-		return isDisplayed(driver, wrenchIconCancelBtn, "Visibility", timeOut, "Wrench Icon Cancel Btn");
+		//return isDisplayed(driver, wrenchIconCancelBtn, "Visibility", timeOut, "Wrench Icon Cancel Btn");
+	return FindElement(driver, "//button[@title='Cancel']", "Wrench Icon Cancel Btn", action.BOOLEAN, timeOut);
 	}
 	
 	
@@ -1079,7 +1082,8 @@ public class MarketingInitiativesPage extends BasePageBusinessLayer {
 		else {
 			xpath="_applywrenchMEF";
 		}
-		return isDisplayed(driver, FindElement(driver, "//a[@id='"+xpath+"']", "apply button", action.BOOLEAN,10), "Visibility", timeOut, "apply button");
+		//return isDisplayed(driver, FindElement(driver, "//a[@id='"+xpath+"']", "apply button", action.BOOLEAN,10), "Visibility", timeOut, "apply button");
+		return FindElement(driver, "//a[@id='"+xpath+"']", "apply button", action.BOOLEAN,10);
 	}
 	
 	public List<WebElement> getColumnToDisplayAvailableFieldsTextList(PageName pageName){
@@ -1323,7 +1327,8 @@ private WebElement columnToDisplayRevertToDefaultBtn;
 
 
 public WebElement getColumnToDisplayRevertToDefaultBtn(int timeOut) {
-	return isDisplayed(driver, columnToDisplayRevertToDefaultBtn, "Visibility", timeOut, "revert to default button");
+	//return isDisplayed(driver, columnToDisplayRevertToDefaultBtn, "Visibility", timeOut, "revert to default button");
+	return FindElement(driver, "//a[@title='Revert to Defaults'][@style='display: inline-block;']", "revert to default button", action.BOOLEAN, timeOut);
 }
 
 @FindBy(xpath="//iframe[@title='Email Prospect']")

@@ -403,8 +403,9 @@ public class HomePageBusineesLayer extends HomePage {
 					appLog.info("Element Successfully Found and displayed");
 					ThreadSleep(500);
 					ele = FindElement(driver, XpathelementTOSearch, "", action.BOOLEAN, 30);
+					ThreadSleep(1000);
 					if (ele != null) {
-						if (click(driver, ele, "", action.BOOLEAN)) {
+						if (clickUsingJavaScript(driver, ele, "", action.BOOLEAN)) {
 							appLog.info("clicked on Contact Name : "+contactName);
 						} else {
 							appLog.error("Not able to clicke on Contact Name: "+contactName);
@@ -496,7 +497,7 @@ public class HomePageBusineesLayer extends HomePage {
 				log(LogStatus.INFO, "mouse over on contact name "+contactName, YesNo.No);
 				ele=isDisplayed(driver, FindElement(driver,xpathOfSelectInvestorsInfoIcon(contactName, accountName), "", action.BOOLEAN,10), "visibility",10,contactName+" info icon");
 				if(ele!=null) {
-					if(click(driver, ele, contactName+" info icon", action.SCROLLANDBOOLEAN)) {
+					if(clickUsingJavaScript(driver, ele, contactName+" info icon", action.SCROLLANDBOOLEAN)) {
 						log(LogStatus.INFO, "clicked on contact name "+contactName, YesNo.No);
 						return true;
 					}else {

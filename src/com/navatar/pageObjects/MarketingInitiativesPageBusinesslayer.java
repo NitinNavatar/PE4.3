@@ -313,7 +313,7 @@ public class MarketingInitiativesPageBusinesslayer extends MarketingInitiativesP
 										if (parentId!=null) {
 											ThreadSleep(2000);
 											if (Mode.Lightning.toString().equalsIgnoreCase(mode)) {
-												xpath = "//div/span[contains(text(),'"+linkClick[j]+"')]";
+												xpath = "//div/*[contains(text(),'"+linkClick[j]+"')]";
 												}else{
 													xpath = "//h2[contains(text(),'"+linkClick[j]+"')]";	
 												}
@@ -489,6 +489,7 @@ public class MarketingInitiativesPageBusinesslayer extends MarketingInitiativesP
 		int widgetTotalScrollingHeight = Integer.parseInt(String.valueOf(((JavascriptExecutor) driver)
 				.executeScript("return arguments[0].scrollHeight", getSelectProspectsGridScrollBox(addProspectsTab,10))));
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollTo(0,0)", getSelectProspectsGridScrollBox(addProspectsTab,10));
+		ThreadSleep(1000);
 		for (int i = 0; i <= widgetTotalScrollingHeight / 25; i++) {
 			if (!driver.findElements(byelementToSearch).isEmpty()
 					&& driver.findElement(byelementToSearch).isDisplayed()) {
@@ -1613,7 +1614,7 @@ public class MarketingInitiativesPageBusinesslayer extends MarketingInitiativesP
 						}
 						for(int j=0; j<avalFieldsWebelement.size(); j++) {
 							if(searchtext) {
-								if(sendKeys(driver, getColumnToDisplaySearchTextBox(pageName,20), addColumnFieldsName[i],"search text box", action.BOOLEAN)) {
+								if(sendKeysAndPressEnter(driver, getColumnToDisplaySearchTextBox(pageName,20), addColumnFieldsName[i],"search text box", action.BOOLEAN)) {
 									appLog.info("passed value in search text box "+addColumnFieldsName[i]);
 									ThreadSleep(5000);
 //									Robot rob;
@@ -1697,7 +1698,7 @@ public class MarketingInitiativesPageBusinesslayer extends MarketingInitiativesP
 					result.add("Column To Display Selected Fields Text list is not found so cannot remove columns in select prospect grid");
 				}
 			}
-			if(click(driver, getColumnToDisplayApplyBtn(pageName,20), "apply button", action.SCROLLANDBOOLEAN)) {
+			if(clickUsingJavaScript(driver, getColumnToDisplayApplyBtn(pageName,20), "apply button", action.SCROLLANDBOOLEAN)) {
 				appLog.info("clicked on save button");
 			}else {
 				appLog.error("Not able to click on save button so cannot close cloumn to display popup");
@@ -1714,10 +1715,10 @@ public class MarketingInitiativesPageBusinesslayer extends MarketingInitiativesP
 	public boolean columnToDisplayRevertToDefaultsSettings(PageName pageName,String mode) {
 		if(click(driver, getSelectProspectsWrenchIcon(pageName,mode,60), "wrench icon", action.SCROLLANDBOOLEAN)) {
 			ThreadSleep(10000);
-			if(click(driver, getColumnToDisplayRevertToDefaultBtn(20), "revert to default button", action.BOOLEAN)) {
+			if(clickUsingJavaScript(driver, getColumnToDisplayRevertToDefaultBtn(20), "revert to default button", action.BOOLEAN)) {
 				appLog.info("Clicked on revert to default button");
 				ThreadSleep(2000);
-				if(click(driver, getColumnToDisplayApplyBtn(pageName,20), "apply button", action.SCROLLANDBOOLEAN)) {
+				if(clickUsingJavaScript(driver, getColumnToDisplayApplyBtn(pageName,20), "apply button", action.SCROLLANDBOOLEAN)) {
 					appLog.info("clicked on save button");
 					return true;
 				}else {

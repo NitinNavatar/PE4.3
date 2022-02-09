@@ -2977,7 +2977,7 @@ public abstract class BasePage {
 		return isDisplayed(driver, scrollBoxforPageGrid, "Visibility", timeOut, "Scroll Box for Page Grid");
 		}
 	
-	@FindBy(xpath="//*[@title='Select List View']")
+	@FindBy(xpath="//*[@title='Select a List View']")
 	private WebElement selectListIcon_Lighting;
 
 	/**

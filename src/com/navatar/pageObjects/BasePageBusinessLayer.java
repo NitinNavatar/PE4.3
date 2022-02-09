@@ -1742,11 +1742,11 @@ public class BasePageBusinessLayer extends BasePage implements BasePageErrorMess
 		WebElement ele=null;
 		List<WebElement> eles=null;
 		if (mode.equalsIgnoreCase(Mode.Lightning.toString())){
-		eles	=FindElements(driver, "//span[text()='"+RLString+"']/../../../../../following-sibling::div//*[@title='New']", "new button");
+		eles	=FindElements(driver, "//span[text()='"+RLString+"']/../../../../../following-sibling::div//button[@name='New']", "new button");
 		for (int i = 0;i<eles.size();i++){
 			if(isDisplayed(driver, eles.get(i), "visibility", 1, "new button")!=null){
 				log(LogStatus.PASS, "trying to click "+i+" th new button", YesNo.No);
-				if (click(driver, eles.get(i), "new button in lighting", action.SCROLLANDBOOLEAN))
+				if (clickUsingJavaScript(driver, eles.get(i), "new button in lighting", action.SCROLLANDBOOLEAN))
 					return true;
 			}
 				

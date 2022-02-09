@@ -3138,7 +3138,7 @@ public class SmokeTestCases extends BaseLib {
 							}
 							ThreadSleep(1000);
 							
-							if (click(driver, market.getWrenchIconCancelBtn(10), "Cancel Btn", action.BOOLEAN)) {
+							if (clickUsingJavaScript(driver, market.getWrenchIconCancelBtn(10), "Cancel Btn", action.BOOLEAN)) {
 								log(LogStatus.INFO,"click on Wrench Icon Cancel Btn",YesNo.No);
 							} else {
 								log(LogStatus.FAIL,"Not able to click on Wrench Icon Cancel Btn",YesNo.Yes);
@@ -4620,6 +4620,7 @@ public class SmokeTestCases extends BaseLib {
 					}
 					if(home.selectFundNameOrCompanyNameOnCreateFundraisings(environment, mode, PopUpName.SelectFundPopUpFromCompmayPage, Smoke_Fund2, null)) {
 						if(click(driver, home.getSelectFundNamePopUpContinueBtn(), "continue button", action.SCROLLANDBOOLEAN)) {
+							ThreadSleep(3000);
 							if(home.getCreateFundraisingHeaderText(60)!=null)
 								if(home.getCreateFundraisingHeaderText(20).getText().trim().equalsIgnoreCase("Create Fundraisings for "+Smoke_Fund2)) {
 									log(LogStatus.INFO,"Create Fundraisings for "+Smoke_Fund2+" header text is matched", YesNo.No);
@@ -6805,7 +6806,7 @@ public class SmokeTestCases extends BaseLib {
 						ThreadSleep(2000);
 
 						// Deal Information 2nd
-						String expectedResult = "Company" + "," + "Fund Manager" + "," + "Fund Manager's Fund" + ","
+						String expectedResult = "Company" + "," + "Fund Manager" + "," + "Fund Manager’s Fund" + ","
 								+ "Individual Investor" + "," + "Institution" + "," + "Limited Partner";
 						checkBox = nspbl.getEnableCheckBoxforNavatarSetUpSideMenuTab(environment, mode,
 								NavatarSetupSideMenuTab.CommitmentCreation, EditViewMode.Edit, ClickOrCheckEnableDisableCheckBox.EnableOrDisable, 10);
@@ -6908,7 +6909,7 @@ public class SmokeTestCases extends BaseLib {
 									log(LogStatus.INFO, "click on Limited Partner required field link", YesNo.No);
 									ThreadSleep(5000);
 									List<WebElement> options = allOptionsInDropDrop(driver, nspbl.getNewLP_CommitmentTab_DropDownList(environment, mode, 10), "limited partner drop down list");
-									if(compareMultipleList(driver, "Company,Fund Manager,Fund Manager's Fund,Individual Investor,Institution,Limited Partner", options).isEmpty()) {
+									if(compareMultipleList(driver, "Company,Fund Manager,Fund Manager’s Fund,Individual Investor,Institution,Limited Partner", options).isEmpty()) {
 										log(LogStatus.INFO, "Limited partner drop down list is verified ", YesNo.No);
 									}else {
 										log(LogStatus.FAIL, "Limited partner drop down list is not verified ", YesNo.No);
@@ -8841,7 +8842,7 @@ public class SmokeTestCases extends BaseLib {
 						ThreadSleep(2000);
 
 						// Deal Information 2nd
-						String expectedResult = "Company" + "," + "Fund Manager" + "," + "Fund Manager's Fund" + ","
+						String expectedResult = "Company" + "," + "Fund Manager" + "," + "Fund Manager’s Fund" + ","
 								+ "Individual Investor" + "," + "Institution" + "," + "Limited Partner";
 
 						checkBox = nspbl.getEnableCheckBoxforNavatarSetUpSideMenuTab(environment, mode,
@@ -8918,7 +8919,7 @@ public class SmokeTestCases extends BaseLib {
 						List<WebElement> newSourceFirm_RecordType = allOptionsInDropDrop(driver,
 								dctb.getNewSourceFirmLayout_RecordType(environment, 10),
 								"New Source Firm Record Type Drop Down");
-						expectedResult = "Company" + "," + "Fund Manager" + "," + "Fund Manager's Fund" + ","
+						expectedResult = "Company" + "," + "Fund Manager" + "," + "Fund Manager’s Fund" + ","
 								+ "Individual Investor" + "," + "Institution" + "," + "Limited Partner";
 						returnlist = compareMultipleList(driver, expectedResult, newSourceFirm_RecordType);
 						if (returnlist.isEmpty()) {
@@ -11621,12 +11622,12 @@ public class SmokeTestCases extends BaseLib {
 				}
 				if (j == 1) {
 					refresh(driver);
-					if (ins.createInstitution(environment, mode, "ADTest FMF", "Fund Manager's Fund", InstitutionPageFieldLabelText.Parent_Institution.toString(), "ADTest FM")) {
+					if (ins.createInstitution(environment, mode, "ADTest FMF", "Fund Manager’s Fund", InstitutionPageFieldLabelText.Parent_Institution.toString(), "ADTest FM")) {
 						appLog.info("Fund Managerï¿½s Fund is created Fund Manage's Fund : " + "ADTest FMF");
 					} else {
-						appLog.error("Not able to click on create Fund Manager's Fund : ADTest FMF");
-						sa.assertTrue(false, "Not able to click on Fund Manager's Fund : ADTest FMF");
-						log(LogStatus.ERROR, "Not able to click on create Fund Manager's Fund : ADTest FMF", YesNo.Yes);
+						appLog.error("Not able to click on create Fund Manager’s Fund : ADTest FMF");
+						sa.assertTrue(false, "Not able to click on Fund Manager’s Fund : ADTest FMF");
+						log(LogStatus.ERROR, "Not able to click on create Fund Manager’s Fund : ADTest FMF", YesNo.Yes);
 					}
 				}
 				if (j == 2) {
@@ -12019,6 +12020,7 @@ public class SmokeTestCases extends BaseLib {
 							log(LogStatus.ERROR, "could not verify OtherFee textbox value", YesNo.Yes);
 							sa.assertTrue(false, "could not verify OtherFee textbox value");
 						}
+						ThreadSleep(2000);
 						if (fd.getCapitalCallValueCreateDrawdown(30).getText().trim().contains("0.00")) {
 							log(LogStatus.INFO, "successfully verified capital call value", YesNo.No);
 						}
@@ -12969,13 +12971,16 @@ public class SmokeTestCases extends BaseLib {
 				else {
 					log(LogStatus.ERROR, "could not click on related list button", YesNo.Yes);
 				}
+				ThreadSleep(5000);
 				if (bp.scrollToRelatedListViewAll_Lightning(environment, mode, RelatedList.Correspondence_Lists, false)) {
 					log(LogStatus.INFO, "successfully scrolled to correspondence list related list", YesNo.No);
 				}
+				
 				else {
 					log(LogStatus.ERROR, "could not scroll to correspondence list related list",YesNo.Yes);
 					sa.assertTrue(false, "could not scroll to correspondence list related list");
 				}
+				ThreadSleep(5000);
 				if (bp.clickonNewButtonInRelatedList(environment, mode, RelatedList.Correspondence_Lists)) {
 					log(LogStatus.PASS, "clicked on new button on correspondence list related list", YesNo.No);
 				}
@@ -12983,7 +12988,7 @@ public class SmokeTestCases extends BaseLib {
 					log(LogStatus.ERROR, "could not click on new button on correspondence list related list", YesNo.Yes);
 					sa.assertTrue(false, "could not click on new button on correspondence list related list");
 				}
-				
+				ThreadSleep(5000);
 				if (crp.createNewCorrList(mode, environment, SmokeC1_FName, SmokeC1_LName, SmokeCOMM8_ID,corrList )) {
 					log(LogStatus.PASS, "successfully created new correspondence list", YesNo.No);
 				}
@@ -13967,7 +13972,7 @@ public class SmokeTestCases extends BaseLib {
 		lp.CRMlogout(environment, mode);
 		boolean flag = false;
 		for (int i=0;i<10;i++) {
-			if (EmailLib.mailReceived(gmailUserName,adminPassword, crmUser1EmailID, SmokeC1_EmailID,subjectWithoutEmail , "")) {
+			if (EmailLib.mailReceived(gmailUserName,gmailPassword, crmUser1EmailID, SmokeC1_EmailID,subjectWithoutEmail , "")) {
 				log(LogStatus.INFO, "successfully verified email present", YesNo.No);
 				flag = true;
 				break;
@@ -13980,7 +13985,7 @@ public class SmokeTestCases extends BaseLib {
 		flag = false;
 		//check user bcc
 		for (int i=0;i<10;i++) {
-			if (EmailLib.mailReceived(gmailUserName2,adminPassword, crmUser1EmailID, SmokeC1_EmailID,subjectWithoutEmail , "")) {
+			if (EmailLib.mailReceived(gmailUserName2,gmailPassword, crmUser1EmailID, SmokeC1_EmailID,subjectWithoutEmail , "")) {
 				log(LogStatus.INFO, "successfully verified email present", YesNo.No);
 				flag = true;
 				break;
@@ -15909,7 +15914,7 @@ public class SmokeTestCases extends BaseLib {
 							if (ele!=null) {
 								
 								if (click(driver, ele, linkClick[j], action.BOOLEAN)) {
-									
+									ThreadSleep(2000);
 								parentId = 	switchOnWindow(driver);
 								
 								if (parentId!=null) {

@@ -163,13 +163,13 @@ public class FundraisingsPageBusinessLayer extends FundraisingsPage {
 			}else {
 				 xpath="//div[@class='listRelatedObject Custom28Block']//tr[@class='headerRow']/th";
 			}
-			List<WebElement> headers = FindElements(driver,xpath, "Header");
+			List<WebElement> headers = FindElements(driver,xpath, "Headers");
 			for(int i = 1; i < headers.size(); i++) {
 				if(mode.equalsIgnoreCase(Mode.Lightning.toString())) {
 					if(headers.get(i-1).getText().trim().equalsIgnoreCase("Primary")) {
-						xpath1="//span[text()='Fundraising Contact: Fundraising Contact ID']/../../../../../following-sibling::tbody/tr/*[6]//img";
+						xpath1="//span[text()='Fundraising Contact: Fundraising Contact ID']/../../../../../following-sibling::tbody/tr/*[7]//img";
 					}else {
-						xpath1="//span[text()='Fundraising Contact: Fundraising Contact ID']/../../../../../following-sibling::tbody/tr/*["+(i+1)+"]";
+						xpath1="//span[text()='Fundraising Contact: Fundraising Contact ID']/../../../../../following-sibling::tbody/tr/*["+(i+2)+"]";
 					}
 				}else {
 					if(headers.get(i).getText().trim().equalsIgnoreCase("Primary")) {
@@ -210,17 +210,22 @@ public class FundraisingsPageBusinessLayer extends FundraisingsPage {
 							if(details.get(j).equalsIgnoreCase(allDataOfGrid.get(i).get(j).getAttribute("alt").trim())) {
 								log(LogStatus.INFO, headerName+" header data is matched successfully", YesNo.No);
 							} else {
-								log(LogStatus.ERROR, headerName+" header data is not matched. Expected: "+details.get(j)+"\tActual: "+allDataOfGrid.get(i).get(j).getAttribute("alt"), YesNo.Yes);
+								log(LogStatus.ERROR, headerName+" header data is not  matched. Expected: "+details.get(j)+"\tActual: "+allDataOfGrid.get(i).get(j).getAttribute("alt"), YesNo.Yes);
 								result.add(headerName+" header data is not matched. Expected: "+details.get(j)+"\tActual: "+allDataOfGrid.get(i).get(j).getAttribute("alt"));
 							}
 						}
 					}else {
-						System.err.println("details: "+details.get(j)+" data on grid "+allDataOfGrid.get(i).get(j).getText());
-						if(details.get(j).equalsIgnoreCase(allDataOfGrid.get(i).get(j).getText().trim())) {
+						//System.err.println("details: "+details.get(j)+" data on grid "+allDataOfGrid.get(i).get(j).getText());
+						//String name1=allDataOfGrid.get(i+1).get(j).getText();
+						String name=allDataOfGrid.get(i).get(j).getText();
+
+						System.err.println("details: "+details.get(j)+" data on grid "+name);
+
+						if(details.get(j).equalsIgnoreCase(name)) {
 							log(LogStatus.INFO, headerName+" header data is matched successfully", YesNo.No);
 						} else {
-							log(LogStatus.ERROR, headerName+" header data is not matched. Expected: "+details.get(j)+"\tActual: "+allDataOfGrid.get(i).get(j).getText(), YesNo.Yes);
-							result.add(headerName+" header data is not matched. Expected: "+details.get(j)+"\tActual: "+allDataOfGrid.get(i).get(j).getText());
+							log(LogStatus.ERROR, headerName+" header data is not matched. Expected: "+details.get(j)+"\tActual: "+name, YesNo.Yes);
+							result.add(headerName+" header data is not matched. Expected: "+details.get(j)+"\tActual: "+name);
 						}
 					}
 				}
