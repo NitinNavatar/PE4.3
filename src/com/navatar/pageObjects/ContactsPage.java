@@ -61,7 +61,7 @@ public class ContactsPage extends BasePageBusinessLayer {
 	@FindBy(xpath="//div[@class='requiredInput']//span//input")
 	private WebElement legalName_Classic;
 	
-	@FindBy(xpath="//*[text()='Legal Name']/following-sibling::div//input[contains(@placeholder,'Search Institutions')]")
+	@FindBy(xpath="//*[text()='Legal Name' or text()='Account Name']/following-sibling::div//input[contains(@placeholder,'Search Institutions')]")
 	private WebElement legalName_Lighting;
 
 	/**

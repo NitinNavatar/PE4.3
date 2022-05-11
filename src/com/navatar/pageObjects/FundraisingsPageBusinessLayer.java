@@ -164,12 +164,12 @@ public class FundraisingsPageBusinessLayer extends FundraisingsPage {
 				 xpath="//div[@class='listRelatedObject Custom28Block']//tr[@class='headerRow']/th";
 			}
 			List<WebElement> headers = FindElements(driver,xpath, "Headers");
-			for(int i = 1; i < headers.size(); i++) {
+			for(int i = 0; i < headers.size(); i++) {
 				if(mode.equalsIgnoreCase(Mode.Lightning.toString())) {
-					if(headers.get(i-1).getText().trim().equalsIgnoreCase("Primary")) {
-						xpath1="//span[text()='Fundraising Contact: Fundraising Contact ID']/../../../../../following-sibling::tbody/tr/*[7]//img";
+					if(headers.get(i).getText().trim().equalsIgnoreCase("Primary")) {
+						xpath1="//span[text()='Fundraising Contact: Fundraising Contact ID']/ancestor::thead/following-sibling::tbody/tr//*[contains(@class,'Checkbox')]//img";
 					}else {
-						xpath1="//span[text()='Fundraising Contact: Fundraising Contact ID']/../../../../../following-sibling::tbody/tr/*["+(i+2)+"]";
+						xpath1="//span[text()='Fundraising Contact: Fundraising Contact ID']/../../../../../following-sibling::tbody/tr/*["+(i+3)+"]";
 					}
 				}else {
 					if(headers.get(i).getText().trim().equalsIgnoreCase("Primary")) {

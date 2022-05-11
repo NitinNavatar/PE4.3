@@ -51,7 +51,7 @@ public class InstitutionsPage extends BasePageBusinessLayer {
 	@FindBy(xpath="//input[@name='acc2']")
 	private WebElement legalNameTextBoxClassic;
 	
-	@FindBy(xpath="//*[text()='Legal Name']//following-sibling::div/input")
+	@FindBy(xpath="//*[text()='Account Name' or text()='Legal Name']//following-sibling::div/input")
 	private WebElement legalNameTextBoxLighting;
 	
 	/**

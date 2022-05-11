@@ -238,7 +238,7 @@ public class PipelinesPageBusinessLayer extends PipelinesPage {
 				}
 
 			} else {
-				WebElement ele = FindElement(driver, "//*[text()='Stage']/following-sibling::div//input",
+				WebElement ele = FindElement(driver, "//*[text()='Stage']/following-sibling::div//button",
 						"Stage Click", action.SCROLLANDBOOLEAN, 10);
 				if (click(driver, ele, "Stage Click", action.SCROLLANDBOOLEAN)) {
 					ele = FindElement(driver, "//div[@role='listbox']//*[@title='" + stageValue + "']",
