@@ -459,7 +459,7 @@ public class MarketingInitiativesPageBusinesslayer extends MarketingInitiativesP
 		String XpathelementTOSearch="";
 		if(addProspectsTab.toString().equalsIgnoreCase(AddProspectsTab.AccountAndContacts.toString()) || addProspectsTab.toString().equalsIgnoreCase(AddProspectsTab.PastMarketingInitiatives.toString())) {
 			XpathelementTOSearch = "//span[@id='Select_from_Search_ResultsA-view-box']//span[contains(@id,'Select_from_Search_ResultsA-row-')]/span[3]//a[text()='"
-			+ contactName + "']/../../following-sibling::span[1]//a[text()='" + accountName
+			+ contactName + "']/ancestor::div//a[text()='" + accountName
 			+ "']/../../preceding-sibling::span[2]/span/span[1]";
 		}else {
 			String[] splitedContactName=contactName.split(" ");
@@ -482,7 +482,7 @@ public class MarketingInitiativesPageBusinesslayer extends MarketingInitiativesP
 					}
 				}
 			}
-			XpathelementTOSearch = "//span[@id='Select_from_Search_ResultsArep-view-box-middle']//a[text()='"+splitedContactName[0]+"']/../../following-sibling::span//a[text()='"+splitedContactName[1]+"']/../../../span[2]/span/span[1]";
+			XpathelementTOSearch = "//span[@id='Select_from_Search_ResultsArep-view-box-middle']//a[text()='"+splitedContactName[0]+"']/ancestor::div//a[text()='"+splitedContactName[1]+"']/../../../span[2]/span/span[1]";
 		}
 		
 		By byelementToSearch = By.xpath(XpathelementTOSearch);

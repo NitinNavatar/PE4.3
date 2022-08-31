@@ -292,7 +292,7 @@ public class SmokeTestCases extends BaseLib {
 		lp = new LoginPageBusinessLayer(driver);
 		try {
 			passwordResetLink = new EmailLib().getResetPasswordLink("passwordreset",
-					ExcelUtils.readDataFromPropertyFile("gmailUserName2"),
+					ExcelUtils.readDataFromPropertyFile("gmailUserName"),
 					ExcelUtils.readDataFromPropertyFile("gmailPassword"));
 		} catch (InterruptedException e2) {
 			// TODO Auto-generated catch block
