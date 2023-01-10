@@ -494,7 +494,7 @@ public class ContactsPageBusinessLayer extends ContactsPage implements ContactPa
 			xpath= "//div[@class='listRelatedObject taskBlock']//input[contains(@title,'" + activityButton + "')]";
 			
 		} else {
-			xpath= "//a/span[contains(text(),'"+activityButton+"')]";
+			xpath= "//button/span[contains(text(),'"+activityButton+"')]";
 		}
 
 		ele = isDisplayed(driver,FindElement(driver,xpath,activityButton, action.SCROLLANDBOOLEAN, 10),"visibility", 10, activityButton);

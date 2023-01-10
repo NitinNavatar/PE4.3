@@ -290,6 +290,7 @@ public class MarketingInitiativesPageBusinesslayer extends MarketingInitiativesP
 				while (itr.hasNext()) {
 					String contactName = itr.next();
 					String accountName=ContactFullNameAndAccountName.get(contactName);
+					ThreadSleep(2000);
 					if(ScrollAndClickOnContactNameCheckBoxInAddProspect(addProspectsTab,contactName, accountName, 10)) {
 						appLog.info("clicked on Contact Name Check Box: "+contactName);
 						
@@ -459,8 +460,9 @@ public class MarketingInitiativesPageBusinesslayer extends MarketingInitiativesP
 		String XpathelementTOSearch="";
 		if(addProspectsTab.toString().equalsIgnoreCase(AddProspectsTab.AccountAndContacts.toString()) || addProspectsTab.toString().equalsIgnoreCase(AddProspectsTab.PastMarketingInitiatives.toString())) {
 			XpathelementTOSearch = "//span[@id='Select_from_Search_ResultsA-view-box']//span[contains(@id,'Select_from_Search_ResultsA-row-')]/span[3]//a[text()='"
-			+ contactName + "']/ancestor::div//a[text()='" + accountName
+			+ contactName + "']/../../following-sibling::span//a[text()='" + accountName
 			+ "']/../../preceding-sibling::span[2]/span/span[1]";
+
 		}else {
 			String[] splitedContactName=contactName.split(" ");
 			for(int i = 0; i < 15; i++){
