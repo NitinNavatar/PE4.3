@@ -241,14 +241,12 @@ public class CapitalCallsPageBusinessLayer extends CapitalCallsPage {
 				}
 				else {//edit
 					if (finalLabelName.contains("Call Date")|| finalLabelName.contains("Due Date")||finalLabelName.contains("Received Date")){
-						xpath = "//span[text()='"+finalLabelName+"']/../following-sibling::div//input[@type='text']";
+						xpath = "//*[text()='Capital Call Information']/../..//*[text()='"+finalLabelName+"']/following-sibling::div//input";
 					System.err.println("finalLabelName: "+ finalLabelName);
 					}else if (finalLabelName.contains("Capital Amount")||finalLabelName.contains("Management Fee")||finalLabelName.contains("Other Fee")||finalLabelName.contains("Call Amount Received"))
-						xpath = "//span[text()='"+finalLabelName+"']/../following-sibling::input";
-					else if(finalLabelName.contains("Drawdown")||finalLabelName.contains("Commitment"))
-						xpath = "//span[text()='"+finalLabelName+"']/../following-sibling::div//span[contains(@class,'Text')]";
-					else if(finalLabelName.contains("CC No")||finalLabelName.contains("Call Amount"))
-							xpath = "(//span[@class='test-id__field-label'][text()='"+finalLabelName+"']/../following-sibling::div/span/span)[2]";
+						xpath = "//*[text()='Capital Call Information']/../..//*[text()='"+finalLabelName+"']/following-sibling::div//input";
+					else if(finalLabelName.contains("Drawdown")||finalLabelName.contains("Commitment") || finalLabelName.contains("CC No") || finalLabelName.contains("Call Amount"))
+						xpath = "//*[text()='Capital Call Information']/../..//span[text()='"+finalLabelName+"']/../following-sibling::div//*[text()='"+labelValue+"']";
 				}
 				
 			}
@@ -317,9 +315,11 @@ public class CapitalCallsPageBusinessLayer extends CapitalCallsPage {
 		
 		}else {
 			//span[text()='Description']/..//following-sibling::textarea
-			xpath="//span[text()='"+finalLabelName+"']";
-			inputXpath="/..//following-sibling::input";
-			dateXpath="/..//following-sibling::div/input[@type='text']";
+			//*[text()='Capital Call Information']/../..//*[text()='"+finalLabelName+"']/following-sibling::div//input
+			
+			xpath="//*[text()='Capital Call Information']/../..//*[text()='"+finalLabelName+"']/following-sibling::div//input";
+			inputXpath="";
+			dateXpath="";
 		}
 		
 		if(mode.equals(Mode.Lightning.toString())) {

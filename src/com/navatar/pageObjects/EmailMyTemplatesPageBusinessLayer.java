@@ -30,8 +30,8 @@ public class EmailMyTemplatesPageBusinessLayer extends EmailMyTemplatesPage {
 	public boolean createCustomEmailFolder(String environment, String mode, String emailTemplateFolderName,
 			FolderAccess folderAccess) {
 		boolean flag = false;
-		if(searchStandardOrCustomObject(environment, mode, object.Email)) {
-			if (clickOnObjectFeature(environment, mode, object.Email, objectFeatureName.myTemplates)) {
+		if(searchStandardOrCustomObject(environment, mode, object.CommunicationTemplates)) {
+			if (clickOnObjectFeature(environment, mode, object.CommunicationTemplates, objectFeatureName.myTemplates)) {
 				if (mode.equalsIgnoreCase(Mode.Lightning.toString())) {
 					switchToFrame(driver, 20, getEditPageLayoutFrame_Lighting(20));
 					
@@ -106,7 +106,7 @@ public class EmailMyTemplatesPageBusinessLayer extends EmailMyTemplatesPage {
 			EmailTemplateType templateType, String emailTemplateName, String description, String emailSubject, String emailBody) {
 		boolean flag = false;
 		
-		if (clickOnObjectFeature(environment, mode, object.Email, objectFeatureName.myTemplates)) {
+		if (clickOnObjectFeature(environment, mode, object.CommunicationTemplates, objectFeatureName.myTemplates)) {
 			if (mode.equalsIgnoreCase(Mode.Lightning.toString())) {
 				switchToFrame(driver, 20, getEditPageLayoutFrame_Lighting(20));
 			}

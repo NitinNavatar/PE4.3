@@ -17,6 +17,7 @@ import java.util.List;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.seleniumhq.jetty9.util.thread.ThreadClassLoaderScope;
 
 import static com.navatar.generic.CommonLib.*;
 import static com.navatar.generic.AppListeners.*;
@@ -839,6 +840,7 @@ public class DealCreationTabBusinessLayer extends DealCreationTab {
 							WebElement ele = getSourceContactPopUpTextBoxOrRichTextBoxWebElement(environment, mode, labelNames[i].trim(), 30);
 							if(sendKeys(driver, ele, labelValue[i], labelNames[i]+" text box", action.SCROLLANDBOOLEAN)) {
 								appLog.info("passed value "+labelValue[i]+" in "+labelNames[i]+" field");
+								ThreadSleep(2000);
 							}else {
 								appLog.error("Not able to pass value "+labelValue[i]+" in "+labelNames[i]+" field");
 								BaseLib.sa.assertTrue(false, "Not able to pass value "+labelValue[i]+" in "+labelNames[i]+" field");
@@ -885,7 +887,12 @@ public class DealCreationTabBusinessLayer extends DealCreationTab {
 
 		if(labelName.equalsIgnoreCase(ContactPageFieldLabelText.Description.toString()) || labelName.equalsIgnoreCase(ContactPageFieldLabelText.Mailing_Street.toString()) || labelName.equalsIgnoreCase(ContactPageFieldLabelText.Other_Street.toString())) {
 			finalXpath=xpath+textAreaXpath;
-		}else {
+		}else if (labelName.equalsIgnoreCase(excelLabel.Email.toString())) {
+			xpath = "//*[text()='" + finalLabelName + "']";
+			inputXpath = "/..//following-sibling::td//input";
+			finalXpath=xpath+inputXpath;
+		}
+		else {
 			finalXpath=xpath+inputXpath;
 		}
 		ele = isDisplayed(driver,
@@ -951,6 +958,7 @@ public class DealCreationTabBusinessLayer extends DealCreationTab {
 		
 			if (selectVisibleTextFromDropDown(driver, ele,label+" Drop Down List", value)) {
 				appLog.info("Selected value from "+ label +" Drop down List : " + value);
+				ThreadSleep(2000);
 				return true;
 			}else{
 				BaseLib.sa.assertTrue(false, "Not Able to Select value from "+ label +" Drop down List : " + value);
@@ -961,6 +969,7 @@ public class DealCreationTabBusinessLayer extends DealCreationTab {
 		
 			if (sendKeys(driver, ele, value,label+" : " + value, action.BOOLEAN)) {
 				appLog.info("Entered Value on "+label+" Text Box : " + value);
+				ThreadSleep(2000);
 				return true;
 			}else{
 				BaseLib.sa.assertTrue(false, "Not Able to entered value on "+label+" Text Box : " + value);

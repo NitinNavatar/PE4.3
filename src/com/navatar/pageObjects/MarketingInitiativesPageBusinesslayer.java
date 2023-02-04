@@ -66,7 +66,7 @@ public class MarketingInitiativesPageBusinesslayer extends MarketingInitiativesP
 //			appLog.info("clicked on new button");
 			if(sendKeys(driver, getMarketInitiativeNameTextBox(environment, mode, 60), marketInitiativeName, "market initiative name text box", action.SCROLLANDBOOLEAN)) {
 				appLog.info("passed value in Name text box: "+marketInitiativeName);
-				if(click(driver, getSaveButton(environment, mode, 30), "save button", action.SCROLLANDBOOLEAN)) {
+				if(click(driver, getCustomTabSaveBtn(environment, mode, 30), "save button", action.SCROLLANDBOOLEAN)) {
 					appLog.info("clicked on Save Button For market Initiative: "+marketInitiativeName);
 
 					if (Mode.Lightning.toString().equalsIgnoreCase(mode)) {
@@ -290,6 +290,7 @@ public class MarketingInitiativesPageBusinesslayer extends MarketingInitiativesP
 				while (itr.hasNext()) {
 					String contactName = itr.next();
 					String accountName=ContactFullNameAndAccountName.get(contactName);
+					ThreadSleep(2000);
 					if(ScrollAndClickOnContactNameCheckBoxInAddProspect(addProspectsTab,contactName, accountName, 10)) {
 						appLog.info("clicked on Contact Name Check Box: "+contactName);
 						
@@ -313,7 +314,7 @@ public class MarketingInitiativesPageBusinesslayer extends MarketingInitiativesP
 										if (parentId!=null) {
 											ThreadSleep(2000);
 											if (Mode.Lightning.toString().equalsIgnoreCase(mode)) {
-												xpath = "//div/span[contains(text(),'"+linkClick[j]+"')]";
+												xpath = "//div/*[contains(text(),'"+linkClick[j]+"')]";
 												}else{
 													xpath = "//h2[contains(text(),'"+linkClick[j]+"')]";	
 												}
@@ -459,8 +460,9 @@ public class MarketingInitiativesPageBusinesslayer extends MarketingInitiativesP
 		String XpathelementTOSearch="";
 		if(addProspectsTab.toString().equalsIgnoreCase(AddProspectsTab.AccountAndContacts.toString()) || addProspectsTab.toString().equalsIgnoreCase(AddProspectsTab.PastMarketingInitiatives.toString())) {
 			XpathelementTOSearch = "//span[@id='Select_from_Search_ResultsA-view-box']//span[contains(@id,'Select_from_Search_ResultsA-row-')]/span[3]//a[text()='"
-			+ contactName + "']/../../following-sibling::span[1]//a[text()='" + accountName
+			+ contactName + "']/../../following-sibling::span//a[text()='" + accountName
 			+ "']/../../preceding-sibling::span[2]/span/span[1]";
+
 		}else {
 			String[] splitedContactName=contactName.split(" ");
 			for(int i = 0; i < 15; i++){
@@ -482,13 +484,14 @@ public class MarketingInitiativesPageBusinesslayer extends MarketingInitiativesP
 					}
 				}
 			}
-			XpathelementTOSearch = "//span[@id='Select_from_Search_ResultsArep-view-box-middle']//a[text()='"+splitedContactName[0]+"']/../../following-sibling::span//a[text()='"+splitedContactName[1]+"']/../../../span[2]/span/span[1]";
+			XpathelementTOSearch = "//span[@id='Select_from_Search_ResultsArep-view-box-middle']//a[text()='"+splitedContactName[0]+"']/ancestor::div//a[text()='"+splitedContactName[1]+"']/../../../span[2]/span/span[1]";
 		}
 		
 		By byelementToSearch = By.xpath(XpathelementTOSearch);
 		int widgetTotalScrollingHeight = Integer.parseInt(String.valueOf(((JavascriptExecutor) driver)
 				.executeScript("return arguments[0].scrollHeight", getSelectProspectsGridScrollBox(addProspectsTab,10))));
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollTo(0,0)", getSelectProspectsGridScrollBox(addProspectsTab,10));
+		ThreadSleep(1000);
 		for (int i = 0; i <= widgetTotalScrollingHeight / 25; i++) {
 			if (!driver.findElements(byelementToSearch).isEmpty()
 					&& driver.findElement(byelementToSearch).isDisplayed()) {
@@ -1613,7 +1616,7 @@ public class MarketingInitiativesPageBusinesslayer extends MarketingInitiativesP
 						}
 						for(int j=0; j<avalFieldsWebelement.size(); j++) {
 							if(searchtext) {
-								if(sendKeys(driver, getColumnToDisplaySearchTextBox(pageName,20), addColumnFieldsName[i],"search text box", action.BOOLEAN)) {
+								if(sendKeysAndPressEnter(driver, getColumnToDisplaySearchTextBox(pageName,20), addColumnFieldsName[i],"search text box", action.BOOLEAN)) {
 									appLog.info("passed value in search text box "+addColumnFieldsName[i]);
 									ThreadSleep(5000);
 //									Robot rob;
@@ -1697,7 +1700,7 @@ public class MarketingInitiativesPageBusinesslayer extends MarketingInitiativesP
 					result.add("Column To Display Selected Fields Text list is not found so cannot remove columns in select prospect grid");
 				}
 			}
-			if(click(driver, getColumnToDisplayApplyBtn(pageName,20), "apply button", action.SCROLLANDBOOLEAN)) {
+			if(clickUsingJavaScript(driver, getColumnToDisplayApplyBtn(pageName,20), "apply button", action.SCROLLANDBOOLEAN)) {
 				appLog.info("clicked on save button");
 			}else {
 				appLog.error("Not able to click on save button so cannot close cloumn to display popup");
@@ -1714,10 +1717,10 @@ public class MarketingInitiativesPageBusinesslayer extends MarketingInitiativesP
 	public boolean columnToDisplayRevertToDefaultsSettings(PageName pageName,String mode) {
 		if(click(driver, getSelectProspectsWrenchIcon(pageName,mode,60), "wrench icon", action.SCROLLANDBOOLEAN)) {
 			ThreadSleep(10000);
-			if(click(driver, getColumnToDisplayRevertToDefaultBtn(20), "revert to default button", action.BOOLEAN)) {
+			if(clickUsingJavaScript(driver, getColumnToDisplayRevertToDefaultBtn(20), "revert to default button", action.BOOLEAN)) {
 				appLog.info("Clicked on revert to default button");
 				ThreadSleep(2000);
-				if(click(driver, getColumnToDisplayApplyBtn(pageName,20), "apply button", action.SCROLLANDBOOLEAN)) {
+				if(clickUsingJavaScript(driver, getColumnToDisplayApplyBtn(pageName,20), "apply button", action.SCROLLANDBOOLEAN)) {
 					appLog.info("clicked on save button");
 					return true;
 				}else {

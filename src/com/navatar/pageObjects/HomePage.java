@@ -304,7 +304,8 @@ public class HomePage extends BasePageBusinessLayer {
 	 * @return the fundraisingContactPopUpApplyBtn
 	 */
 	public WebElement getFundraisingContactPopUpApplyBtn(int timeOut) {
-		return isDisplayed(driver, fundraisingContactPopUpApplyBtn, "Visibility", timeOut, "Fundraising Contact PopUp Apply Btn");
+		return FindElement(driver, "//div[contains(@class,'ContactAccess_fancybox')]//*[text()='Apply']", "Fundraising Contact PopUp Apply Btn", action.SCROLLANDBOOLEAN, timeOut);
+		//return isDisplayed(driver, fundraisingContactPopUpApplyBtn, "Visibility", timeOut, "Fundraising Contact PopUp Apply Btn");
 	}
 	
 	@FindBy(xpath="//a[@title='Create Fundraisings']")
@@ -605,6 +606,15 @@ public class HomePage extends BasePageBusinessLayer {
 	 * @return the createCommitmentFrame_Lightning
 	 */
 	public WebElement getCreateCommitmentFrame_Lightning(int timeOut) {
+		ThreadSleep(10000);
+        String xpath ="//iframe";
+        List<WebElement> elelist = FindElements(driver, xpath, "frame");
+        for (WebElement webElement : elelist) {
+            webElement = isDisplayed(driver, webElement, "Visibility", 5, "create commitment frame in lighting");;
+            if (webElement!=null) {
+                return webElement;
+            }
+        }
 		return isDisplayed(driver, createCommitmentFrame_Lightning, "Visibility", timeOut, "create Commitment Frame Lightning");
 	}
 	

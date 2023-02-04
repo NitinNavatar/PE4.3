@@ -5,6 +5,7 @@ import org.openqa.selenium.WebElement;
 import com.navatar.generic.BaseLib;
 import com.navatar.generic.EnumConstants.InstitutionPageFieldLabelText;
 import com.navatar.generic.EnumConstants.Mode;
+import com.navatar.generic.EnumConstants.OfficeLocationLabel;
 import com.navatar.generic.EnumConstants.RecordType;
 import com.navatar.generic.EnumConstants.TabName;
 import com.navatar.generic.EnumConstants.YesNo;
@@ -96,7 +97,7 @@ public class InstitutionsPageBusinessLayer extends InstitutionsPage {
 										ThreadSleep(1000);
 										if (click(driver,
 												FindElement(driver,
-														"//div[contains(@class,'uiAutocomplete')]//a//div//div[contains(@class,'primary') and @title='"+labelValue[i]+"']",
+														"//*[contains(@class,'listbox')]//*[@title='"+labelValue[i]+"']",
 														"Legal Name List", action.SCROLLANDBOOLEAN, 30),
 												labelValue[i] + "   :   Legal Name", action.SCROLLANDBOOLEAN)) {
 											appLog.info(labelValue[i] + "  is present in list.");
@@ -113,7 +114,7 @@ public class InstitutionsPageBusinessLayer extends InstitutionsPage {
 							}
 							
 						}
-						if (click(driver, getSaveButton(environment,mode,30), "save button", action.SCROLLANDBOOLEAN)) {
+						if (click(driver, getCustomTabSaveBtn(environment,mode,30), "save button", action.SCROLLANDBOOLEAN)) {
 							appLog.info("clicked on save button");
 							ThreadSleep(2000);
 //							String	xpath="//span[@class='custom-truncate uiOutputText'][text()='"+institutionName+"']";
@@ -739,16 +740,17 @@ public class InstitutionsPageBusinessLayer extends InstitutionsPage {
 				else{
 					xpath = "//form[@id='editPage']//label[text()='"+finalLabelName+"']/../following-sibling::td//input";	
 				}
-			
 					
 		} else {
 			
 			if (finalLabelName.contains("Street")) {
-				xpath = "//div[@class='modal-body scrollable slds-modal__content slds-p-around--medium']//label/span[text()='Street']/../following-sibling::textarea";
+				xpath = "//label[text()='Street']/following-sibling::*//textarea";
 			}else if(finalLabelName.contains("Organization Name")) {
-				xpath = "//div[@class='modal-body scrollable slds-modal__content slds-p-around--medium']//label/span[text()='Organization Name']/../following-sibling::div";
-			}else{
-				xpath = "//div[@class='modal-body scrollable slds-modal__content slds-p-around--medium']//label/span[text()='"+finalLabelName+"']/../following-sibling::input";	
+				xpath = "//label[text()='Organization Name']/following-sibling::div";
+			}else if(finalLabelName.contains("Primary"))
+				xpath="//label/span[text()='Primary']/../following-sibling::*//input";
+			else{
+				xpath = "//*[text()='"+finalLabelName+"']/following-sibling::*//input";
 			}
 			
 		}
@@ -757,8 +759,8 @@ public class InstitutionsPageBusinessLayer extends InstitutionsPage {
 			if (finalLabelName.contains("Primary")) {
 				
 				if (labelWithValue[1].toString().contains("checked")) {
-				
-					if (click(driver, ele, finalLabelName, action.BOOLEAN)) {
+					scrollDownThroughWebelement(driver, ele, "primary");
+					if (clickUsingJavaScript(driver, ele, finalLabelName, action.BOOLEAN)) {
 						log(LogStatus.INFO, "Clicked for Primary Label", YesNo.No);
 					}else{
 						saa.assertTrue(false, "Not Able to Click for Primary Label");

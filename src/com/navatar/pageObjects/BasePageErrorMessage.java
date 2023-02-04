@@ -31,4 +31,7 @@ public interface BasePageErrorMessage {
 	public String noNextActivityMsg1="No next steps";
 	public String noNextActivityMsg2="To get things moving, add a task or set up a meeting.";
 	
+	//America/New_York America/Los_Angeles
+	
+	public String AmericaLosAngelesTimeZone="America/Los_Angeles";
 }

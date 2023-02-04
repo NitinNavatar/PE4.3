@@ -24,7 +24,7 @@ public class ContactsPage extends BasePageBusinessLayer {
 	@FindBy(xpath="//input[@name='name_firstcon2']")
 	private WebElement contactFirstName_Classic;
 	
-	@FindBy(xpath="//span[text()='First Name']/../following-sibling::input")
+	@FindBy(xpath="//*[text()='First Name']/following-sibling::div/input")
 	private WebElement contactFirstName_Lighting;
 
 	/**
@@ -42,7 +42,7 @@ public class ContactsPage extends BasePageBusinessLayer {
 	@FindBy(xpath="//input[@name='name_lastcon2']")
 	private WebElement contactLastName_Classic;
 	
-	@FindBy(xpath="//span[text()='Last Name']/../following-sibling::input")
+	@FindBy(xpath="//*[text()='Last Name']/following-sibling::div/input")
 	private WebElement contactLastName_Lighting;
 
 	/**
@@ -61,7 +61,7 @@ public class ContactsPage extends BasePageBusinessLayer {
 	@FindBy(xpath="//div[@class='requiredInput']//span//input")
 	private WebElement legalName_Classic;
 	
-	@FindBy(xpath="//span[text()='Legal Name']/../following-sibling::div//input[@title='Search Institutions']")
+	@FindBy(xpath="//*[text()='Legal Name' or text()='Account Name']/following-sibling::div//input[contains(@placeholder,'Search Institutions')]")
 	private WebElement legalName_Lighting;
 
 	/**
@@ -80,7 +80,7 @@ public class ContactsPage extends BasePageBusinessLayer {
 	@FindBy(xpath="//table[@class='detailList']//input[@name='con15']")
 	private WebElement emailId_Clasic;
 	
-	@FindBy(xpath="//span[text()='Email']/../following-sibling::input[@type='email']")
+	@FindBy(xpath="//*[text()='Email']/following-sibling::div/input[@inputmode='email']")
 	private WebElement emailId_Lighting;
 
 	/**
@@ -139,9 +139,9 @@ public class ContactsPage extends BasePageBusinessLayer {
 			textAreaXpath="/../following-sibling::td//textarea";
 		}else {
 			//span[text()='Description']/..//following-sibling::textarea
-			xpath="//span[text()='"+finalLabelName+"']";
-			inputXpath="/..//following-sibling::input";
-			textAreaXpath="/..//following-sibling::textarea";
+			xpath="//*[text()='"+finalLabelName+"']";
+			inputXpath="/following-sibling::*/input";
+			textAreaXpath="/following-sibling::*/textarea";
 		}
 		
 		if(labelName.equalsIgnoreCase(ContactPageFieldLabelText.Description.toString()) || labelName.equalsIgnoreCase(ContactPageFieldLabelText.Mailing_Street.toString()) || 
@@ -179,7 +179,7 @@ public class ContactsPage extends BasePageBusinessLayer {
 	
 	}
 	
-	@FindBy(xpath="//input[@title='Search Office Locations']")
+	@FindBy(xpath="//input[@placeholder='Search Office Locations...']")
 	private WebElement officeLocationTextBox_Lighting;
 
 	/**

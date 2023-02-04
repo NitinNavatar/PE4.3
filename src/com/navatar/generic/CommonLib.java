@@ -266,9 +266,9 @@ public class CommonLib extends EnumConstants implements Comparator<String>  {
 					} else if(xpath.equalsIgnoreCase("//iframe[@title='AlertHomeGateway']")){
 						System.err.println("inside xpath Match");
 						System.out.println("Home page alert section code running");
-						if(CommonLib.click(driver, CommonLib.FindElement(driver, "//*[contains(@id,'grid-header-0-box-text')][text()='Date']", null, action.BOOLEAN, 10), null, action.BOOLEAN))
+						if(CommonLib.click(driver, CommonLib.FindElement(driver, "//*[contains(@id,'grid-header-0-box-text')][text()='Date']", null, action.BOOLEAN, 0), null, action.BOOLEAN))
 							CommonLib.ThreadSleep(1000);
-						if(CommonLib.click(driver, CommonLib.FindElement(driver, "//*[contains(@id,'grid-header-0-box-text')][text()='Date']", null, action.BOOLEAN, 10), null, action.BOOLEAN))
+						if(CommonLib.click(driver, CommonLib.FindElement(driver, "//*[contains(@id,'grid-header-0-box-text')][text()='Date']", null, action.BOOLEAN, 0), null, action.BOOLEAN))
 							CommonLib.ThreadSleep(1000);
 						break;
 					} else {
@@ -299,6 +299,46 @@ public class CommonLib extends EnumConstants implements Comparator<String>  {
 			return false;
 		}
 		return true;
+	}
+	
+	
+	public static boolean mouseHoverJScript(WebDriver driver,WebElement HoverElement) {
+		try {
+			if (isElementPresent(HoverElement)) {
+				String mouseOverScript = "if(document.createEvent){var evObj = document.createEvent('MouseEvents');evObj.initEvent('mouseover', true, false); arguments[0].dispatchEvent(evObj);} else if(document.createEventObject) { arguments[0].fireEvent('onmouseover');}";
+			((JavascriptExecutor) driver).executeScript(mouseOverScript,HoverElement);
+			return true;
+
+		} else {
+			System.out.println("Element was not visible to hover " + "\n");
+		}
+	} catch (StaleElementReferenceException e) {
+			System.out.println("Element with " + HoverElement
+					+ "is not attached to the page document"
+					+ e.getStackTrace());
+		} catch (NoSuchElementException e) {
+			System.out.println("Element " + HoverElement + " was not found in DOM"
+					+ e.getStackTrace());
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("Error occurred while hovering"
+					+ e.getStackTrace());
+		}
+		return false;
+	}
+	
+	public static boolean isElementPresent(WebElement element) {
+		boolean flag = false;
+		try {
+			if (element.isDisplayed()
+					|| element.isEnabled())
+				flag = true;
+		} catch (NoSuchElementException e) {
+			flag = false;
+		} catch (StaleElementReferenceException e) {
+			flag = false;
+		}
+		return flag;
 	}
 
 	/**
@@ -1526,8 +1566,11 @@ public class CommonLib extends EnumConstants implements Comparator<String>  {
 	 */
 	public static String getDateAccToTimeZone(String timeZone,String format){
 		try{
+			  String[] formatDate = format.split("/");
+			  format = formatDate[0]+"/"+formatDate[1]+"/"+formatDate[2].toLowerCase();
 			  DateFormat formatter= new SimpleDateFormat(format);
 			    formatter.setTimeZone(TimeZone.getTimeZone(timeZone));
+			    System.out.println(new Date());
 			 return (formatter.format(new Date()));
 		     
 		}catch(Exception e){
@@ -2363,7 +2406,7 @@ public class CommonLib extends EnumConstants implements Comparator<String>  {
 	 * @return Text/null
 	 */
 	public static boolean clickUsingJavaScript(WebDriver driver, WebElement element,String elementName,action action) {
-		String text =null;
+		
 		try {
 		//text=(String) ((JavascriptExecutor) driver).executeScript("return $('"+Jquery+"')[0].value");
 			((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
@@ -2375,6 +2418,21 @@ public class CommonLib extends EnumConstants implements Comparator<String>  {
 			System.err.println("Cannot Click Element: "+elementName);
 		}
 		appLog.info("Not Able to Click using JavaScript");
+		return false;
+	}
+	public static boolean clickUsingActionClass(WebDriver driver, WebElement element,String elementName,action action) {
+		
+		try {
+			Actions act=new Actions(driver);
+			act.moveToElement(element).click().build().perform();
+			appLog.info("Able to Clicked using action class");
+			return true;
+		}catch (Exception e) {
+			// TODO: handle exception
+			appLog.error("Exception in Clicked using action class");
+			System.err.println("Cannot Click Element: "+elementName);
+		}
+		appLog.info("Not Able to Click using action class");
 		return false;
 	}
 

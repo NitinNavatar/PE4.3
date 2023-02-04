@@ -1,14 +1,8 @@
 package com.navatar.pageObjects;
 
 import static com.navatar.generic.AppListeners.appLog;
-import static com.navatar.generic.CommonLib.FindElement;
-import static com.navatar.generic.CommonLib.ThreadSleep;
-import static com.navatar.generic.CommonLib.click;
-import static com.navatar.generic.CommonLib.selectVisibleTextFromDropDown;
-import static com.navatar.generic.CommonLib.sendKeys;
-import static com.navatar.generic.CommonLib.switchToDefaultContent;
-import static com.navatar.generic.CommonLib.switchToFrame;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -51,10 +45,10 @@ public class ReportsTabBusinessLayer extends ReportsTab{
 								action.SCROLLANDBOOLEAN)) {
 							appLog.info("Entered Value on Folder Name Text bOX : " + folderName);
 							
-							if (selectVisibleTextFromDropDown(driver,
-									epb.getpublicFolderAccesDropdown(environment, Mode.Classic.toString(), 10),
-									folderAccess + "   : Access dropdown", folderAccess)) {
-								appLog.info("Selected Access Type : " + folderAccess);
+//							if (selectVisibleTextFromDropDown(driver,
+//									epb.getpublicFolderAccesDropdown(environment, Mode.Classic.toString(), 10),
+//									folderAccess + "   : Access dropdown", folderAccess)) {
+//								appLog.info("Selected Access Type : " + folderAccess);
 								
 								if (click(driver, getSaveButton(environment, Mode.Classic.toString(), 60),
 										"Save Button", action.SCROLLANDBOOLEAN)) {
@@ -66,7 +60,62 @@ public class ReportsTabBusinessLayer extends ReportsTab{
 									
 									if (ele != null) {
 										appLog.info("Folder created and Matched :  " + folderName);
-										flag = true;
+										mouseHoverJScript(driver, getCreateReportFolderNameInSideTree(folderName, 20));
+										if(getCreateReportFolderNamePinIconInSideTree(folderName, 20)!=null) {
+											String FolderId=getCreateReportFolderNamePinIconInSideTree(folderName, 10).getAttribute("id");
+											if(clickOnAddPinIcon(FolderId, folderName)) {
+												appLog.info("clicked on folder Name "+folderName+" Pin Icon");
+												ThreadSleep(1000);
+												if(click(driver, getReportFolderShareText(10), "share button", action.BOOLEAN)) {
+													appLog.info("clicked On share Option");
+													ThreadSleep(1000);
+													if(click(driver, getUserLinkInSharePopUp(10),"User Link", action.BOOLEAN)) {
+														appLog.info("clicked on Users Link");
+														ThreadSleep(500);
+														if(click(driver, getUserShareButton(), "CRM User share button", action.BOOLEAN)) {
+															appLog.info("clicked on CRM User Share Button");
+															if(click(driver, getReportFolderAccessDownArrow(), "Report folder access down arrow", action.BOOLEAN)) {
+																appLog.info("Clicked on Access Down Arrow");
+																ThreadSleep(500);
+																if(click(driver, getReportFolderNameManagerText(10), "Report Folder Name Manager Text", action.BOOLEAN)) {
+																	appLog.info("Clicked on Report Folder Name Manager Text");
+																	ThreadSleep(500);
+																	if(click(driver, getReportFolderSharePopUpDoneAndCloseButton(10), "Report Folder Share PopUp Done And Close Button", action.BOOLEAN)) {
+																		appLog.info("Clicked on Report Folder Name Share Done button");
+																		ThreadSleep(500);
+																		if(click(driver, getReportFolderSharePopUpDoneAndCloseButton(10), "Report Folder Share PopUp Done And Close Button", action.BOOLEAN)) {
+																			appLog.info("Clicked on Report Folder Name Share Close button");
+																			flag = true;
+																			
+																		}else {
+																			appLog.error("Not able to click on report folder Share Close button But Report Folder Name is shared to CRM User");
+																		}
+																	}else {
+																		appLog.error("Not able to click on report folder Share Done button so cannot Share Report to CRM User");
+																	}
+																	
+																}else {
+																	appLog.error("Not able to click on report folder Manager text so cannot Share Report to CRM User");
+																}
+															}else {
+																appLog.error("Not able to click Access Down Arrow so cannot Share Report to CRM User");
+															}
+														}else {
+															appLog.error("Not able to click on CRM User share button so cannot share Report to CRM User");
+														}
+														
+													}else {
+														appLog.error("Not able to click on Users Link in share PopUp so cannot share report to crm user");
+													}
+												}else {
+													appLog.error("Not able to click on Share text under report folder pin icon so cannot share report to crm user");
+												}
+											}else {
+												appLog.error("Not able to click report folder pin icon so cannot share icon");
+											}
+										}else {
+											appLog.error("Not able to get create Report Folder "+folderName+" Name from side tree so cannot share CRM User");
+										}
 									} else {
 										appLog.error("Folder created But Not Matched :  " + folderName);
 									}
@@ -74,9 +123,9 @@ public class ReportsTabBusinessLayer extends ReportsTab{
 								} else {
 									appLog.error("Not Able to Click on Save Button");
 								}
-							} else {
-								appLog.error("Not Able to Select Access from drop down : "+folderAccess);
-							}
+//							} else {
+//								appLog.error("Not Able to Select Access from drop down : "+folderAccess);
+//							}
 						} else {
 							appLog.error("Not Able to Enter value on Email Template Folder Label Text Box");
 						}
@@ -93,6 +142,15 @@ public class ReportsTabBusinessLayer extends ReportsTab{
 			appLog.error("Not Able to swich Classic so cannot create Folder");
 		}
 		return flag;
+	}
+	
+	
+	public boolean clickOnAddPinIcon(String id, String folderName) {
+		((JavascriptExecutor) driver).executeScript("document.getElementById('"+id+"').setAttribute('class', 'x-btn folderButton pinningOption x-btn-noicon');");
+		scrollDownThroughWebelement(driver, FindElement(driver,
+				"//table[@id='"+id+"']", "Report Folder Name Pin Icon", action.BOOLEAN, 20),
+				"Add Folder Button");
+		return clickUsingJavaScript(driver,FindElement(driver, "//table[@id='"+id+"']", "folder Name pin Icon", action.BOOLEAN, 10), "folder name pin icon", action.BOOLEAN);
 	}
 	
 	public boolean createCustomReportForFolder(String environment, String mode, String folderName,ReportFormatName reportFormatName,

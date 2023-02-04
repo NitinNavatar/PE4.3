@@ -148,9 +148,9 @@ public class FundDrawdownsPageBusinessLayer extends FundDrawdownsPage {
 				if (finalLabelName.contains("Fund Name"))
 					xpath = "//td[text()='"+finalLabelName+"']/following-sibling::td/div/a";
 				else if(finalLabelName.contains("Call Date")||finalLabelName.contains("Due Date"))
-					xpath = "//span[text()='"+finalLabelName+"']/../following-sibling::td/div";
+					xpath = "//span[text()='" + finalLabelName + "']/../following-sibling::div";
 				else
-					xpath = "//td[text()='" + finalLabelName + "']/../td[2]/div";
+					xpath = "//span[text()='" + finalLabelName + "']/../following-sibling::div";
 
 			
 

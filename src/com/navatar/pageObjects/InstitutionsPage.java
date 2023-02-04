@@ -51,7 +51,7 @@ public class InstitutionsPage extends BasePageBusinessLayer {
 	@FindBy(xpath="//input[@name='acc2']")
 	private WebElement legalNameTextBoxClassic;
 	
-	@FindBy(xpath="//label[@data-aura-class='uiLabel']//span[text()='Legal Name']/..//following-sibling::input")
+	@FindBy(xpath="//*[text()='Account Name' or text()='Legal Name']//following-sibling::div/input")
 	private WebElement legalNameTextBoxLighting;
 	
 	/**
@@ -94,9 +94,13 @@ public class InstitutionsPage extends BasePageBusinessLayer {
 	 * @return the radioButtonforNewInstitution
 	 */
 	public WebElement getRadioButtonforRecordType(String recordType,int timeOut) {
+		
 		String xpath="//div[@class='changeRecordTypeRow']//span[text()='"+recordType+"']/../..//input";
 		WebElement ele = null;
 		ThreadSleep(500);
+		if(recordType.equalsIgnoreCase("Fund Manager's Fund")) {
+			xpath=	"//div[@class='changeRecordTypeRow']//span[contains(text(),'Fund Manager') and contains(text(),'s Fund')]/../..//input";
+		}
 		ele=FindElement(driver, xpath, "radio button of record type "+recordType, action.SCROLLANDBOOLEAN,timeOut);
 		ThreadSleep(500);
 		return isDisplayed(driver,ele,"visibility",timeOut,"radio button of record type "+recordType);
@@ -153,11 +157,11 @@ public class InstitutionsPage extends BasePageBusinessLayer {
 			
 		}else {
 			//span[text()='Description']/..//following-sibling::textarea
-			xpath="//span[text()='"+finalLabelName+"']";
-			inputXpath="/..//following-sibling::input";
-			textAreaXpath="/..//following-sibling::textarea";
+			xpath="//*[text()='"+finalLabelName+"']";
+			inputXpath="/following-sibling::div/input";
+			textAreaXpath="/following-sibling::div/textarea";
 			if(labelName.toString().equalsIgnoreCase(InstitutionPageFieldLabelText.Parent_Institution.toString())) {
-				inputXpath="/..//following-sibling::div//input[@title='Search Institutions']";
+				inputXpath="/following-sibling::div//input";
 			}
 			
 		}
@@ -187,7 +191,7 @@ public class InstitutionsPage extends BasePageBusinessLayer {
 	@FindBy(xpath="//td[@class='pbButton']//input[@name='newContact']")
 	private WebElement newContactBtn_Classic;
 	
-	@FindBy(xpath="//span[contains(text(),'Contacts')]/ancestor::header/following-sibling::div[@class='slds-no-flex']//a")
+	@FindBy(xpath="//span[contains(text(),'Contacts')]/../../../../..//following-sibling::div//a[@title='New']")
 	private WebElement newContactBtn_Lighting;
 	
 	
@@ -253,7 +257,7 @@ public class InstitutionsPage extends BasePageBusinessLayer {
 	@FindBy(xpath="//h3[text()='Office Locations']/../following-sibling::td/input[@title='New Office Location']")
 	private WebElement newOfficeLocationBtn_Classic;
 	
-	@FindBy(xpath="//span[text()='Office Locations']/ancestor::article//a/div[@title='New']")
+	@FindBy(xpath="//span[text()='Office Locations']/../../../../../following-sibling::div//*[text()='New']")
 	private WebElement newofficeLocationBtn_Lighting;
 	 
 	public WebElement getNewOfficeLocationButton(String environment,String mode,RecordType recordType,int timeOut){
@@ -282,7 +286,7 @@ public class InstitutionsPage extends BasePageBusinessLayer {
 	 
 	public WebElement getSaveOfficeLocationButton(String environment,String mode,int timeOut){
 		if (mode.equalsIgnoreCase(Mode.Lightning.toString())) {
-			return getSaveButton(environment, Mode.Lightning.toString(), timeOut);
+			return getCustomTabSaveBtn(environment, Mode.Lightning.toString(), timeOut);
 		}else{
 			return isDisplayed(driver, saveOfficeLocationBtn_Classic, "Visibility", timeOut, "Save office Location Button : "+mode);		
 		}

@@ -81,7 +81,7 @@ public class FundsPageBusinessLayer extends FundsPage {
 				} else {
 					if (click(driver, getFundType(environment, mode, 60), "Fund Type ", action.SCROLLANDBOOLEAN)) {
 						WebElement fundTypeEle = FindElement(driver,
-								"(//div[@class='select-options'])[2]//a[@title='" + fundType + "']", fundType,
+								"//span[@title='"+fundType+"']/../..", fundType,
 								action.SCROLLANDBOOLEAN, 10);
 						ThreadSleep(500);
 						if (click(driver, fundTypeEle, fundType, action.SCROLLANDBOOLEAN)) {
@@ -96,7 +96,7 @@ public class FundsPageBusinessLayer extends FundsPage {
 					if (click(driver, getInvestmentCategory(environment, mode, 60), "Investment Category",
 							action.SCROLLANDBOOLEAN)) {
 						WebElement InvsCatgEle = FindElement(driver,
-								"(//div[@class='select-options'])[2]//a[@title='" + investmentCategory + "']",
+								"//label[text()='Investment Category']/following-sibling::div//span[@title='"+investmentCategory+"']/../..",
 								investmentCategory, action.SCROLLANDBOOLEAN, 10);
 						ThreadSleep(500);
 						if (click(driver, InvsCatgEle, investmentCategory, action.SCROLLANDBOOLEAN)) {
@@ -120,7 +120,7 @@ public class FundsPageBusinessLayer extends FundsPage {
 					}
 					
 				}
-				if (click(driver, getSaveButton(environment, mode, 60), "Save Button", action.BOOLEAN)) {
+				if (click(driver, getCustomTabSaveBtn(environment, mode, 60), "Save Button", action.BOOLEAN)) {
 					ThreadSleep(5000);
 					
 					WebElement ele;

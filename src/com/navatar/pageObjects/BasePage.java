@@ -569,7 +569,7 @@ public abstract class BasePage {
 			return isDisplayed(driver, save_Lightning, "Visibility", timeOut, "Custom Tab Save Button lightning");
 		
 	}
-	@FindBy(xpath = "//button[@title='Save']")
+	@FindBy(xpath = "//*[@title='Save']")
 	private WebElement save_Lightning;
 	
 	@FindBy(xpath="//tr[@ class='last detailRow']//table//td[3]/select")
@@ -601,7 +601,7 @@ public abstract class BasePage {
 		return isDisplayed(driver, navatarInvestorManagerTab, "Visibility", timeOut, "Navatar Investor Manager Tab");
 	}
 
-	@FindBy(xpath="(//div[contains(@class,'uiTooltip')])[7]")
+	@FindBy(xpath="//*[@class='userProfileCardTriggerRoot oneUserProfileCardTrigger']//button")
 	private WebElement salesForceLightingIcon;
 
 	/**
@@ -1251,7 +1251,7 @@ public abstract class BasePage {
 	 @FindBy(xpath="//div[@class='pbHeader']//input[@title='Edit']")
 	 private WebElement editButton_Classic;
 	 
-	 @FindBy(xpath="//*[@title='Edit' or text()='Edit']")
+	 @FindBy(xpath="//button[@title='Edit' or text()='Edit']")
 	 private WebElement editButton_Lighting;
 	
 	 /**
@@ -2977,7 +2977,7 @@ public abstract class BasePage {
 		return isDisplayed(driver, scrollBoxforPageGrid, "Visibility", timeOut, "Scroll Box for Page Grid");
 		}
 	
-	@FindBy(xpath="//a[@title='Select List View']")
+	@FindBy(xpath="//*[@title='Select a List View']")
 	private WebElement selectListIcon_Lighting;
 
 	/**
@@ -3049,15 +3049,28 @@ public abstract class BasePage {
 		return isDisplayed(driver, lookUpResultFrame, "Visibility", timeOut, "look up result frame");
 	}
 	
+	@FindBy(xpath = "//*[text()='Related']/../../../..//*[contains(@class,'menu-button-item')]//*[@title='Show one more action' or text()='Show more actions']")
+	private WebElement relatedDrop;
+	public WebElement getrelatedDrop(int timeOut) {
+		return isDisplayed(driver, relatedDrop, "Visibility", timeOut, "relatedDrop");
+	}
 	public WebElement getCreateFundRaisingBtn(String environment,String mode, PageName pageName, int timeOut) {
-		WebElement ele=null;
 		String xpath="";
 		if(mode.toString().equalsIgnoreCase(Mode.Lightning.toString())) {
-			xpath="a";
+			if(pageName.toString().equalsIgnoreCase(PageName.CompanyPage.toString())) {
+
+				xpath="//button[text()='Create Fundraisings' or @title='Create Fundraisings']";
+
+			}else {
+		
+				xpath="//button[text()='Create Fundraisings' or @title='Create Fundraisings']";
+			}
+			
 		}else {
-			xpath="input";
+			xpath="//input[text()='Create Fundraisings' or @title='Create Fundraisings']";
 		}
-		return isDisplayed(driver, FindElement(driver, "//"+xpath+"[@title='Create Fundraisings']", "Create Fundraising button on "+pageName, action.SCROLLANDBOOLEAN,timeOut), "Visibility",timeOut, "Create Fundraising button on "+pageName);
+		scrollDownThroughWebelement(driver, FindElement(driver, "//span[@title='Fundraisings']", "Fundraising section", action.SCROLLANDBOOLEAN, timeOut), "Fundraising tab");
+		return isDisplayed(driver, FindElement(driver,xpath , "Create Fundraising button on "+pageName, action.SCROLLANDBOOLEAN,timeOut), "Visibility",timeOut, "Create Fundraising button on "+pageName);
 	}
 	
 	
@@ -3164,17 +3177,17 @@ public abstract class BasePage {
 		WebElement ele=null;
 		String xpath="";
 		if(mode.toString().equalsIgnoreCase(Mode.Lightning.toString())) {
-			xpath="a";
+			xpath="button";
 		}else {
 			xpath="input";
 		}
-		return isDisplayed(driver, FindElement(driver, "//"+xpath+"[@title='Create Commitments']", "Create Commitments button on "+pageName, action.BOOLEAN,timeOut), "Visibility",timeOut, "Create Commitments button on "+pageName);
+		return isDisplayed(driver, FindElement(driver, "//"+xpath+"[text()='Create Commitments' or @title='Create Commitments']", "Create Commitments button on "+pageName, action.BOOLEAN,timeOut), "Visibility",timeOut, "Create Commitments button on "+pageName);
 	}
 	
 	@FindBy(xpath="//h2[@class='topName']")
 	private WebElement labelHeaderText;
 	
-	@FindBy(xpath="//h1//span[@data-aura-class='uiOutputText']")
+	@FindBy(xpath="//div[contains(@class,'outputName')]")
 	private WebElement labelHeaderText_Lightning;
 
 	/**

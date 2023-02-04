@@ -6,9 +6,12 @@ import org.openqa.selenium.support.FindBy;
 
 import com.navatar.generic.EnumConstants.ContactPageFieldLabelText;
 import com.navatar.generic.EnumConstants.Mode;
+import com.navatar.generic.EnumConstants.PageName;
 import com.navatar.generic.EnumConstants.action;
 
 import static com.navatar.generic.CommonLib.*;
+
+import java.util.List;
 
 public class FundsPage extends BasePageBusinessLayer {
 
@@ -62,7 +65,7 @@ public class FundsPage extends BasePageBusinessLayer {
 	@FindBy(xpath="//input[@name='Name']")
 	private WebElement fundName_Classic;
 	
-	@FindBy(xpath="//span[text()='Fund Name']/../following-sibling::input")
+	@FindBy(xpath="//input[@name='Name']")
 	private WebElement fundName_Lighting;
 
 	/**
@@ -80,7 +83,7 @@ public class FundsPage extends BasePageBusinessLayer {
 	@FindBy(xpath="//div[@class='requiredInput']//select")
 	private WebElement fundType_Classic;
 	
-	@FindBy(xpath="//span[text()='Fund Type']/../..//div[@class='uiMenu']//a[@class='select']")
+	@FindBy(xpath="//*[text()='Fund Type']/following-sibling::div[@class='slds-form-element__control']//button")
 	private WebElement fundType_Lighting;
 
 	/**
@@ -98,7 +101,7 @@ public class FundsPage extends BasePageBusinessLayer {
 	@FindBy(xpath="(//div[@class='requiredInput']//select)[2]")
 	private WebElement investmentCategory_Classic;
 	
-	@FindBy(xpath="//span[text()='Investment Category']/../..//a[@class='select']")
+	@FindBy(xpath="//*[text()='Investment Category']/following-sibling::div//button")
 	private WebElement investmentCategory_Lighting;
 
 	/**
@@ -152,9 +155,9 @@ public class FundsPage extends BasePageBusinessLayer {
 			dateXpath="/../following-sibling::td[1]/span/input";
 		}else {
 			//span[text()='Description']/..//following-sibling::textarea
-			xpath="//span[contains(text(),'"+finalLabelName+"')]";
-			inputXpath="/..//following-sibling::input";
-			dateXpath="/../following-sibling::div/input";
+			xpath="//label[contains(text(),'"+finalLabelName+"')]";
+			inputXpath="/..//following-sibling::div/input";
+			dateXpath="/..//following-sibling::div/input";
 		}
 		if(labelName.contains("Date")) {
 			finalXpath=xpath+dateXpath;
@@ -173,13 +176,22 @@ public class FundsPage extends BasePageBusinessLayer {
 	 * @return the emailFundraisingContactFrame_Lightning
 	 */
 	public WebElement getEmailFundraisingContactFrame_Lightning(int timeOut) {
+		ThreadSleep(10000);
+        String xpath ="//iframe";
+        List<WebElement> elelist = FindElements(driver, xpath, "frame");
+        for (WebElement webElement : elelist) {
+            webElement = isDisplayed(driver, webElement, "Visibility", timeOut, "create commitment frame in lighting");;
+            if (webElement!=null) {
+                return webElement;
+            }
+        }
 		return isDisplayed(driver, emailFundraisingContactFrame_Lightning, "Visibility", timeOut, "email Fundraising Contact Frame Lightning");
 	}
 
 	@FindBy(xpath="//input[@title='Email Fundraising Contacts']")
 	private WebElement emailFundraisingContactsBtn_Classic;
 
-	@FindBy(xpath="//a[@title='Email Fundraising Contacts']")
+	@FindBy(xpath="//button[text()='Email Fundraising Contacts' or @title='Email Fundraising Contacts']")
 	private WebElement emailFundraisingContactsBtn_Lightning;
 	/**
 	 * @return the emailFundraisingContactsBtn
@@ -191,4 +203,23 @@ public class FundsPage extends BasePageBusinessLayer {
 			return isDisplayed(driver, emailFundraisingContactsBtn_Classic, "Visibility", timeOut, "email fundraising contact button in "+mode);
 		}
 	}
+	
+	
+	public WebElement getEmailFundraisingContactsBtn(String environment,String mode, PageName pageName, int timeOut) {
+		WebElement ele=null;
+		String xpath="";
+		if(mode.toString().equalsIgnoreCase(Mode.Lightning.toString())) {
+			if(pageName.toString().equalsIgnoreCase(PageName.FundsPage.toString())) {
+				xpath="button";
+			}else {
+				xpath="button";
+			}
+			
+		}else {
+			xpath="input";
+		}
+		click(driver, getrelatedDrop(7), "related dropdown", action.SCROLLANDBOOLEAN);
+		return isDisplayed(driver, FindElement(driver, "//"+xpath+"[text()='Email Fundraising Contacts' or @title='Email Fundraising Contacts']", "Email Fundraising Contacts button on "+pageName, action.SCROLLANDBOOLEAN,timeOut), "Visibility",timeOut, "Email Fundraising Contacts button on "+pageName);
+	}
+	
 }

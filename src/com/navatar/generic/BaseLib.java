@@ -50,6 +50,8 @@ import org.testng.annotations.Parameters;
 import static com.navatar.generic.CommonLib.*;
 import com.relevantcodes.extentreports.ExtentReports;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
+
 /**
  * 
  * @author Ankur Rana
@@ -92,10 +94,11 @@ public class BaseLib extends AppListeners {
 	@BeforeClass
 	public void config(String browserName){
 		if (browserName.equalsIgnoreCase("Chrome")) {
-			System.setProperty("webdriver.chrome.driver",
-					System.getProperty("user.dir") + "\\exefiles\\chromedriver.exe");
+//			System.setProperty("webdriver.chrome.driver",
+//					System.getProperty("user.dir") + "\\exefiles\\chromedriver.exe");
+			WebDriverManager.chromedriver().setup();
 			ChromeOptions options = new ChromeOptions();
-			options.setBinary("C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe");
+			options.setBinary("C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe");
 			options.addArguments("disable-infobars");
 			options.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
 			options.setExperimentalOption("useAutomationExtension", false);
@@ -155,6 +158,15 @@ public class BaseLib extends AppListeners {
 		sa=new SoftAssert();
 		if(result.getStatus()==2){
 			if(ExcelUtils.readData("TestCases", excelLabel.TestCases_Name, currentlyExecutingTC, excelLabel.Priority).equalsIgnoreCase("High")){
+				driver.close();
+				try {
+					Process process = Runtime.getRuntime().exec(System.getProperty("user.dir")+"/killbrowser.bat");
+					process.waitFor();
+					CommonLib.ThreadSleep(1000);
+				} catch (IOException | InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				appLog.fatal("Priority and dependency of this test case is high, So will not be able to continue with the execution.");
 				String toValue = ExcelUtils.readDataFromPropertyFile("EmailIdForStatusMail");
 				String[] attachment = {};
@@ -167,15 +179,13 @@ public class BaseLib extends AppListeners {
 					for(int i = 0; i < toValue.split(",").length; i++){
 						to[i]=toValue.split(",")[i];
 					}
-				} else {
-				}
-				
-				try {
-					EmailLib.sendMail(from, Password, to, currentlyExecutingTC+" failed", "Dear "+userName+",\n\n"+currentlyExecutingTC+" is failed due to below reason: \n\n"+result.getThrowable().getMessage()+"\n\n\bNote: Priority and dependency of this test case is high, So will not be able to continue with the execution.", attachment);
-				} catch (MessagingException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+					try {
+						EmailLib.sendMail(from, Password, to, currentlyExecutingTC+" failed", "Dear "+userName+",\n\n"+currentlyExecutingTC+" is failed due to below reason: \n\n"+result.getThrowable().getMessage()+"\n\n\bNote: Priority and dependency of this test case is high, So will not be able to continue with the execution.", attachment);
+					} catch (MessagingException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				} 
 				CommonLib.exit("Priority and dependency of "+currentlyExecutingTC+" testcase was high so cannot continue with the execution.");
 			}
 		}
