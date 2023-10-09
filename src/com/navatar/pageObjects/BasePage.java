@@ -2977,7 +2977,7 @@ public abstract class BasePage {
 		return isDisplayed(driver, scrollBoxforPageGrid, "Visibility", timeOut, "Scroll Box for Page Grid");
 		}
 	
-	@FindBy(xpath="//*[@title='Select a List View']")
+	@FindBy(xpath="//*[contains(@title,'Select a List View')]")
 	private WebElement selectListIcon_Lighting;
 
 	/**
@@ -3122,7 +3122,9 @@ public abstract class BasePage {
 	@FindBy(xpath="//h3[text()='Open Activities']/ancestor::div[@class='bRelatedList']//div[@class='pbBody']//tr//th")
 	private WebElement openActivityNoRecordsToDisplayMsg_Classic;
 	
-	@FindBy(xpath="//div[contains(@class,'openActivities')]//span")
+//	@FindBy(xpath="//div[contains(@class,'openActivities')]//span")
+	@FindBy(xpath="//div[contains(@class,'openActivities')]//span[contains(text(),'No activities to show.')]")
+
 	private WebElement openActivityNoRecordsToDisplayMsg_Lighting;
 
 	/**

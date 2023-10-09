@@ -246,7 +246,9 @@ public class FundraisingsPageBusinessLayer extends FundraisingsPage {
 		String id="";
 		String xpath="";
 		if(mode.equalsIgnoreCase(Mode.Lightning.toString())) {
-			xpath="//span[text()='Fundraising Contact: Fundraising Contact ID']/../../../../../following-sibling::tbody/tr//td//a[text()='"+contactName+"']/../../../preceding-sibling::th//a";
+	//		xpath="//span[text()='Fundraising Contact: Fundraising Contact ID']/../../../../../following-sibling::tbody/tr//td//a[text()='"+contactName+"']/../../../preceding-sibling::th//a";
+			xpath="//div[contains(@class,'windowViewMode-normal')]//span[text()='Fundraising Contact: Fundraising Contact ID']/ancestor::thead/following-sibling::tbody//span//a[text()='"+contactName+"']";
+
 		}else {
 			xpath="//th[text()='Fundraising Contact: Fundraising Contact ID']/../following-sibling::tr//td/a[text()='"+contactName+"']/../preceding-sibling::th/a";
 		}

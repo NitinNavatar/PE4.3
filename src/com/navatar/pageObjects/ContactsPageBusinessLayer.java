@@ -347,9 +347,9 @@ public class ContactsPageBusinessLayer extends ContactsPage implements ContactPa
 			if(finalLabelName.contains("Street") || finalLabelName.contains("City") || finalLabelName.contains("State") || finalLabelName.contains("Postal") || finalLabelName.contains("ZIP") || finalLabelName.contains("Zip")|| finalLabelName.contains("Country")) {
 
 				if(finalLabelName.contains("Other") || finalLabelName.contains("Other Street") || finalLabelName.contains("Other City") || finalLabelName.contains("Other State") || finalLabelName.contains("Other Zip") || finalLabelName.contains("Other Country")) {
-					xpath="//span[text()='Other Address']/../following-sibling::div//a[contains(@title,'"+labelValue+"')]";	
+					xpath="//span[text()='Other Address']/../following-sibling::div//div[contains(text(),'"+labelValue+"')]";	
 				}else{
-					xpath="//span[text()='Mailing Address']/../following-sibling::div//a[contains(@title,'"+labelValue+"')]";
+					xpath="//span[text()='Mailing Address']/../following-sibling::div//div[contains(text(),'"+labelValue+"')]";
 				}
 
 			}else {
@@ -503,7 +503,7 @@ public class ContactsPageBusinessLayer extends ContactsPage implements ContactPa
 				CommonLib.log(LogStatus.INFO, "Related Button Found: " + activityButton, YesNo.No);
 				if (ActivityRelatedButton.Task.toString().equalsIgnoreCase(ActivityRelatedButton.toString()) && Mode.Lightning.toString().equalsIgnoreCase(mode)) {
 					ThreadSleep(2000);
-					ele = FindElement(driver, "//*[contains(text(),'Create a task')]", "Task Click", action.SCROLLANDBOOLEAN, 2);
+					ele = FindElement(driver, "//*[contains(text(),'New Task')]", "Task Click", action.SCROLLANDBOOLEAN, 2);
 					if (click(driver, ele, "Create a Task", action.SCROLLANDBOOLEAN)) {
 						CommonLib.log(LogStatus.INFO, "Create a task Found: " + activityButton, YesNo.No);	
 					} else {

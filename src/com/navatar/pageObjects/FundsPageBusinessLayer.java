@@ -338,7 +338,9 @@ public class FundsPageBusinessLayer extends FundsPage {
 		boolean flag = false;
 		String xpath="";
 		if(mode.toString().equalsIgnoreCase(Mode.Lightning.toString())) {
-			xpath="//h1[text()='Partnerships']/ancestor::div/div[contains(@class,'slds-grid listDisplays')]//tbody/tr//th//a[text()='"+partnershipName+"']";
+//			xpath="//h1[text()='Partnerships']/ancestor::div/div[contains(@class,'slds-grid listDisplays')]//tbody/tr//th//a[text()='"+partnershipName+"']";
+			xpath="//h1[text()='Partnerships']/ancestor::lst-list-view-manager-header/following-sibling::div//span[text()='"+partnershipName+"']";
+
 		}else {
 			xpath="//h3[text()='Partnerships']/../../../../../following-sibling::div//tr/th/a[text()='"+partnershipName+"']";
 		}

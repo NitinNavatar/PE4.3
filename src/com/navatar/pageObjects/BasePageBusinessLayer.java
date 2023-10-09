@@ -1158,7 +1158,8 @@ public class BasePageBusinessLayer extends BasePage implements BasePageErrorMess
 				xpath = "//h3[text()='Affiliations']/ancestor::div[@class='bRelatedList']//div[@class='pbBody']//tr//th/a[contains(text(),'AF')]/../following-sibling::td/a[text()='"+institutionName+"']/../following-sibling::td[text()='Former Employee']";
 				ele = FindElement(driver, xpath, "", action.SCROLLANDBOOLEAN, 10);
 			} else {
-				xpath = "(//table[@data-aura-class='uiVirtualDataTable'])[1]/tbody/tr/th/span/a[contains(text(),'AF')]/../../following-sibling::td/span/a[text()='"+institutionName+"']/../../following-sibling::td/span/span[text()='Former Employee']";
+//				xpath = "(//table[@data-aura-class='uiVirtualDataTable'])[1]/tbody/tr/th/span/a[contains(text(),'AF')]/../../following-sibling::td/span/a[text()='"+institutionName+"']/../../following-sibling::td/span/span[text()='Former Employee']";
+				xpath = "//table[contains(@class,'slds-table_resizable-cols')]//*[contains(text(),'AF')]//ancestor::th/following-sibling::td//a[@title='"+institutionName+"']//ancestor::td/following-sibling::td//*[@title='Former Employee']";
 				ele = FindElement(driver, xpath, "", action.SCROLLANDBOOLEAN, 10);
 			}	
 		}else{
@@ -2273,7 +2274,7 @@ public boolean verifyRelatedListViewAllColumnAndValue(String[][] headersWithValu
 	String columnOrder=headerValues[0];
 
 	for (int j = 1; j < headerValues.length; j++) {
-		columnXpath=columnXpath+"//following-sibling::*[@title='"+headerValues[j]+"']";
+		columnXpath=columnXpath+"//ancestor::th/following-sibling::th//*[@title='"+headerValues[j]+"']";
 		columnOrder=columnOrder+"  <>  "+headerValues[j];
 	}
 
@@ -2292,9 +2293,13 @@ public boolean verifyRelatedListViewAllColumnAndValue(String[][] headersWithValu
 	for (int j = 1; j < Values.length; j++) {
 		val=Values[j];
 		if (Values[j].isEmpty() || Values[j].equals("")) {
-			valuXpath="//*[contains(@title,'"+Values[0]+"')]/../..//following-sibling::td["+j+"]//span//*";
+//			valuXpath="//*[contains(@title,'"+Values[0]+"')]/../..//following-sibling::td["+j+"]//span//*";
+			valuXpath="(//*[contains(@title,'"+Values[0]+"')]/ancestor::th/following-sibling::td["+j+"]//span//div)[3]";
+
 		} else {
-			valuXpath="//*[contains(@title,'"+Values[0]+"')]/../..//following-sibling::td["+j+"]//*[contains(@title,'"+val+"') or contains(text(),'"+val+"')]";
+//			valuXpath="//*[contains(@title,'"+Values[0]+"')]/../..//following-sibling::td["+j+"]//*[contains(@title,'"+val+"') or contains(text(),'"+val+"')]";
+			valuXpath="//*[contains(text(),'"+Values[0]+"')]/ancestor::th/following-sibling::td//*[@title='"+val+"']";
+
 		}
 
 		ele = FindElement(driver, valuXpath, val, action.BOOLEAN, 5);

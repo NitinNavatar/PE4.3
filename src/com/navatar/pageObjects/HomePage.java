@@ -182,7 +182,9 @@ public class HomePage extends BasePageBusinessLayer {
 	
 	public WebElement getSelectFundNamePopUpContinueBtn() {
 		WebElement ele=null;
-		List<WebElement> lst = FindElements(driver, "//button[contains(text(),'Continue')]", "continue button");
+//		List<WebElement> lst = FindElements(driver, "(//div[@class='PopupContentStart']//button)[2]", "continue button");
+		List<WebElement> lst = FindElements(driver, "//button[text()='Continue']", "continue button");
+
 		if(!lst.isEmpty()) {
 			for (int i = 0; i < lst.size(); i++) {
 				ele=isDisplayed(driver, lst.get(i), "visibility", 1, "continue button");

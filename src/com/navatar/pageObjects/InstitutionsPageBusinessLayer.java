@@ -428,7 +428,7 @@ public class InstitutionsPageBusinessLayer extends InstitutionsPage {
 				if(finalLabelName.contains("Shipping") ||finalLabelName.contains("Other Street") || finalLabelName.contains("Other City") || finalLabelName.contains("Other State") || finalLabelName.contains("Other Zip") || finalLabelName.contains("Other Country") ) {
 					xpath="//span[text()='Shipping Address']/../following-sibling::div//a[contains(@title,'"+labelValue+"')]";	
 				}else{
-					xpath="//span[text()='Address']/../following-sibling::div//a[contains(@title,'"+labelValue+"')]";
+					xpath="//span[text()='Address']/../following-sibling::div//div[contains(text(),'"+labelValue+"')]";
 				}
 				
 			}else {
@@ -852,7 +852,7 @@ public class InstitutionsPageBusinessLayer extends InstitutionsPage {
 		WebElement ele;
 		if (mode.equalsIgnoreCase(Mode.Lightning.toString())) {
 				ThreadSleep(2000);
-				ele = FindElement(driver, "//th[@scope='row']//a[@title='" + officeLocationName + "']", officeLocationName,
+				ele = FindElement(driver, "//table[contains(@class,'slds-table_resizable-cols')]//*[text()='" + officeLocationName + "']", officeLocationName,
 						action.SCROLLANDBOOLEAN, timeOut);
 				if (click(driver, ele, officeLocationName, action.SCROLLANDBOOLEAN)) {
 					ThreadSleep(2000);

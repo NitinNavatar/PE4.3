@@ -191,7 +191,7 @@ public class InstitutionsPage extends BasePageBusinessLayer {
 	@FindBy(xpath="//td[@class='pbButton']//input[@name='newContact']")
 	private WebElement newContactBtn_Classic;
 	
-	@FindBy(xpath="//span[contains(text(),'Contacts')]/../../../../..//following-sibling::div//a[@title='New']")
+	@FindBy(xpath="//span[contains(text(),'Contacts')]/../../../../..//following-sibling::div//button[text()='New']")
 	private WebElement newContactBtn_Lighting;
 	
 	
