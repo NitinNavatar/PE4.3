@@ -269,7 +269,7 @@ public class FundsPageBusinessLayer extends FundsPage {
 			//////////////////////////////////  
 			
 			if(labelName.contains("Date")) {
-				xpath = "//span[text()='"+labelName+"']/../following-sibling::div//*[contains(text(),'"+labelValue+"')]";
+				xpath = "//span[text()='"+labelName+"']/ancestor::dl//*[contains(text(),'"+labelValue+"')]";
 				ele = 	FindElement(driver, xpath, labelName + " label text with  " + labelValue, action.SCROLLANDBOOLEAN, 10);
 				scrollDownThroughWebelement(driver, ele, labelName + " label text with  " + labelValue);
 				ele = 	isDisplayed(driver,ele,"Visibility", 10, labelName + " label text with  " + labelValue);
@@ -283,7 +283,7 @@ public class FundsPageBusinessLayer extends FundsPage {
 				}
 				
 			}else {
-				xpath = "//span[text()='"+labelName+"']/../following-sibling::div//*[contains(text(),'"+labelValue+"')]";
+				xpath = "//span[text()='"+labelName+"']/ancestor::dl//*[contains(text(),'"+labelValue+"')]";
 				ele = 		FindElement(driver, xpath, labelName + " label text with  " + labelValue, action.SCROLLANDBOOLEAN, 10);
 				scrollDownThroughWebelement(driver, ele, labelName + " label text with  " + labelValue);
 				ele = 	isDisplayed(driver,ele,"Visibility", 10, labelName + " label text with  " + labelValue);

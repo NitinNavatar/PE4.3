@@ -17,7 +17,6 @@ import java.util.List;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.seleniumhq.jetty9.util.thread.ThreadClassLoaderScope;
 
 import static com.navatar.generic.CommonLib.*;
 import static com.navatar.generic.AppListeners.*;

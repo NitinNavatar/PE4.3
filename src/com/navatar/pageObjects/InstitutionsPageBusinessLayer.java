@@ -426,17 +426,17 @@ public class InstitutionsPageBusinessLayer extends InstitutionsPage {
 				if(finalLabelName.contains("Street") || finalLabelName.contains("City") || finalLabelName.contains("State") || finalLabelName.contains("Postal") || finalLabelName.contains("Zip") || finalLabelName.contains("Country")) {
 				
 				if(finalLabelName.contains("Shipping") ||finalLabelName.contains("Other Street") || finalLabelName.contains("Other City") || finalLabelName.contains("Other State") || finalLabelName.contains("Other Zip") || finalLabelName.contains("Other Country") ) {
-					xpath="//span[text()='Shipping Address']/../following-sibling::div//a[contains(@title,'"+labelValue+"')]";	
+					xpath="//span[text()='Shipping Address']/ancestor::dl//*[contains(@title,'"+labelValue+"')]";	
 				}else{
-					xpath="//span[text()='Address']/../following-sibling::div//div[contains(text(),'"+labelValue+"')]";
+					xpath="//span[text()='Address']/ancestor::dl//*[contains(text(),'"+labelValue+"')]";
 				}
 				
 			}else {
 				
 				if (labelName.equalsIgnoreCase(excelLabel.Phone.toString()) || labelName.equalsIgnoreCase(excelLabel.Fax.toString())) {
-					xpath = "//span[text()='"+finalLabelName+"']/../following-sibling::div//*[contains(text(),'"+labelValue+"') or contains(text(),'"+changeNumberIntoUSFormat(labelValue)+"')]";	
+					xpath = "//span[text()='"+finalLabelName+"']/ancestor::dl//*[contains(text(),'"+labelValue+"') or contains(text(),'"+changeNumberIntoUSFormat(labelValue)+"')]";	
 				} else {
-					xpath = "//span[text()='"+finalLabelName+"']/../following-sibling::div//*[text()='"+labelValue+"']";
+					xpath = "//span[text()='"+finalLabelName+"']/ancestor::dl//*[text()='"+labelValue+"']";
 				}
 				
 				

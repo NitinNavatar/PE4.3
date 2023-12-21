@@ -19,8 +19,6 @@ import java.util.regex.Pattern;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.remote.server.handler.SendKeys;
-import org.openqa.selenium.remote.server.handler.SwitchToWindow;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
@@ -11624,7 +11622,7 @@ public class SmokeTestCases extends BaseLib {
 				}
 				if (j == 3) {
 					refresh(driver);
-					if (ins.createInstitution(environment, mode, "ADTest FMF", "Fund Manager’s Fund", InstitutionPageFieldLabelText.Parent_Institution.toString(), "ADTest FM")) {
+					if (ins.createInstitution(environment, mode, "ADTest FMF", "Fund Managerï¿½s Fund", InstitutionPageFieldLabelText.Parent_Institution.toString(), "ADTest FM")) {
 						appLog.info("Fund Managerï¿½s Fund is created Fund Manage's Fund : " + "ADTest FMF");
 					} else {
 						appLog.error("Not able to click on create Fund Managerï¿½s Fund : ADTest FMF");

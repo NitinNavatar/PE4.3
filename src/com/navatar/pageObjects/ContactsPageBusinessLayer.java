@@ -6,7 +6,6 @@ import java.util.Random;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.remote.server.handler.SwitchToFrame;
 
 import com.navatar.generic.BaseLib;
 import com.navatar.generic.CommonLib;
@@ -347,9 +346,9 @@ public class ContactsPageBusinessLayer extends ContactsPage implements ContactPa
 			if(finalLabelName.contains("Street") || finalLabelName.contains("City") || finalLabelName.contains("State") || finalLabelName.contains("Postal") || finalLabelName.contains("ZIP") || finalLabelName.contains("Zip")|| finalLabelName.contains("Country")) {
 
 				if(finalLabelName.contains("Other") || finalLabelName.contains("Other Street") || finalLabelName.contains("Other City") || finalLabelName.contains("Other State") || finalLabelName.contains("Other Zip") || finalLabelName.contains("Other Country")) {
-					xpath="//span[text()='Other Address']/../following-sibling::div//div[contains(text(),'"+labelValue+"')]";	
+					xpath="//span[text()='Other Address']/ancestor::dl//*[contains(text(),'"+labelValue+"')]";	
 				}else{
-					xpath="//span[text()='Mailing Address']/../following-sibling::div//div[contains(text(),'"+labelValue+"')]";
+					xpath="//span[text()='Mailing Address']/ancestor::dl//*[contains(text(),'"+labelValue+"')]";
 				}
 
 			}else {
@@ -357,9 +356,9 @@ public class ContactsPageBusinessLayer extends ContactsPage implements ContactPa
 				if (labelName.equalsIgnoreCase(excelLabel.Phone.toString()) || labelName.equalsIgnoreCase(excelLabel.Fax.toString())||
 						labelName.equalsIgnoreCase(ContactPageFieldLabelText.Mobile.toString()) ||
 						labelName.equalsIgnoreCase(excelLabel.Asst_Phone.toString())) {
-					xpath = "//span[text()='"+finalLabelName+"']/../following-sibling::div//*[contains(text(),'"+labelValue+"') or contains(text(),'"+changeNumberIntoUSFormat(labelValue)+"')]";	
+					xpath = "//span[text()='"+finalLabelName+"']/ancestor::dl//*//*[contains(text(),'"+labelValue+"') or contains(text(),'"+changeNumberIntoUSFormat(labelValue)+"')]";	
 				} else {
-					xpath = "//span[text()='"+finalLabelName+"']/../following-sibling::div//*[text()='"+labelValue+"']";
+					xpath = "//span[text()='"+finalLabelName+"']/ancestor::dl//*//*[text()='"+labelValue+"']";
 				}
 
 
